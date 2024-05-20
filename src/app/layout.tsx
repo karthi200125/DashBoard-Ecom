@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import localFont from 'next/font/local'
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const myfont = localFont({
+  src: [
+    {
+      path: "../../public/fonts/fonnts.com-Regulator_Nova_Bold.otf",
+      // weight: "200"
+    }
+  ],  
+})
 
 export const metadata: Metadata = {
   title: "E-Commerce",
@@ -16,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className} >{children}</body>
     </html>
   );
 }
