@@ -40,7 +40,7 @@ const DashNavbar = () => {
     const pathname = usePathname()    
 
     return (
-        <div className="w-full flex items-center flex-row justify-between my-3 h-[60px] rounded-[8px] shadow-lg px-5 border bg-white">
+        <div className="w-full flex items-center flex-row justify-between my-3 h-[60px] rounded-[8px] shadow-lg px-5 border bg-white ">
             <Logo />
             <div className="flex flex-row gap-8 items-center">
                 {routes?.map((route) => (
@@ -51,7 +51,7 @@ const DashNavbar = () => {
             </div>
             <div className="flex gap-5 items-center">
                 <Icon icon={<Settings size={20} />} tooltip="Setting" />
-                <UserProfile />
+                <UserProfile proSrc="https://github.com/shadcn.png" proAlt="admin Profile" profileCls="w-12 h-12" tooltip="Admin"/>
             </div>
         </div>
     )

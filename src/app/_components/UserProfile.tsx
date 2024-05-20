@@ -6,13 +6,20 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 import ToolTip from "./ToolTip"
 
-const UserProfile = () => {
+interface UserProfileProps {
+    profileCls?: string,
+    proSrc?: string,
+    proAlt?: string,
+    tooltip?: string
+}
+
+const UserProfile = ({ profileCls, proSrc, proAlt , tooltip }: UserProfileProps) => {
     return (
-        <ToolTip tooltip="Admin">
-            <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+        <ToolTip tooltip={tooltip}>
+            <Avatar className={`${profileCls}`}>
+                <AvatarImage src={proSrc} alt={proAlt} />
                 <AvatarFallback>
-                    <Skeleton className="h-12 w-12 rounded-full bg-neutral-200" />
+                    <Skeleton className={`${profileCls}  bg-neutral-200 rounded-full`} />
                 </AvatarFallback>
             </Avatar>
         </ToolTip>

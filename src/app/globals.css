@@ -9,12 +9,24 @@
     box-sizing: border-box;
 }
 
+:root {
+    --gray: #f2f2f2;
+}
+
 body {
     @apply container min-h-screen bg-[#f2f2f2];
 }
 
 .border {
     @apply border-[1px] border-solid border-neutral-200;
+}
+
+input {
+    border: none;
+}
+
+input:focus {
+    outline: none;
 }
 
 .loader {
