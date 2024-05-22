@@ -17,7 +17,7 @@ const ToolTip = ({ children, tooltip }: TooltipProps) => {
                 <TooltipTrigger asChild>
                     {children}
                 </TooltipTrigger>
-                <TooltipContent className="bg-black text-white text-[10px]">
+                <TooltipContent className={`${tooltip && "bg-black text-white text-[10px]"} `}>
                     <p>{tooltip}</p>
                 </TooltipContent>
             </Tooltip>

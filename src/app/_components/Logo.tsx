@@ -1,7 +1,7 @@
 
 const Logo = () => {
   return (
-    <div>Logo</div>
+    <div className="w-[50px] h-[50px] rounded-full bg-white">Logo</div>
   )
 }
 

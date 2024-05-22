@@ -14,7 +14,7 @@ interface UserProfileProps {
 }
 
 const UserProfile = ({ profileCls, proSrc, proAlt , tooltip }: UserProfileProps) => {
-    return (
+    return (        
         <ToolTip tooltip={tooltip}>
             <Avatar className={`${profileCls}`}>
                 <AvatarImage src={proSrc} alt={proAlt} />

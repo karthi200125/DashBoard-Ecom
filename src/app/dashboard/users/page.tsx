@@ -1,9 +1,10 @@
+import TopList from "@/app/_components/TopList"
 import Image from "@/components/ui/Image"
 import NewUsers from "./NewUsers"
-import TopUsers from "./TopUsers"
 import TotalUser from "./TotalUser"
 import UserGraph from "./UserGraph"
-import UserTable from "./UserTable"
+import UserTable, { userdata } from "../users/UserTable"
+import { FaUsers } from "react-icons/fa"
 
 const Users = () => {
   return (
@@ -29,7 +30,9 @@ const Users = () => {
 
         </div>
 
-        <TopUsers />
+        <div className="bg-white border rounded-[20px] w-[23%] p-5 h-[660px] overflow-y-hidden">
+          <TopList title="Top users" icon={<FaUsers size={20}/>} data={userdata} />
+        </div>
       </div>
 
       <UserTable />

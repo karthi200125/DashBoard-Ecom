@@ -29,6 +29,16 @@ input:focus {
     outline: none;
 }
 
+/* text overflwo ellipese */
+.textover {
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* loading animation */
 .loader {
     width: 48px;
     height: 48px;
@@ -87,3 +97,27 @@ input:focus {
         transform: rotate(-360deg);
     }
 }
+
+/* Toatal user code */
+
+/* svg {
+    position: relative;
+    width: 250px;
+    height: 250px;    
+    background-color: red;
+    padding: 20px;
+}
+
+svg circle {
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke-width: 5;
+    stroke: rgba(0, 0, 0, 0.1);        
+}
+
+svg circle:nth-child(2) {
+    stroke: black;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+} */
