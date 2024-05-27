@@ -29,6 +29,31 @@ input:focus {
     outline: none;
 }
 
+
+/* Hide scrollbar for webkit browsers */
+.scroll::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;    
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    width: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+.scroll::-webkit-scrollbar-track {    
+    border-radius: 5px;
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox */
+body {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
 /* text overflwo ellipese */
 .textover {
     width: 250px;
@@ -36,6 +61,36 @@ input:focus {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+/* products collections */
+.productcollections {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.productcollections .collection {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.productcollections .pro2 {
+    position: absolute;
+    left: 15px;
+}
+
+.productcollections .pro3 {
+    position: absolute;
+    left: 30px;
+}
+
+.productcollections .pro4 {
+    position: absolute;
+    left: 45px;
+}
+
 
 
 /* loading animation */

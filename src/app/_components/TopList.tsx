@@ -28,7 +28,7 @@ const TopList = ({ data, title, icon }: TopListProps) => {
                             data.map((data: any) => (
                                 <Sheet>
                                     <SheetTrigger>
-                                        <div className='flex flex-row items-center gap-2 hover:borde rounded-[10px] hover:shadow-lg cursor-pointer overflow-hidden p-2'>
+                                        <div className='flex flex-row items-center gap-2 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2'>
                                             <UserProfile proAlt={data?.name} profileCls='w-12 h-12 bg-neutral-200' proSrc={data?.profilepic} />
                                             <div className='flex items-start justify-start flex-col'>
                                                 <h1 className='text-md leading-none'>{data?.name}</h1>
