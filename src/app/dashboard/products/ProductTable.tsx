@@ -43,7 +43,7 @@ const ProductTable = () => {
                     <h1>Products</h1>
                     <span>{`(${productsdata?.length})`}</span>
                 </h1>
-                <Search />
+                <Search placeholder='Search products ' name='products' onChange={(value: string) => console.log(value)} />
                 <div>
 
                     <div className='flex flex-row items-center gap-3'>
@@ -114,14 +114,14 @@ const ProductTable = () => {
                                                 <Icon icon={<IoIosMore size={20} />} tooltip='More' />
                                             </SheetTrigger>
                                             <SheetContent className='bg-white'>
-                                                <Product product={pro}/>
+                                                <Product product={pro} />
                                             </SheetContent>
                                         </Sheet>
                                     </td>
                                 </tr>
                             ))
                             :
-                            <div className='w-full h-full bg-red-400'>No User</div>
+                            <div className='w-full h-full bg-red-400'>No Products</div>
                     }
 
                 </tbody>
