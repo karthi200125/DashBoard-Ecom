@@ -4,16 +4,20 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import User from './User'
 import UserProfile from './UserProfile'
 import { Skeleton } from '@/components/ui/skeleton'
+import Order from '../dashboard/orders/Order'
+import Product from '../dashboard/products/Product'
 
 interface TopListProps {
     title?: string,
     icon?: any,
-    data?: any
+    data?: any,
+    route?: string,
 }
 
-const TopList = ({ data, title, icon }: TopListProps) => {
+const TopList = ({ data, title, icon, route }: TopListProps) => {
 
     const isLoading = false
+
 
     return (
         <div className='w-full h-full flex flex-col gap-2'>
@@ -29,15 +33,22 @@ const TopList = ({ data, title, icon }: TopListProps) => {
                                 <Sheet>
                                     <SheetTrigger>
                                         <div className='flex flex-row items-center gap-2 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2'>
-                                            <UserProfile proAlt={data?.name} profileCls='w-12 h-12 bg-neutral-200' proSrc={data?.profilepic} />
+                                            <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200' proSrc={route === "products" ? data?.proImage : data?.profilepic} />
                                             <div className='flex items-start justify-start flex-col'>
-                                                <h1 className='text-md leading-none'>{data?.name}</h1>
-                                                <span className='text-neutral-400 text-sm'>{data?.email}</span>
+                                                <h1 className='text-md leading-none'>{route === "products" ? data?.proName : data?.name}</h1>
+                                                <span className='text-neutral-400 text-sm'>{route === "products" ? `${data?.proPrice} Rs` : data?.email}</span>
                                             </div>
                                         </div>
                                     </SheetTrigger>
                                     <SheetContent className='bg-white'>
-                                        <User user={data} />
+                                        {route === "products" ?
+                                            <Product />
+                                            :
+                                            route === "orders" ?
+                                                <Order />
+                                                :
+                                                <User user={data} />
+                                        }
                                     </SheetContent>
                                 </Sheet>
                             ))

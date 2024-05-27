@@ -15,7 +15,7 @@ const Order = ({ orderData }: any) => {
                 <h2 className='flex items-center gap-2 flex-row font-bold'>Phone Number : <span className='text-neutral-400 text-sm'>#{orderData?.orderId}</span></h2>
             </div>
 
-            <div className=' flex flex-row items-center gap-5 border-b-[1px] py-5'>
+            <div className=' flex flex-row items-center gap-5 border-b-[1px] py-5 justify-center'>
                 <CustomBtn arrow>
                     Cancel Order
                 </CustomBtn>
