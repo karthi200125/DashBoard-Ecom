@@ -24,14 +24,9 @@ const DashNavbar = () => {
             id: 3,
             name: "Orders",
             href: "/dashboard/orders"
-        },
+        },        
         {
             id: 4,
-            name: "Payments",
-            href: "/dashboard/payments"
-        },
-        {
-            id: 5,
             name: "CreateProduct",
             href: "/dashboard/createproduct"
         },

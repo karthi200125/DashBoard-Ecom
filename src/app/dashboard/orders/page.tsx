@@ -4,6 +4,8 @@ import TopList from "@/app/_components/TopList"
 import { ListOrderedIcon } from "lucide-react"
 import { userdata } from "../users/UserTable"
 import OrderTable from "./OrderTable"
+import OrderCards from "./OrderCards"
+import OrderGraph from "./OrderGraph"
 
 export const orderdata = [
     {
@@ -85,22 +87,6 @@ export const orderdata = [
         price: "3000rs",
         status: "delivered"
     },
-    {
-        id: 5,
-        orderId: '1237',
-        customer: "test",
-        products: [
-            {
-                id: 5,
-                productImage: "",
-                productName: "product"
-            }
-        ],
-        address: "12/45, Product Street, Chennai, India",
-        date: "25/September/2024",
-        price: "2500rs",
-        status: "canceled"
-    }
 ]
 
 const Orders = () => {
@@ -108,11 +94,12 @@ const Orders = () => {
     return (
         <div className="min-h-screen flex flex-col gap-2">
             <div className="flex flex-row gap-3">
-                <div className="w-[76%] h-full bg-white border rounded-[20px] p-5">
-
+                <div className="w-[76%] h-full flex flex-row gap-3 justify-between">
+                    <OrderGraph />
+                    <OrderCards />
                 </div>
                 <div className="bg-white border rounded-[20px] w-[23%] p-5">
-                    <TopList icon={<ListOrderedIcon size={20} />} title="Top Orders" data={orderdata} route="orders"/>
+                    <TopList icon={<ListOrderedIcon size={20} />} title="Top Orders" data={orderdata} route="orders" />
                 </div>
             </div>
             <div className="border bg-white p-5 rounded-[20px]">
