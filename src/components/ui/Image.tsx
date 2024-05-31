@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Skeleton } from './skeleton';
 
 interface ImageProps {
-    src: string;    
+    src: any;
     imgclass?: string;
 }
 

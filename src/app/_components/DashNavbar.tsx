@@ -40,7 +40,7 @@ const DashNavbar = () => {
     const pathname = usePathname()    
 
     return (
-        <div className="w-full flex items-center flex-row justify-between my-3 h-[80px] rounded-[8px] px-5 bg-white ">
+        <div className="w-full flex items-center sticky flex-row justify-between my-3 h-[80px] rounded-[8px] px-5 bg-white ">
             <Logo />
             <div className="flex flex-row gap-3 items-center">
                 {routes?.map((route) => (
