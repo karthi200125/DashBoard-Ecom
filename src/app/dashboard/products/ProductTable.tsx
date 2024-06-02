@@ -25,6 +25,8 @@ import { FaUsers } from "react-icons/fa"
 import { IoIosMore } from "react-icons/io"
 import { productsdata } from './page'
 import Product from './Product'
+import CustomBtn from '@/app/_components/CustomBtn'
+import { useRouter } from 'next/navigation'
 
 
 const ProductTable = () => {
@@ -32,6 +34,8 @@ const ProductTable = () => {
     const [CurrentPage, SetCurrentPage] = useState(1)
     const LastPage = true
     const isLoading = false
+
+    const router = useRouter()
 
     return (
         <div className={`w-full ${isLoading ? "h-[800px]" : "min-h-[300px]"}  border bg-white rounded-[20px] p-5 flex flex-col`}>
@@ -59,6 +63,10 @@ const ProductTable = () => {
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
+
+                        <CustomBtn arrow onClick={() => router.push('/dashboard/createproduct')}>
+                            Create New Product
+                        </CustomBtn>
 
                         {/* <Select>
               <SelectTrigger className="w-[150px]">

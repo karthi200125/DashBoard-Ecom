@@ -1,20 +1,29 @@
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
+import Spinners from './Spinners'
 
 interface BtnProps {
     children: React.ReactNode,
     arrow?: boolean,
     btnbg?: string,
     btnCls?: string,
-    isLoading?: boolean
+    isLoading?: boolean,
+    onClick?: () => void
 }
 
-const CustomBtn = ({ children, arrow, btnCls, isLoading }: BtnProps) => {
+const CustomBtn = ({ children, arrow, btnCls, isLoading, onClick }: BtnProps) => {
     return (
-        <Button className='group flex flexrow items-center gap-3 rounded-full h-[55px] border hover:bg-blck hover:txt-white transition duration-300 hover:shadow-xl'>
+        <Button
+            className={`group flex flexrow items-center gap-3 rounded-full h-[55px] border hover:bg-blck hover:txt-white transition duration-300 hover:shadow-xl ${isLoading && "cursor-not-allowed"}`}
+            disabled={isLoading && true}
+            onClick={onClick}
+        >
             {isLoading ?
-                <div>loading</div>
+                <button disabled={true} className='flex flex-row items-center gap-2'>
+                    <span>Loading...</span>
+                    <Spinners />
+                </button>
                 :
                 <>
                     {children}

@@ -1,7 +1,12 @@
+import Link from 'next/link'
+import test from '../assets/user-bg.jpg'
+import UserProfile from './UserProfile'
 
 const Logo = () => {
   return (
-    <div className="w-[50px] h-[50px] rounded-full bg-white">Logo</div>
+    <Link href='/dashboard/users' >
+      <UserProfile proSrc={test.src} proAlt='Logo' profileCls='w-[60px] h-[60px] bg-neutral-200' tooltip='Logo Image' />
+    </Link>
   )
 }
 

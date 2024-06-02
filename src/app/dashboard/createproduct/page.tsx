@@ -1,8 +1,14 @@
+'use client'
+
 import CustomBtn from "@/app/_components/CustomBtn";
 import ImageUpload from "./ImageUpload";
+import Form from "@/components/ui/Form";
 
 const CreateProduct = () => {
 
+    const handleFormSubmit = (data: { firstName: string; lastName: string; email: string }) => {
+        console.log(data);
+    };
 
     return (
         <div className="w-full min-h-screen flex flex-col gap-3">
@@ -10,7 +16,7 @@ const CreateProduct = () => {
             {/* create product top */}
             <div className="flex flex-row items-center justify-between bg-white border rounded-full px-3 py-2">
                 <h1 className="font-bold text-xl ml-5">Create New Product</h1>
-                <CustomBtn arrow isLoading={false}>
+                <CustomBtn arrow isLoading={true}>
                     Create Product
                 </CustomBtn>
             </div>
@@ -49,6 +55,8 @@ const CreateProduct = () => {
                 </div>
 
             </div>
+
+            <Form onSubmit={handleFormSubmit} />
 
         </div>
     )
