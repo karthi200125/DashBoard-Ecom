@@ -4,7 +4,7 @@ import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import CustomInput from './input';
+import CustomInput from '../../app/_components/Input';
 
 
 const schema = z.object({

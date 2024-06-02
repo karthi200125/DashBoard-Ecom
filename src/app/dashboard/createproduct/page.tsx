@@ -1,65 +1,99 @@
-'use client'
+'use client';
 
 import CustomBtn from "@/app/_components/CustomBtn";
-import ImageUpload from "./ImageUpload";
-import Form from "@/components/ui/Form";
+import ProductImageUpload from "./ProductImageUpload";
+import { useForm, FormProvider } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import CustomInput from "@/app/_components/Input";
+import CustomSelect from "@/app/_components/CustomSelect";
+
+const schema = z.object({
+    productName: z.string().min(3, "Product Name is required"),
+    productDesc: z.string().min(100, "Product Description is required"),
+    productPrice: z.string().min(1, "Product Price is required"),
+    category: z.string().min(1, "Please select an category to display"),
+    colorcategory: z.string().min(1, "Please select an color to display"),
+});
 
 const CreateProduct = () => {
 
-    const handleFormSubmit = (data: { firstName: string; lastName: string; email: string }) => {
-        console.log(data);
-    };
+    const methods = useForm({
+        resolver: zodResolver(schema)
+    });
+
+    const handleSubmit = (formData: any) => {
+        console.log(formData);
+    }
 
     return (
-        <div className="w-full min-h-screen flex flex-col gap-3">
+        <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(handleSubmit)}>
 
-            {/* create product top */}
-            <div className="flex flex-row items-center justify-between bg-white border rounded-full px-3 py-2">
-                <h1 className="font-bold text-xl ml-5">Create New Product</h1>
-                <CustomBtn arrow isLoading={true}>
-                    Create Product
-                </CustomBtn>
-            </div>
+                <div className="w-full min-h-screen flex flex-col gap-3">
 
-            {/* create product 2 row */}
-            <div className="flex flex-row h-[300px] justify-between items-center gap-3">
-
-                {/* mage Uplaod */}
-                <ImageUpload />
-
-                {/* others like ProName , ProDesc , prodPrice */}
-                <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-between">
-                    <div className="flex flex-col gap-2 ">
-                        <label htmlFor="" className="text-xl  text-neutral-400">Enter Product Name</label>
-                        <input type="text" className="border w-full p-3 rounded-[10px]" />
+                    {/* create product top */}
+                    <div className="flex flex-row items-center justify-between bg-white border rounded-full px-3 py-2">
+                        <h1 className="font-bold text-xl ml-5">Create New Product</h1>
+                        <CustomBtn arrow isLoading={false} onClick={methods.handleSubmit(handleSubmit)}>Create Product</CustomBtn>
                     </div>
-                    <div className="flex flex-col gap-2 ">
-                        <label htmlFor="" className="text-xl  text-neutral-400">Enter Product Desc</label>
-                        <textarea className="border w-full p-3 rounded-[10px] h-[100px]" />
+
+                    {/* create product 2 row */}
+                    <div className="flex flex-row min-h-[300px] justify-between items-center gap-3">
+
+                        {/* Image Upload */}
+                        <ProductImageUpload />
+
+                        {/* Product Name and Description */}
+                        <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-center gap-2 w-full">
+                            <CustomInput name="productName" label="Product Name" inputCls="w-full" />
+                            <CustomInput name="productDesc" label="Product Description" textarea inputCls="w-full" />
+                            <CustomInput name="productPrice" type="number" label="Product Price" inputCls="w-full" />
+                        </div>
+
                     </div>
+
+                    {/* create product 3 row */}
+                    <div className="flex flex-row min-h-[100px] justify-between items-center gap-3 mb-5">
+
+                        <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col gap-3">
+                            <CustomSelect
+                                name="category"
+                                control={methods.control}
+                                defaultValue="Category"
+                                options={['Electronics', 'Apparel', 'Books']}
+                                label="Select Category"
+                                selectCls="w-full"
+                            />
+                            <CustomSelect
+                                name="color category"
+                                control={methods.control}
+                                defaultValue="color category"
+                                options={['black', 'red', 'orange']}
+                                label="Select colors"
+                                selectCls="w-full"
+                            />
+                            <CustomSelect
+                                name="Product available"
+                                control={methods.control}
+                                defaultValue="Select product available"
+                                options={['Yes', 'No']}
+                                label="Select Product available"
+                                selectCls="w-full"
+                            />
+                        </div>
+
+                        <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-between">
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-            </div>
-
-            {/* create product 3 row */}
-            <div className="flex flex-row h-[300px] justify-between items-center gap-3 mb-5">
-
-                {/* mage Uplaod */}
-                <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-between">
-
-                </div>
-
-                {/* others like ProName , ProDesc , prodPrice */}
-                <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-between">
-
-                </div>
-
-            </div>
-
-            <Form onSubmit={handleFormSubmit} />
-
-        </div>
+            </form>
+        </FormProvider>
     )
 }
 
-export default CreateProduct
+export default CreateProduct;
