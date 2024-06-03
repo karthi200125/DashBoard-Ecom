@@ -30,6 +30,26 @@ input:focus {
     outline: none;
 }
 
+.wave {        
+    width: 100%;    
+    background: url('./assets/wave.png');
+    background-size: 1000px 50px;
+    animation: animate 1s linear infinite;
+    z-index: 1000;
+    opacity: 1;    
+    filter: invert(0.95) ;
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: 0;
+    }
+
+    100% {
+        background-position-x: 1000px;
+    }
+}
+
 
 /* Hide scrollbar for webkit browsers */
 .scroll::-webkit-scrollbar {

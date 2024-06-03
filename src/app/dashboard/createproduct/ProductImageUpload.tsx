@@ -16,50 +16,58 @@ const ProductImageUpload = () => {
         }
     };
 
+    const addedImages: string[] = [
+        "https://images.pexels.com/photos/22475982/pexels-photo-22475982/free-photo-of-historic-stone-house-with-a-roof-overgrown-with-grass-in-an-icelandic-fjord.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+        "https://images.pexels.com/photos/24778260/pexels-photo-24778260/free-photo-of-a-view-of-a-valley-with-mountains-in-the-background.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+        "https://images.pexels.com/photos/22475982/pexels-photo-22475982/free-photo-of-historic-stone-house-with-a-roof-overgrown-with-grass-in-an-icelandic-fjord.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+    ]
+
+    const per = 20
+
+    const imageper = 100 - per
+
     return (
-        <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col gap-2 ">
+        <div className="bg-white border rounded-[20px] p-5 h-full flex flex-row gap-10 justify-between items-center min-h-[200px]">
 
-            <div className='flex flex-row items-center gap-10 h-[200px]'>
-                <input
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    id="imageupload"
-                    onChange={handleImageUpload}
-                />
-                <label htmlFor="imageupload" className='h-[200px] w-[260px] '>
-                    {productImage ? (
-                        <Image src={productImage} imgclass="rounded-[10px] w-full h-full" />
-                    ) : (
-                        <div className="w-full h-full flex items-center justify-center border rounded-[10px]">
-                            <span>No image selected</span>
-                        </div>
-                    )}
+            <div className='flex flex-row items-center gap-10 h-full flex-1 '>
+                <input type="file" accept="image/*" className="hidden" id="imageupload" onChange={handleImageUpload} />
+
+                <label htmlFor="imageupload" className='h-[300px] w-[400px] relative overflow-hidden rounded-[10px]'>
+                    <div className={`absolute bottom-0 left-0 w-full `} style={{ height: `${imageper}%` }}>
+                        <div className="wave wave1 h-[20%]"></div>
+                        <div className='w-full h-[100%] bg-[rgba(0,0,0,0.8)] '></div>
+                    </div>
+                    <Image src={productImage || ''} imgclass="w-full h-full bg-neutral-200 rounded-[10px]" />
                 </label>
-                <div className="flex flex-col gap-3 flex-1 h-full">
-                    <label className="font-bold">Upload Product Image</label>
-                    <label
-                        htmlFor="imageupload"
-                        className="flex flex-row gap-3 items-center justify-center border p-3 rounded-[10px] cursor-pointer hover:bg-neutral-100 w-full"
-                    >
-                        <IoCloudUploadOutline size={25} />
-                        <h2>Select image</h2>
-                    </label>
-
-                    {!imguplaod ? (
-                        <CustomBtn btnCls="bg-blue-400 p-5">Upload Image</CustomBtn>
-                    ) : (
-                        <ProgressBarCon per={90} />
-                    )}
-                </div>
             </div>
 
-            <div className='flex flex-row items-center justify-between'>
-                <Image src={""} imgclass="rounded-[10px] w-[100px] h-[100px] bg-neutral-200" />
-                <Image src={""} imgclass="rounded-[10px] w-[100px] h-[100px] bg-neutral-200" />
-                <Image src={""} imgclass="rounded-[10px] w-[100px] h-[100px] bg-neutral-200" />
-                <Image src={""} imgclass="rounded-[10px] w-[100px] h-[100px] bg-neutral-200" />
-                <Image src={""} imgclass="rounded-[10px] w-[100px] h-[100px] bg-neutral-200" />
+            <div className='flex flex-wrap items-center justify-between w-[320px] gap-3'>
+                <Image src={addedImages[0] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" />
+                <Image src={addedImages[1] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" />
+                <Image src={addedImages[2] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" />
+                <Image src={addedImages[3] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" />
+            </div>
+
+
+            <div className="flex flex-col gap-5 w-[440px] h-[300px]">
+                <label className="font-bold text-lg">Upload Product Images</label>
+                <p className='text-sm text-neutral-400'>You can add upto 4 pictures</p>
+                <label
+                    htmlFor="imageupload"
+                    className="flex flex-row gap-3 items-center justify-center border p-3 rounded-[10px] cursor-pointer hover:bg-neutral-100 w-full"
+                >
+                    <IoCloudUploadOutline size={25} />
+                    <h2>Select image</h2>
+                </label>
+
+                {!imguplaod ? (
+                    <CustomBtn btnCls="bg-blue-400 p-5">Upload Image</CustomBtn>
+                ) : (
+                    <ProgressBarCon per={per} />
+                )}
+                {addedImages?.length > 0 &&
+                    <span className='font-bold'>{addedImages?.length} of 4 Images Uploaded</span>
+                }
             </div>
 
         </div>

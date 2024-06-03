@@ -38,11 +38,8 @@ const CreateProduct = () => {
                         <CustomBtn arrow isLoading={false} onClick={methods.handleSubmit(handleSubmit)}>Create Product</CustomBtn>
                     </div>
 
-                    {/* create product 2 row */}
-                    <div className="flex flex-row min-h-[300px] justify-between items-center gap-3">
-
-                        {/* Image Upload */}
-                        <ProductImageUpload />
+                    {/* create product 3 row */}
+                    <div className="flex flex-row min-h-[100px] justify-between items-center gap-3 mb-5">
 
                         {/* Product Name and Description */}
                         <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-center gap-2 w-full">
@@ -50,11 +47,6 @@ const CreateProduct = () => {
                             <CustomInput name="productDesc" label="Product Description" textarea inputCls="w-full" />
                             <CustomInput name="productPrice" type="number" label="Product Price" inputCls="w-full" />
                         </div>
-
-                    </div>
-
-                    {/* create product 3 row */}
-                    <div className="flex flex-row min-h-[100px] justify-between items-center gap-3 mb-5">
 
                         <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col gap-3">
                             <CustomSelect
@@ -83,10 +75,15 @@ const CreateProduct = () => {
                             />
                         </div>
 
-                        <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-between">
+                        {/* <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-between">
 
-                        </div>
+                        </div> */}
 
+                    </div>
+
+                    {/* Product image Uplaod */}
+                    <div className="flex flex-row min-h-[300px] justify-between items-center gap-3">
+                        <ProductImageUpload />
                     </div>
 
                 </div>
