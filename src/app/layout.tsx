@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import localFont from 'next/font/local'
 import "./globals.css";
+import Navbar from "./_components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,7 @@ const myfont = localFont({
       path: "../../public/fonts/fonnts.com-Regulator_Nova_Bold.otf",
       // weight: "200"
     }
-  ],  
+  ],
 })
 
 export const metadata: Metadata = {
@@ -26,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className} >{children}</body>
+      <body className={inter.className} >
+        {/* <Navbar /> */}
+        {children}
+      </body>
     </html>
   );
 }

@@ -14,7 +14,8 @@
 }
 
 body {
-    @apply container min-h-screen bg-[#f2f2f2];
+    @apply container min-h-screen bg-white;
+    /* @apply container min-h-screen bg-[#f2f2f2]; */
 }
 
 
@@ -30,15 +31,33 @@ input:focus {
     outline: none;
 }
 
-.wave {        
-    width: 100%;    
+.wave {
+    width: 100%;
     background: url('./assets/wave.png');
     background-size: 1000px 50px;
     animation: animate 1s linear infinite;
     z-index: 1000;
-    opacity: 1;    
-    filter: invert(0.95) ;
+    opacity: 1;
+    filter: invert(0.95);
 }
+
+.curves {        
+    overflow: hidden;
+}
+
+.curves::before {
+    content: "";
+    display: block;
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    border-radius: 50%;
+    bottom: 0;
+    left: 0;
+    box-shadow: -50px 50px 0 0 white;
+}
+
+
 
 @keyframes animate {
     0% {
