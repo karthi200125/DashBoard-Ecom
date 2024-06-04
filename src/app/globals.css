@@ -18,6 +18,26 @@ body {
     /* @apply container min-h-screen bg-[#f2f2f2]; */
 }
 
+.bs {
+    box-shadow: 10px 10px 20px #babecc,
+        -10px -10px 20px #ffffff
+}
+
+.glass {
+    background: rgba(245, 245, 245, 0.2);
+    backdrop-filter: blur(17.5px);
+    -webkit-backdrop-filter: blur(17.5px);
+}
+
+.header.sticky {
+    background: rgba(245, 245, 245, 0.05);    
+    backdrop-filter: blur(17.5px);
+    -webkit-box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(17.5px);
+    transition: 0.5s ease-in-out all;
+}
 
 .border {
     @apply border-[1px] border-solid border-neutral-200;
@@ -41,7 +61,7 @@ input:focus {
     filter: invert(0.95);
 }
 
-.curves {        
+.curves {
     overflow: hidden;
 }
 
