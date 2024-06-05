@@ -1,13 +1,10 @@
 'use client'
 
-import instagram from '../../assets/instagram.png'
-import youtupe from '../../assets/youtube.png'
-import facebook from '../../assets/facebook.png'
-import Link from 'next/link';
-import React from 'react'
-import { FaInstagramSquare, FaFacebookF, FaWhatsapp } from "react-icons/fa";
-import { SiInstagram } from "react-icons/si";
 import Image from '@/components/ui/Image';
+import Link from 'next/link';
+import facebook from '../../assets/facebook.png';
+import instagram from '../../assets/instagram.png';
+import youtupe from '../../assets/youtube.png';
 
 const SocialIcons = () => {
 
