@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import localFont from 'next/font/local'
 import "./globals.css";
 import Navbar from "./_components/Navbar";
+import Footer from "./_components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
         <div className="w-full realative">
           <Navbar />
           {children}
+          <Footer />
         </div>
       </body>
     </html>

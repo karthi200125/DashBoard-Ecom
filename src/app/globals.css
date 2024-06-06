@@ -30,13 +30,15 @@ body {
 }
 
 .header.sticky {
-    background: rgba(245, 245, 245, 0.05);        
+    background: rgba(245, 245, 245, 0.05);
     backdrop-filter: blur(17.5px);
     -webkit-box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.2);
     box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
     -webkit-backdrop-filter: blur(17.5px);
     transition: 0.5s ease-in-out all;
+    border-radius: 30px;
+    top: 10px;
 }
 
 .border {
@@ -49,6 +51,22 @@ input {
 
 input:focus {
     outline: none;
+}
+
+/* text hover animation */
+.hoveranimation::after {
+    content: '';
+    width: 0;
+    height: 1px;
+    background-color: orangered;
+    margin: auto;
+    display: block;
+    transition: width 0.3s linear;
+    z-index: 1;
+}
+
+.hoveranimation:hover::after {
+    width: 100%; 
 }
 
 .wave {

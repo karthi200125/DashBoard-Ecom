@@ -24,7 +24,7 @@ const Image = ({ src, imgclass }: ImageProps) => {
             {!imageLoading ?
                 <Skeleton className={`${imgclass} bg-neutral-200`} />
                 :
-                <img src={src} alt="" className={`${imgclass} object-cover`} loading='lazy' />
+                <img src={src} alt="" className={`${imgclass}`} loading='lazy' />
             }
         </>
     );

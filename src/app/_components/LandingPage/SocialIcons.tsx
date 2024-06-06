@@ -5,8 +5,13 @@ import Link from 'next/link';
 import facebook from '../../assets/facebook.png';
 import instagram from '../../assets/instagram.png';
 import youtupe from '../../assets/youtube.png';
+import { usePathname } from 'next/navigation';
 
-const SocialIcons = () => {
+interface SocilaIconsProps {
+    type?: string
+}
+
+const SocialIcons = ({ type }: SocilaIconsProps) => {
 
     const icons = [
         {
@@ -30,10 +35,10 @@ const SocialIcons = () => {
     ]
 
     return (
-        <div className='flex flex-col items-center justify-center gap-3 h-full'>
+        <div className={`flex items-center justify-center gap-3 h-full ${type === "footer" ? "flex-row" : "flex-col"}`}>
             {icons?.map((icon) => (
                 <Link href={icon.href} className='cursor-pointer' key={icon?.id}>
-                    <Image src={icon?.icon.src} imgclass='w-10 h-10 be-neutral-200 rounded-full' />
+                    <Image src={icon?.icon.src} imgclass={`be-neutral-200 rounded-full ${type === "footer" ? "w-7 h-7" : "w-10 h-10"}`} />
                 </Link>
             ))}
         </div>
