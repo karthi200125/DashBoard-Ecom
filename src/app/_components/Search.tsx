@@ -7,9 +7,10 @@ interface SearchProps {
     placeholder?: string;
     name?: string;
     onChange?: (value: any) => void;
+    searchCls?: string
 }
 
-const Search = ({ placeholder = 'Search products ...', onChange, name }: SearchProps) => {
+const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls }: SearchProps) => {
     const [inputValue, setInputValue] = useState('');
     const [debouncedValue, setDebouncedValue] = useState(inputValue);
     const [showSuggestions, setShowSuggestions] = useState(false);
@@ -52,7 +53,7 @@ const Search = ({ placeholder = 'Search products ...', onChange, name }: SearchP
     };
 
     return (
-        <div className='hidden lg:flex md:hidden h-[45px] w-[300px] bg-neutral-100 rounded-full flex-row items-center gap-1 px-2 relative'>
+        <div className={`hidden lg:flex md:hidden h-[45px] w-[300px] bg-neutral-100 rounded-full flex-row items-center gap-1 px-2 relative ${searchCls}`}>
             <input
                 type="text"
                 onChange={handleInputChange}

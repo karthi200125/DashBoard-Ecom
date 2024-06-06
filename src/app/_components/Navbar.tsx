@@ -1,11 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react';
-import { RiShoppingBagLine } from "react-icons/ri";
-import Icon from "./Icon";
+import { useEffect, useState } from 'react';
 import Logo from "./Logo";
-import UserProfile from "./UserProfile";
 import Search from './Search';
+import ShoppingCartICon from './ShoppingCartICon/ShoppingCartICon';
+import UserProfile from "./UserProfile";
 
 const Navbar = () => {
     const [isSticky, setIsSticky] = useState(false);
@@ -54,8 +53,9 @@ const Navbar = () => {
             </div>
             <div className="flex flex-row items-center gap-2 lg:gap-5">
 
-                <Search onChange={HandleSearch} placeholder='search products...' />
-                <Icon icon={<RiShoppingBagLine size={20} />} tooltip="Shopping Cart" count={1} />
+                <Search onChange={HandleSearch} placeholder='search products...' searchCls='mr-10'/>
+                {/* <Icon icon={<RiShoppingBagLine size={20} />} tooltip="Shopping Cart" count={1} /> */}
+                <ShoppingCartICon />
                 {user &&
                     <div>
                         <UserProfile profileCls="w-10 h-10 bg-neutral-200" />

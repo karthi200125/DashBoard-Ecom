@@ -30,7 +30,7 @@ const Categories = () => {
   ]
 
   return (
-    <div className='min-h-screen py-5 md:h-screen bg-neutral-200 w-[98%] mx-auto rounded-[20px] flex flex-col items-center justify-center gap-10'>
+    <div className='py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto rounded-[20px] flex flex-col items-center justify-center gap-10'>
       <div className='text-center'>
         <h1 className='text-lg font-semibold text-neutral-600'>New Launches</h1>
         <h1 className='text-3xl md:text-5xl font-bold mt-3'>Fresh off The Boat</h1>
