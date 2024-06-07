@@ -53,8 +53,7 @@ const Navbar = () => {
             </div>
             <div className="flex flex-row items-center gap-2 lg:gap-5">
 
-                <Search onChange={HandleSearch} placeholder='search products...' searchCls='mr-10'/>
-                {/* <Icon icon={<RiShoppingBagLine size={20} />} tooltip="Shopping Cart" count={1} /> */}
+                <Search onChange={HandleSearch} placeholder='search products...' searchCls='mr-10'/>                
                 <ShoppingCartICon />
                 {user &&
                     <div>

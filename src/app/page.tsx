@@ -1,5 +1,5 @@
 'use client'
-import AddToCartBtn from "./_components/AddToCartBtn/AddToCartBtn";
+import Cards from "./_components/Cards/Cards";
 import Categories from "./_components/LandingCategories";
 import Banners from "./_components/LandingPage/Banners";
 import LandingPage from "./_components/LandingPage/LandingPage";
@@ -12,7 +12,7 @@ export default function Home() {
       <LandingPage />
       <Categories />
       <Banners />
-      <AddToCartBtn />
+      <Cards />
     </main>
   );
 }
