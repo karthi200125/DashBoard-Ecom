@@ -18,6 +18,10 @@ body {
     /* @apply container min-h-screen bg-[#f2f2f2]; */
 }
 
+.sidebarcon {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .bs {
     box-shadow: 10px 10px 20px #babecc,
         -10px -10px 20px #ffffff

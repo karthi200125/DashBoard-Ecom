@@ -113,5 +113,32 @@ export const states = [
     "Uttar Pradesh",
     "Uttarakhand",
     "West Bengal"
-  ];
-  
+];
+
+
+export const colors = [
+    'red',
+    'yellow',
+    'blue',
+    'green',
+    'magneta',
+    'orange',
+    'cyan',
+    'purple',
+    'pink',
+    'skyblue',
+];
+
+export const sizes = [
+    'XS', // Extra Small
+    'S',  // Small
+    'M',  // Medium
+    'L',  // Large
+    'XL', // Extra Large
+    'XXL' // Double Extra Large
+];
+
+export const mainCategories = [
+    "men", "women", "kids", "all"
+]
+
