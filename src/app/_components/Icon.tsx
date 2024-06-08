@@ -1,3 +1,6 @@
+'use client'
+
+import Link from "next/link";
 import ToolTip from "./ToolTip";
 
 interface IconProps {
@@ -5,13 +8,16 @@ interface IconProps {
     tooltip?: string;
     onClick?: () => void;
     count?: any;
+    iconCls?: string;
+    href?: string
 }
 
-const Icon = ({ icon, tooltip, onClick, count }: IconProps) => {
+const Icon = ({ icon, tooltip, onClick, count, iconCls, href }: IconProps) => {
     return (
         <ToolTip tooltip={tooltip}>
-            <div
-                className={`w-[40px] h-[40px] border hover:bg-black bg-white hover:text-white rounded-[10px] flex items-center justify-center transition duration-300 cursor-pointer hover:border-none relative`}
+            <Link
+                href={href || ""}
+                className={`w-[40px] h-[40px] border hover:bg-black bg-white hover:text-white rounded-[10px] flex items-center justify-center transition duration-300 cursor-pointer hover:border-none relative ${iconCls}`}
                 onClick={onClick}
             >
                 {icon}
@@ -20,7 +26,7 @@ const Icon = ({ icon, tooltip, onClick, count }: IconProps) => {
                         {/* <span className="text-white text-[8px] font-semibold">{count}</span> */}
                     </div>
                 )}
-            </div>
+            </Link>
         </ToolTip>
     );
 };

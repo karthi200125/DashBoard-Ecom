@@ -1,10 +1,10 @@
 import shirt from '../assets/shirt.png'
 
-export const productsdata = [
+export const mainproductsdata = [
     {
         id: 1,
         proName: "Denim Shirt for Bisexual",
-        proDesc: "This is a versatile denim shirt suitable for both men and women.",
+        proDesc: "This is a versatile denim shirt suitable for both men and women. dhdh dhd dhdhd dhdh dhdd dhd",
         proPrice: "1000",
         proImage: shirt.src,
         proRating: 4.8,
@@ -42,3 +42,76 @@ export const productsdata = [
         proRating: 3.5,
     }
 ];
+
+
+export const cities = [
+    "Ariyalur",
+    "Chengalpattu",
+    "Chennai",
+    "Coimbatore",
+    "Cuddalore",
+    "Dharmapuri",
+    "Dindigul",
+    "Erode",
+    "Kallakurichi",
+    "Kanchipuram",
+    "Kanyakumari",
+    "Karur",
+    "Krishnagiri",
+    "Madurai",
+    "Nagapattinam",
+    "Namakkal",
+    "Nilgiris",
+    "Perambalur",
+    "Pudukkottai",
+    "Ramanathapuram",
+    "Ranipet",
+    "Salem",
+    "Sivaganga",
+    "Tenkasi",
+    "Thanjavur",
+    "Theni",
+    "Thoothukudi",
+    "Tiruchirappalli",
+    "Tirunelveli",
+    "Tirupathur",
+    "Tiruppur",
+    "Tiruvallur",
+    "Tiruvannamalai",
+    "Tiruvarur",
+    "Vellore",
+    "Viluppuram",
+    "Virudhunagar"
+];
+
+export const states = [
+    "Andhra Pradesh",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chhattisgarh",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal"
+  ];
+  

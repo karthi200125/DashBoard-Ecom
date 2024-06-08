@@ -15,6 +15,7 @@ const StarRating = ({ rating }: any) => {
                     return <FaRegStar key={index} className="text-gray-400" />;
                 }
             })}
+            <div className='font-bold ml-2'>{rating}</div>
         </div>
     );
 };

@@ -36,7 +36,7 @@ const LandingPage = () => {
             </div>
 
             {/* three images */}
-            <div className='flex flex-row md:flex-col lg:bg-red-400 sm:bg-green-400 gap-2 justify-between md:gap-2 lg:gap-5 md:h-[60%] lg:h-[60%]'>
+            <div className='flex flex-row md:flex-col gap-2 justify-between md:gap-2 lg:gap-5 md:h-[60%] lg:h-[60%]'>
                 <Image src={"https://img.uhdpaper.com/wallpaper/ninja-kamui-oni-mask-joe-higan-256@1@o-thumb.jpg?dl"} imgclass='min-w-[80px] sm:min-w-[150px] h-[100px] sm:h-[100px] lg:h-[150px] rounded-[20px]  bg-neutral-100 hover:shadow-custom-shadow transition duration-300' />
                 <Image src={"https://img.uhdpaper.com/wallpaper/goku-dragon-ball-262@3@a-thumb.jpg?dl"} imgclass='min-w-[80px] sm:min-w-[150px] h-[100px] sm:h-[100px] lg:h-[150px] rounded-[20px] bg-neutral-100 hover:shadow-custom-shadow transition duration-300' />
                 <Image src={"https://img.uhdpaper.com/wallpaper/sunset-synthwave-sports-car-city-palm-trees-digital-art-216@1@n-thumb.jpg?dl"} imgclass='min-w-[80px] sm:min-w-[150px] h-[100px] sm:h-[100px] lg:h-[150px] rounded-[20px] bg-neutral-100 hover:shadow-custom-shadow transition duration-300' />
