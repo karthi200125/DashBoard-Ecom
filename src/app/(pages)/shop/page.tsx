@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Cards from '@/app/_components/Cards/Cards';
 import SideBar from '@/app/_components/SideBar';
 import { mainproductsdata } from '@/app/_components/dummydata';
+import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import {
     Select,
     SelectContent,
@@ -67,9 +68,8 @@ const Shop = () => {
                         />}
                         title='Filter Products'
                     />
-                    <div className='flex flex-row items-center gap-2 cursor-pointer hover:opacity-50'>
-                        {isSidebarOpen ? <FaArrowLeft size={20} onClick={() => setIsSidebarOpen(!isSidebarOpen)} /> :
-                            <FaArrowRight size={20} onClick={() => setIsSidebarOpen(!isSidebarOpen)} />}
+                    <div className='flex flex-row items-center gap-2 cursor-pointer hover:opacity-50'>                        
+                            <FaArrowRightArrowLeft size={20} onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
                         <h2>Filter</h2>
                     </div>
                     <Select>

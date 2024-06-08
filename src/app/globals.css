@@ -19,7 +19,7 @@ body {
 }
 
 .sidebarcon {
-    background-color: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.75);
 }
 
 .bs {
