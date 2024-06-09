@@ -32,10 +32,10 @@ const SingleProductImage = () => {
     };
 
     return (
-        <div className="w-full relative h-full overflow-hidden flex flex-row gap-3 items-center">
+        <div className="w-full relative h-full overflow-hidden flex flex-col lg:flex-row gap-3 items-center">
 
             {/* min images */}
-            <div className='w-[200px] h-full flex flex-col justify-between gap-3'>
+            <div className='w-full lg:w-[200px] h-[80px] lg:h-full flex flex-row lg:flex-col justify-between gap-3'>
                 {images.map((src, index) => (
                     <div
                         key={index}
@@ -48,7 +48,7 @@ const SingleProductImage = () => {
             </div>
 
             {/* main image slide */}
-            <div id="default-carousel" className="relative w-full h-full rounded-[20px] overflow-hidden" data-carousel="slide">
+            <div id="default-carousel" className="relative w-full h-[400px] lg:h-full rounded-[20px] overflow-hidden" data-carousel="slide">
 
                 {/*images */}
                 <div className="relative h-full overflow-hidden bg-neutral-200">

@@ -9,7 +9,7 @@ const Sizes = ({ onSizeSelect }: SizeProps) => {
     const [selectedSize, setSelectedSize] = useState<string>('');
 
     return (
-        <div className='flex flex-wrap justify-between items-center'>
+        <div className='flex flex-wrap items-center gap-2'>
             {sizes?.map((size, index) => (
                 <div
                     key={index}

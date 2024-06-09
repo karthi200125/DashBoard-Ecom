@@ -36,7 +36,7 @@ const Quantity = ({ quanityCls, onQuantity }: QuantityProps) => {
     }, [quantity, onQuantity])
 
     return (
-        <div className={`border h-[60px] flex flex-row gap-3 justify-between items-center px-5 ${quanityCls}`}>
+        <div className={`border h-[50px] flex flex-row gap-3 justify-between items-center px-5 ${quanityCls}`}>
             <button onClick={handleDecrease}>-</button>
             <h1>{quantity}</h1>
             <button onClick={handleIncrease}>+</button>

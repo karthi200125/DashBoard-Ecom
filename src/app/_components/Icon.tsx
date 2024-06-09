@@ -17,7 +17,7 @@ const Icon = ({ icon, tooltip, onClick, count, iconCls, href }: IconProps) => {
         <ToolTip tooltip={tooltip}>
             <Link
                 href={href || ""}
-                className={`w-[40px] h-[40px] border hover:bg-black bg-white hover:text-white rounded-[10px] flex items-center justify-center transition duration-300 cursor-pointer hover:border-none relative ${iconCls}`}
+                className={`w-[40px] h-[40px] border bg-white rounded-[10px] flex items-center justify-center transition duration-300 cursor-pointer relative ${iconCls}`}
                 onClick={onClick}
             >
                 {icon}
