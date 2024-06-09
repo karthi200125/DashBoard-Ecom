@@ -7,11 +7,16 @@ import ShoppingCartICon from './ShoppingCartICon/ShoppingCartICon';
 import UserProfile from "./UserProfile";
 import Icon from './Icon';
 import { FaRegHeart } from "react-icons/fa";
+import RegisterModel from './RegisterModal';
+import LoginModel from './LoginModel';
 
 const Navbar = () => {
     const [isSticky, setIsSticky] = useState(false);
+    const [activeLogin, setActiveLogin] = useState("login")
+    const [loginModalOpen, setloginModalOpen] = useState(false)
+    const [RegModalOpen, setRegModalOpen] = useState(false)
 
-    const user = true
+    const user = false
 
     useEffect(() => {
         const handleScroll = () => {
@@ -21,14 +26,15 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const [activeLogin, setActiveLogin] = useState("login")
 
     const HandleLogin = () => {
         setActiveLogin("login")
+        setloginModalOpen(true)
     }
 
     const HandleRegister = () => {
         setActiveLogin("signup")
+        setRegModalOpen(true)
     }
 
     const HandleSearch = (data: any) => {
@@ -43,6 +49,8 @@ const Navbar = () => {
                 <div className=" md:max-w-max rounded-full bg-neutral-100 p-1.5 flex flex-row items-center gap-2">
                     <div className={`hidden md:flex lg:flex px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "login" ? " bg-white text-black" : "text-black"}`} onClick={HandleLogin}>Login</div>
                     <div className={`px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "signup" ? "bg-white text-black" : "text-black"}`} onClick={HandleRegister}>SignUp</div>
+                    <RegisterModel isOpen={RegModalOpen} isClose={() => setRegModalOpen(false)} />
+                    <LoginModel isOpen={loginModalOpen} isClose={() => setloginModalOpen(false)} />
                 </div>
                 :
                 <div>
@@ -56,7 +64,7 @@ const Navbar = () => {
             <div className="flex flex-row items-center gap-2 lg:gap-3">
 
                 <Search onChange={HandleSearch} placeholder='search products...' />
-                <Icon icon={<FaRegHeart size={20} />} tooltip='Favoutites' iconCls='hidden md:flex' href='/favourite'/>
+                <Icon icon={<FaRegHeart size={20} />} tooltip='Favoutites' iconCls='hidden md:flex' href='/favourite' />
                 <ShoppingCartICon />
                 {user &&
                     <div className={`${user && "mr-[-50px] ml-[50px]"}`}>

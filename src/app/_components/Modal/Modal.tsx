@@ -6,21 +6,18 @@ import { IoIosClose } from 'react-icons/io'
 interface ModalProps {
     isOpen: boolean;
     toggleOpen: () => void;
-    modalBody: any;
+    modalBody?: React.ReactElement;
     modalCls?: string;
+    closeBtn?: string;
 }
 
-const Modal = ({ isOpen, toggleOpen, modalBody, modalCls }: ModalProps) => {
+const Modal = ({ isOpen, toggleOpen, modalBody, modalCls, closeBtn }: ModalProps) => {
     return (
         <div className={`overlay ${isOpen ? "open" : ""}`} >
-            <div className={`modal flex flex-col gap-3 p-10 ${modalCls}`} onClick={(e) => e.stopPropagation()}>
-                {/* modal top */}
-                <div className='flex flex-col gap-1 py-2 relative border-b'>
-                    <h1 className='text-2xl font-bold'>Title</h1>
-                    <p className='text-sm text-neutral-400'>descrption</p>
-                    <div className='absolute w-[40px] h-[40px] flex items-center justify-center rounded-full hover:bg-neutral-100 transition cursor-pointer top-0 right-0' onClick={toggleOpen}>
-                        <IoIosClose size={25} />
-                    </div>
+            <div className={`modal flex flex-col gap-3 p-3 ${modalCls}`} onClick={(e) => e.stopPropagation()}>
+                {/* close modal */}
+                <div className={`absolute w-[40px] h-[40px] flex items-center justify-center rounded-full ${closeBtn ? `${closeBtn}` : "hover:bg-neutral-100"} transition cursor-pointer top-5 right-5 z-10`} onClick={toggleOpen}>
+                    <IoIosClose size={25} />
                 </div>
                 {/* modal body */}
                 {modalBody}

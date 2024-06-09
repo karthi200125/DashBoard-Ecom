@@ -8,7 +8,7 @@ const ShoppingCartIcon = () => {
     const [cartClass, setCartClass] = useState('');
 
     const cartTotal = 2
-    const user = true
+    const user = false
 
     useEffect(() => {
         if (cartTotal > 0) {
