@@ -11,7 +11,7 @@ import { LiaProductHunt } from "react-icons/lia";
 import { TbLogout } from "react-icons/tb";
 
 const isAdmin = false;
-    const user = true;
+const user = true;
 
 export const mainproductsdata = [
     {
@@ -315,4 +315,17 @@ export const mobilenavitems = [
         count: "",
         show: user,
     },
+];
+
+// Categories
+export const Mens = [
+    "Casual shirts", "Denim shirts", "Jeans", "Jackets", "Innerwear", "Shorts", "Pants"
+];
+
+export const Womens = [
+    "Sarees", "Tops/Shirts", "Jeans", "Leggings", "Skirts", "Innerwear", "T-shirts"
+];
+
+export const Kids = [
+    "Kids shirts", "Pants", "Innerwear", "Trousers"
 ];
