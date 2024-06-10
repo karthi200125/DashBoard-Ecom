@@ -13,7 +13,7 @@ const Footer = () => {
             <div className='h-[300px] relative'>
                 <Image src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwa31SvwYMXA8ySBGfWkstpmlK8C7-dCjRhw&s'} imgclass='w-full h-full brightness-[0.5]' />
                 <div className='absolute bottom-0 left-0 w-full max-h-max text-9xl font-bold text-center text-white'>
-                    <TextSlideUp word='karthick' textSlideUpCls='text-xl md:text-[30px] xl:text-[100px]'/>
+                    <TextSlideUp word='karthick' textSlideUpCls='text-[30px] md:text-[80px] xl:text-[100px]'/>
                 </div>
             </div>
 

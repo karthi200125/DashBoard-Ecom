@@ -9,7 +9,7 @@ const Colors = ({ onColorSelect }: ColorProps) => {
     const [selectedColor, setSelectedColor] = useState<string>('');
 
     return (
-        <div className="flex flex-wrap gap-2 items-center">
+        <div className="flex flex-wrap items-center">
             {colors.map((color, index) => (
                 <div
                     key={color}

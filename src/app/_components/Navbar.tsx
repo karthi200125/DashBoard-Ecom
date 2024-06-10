@@ -64,7 +64,7 @@ const Navbar = () => {
             }
 
             {/* menu bar */}
-            <div className={`${menuOpen && "fixed"} w-full top-0 min-w-[320px] md:min-w-[768px] xl:w-[1336px] overflow-hidden h-screen left-1/2 transform -translate-x-1/2`}>
+            <div className={`${menuOpen && "fixed"} w-full top-0  md:min-w-[768px] xl:w-[1336px] overflow-hidden h-screen left-1/2 transform -translate-x-1/2`}>
                 <div className={`absolute top-0 left-0 duration-500 ease-in-out z-[10] w-full h-screen  ${!menuOpen ? "-translate-x-full" : "translate-x-0"}`}>
                     <MobNav />
                     <MenuBarContent />
@@ -77,7 +77,7 @@ const Navbar = () => {
             </div>
 
             {/* navbar right side */}
-            <div className="flex flex-row items-center gap-2 lg:gap-3">
+            <div className="flex flex-row items-center gap-2 lg:gap-3 ">
 
                 <Search onChange={HandleSearch} placeholder='search products...' />
                 <Icon icon={<FaRegHeart size={20} />} tooltip='Favoutites' iconCls='hidden md:flex' href='/favourite' />

@@ -6,9 +6,10 @@ import { Skeleton } from './skeleton';
 interface ImageProps {
     src: any;
     imgclass?: string;
+    onClick?: () => void
 }
 
-const Image = ({ src, imgclass }: ImageProps) => {
+const Image = ({ src, imgclass , onClick }: ImageProps) => {
     const [imageLoading, setImageLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const Image = ({ src, imgclass }: ImageProps) => {
             {!imageLoading ?
                 <Skeleton className={`${imgclass} bg-neutral-200`} />
                 :
-                <img src={src} alt="" className={`${imgclass}`} loading='lazy' />
+                <img src={src} alt="" className={`${imgclass}`} loading='lazy' onClick={onClick}/>
             }
         </>
     );

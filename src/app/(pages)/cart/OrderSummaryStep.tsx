@@ -6,6 +6,8 @@ import React, { useState } from 'react'
 import { IoIosClose } from 'react-icons/io'
 import Quantity from './Quantity'
 import OrderSummary from './OrderSummary'
+import Colors from '@/app/_components/Colors'
+import Sizes from '@/app/_components/Sizes'
 
 interface OsProps {
     onStep: () => void;
@@ -40,11 +42,10 @@ const OrderSummaryStep = ({ onStep }: OsProps) => {
                                 <Image src={cartpro?.proImage} imgclass='w-[80px] md:w-[180px] h-[80px] md:h-[180px] bg-neutral-200 rounded-[15px]' />
                                 {/* product content */}
                                 <div className='flex flex-col h-full gap-2'>
-                                    <h1 className='text-md md:text-2xl font-bold line-clamp-2'>{cartpro?.proName}</h1>
+                                    <h1 className='text-md md:text-2xl font-bold line-clamp-1'>{cartpro?.proName}</h1>
                                     <p className='hidden md:flex text-sm text-neutral-400 line-clamp-2'>{cartpro?.proDesc}</p>
-                                    <div>
-                                        colors
-                                    </div>
+                                    <Colors onColorSelect={() => ""} />
+                                    <Sizes onSizeSelect={() => ""} />
                                 </div>
                             </div>
 
