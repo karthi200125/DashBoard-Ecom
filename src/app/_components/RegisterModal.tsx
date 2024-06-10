@@ -84,7 +84,7 @@ const RegsiterBody = () => {
 
             </div>
 
-            <div className='flex-1 rounded-[20px] overflow-hidden relative'>
+            <div className='hidden lg:flex lg:flex-1 rounded-[20px] overflow-hidden relative'>
                 <Image src={loginimg.src} imgclass='bg-neutral-200 w-full' />
                 <div className='absolute bottom-0 left-0 w-full max-h-max p-2 flex flex-col gap-2'>
                     <CustomBtn arrow btnCls='glass bg-black text-white w-[210px] ' arrowCls='text-black'>Exclusive content</CustomBtn>
@@ -102,7 +102,7 @@ const RegisterModel = ({ isOpen, isClose }: RegsiterModalProps) => {
             isOpen={isOpen}
             toggleOpen={isClose}
             modalBody={<RegsiterBody />}
-            modalCls="w-[900px]"
+            modalCls="w-full md:w-[500px] lg:w-[900px]"
             closeBtn='glass text-white hover:bg-neutral-100 hover:text-black'
         />
     );

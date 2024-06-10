@@ -1,22 +1,25 @@
 'use client'
 
 import { useEffect, useState } from 'react';
+import { FaRegHeart } from "react-icons/fa";
+import Icon from './Icon';
+import LoginModel from './LoginModel';
 import Logo from "./Logo";
+import Line2 from './MenuBar/Line2';
+import MobNav from './MenuBar/MenuMobContent';
+import RegisterModel from './RegisterModal';
 import Search from './Search';
 import ShoppingCartICon from './ShoppingCartICon/ShoppingCartICon';
 import UserProfile from "./UserProfile";
-import Icon from './Icon';
-import { FaRegHeart } from "react-icons/fa";
-import RegisterModel from './RegisterModal';
-import LoginModel from './LoginModel';
+import MenuBarContent from './MenuBar/MenuBarContent';
 
 const Navbar = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [activeLogin, setActiveLogin] = useState("login")
     const [loginModalOpen, setloginModalOpen] = useState(false)
     const [RegModalOpen, setRegModalOpen] = useState(false)
-
-    const user = false
+    const [menuOpen, setmenuOpen] = useState(false)
+    const user = true
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,6 +48,8 @@ const Navbar = () => {
         <div
             className={`header ${isSticky ? 'sticky' : ''} top-0 w-full px-2 left-0 h-[60px] flex flex-row items-center justify-between z-10 transition-all duration ease-in-out relative pr-[60px]`}
         >
+
+            {/* navbar left side */}
             {!user ?
                 <div className=" md:max-w-max rounded-full bg-neutral-100 p-1.5 flex flex-row items-center gap-2">
                     <div className={`hidden md:flex lg:flex px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "login" ? " bg-white text-black" : "text-black"}`} onClick={HandleLogin}>Login</div>
@@ -53,14 +58,25 @@ const Navbar = () => {
                     <LoginModel isOpen={loginModalOpen} isClose={() => setloginModalOpen(false)} />
                 </div>
                 :
-                <div>
-                    mob
+                <div className='ml-3 h-full max-w-max flex items-center justify-center'>
+                    <Line2 onOpen={(d: any) => setmenuOpen(d)} isSticky={isSticky} />
                 </div>
             }
 
+            {/* menu bar */}
+            <div className='w-full top-0 min-w-[320px] md:min-w-[768px] xl:w-[1336px] overflow-hidden h-screen fixed left-1/2 transform -translate-x-1/2'>
+                <div className={`absolute top-0 left-0 duration-500 ease-in-out z-[10] w-full h-screen  ${!menuOpen ? "-translate-x-full" : "translate-x-0"}`}>
+                    <MobNav />
+                    <MenuBarContent />
+                </div>
+            </div>
+
+            {/* navbar bar mid */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <Logo />
             </div>
+
+            {/* navbar right side */}
             <div className="flex flex-row items-center gap-2 lg:gap-3">
 
                 <Search onChange={HandleSearch} placeholder='search products...' />
@@ -72,6 +88,8 @@ const Navbar = () => {
                     </div>
                 }
             </div>
+
+
         </div >
     );
 };

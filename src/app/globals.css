@@ -18,6 +18,11 @@ body {
     /* @apply container min-h-screen bg-[#f2f2f2]; */
 }
 
+.myCustomClass {
+    display: inline-block;
+}
+
+
 .sidebarcon {
     background: rgba(0, 0, 0, 0.75);
 }
@@ -39,8 +44,7 @@ body {
     box-shadow: 0 8px 10px 10px rgba(0, 0, 0, 0.2);
     -webkit-backdrop-filter: blur(17.5px);
     transition: 0.5s ease-in-out all;
-    border-radius: 30px;
-    top: 10px;
+    border-radius: 30px;    
 }
 
 .border {
@@ -169,6 +173,59 @@ body {
 .productcollections .pro4 {
     position: absolute;
     left: 45px;
+}
+
+
+/* mobile nav css */
+.menu {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.menu div {
+    width: 25px;
+    height: 40px;
+    position: relative;
+}
+
+.menu span {
+    /* background-color: black; */
+    height: 2px;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s, width 0.3s;
+    border-radius: 30px;
+}
+
+.menu .line1 {
+    transform: translate(-50%, -8px);
+}
+
+.menu .line2 {
+    transform: translate(-50%, 0px);
+}
+
+.menu .line3 {
+    transform: translate(-50%, 8px);
+    width: 80%;    
+}
+
+.openmenu .line1 {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.openmenu .line3 {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 100%;
+}
+
+.openmenu .line2 {
+    width: 0;
 }
 
 

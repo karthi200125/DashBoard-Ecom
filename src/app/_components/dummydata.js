@@ -1,4 +1,17 @@
 import shirt from '../assets/shirt.png'
+import { TbBrandSlack } from "react-icons/tb";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { FaAward } from "react-icons/fa";
+import { CiGrid31 } from "react-icons/ci";
+import { MdOutlinePersonOutline } from "react-icons/md";
+import { BsCart3 } from "react-icons/bs";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { HiOutlineHome } from "react-icons/hi2";
+import { LiaProductHunt } from "react-icons/lia";
+import { TbLogout } from "react-icons/tb";
+
+const isAdmin = false;
+    const user = true;
 
 export const mainproductsdata = [
     {
@@ -129,6 +142,85 @@ export const colors = [
     'skyblue',
 ];
 
+export const Aboutus = [
+    {
+        id: 1,
+        title: "Contact us",
+        href: "",
+    },
+    {
+        id: 2,
+        title: "About us",
+        href: "",
+    },
+    {
+        id: 3,
+        title: "Corporate information",
+        href: "",
+    },
+    {
+        id: 4,
+        title: "Return",
+        href: "",
+    },
+]
+
+export const Help = [
+    {
+        id: 1,
+        title: "Account",
+        href: "",
+    },
+    {
+        id: 2,
+        title: "Order Status",
+        href: "",
+    },
+    {
+        id: 3,
+        title: "Postage and Delivery",
+        href: "",
+    },
+    {
+        id: 4,
+        title: "Payments",
+        href: "",
+    },
+    {
+        id: 5,
+        title: "Shipping",
+        href: "",
+    },
+    {
+        id: 6,
+        title: "FAQ",
+        href: "",
+    },
+]
+
+export const OnlineShpping = [
+    {
+        id: 1,
+        title: "Men",
+        href: "",
+    },
+    {
+        id: 2,
+        title: "Women",
+        href: "",
+    },
+    {
+        id: 3,
+        title: "Kids",
+        href: "",
+    },
+    {
+        id: 4,
+        title: "Varaities",
+        href: "",
+    },
+]
+
 export const sizes = [
     'XS', // Extra Small
     'S',  // Small
@@ -142,3 +234,85 @@ export const mainCategories = [
     "men", "women", "kids", "all"
 ]
 
+
+// Menu Bar Main Contents
+export const benefits = [
+    {
+        id: 1,
+        title: "Best Quality",
+        icon: <TbBrandSlack size={40} />,
+        desc: "We provide you with modern and compact designs of the highest quality."
+    },
+    {
+        id: 2,
+        title: "Free Delivery",
+        icon: <CiDeliveryTruck size={40} />,
+        desc: "Enjoy fast and free delivery on all your orders, right to your doorstep."
+    },
+    {
+        id: 3,
+        title: "Warranty",
+        icon: <FaAward size={40} />,
+        desc: "Our products come with a warranty to ensure your complete satisfaction and peace of mind."
+    }
+];
+
+// Menu Bar Mobile Items
+export const mobilenavitems = [
+    {
+        id: 1,
+        href: "/home",
+        name: "Home",
+        icon: <HiOutlineHome size={25} />,
+        count: "",
+        show: true,
+    },
+    {
+        id: 2,
+        href: "/profile",
+        name: "Profile",
+        icon: <MdOutlinePersonOutline size={25} />,
+        count: "",
+        show: true,
+    },
+    {
+        id: 3,
+        href: "/cart",
+        name: "Cart",
+        icon: <BsCart3 size={25} />,
+        count: 2,
+        show: true,
+    },
+    {
+        id: 4,
+        href: "/favourite",
+        name: "Favourites",
+        icon: <IoMdHeartEmpty size={25} />,
+        count: 2,
+        show: true,
+    },
+    {
+        id: 5,
+        href: "/shop",
+        name: "Shop",
+        icon: <LiaProductHunt size={25} />,
+        count: "",
+        show: true,
+    },
+    {
+        id: 6,
+        href: "/dashboard",
+        name: "Dashboard",
+        icon: <CiGrid31 size={25} />,
+        count: "",
+        show: isAdmin,
+    },
+    {
+        id: 7,
+        href: "/",
+        name: "Logout",
+        icon: <TbLogout size={25} />,
+        count: "",
+        show: user,
+    },
+];
