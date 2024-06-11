@@ -3,6 +3,7 @@ import Categories from "./_components/LandingCategories";
 import Banners from "./_components/LandingPage/Banners";
 import LandingCards from "./_components/LandingPage/LadingCards";
 import LandingPage from "./_components/LandingPage/LandingPage";
+import NotFound from "./_components/NotFound";
 
 export default function Home() {
   
@@ -11,6 +12,7 @@ export default function Home() {
       <LandingPage />
       <Categories />
       <Banners />
+      <NotFound/>
       <LandingCards />
     </main>
   );
