@@ -83,7 +83,7 @@ const Navbar = () => {
                 <Icon icon={<FaRegHeart size={20} />} tooltip='Favoutites' iconCls='hidden md:flex' href='/favourite' />
                 <ShoppingCartICon />
                 {user &&
-                    <div className={`${user && "mr-[-50px] ml-[50px]"}`}>
+                    <div className={`${user && "mr-[-50px] ml-[50px]"}`} onClick={() =>""}>
                         <UserProfile profileCls="w-10 h-10 bg-neutral-200" />
                     </div>
                 }

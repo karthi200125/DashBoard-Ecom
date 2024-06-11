@@ -4,6 +4,7 @@ import Image from '@/components/ui/Image';
 import React, { useEffect, useState } from 'react'
 import { FiSearch } from "react-icons/fi";
 import { IoIosClose } from 'react-icons/io'
+import { productsdata } from '../dashboard/products/page';
 
 interface SearchProps {
     placeholder?: string;
@@ -41,8 +42,8 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
         "test1", "test2", "test3", "test4", "test5"
     ];
 
-    const filteredSuggestItems = searchItems.filter((data) =>
-        data.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())
+    const filteredSuggestItems = productsdata.filter((data) =>
+        data.proName.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())
     );
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,15 +85,15 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
 
             {inputValue && showSuggestions && filteredSuggestItems.length > 0 && (
                 <div className='absolute left-0 top-[70px] bg-white border shadow-xl w-full max-h-[500px] rounded-[10px] p-3 flex flex-col overflow-y-auto'>
-                    {filteredSuggestItems.map((si, i) => (
+                    {filteredSuggestItems.map((si: any, i) => (
                         <div
                             key={i}
                             onClick={() => handleSuggestionClick(si)}
                             className='w-full p-2 rounded-[5px] text-sm hover:bg-neutral-100 cursor-pointer flex flex-row items-center gap-3'
                         >
-                            <Image src={""} imgclass='bg-neutral-200 w-[60px] h-[60px] rounded-[5px]' />
-                            <div className='flex flex-col gap-2'>
-                                <h1 className='text-md font-bold capitalize line-clamp-1'>{si}</h1>
+                            <Image src={si.proImage} imgclass='bg-neutral-200 w-[60px] h-[60px] rounded-[5px]' />
+                            <div className='flex flex-col gap-1'>
+                                <h1 className='text-md font-bold capitalize line-clamp-1'>{si.proName}</h1>
                                 <p className='text-sm text-neutral-400 line-clamp-1'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, repellendus?</p>
                             </div>
                         </div>
