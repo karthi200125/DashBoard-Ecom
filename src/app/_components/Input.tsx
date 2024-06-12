@@ -10,6 +10,7 @@ interface InputProps {
     inputCls?: string,
     type?: string,
     textarea?: boolean
+    isLoading?: boolean
 }
 
 const debounce = (func: (...args: any[]) => void, delay: number) => {
@@ -24,7 +25,7 @@ const debounce = (func: (...args: any[]) => void, delay: number) => {
     };
 };
 
-const CustomInput = ({ name, label, rules, type, inputCls, textarea }: InputProps) => {
+const CustomInput = ({ name, label, rules, type, inputCls, textarea , isLoading }: InputProps) => {
     const { register, formState: { errors }, setValue } = useFormContext();
     const [inputValue, setInputValue] = useState<string>('');
 
@@ -53,6 +54,7 @@ const CustomInput = ({ name, label, rules, type, inputCls, textarea }: InputProp
                     value={inputValue}
                     onChange={handleChange}
                     className={`h-[100px] border rounded-[10px]`}
+                    disabled={isLoading}
                 ></textarea>
             ) : (
                 <input
@@ -61,6 +63,7 @@ const CustomInput = ({ name, label, rules, type, inputCls, textarea }: InputProp
                     value={inputValue}
                     onChange={handleChange}
                     className={`p-3 border rounded-[10px]`}
+                    disabled={isLoading}
                 />
             )}
             {errorMessage && <p className='text-red-500 text-sm font-semibold'>{errorMessage}</p>}

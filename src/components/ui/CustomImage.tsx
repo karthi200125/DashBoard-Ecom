@@ -21,7 +21,7 @@ const CustomImage = ({ src, imgclass, onClick, alt }: CustomImageProps) => {
         };
         customImage.src = src;
     }, [src]);
-        
+
     return (
         <>
             {!customImageLoading ?
@@ -30,9 +30,9 @@ const CustomImage = ({ src, imgclass, onClick, alt }: CustomImageProps) => {
                 <div className={`${imgclass} relative`} onClick={onClick} >
                     <Image
                         src={src}
-                        alt={alt || ''} 
-                        fill={true}
-                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        alt={alt || ''}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 </div>
                 // <img src={src} alt="" className={`${imgclass}`} loading='lazy' onClick={onClick} />
