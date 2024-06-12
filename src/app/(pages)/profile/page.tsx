@@ -1,13 +1,14 @@
 'use client';
 import CustomBtn from '@/app/_components/CustomBtn';
-import Modal from '@/app/_components/Modal/Modal';
+const Modal = dynamic(() => import('@/app/_components/Modal/Modal'));
+const EditProfile = dynamic(() => import('./EditProfile'));
 import UserProfile from '@/app/_components/UserProfile';
-import Image from '@/components/ui/Image';
+import Image from '@/components/ui/CustomImage';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoLocationOutline } from 'react-icons/io5';
-import EditProfile from './EditProfile';
+import dynamic from 'next/dynamic';
 
 const Profile = () => {
     const address = false;
@@ -19,7 +20,7 @@ const Profile = () => {
 
     return (
         <div className='w-full py-5 min-h-screen flex flex-col gap-5'>
-            <Modal closeBtn='' isOpen={editModalOpen} toggleOpen={() => seteditModalOpen(false)} modalBody={<EditProfile />} modalCls=''/>
+            <Modal closeBtn='' isOpen={editModalOpen} toggleOpen={() => seteditModalOpen(false)} modalBody={<EditProfile />} modalCls='' />
             {/* profile top */}
             <div className='py-5 border-b'>
                 <h1 className='text-4xl md:text-5xl xl:text-[120px] line-clamp-1 mb-3'>karthikeyna</h1>
@@ -50,7 +51,7 @@ const Profile = () => {
                     {fav.length > 0 ?
                         fav.slice(0, 5).map((fav) => (
                             <div className='p-2 flex flex-row items-center justify-between' key={fav}>
-                                <Image src="" imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' />
+                                <Image src="" imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='profile Image'/>
                             </div>
                         ))
                         :
@@ -111,7 +112,7 @@ const Profile = () => {
                                 </div>
                                 {orders.slice(0, 5).map((order) => (
                                     <div className='flex-1 overflow-hidden flex flex-row gap-5 justify-end' key={order}>
-                                        <Image src="" imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' />
+                                        <Image src="" imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='order image'/>
                                     </div>
                                 ))}
                             </div>

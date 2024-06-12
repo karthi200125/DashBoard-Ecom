@@ -32,8 +32,8 @@ const AddressStep = () => {
             <form onSubmit={methods.handleSubmit(handleSubmit)}>
                 <div className='w-full min-h-[500px] py-3 lg:h-[500px] flex flex-col gap-5'>
                     <div className='flex flex-col gap-2'>
-                        <h1 className='text-2xl md:text-5xl font-bold'>Address Details</h1>
-                        <h2 className='text-sm md:text-xl text-neutral-400'>Fill in your shipping address details</h2>
+                        <h1 >Address Details</h1>
+                        <p >Fill in your shipping address details</p>
                     </div>
                     <div className='flex flex-col lg:flex-row gap-3 lg:gap-10'>
                         <div className='flex-1 flex flex-col gap-3'>

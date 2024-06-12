@@ -1,10 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
-import Cards from '@/app/_components/Cards/Cards';
-import SideBar from '@/app/_components/SideBar';
 import { mainproductsdata } from '@/app/_components/dummydata';
-import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import {
     Select,
     SelectContent,
@@ -14,8 +10,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import Filter from './Filter';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
+import { FaArrowRightArrowLeft } from "react-icons/fa6";
+const Filter = dynamic(() => import('./Filter'));
+const Cards = dynamic(() => import('@/app/_components/Cards/Cards'));
+const SideBar = dynamic(() => import('@/app/_components/SideBar'));
 
 const Shop = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -68,8 +68,8 @@ const Shop = () => {
                         />}
                         title='Filter Products'
                     />
-                    <div className='flex flex-row items-center gap-2 cursor-pointer hover:opacity-50'>                        
-                            <FaArrowRightArrowLeft size={20} onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+                    <div className='flex flex-row items-center gap-2 cursor-pointer hover:opacity-50'>
+                        <FaArrowRightArrowLeft size={20} onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
                         <h2>Filter</h2>
                     </div>
                     <Select>

@@ -20,7 +20,7 @@ const StarRating = ({ rating = 0, size = "20" }: StarRatingProps) => {
                     return <FaRegStar key={index} className="text-gray-400" size={size} />;
                 }
             })}
-            <div className='text-xl font-bold ml-2 flex items-center justify-center px-5 py-1 bg-black text-white rounded-[5px]'>{rating}</div>
+            <div className='text-md ml-2 font-bold flex items-center justify-center px-2 bg-black text-white rounded-[5px]'>{rating}</div>
         </div>
     );
 };

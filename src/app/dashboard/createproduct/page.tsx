@@ -1,12 +1,13 @@
 'use client';
 
 import CustomBtn from "@/app/_components/CustomBtn";
-import ProductImageUpload from "./ProductImageUpload";
+const ProductImageUpload = dynamic(() => import("./ProductImageUpload"));
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import CustomInput from "@/app/_components/Input";
 import CustomSelect from "@/app/_components/CustomSelect";
+import dynamic from "next/dynamic";
 
 const schema = z.object({
     productName: z.string().min(3, "Product Name is required"),

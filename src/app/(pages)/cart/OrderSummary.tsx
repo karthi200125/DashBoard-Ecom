@@ -16,19 +16,19 @@ const OrderSummary = ({ onStep }: OrderSummaryProps) => {
         <div className='w-full h-full flex flex-col justify-between'>
             <h1 className='text-xl font-bold border-b-[1px] pb-2'>Cart Summary</h1>
             <div className='flex flex-row justify-between items-center'>
-                <h2 className='text-md text-neutral-400'>Subtotal</h2>
+                <h3>Subtotal</h3>
                 <span className='text-md font-bold'>${subtotal.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center'>
-                <h2 className='text-md text-neutral-400'>Estimated Shipping</h2>
+                <h3>Estimated Shipping</h3>
                 <span className='text-md font-bold'>${estimatedShipping.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center'>
-                <h2 className='text-md text-neutral-400'>Discount</h2>
+                <h3>Discount</h3>
                 <span className='text-md font-bold'>${discount.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center border p-2'>
-                <h2 className='text-md font-bold'>Order Total</h2>
+                <h3 className='font-bold'>Order Total</h3>
                 <span className='text-md font-bold'>${orderTotal.toFixed(2)}</span>
             </div>
             <CustomBtn btnCls='bg-black text-white hover:opacity-70' onClick={onStep}>Continue</CustomBtn>

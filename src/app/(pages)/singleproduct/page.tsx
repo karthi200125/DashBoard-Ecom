@@ -1,10 +1,11 @@
 'use client'
 
 import React from 'react'
-import SingleProductImage from './SingleProductImage'
-import ProductContent from './ProductContent'
-import Cards from '@/app/_components/Cards/Cards'
-import ProductReview from './ProductReview'
+const SingleProductImage = dynamic(() => import('./SingleProductImage'))
+const ProductContent = dynamic(() => import('./ProductContent'))
+const Cards = dynamic(() => import('@/app/_components/Cards/Cards'))
+const ProductReview = dynamic(() => import('./ProductReview'))
+import dynamic from 'next/dynamic'
 
 const SingleProduct = () => {
     return (

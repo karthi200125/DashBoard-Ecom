@@ -1,11 +1,12 @@
-import TopList from "@/app/_components/TopList"
-import Image from "@/components/ui/Image"
-import NewUsers from "./NewUsers"
-import TotalUser from "./TotalUser"
-import UserGraph from "./UserGraph"
-import UserTable, { userdata } from "../users/UserTable"
+import dynamic from "next/dynamic"
 import { FaUsers } from "react-icons/fa"
-import userbg from '../../assets/user-bg.jpg'
+import { userdata } from "../users/UserTable"
+const UserTable = dynamic(() => import("../users/UserTable"))
+const TopList = dynamic(() => import("@/app/_components/TopList"))
+const Image = dynamic(() => import("@/components/ui/CustomImage"))
+const NewUsers = dynamic(() => import("./NewUsers"))
+const TotalUser = dynamic(() => import("./TotalUser"))
+const UserGraph = dynamic(() => import("./UserGraph"))
 
 const Users = () => {
   return (
@@ -16,9 +17,9 @@ const Users = () => {
           {/* users top row */}
           <div className="flex flex-row justify-between items-center h-[300px] gap-3">
             <div className="h-full flex-1 flex flex-col justify-between">
-              <h1 className="text-4xl font-bold">Overview</h1>
-              <h2 className="text-3xl">Welcome to users dashbaord</h2>
-              <Image src={userbg.src} imgclass="border rounded-[20px] h-[170px]" />
+              <h1>Overview</h1>
+              <h3>Welcome to users dashbaord</h3>
+              <Image src={""} imgclass="border rounded-[20px] h-[170px]" alt=""/>
             </div>
             <TotalUser />
             <NewUsers />

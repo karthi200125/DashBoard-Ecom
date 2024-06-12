@@ -1,10 +1,10 @@
 import Icon from '@/app/_components/Icon'
-import Image from '@/components/ui/Image';
+import Image from '@/components/ui/CustomImage';
 import React from 'react'
 import { GoArrowUpRight } from "react-icons/go";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { RiBarChartFill } from "react-icons/ri";
-import orderbg from '../../assets/user-bg.jpg'
+
 
 const OrderCards = () => {
 
@@ -42,7 +42,7 @@ const OrderCards = () => {
                     </div>
                 </div>
             ))}
-            <Image src={orderbg.src} imgclass="border rounded-[20px] h-[100px]" />
+            <Image src={""} imgclass="border rounded-[20px] h-[100px]" alt=''/>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import User from './User'
+import User from '../dashboard/users/User'
 import UserProfile from './UserProfile'
 import { Skeleton } from '@/components/ui/skeleton'
 import Order from '../dashboard/orders/Order'
@@ -24,7 +24,7 @@ const TopList = ({ data, title, icon, route }: TopListProps) => {
             <div className='flex flex-col items-center justify-between '>
                 <div className='flex flex-row items-center gap-2 border-b-[1px] border-solid border-neutral-200 py-2 w-full '>
                     <div>{icon}</div>
-                    <h1 className='font-bold'>{title}</h1>
+                    <h2 >{title}</h2>
                 </div>
                 <div className='flex flex-col w-full py-2 gap-2'>
                     {!isLoading ?
@@ -35,8 +35,8 @@ const TopList = ({ data, title, icon, route }: TopListProps) => {
                                         <div className='flex flex-row items-center gap-2 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2'>
                                             <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200' proSrc={route === "products" ? data?.proImage : data?.profilepic} />
                                             <div className='flex items-start justify-start flex-col'>
-                                                <h1 className='text-md leading-none'>{route === "products" ? data?.proName : data?.name}</h1>
-                                                <span className='text-neutral-400 text-sm'>{route === "products" ? `${data?.proPrice} Rs` : data?.email}</span>
+                                                <h4 className='leading-none'>{route === "products" ? data?.proName : data?.name}</h4>
+                                                <p>{route === "products" ? `${data?.proPrice} Rs` : data?.email}</p>
                                             </div>
                                         </div>
                                     </SheetTrigger>

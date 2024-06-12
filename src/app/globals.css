@@ -45,7 +45,7 @@ body {
     box-shadow: 0 8px 10px 10px rgba(0, 0, 0, 0.2);
     -webkit-backdrop-filter: blur(17.5px);
     transition: 0.5s ease-in-out all;
-    border-radius: 30px;    
+    border-radius: 30px;
     top: 10px;
 }
 
@@ -79,7 +79,7 @@ input:focus {
 
 .wave {
     width: 100%;
-    background: url('./assets/wave.png');
+    background: url('./assets/wave.webp');
     background-size: 1000px 50px;
     animation: animate 1s linear infinite;
     z-index: 1000;
@@ -215,7 +215,7 @@ body {
 
 .menu .line3 {
     transform: translate(-50%, 8px);
-    width: 80%;    
+    width: 80%;
 }
 
 .openmenu .line1 {
@@ -316,3 +316,26 @@ svg circle:nth-child(2) {
     stroke-dasharray: 200;
     stroke-dashoffset: 200;
 } */
+
+
+/* custom elemtns */
+
+h1 {
+    @apply text-3xl md:text-5xl font-bold
+}
+
+h2 {
+    @apply text-lg md:text-xl font-bold
+}
+
+h3 {
+    @apply text-lg font-semibold
+}
+
+h4 {
+    @apply text-[15px] font-semibold
+}
+
+p {
+    @apply text-sm text-neutral-400;
+}

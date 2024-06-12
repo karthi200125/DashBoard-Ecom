@@ -1,6 +1,6 @@
 'use client'
 import StarRating from '@/app/_components/Cards/StarRating'
-import Image from '@/components/ui/Image'
+import Image from '@/components/ui/CustomImage'
 import React, { useState } from 'react'
 
 const Review = () => {
@@ -15,11 +15,11 @@ const Review = () => {
         <div className='w-full rounded-[20px] p-5 min-h-[200px] border flex flex-row items-start gap-10'>
             {/* user profule */}
             <div className='hidden md:flex flex-col gap-3 w-[20%]'>
-                <Image src={""} imgclass='bg-neutral-200 w-[100px] h-[100px] rounded-[10px]' />
+                <Image src={""} imgclass='bg-neutral-200 w-[100px] h-[100px] rounded-[10px]' alt='user image'/>
                 <h1 className='text-xl font-bold'>karthikeyna</h1>
             </div>
 
-            {/* user review content */}
+        {/* user review content */}
             <div className='flex flex-col w-full h-full gap-3'>
                 <div className='flex flex-row items-center justify-between'>
                     <StarRating rating={4.5} size='15' />

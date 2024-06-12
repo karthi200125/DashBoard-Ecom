@@ -26,7 +26,7 @@ const NewUsers = () => {
     <div className='flex-1 h-full border bg-white rounded-[20px] p-5 overflow-hidden'>
       <div className='flex flex-row items-center gap-2'>
         <FaUsers size={20} />
-        <h1 className='font-bold text-md'>New users</h1>
+        <h2>New users</h2>
       </div>
 
       <div className='w-[300px] h-[200px] mt-5 ml-[-30px]'>

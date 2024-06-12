@@ -1,11 +1,11 @@
 'use client'
 
-import TopList from "@/app/_components/TopList"
 import { ListOrderedIcon } from "lucide-react"
-import { userdata } from "../users/UserTable"
-import OrderTable from "./OrderTable"
-import OrderCards from "./OrderCards"
-import OrderGraph from "./OrderGraph"
+import dynamic from "next/dynamic"
+const TopList = dynamic(() => import("@/app/_components/TopList"))
+const OrderCards = dynamic(() => import("./OrderCards"))
+const OrderGraph = dynamic(() => import("./OrderGraph"))
+const OrderTable = dynamic(() => import("./OrderTable"))
 
 export const orderdata = [
     {
@@ -15,22 +15,22 @@ export const orderdata = [
         products: [
             {
                 id: 1,
-                productImage: "https://images.pexels.com/photos/2638026/pexels-photo-2638026.jpeg?auto=compress&cs=tinysrgb&w=600",
+                productImage: "",
                 productName: "sample"
             },
             {
                 id: 2,
-                productImage: "https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=600",
+                productImage: "",
                 productName: "sample2"
             },
             {
                 id: 3,
-                productImage: "https://images.pexels.com/photos/2638026/pexels-photo-2638026.jpeg?auto=compress&cs=tinysrgb&w=600",
+                productImage: "",
                 productName: "sample"
             },
             {
                 id: 4,
-                productImage: "https://images.pexels.com/photos/2533266/pexels-photo-2533266.jpeg?auto=compress&cs=tinysrgb&w=600",
+                productImage: "",
                 productName: "sample2"
             },
         ],
@@ -46,7 +46,7 @@ export const orderdata = [
         products: [
             {
                 id: 2,
-                productImage: "https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg?auto=compress&cs=tinysrgb&w=600",
+                productImage: "",
                 productName: "example"
             }
         ],
@@ -62,7 +62,7 @@ export const orderdata = [
         products: [
             {
                 id: 3,
-                productImage: "https://images.pexels.com/photos/2693644/pexels-photo-2693644.jpeg?auto=compress&cs=tinysrgb&w=600",
+                productImage: "",
                 productName: "test"
             }
         ],

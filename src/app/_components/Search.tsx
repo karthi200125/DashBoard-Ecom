@@ -1,6 +1,6 @@
 'use client'
 
-import Image from '@/components/ui/Image';
+import Image from '@/components/ui/CustomImage';
 import React, { useEffect, useState } from 'react'
 import { FiSearch } from "react-icons/fi";
 import { IoIosClose } from 'react-icons/io'
@@ -91,10 +91,10 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
                             onClick={() => handleSuggestionClick(si)}
                             className='w-full p-2 rounded-[5px] text-sm hover:bg-neutral-100 cursor-pointer flex flex-row items-center gap-3'
                         >
-                            <Image src={si.proImage} imgclass='bg-neutral-200 w-[60px] h-[60px] rounded-[5px]' />
+                            <Image src={si.proImage} imgclass='bg-neutral-200 w-[60px] h-[60px] rounded-[5px]' alt=''/>
                             <div className='flex flex-col gap-1'>
-                                <h1 className='text-md font-bold capitalize line-clamp-1'>{si.proName}</h1>
-                                <p className='text-sm text-neutral-400 line-clamp-1'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, repellendus?</p>
+                                <h2 className='capitalize line-clamp-1'>{si.proName}</h2>
+                                <p className='line-clamp-1'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, repellendus?</p>
                             </div>
                         </div>
                     ))}

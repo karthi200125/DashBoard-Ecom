@@ -1,8 +1,8 @@
 'use client'
 
+import CustomBtn from '@/app/_components/CustomBtn'
 import Icon from '@/app/_components/Icon'
 import Search from '@/app/_components/Search'
-import User from '@/app/_components/User'
 import UserProfile from '@/app/_components/UserProfile'
 import { Button } from '@/components/ui/button'
 import {
@@ -20,13 +20,13 @@ import {
     SheetTrigger
 } from "@/components/ui/sheet"
 import { Skeleton } from '@/components/ui/skeleton'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { FaUsers } from "react-icons/fa"
 import { IoIosMore } from "react-icons/io"
+const Product = dynamic(() => import('./Product'))
 import { productsdata } from './page'
-import Product from './Product'
-import CustomBtn from '@/app/_components/CustomBtn'
-import { useRouter } from 'next/navigation'
+import dynamic from 'next/dynamic'
 
 
 const ProductTable = () => {

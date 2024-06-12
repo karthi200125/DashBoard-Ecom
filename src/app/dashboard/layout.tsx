@@ -1,4 +1,6 @@
-import DashNavbar from "../_components/DashNavbar";
+import dynamic from "next/dynamic";
+
+const DashNavbar = dynamic(() => import("../_components/DashNavbar"));
 
 const DashBoardLayout = ({
     children

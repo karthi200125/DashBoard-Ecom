@@ -1,14 +1,15 @@
-import TopList from "@/app/_components/TopList"
+import dynamic from "next/dynamic"
 import { FaUsers } from "react-icons/fa"
-import ProductTable from "./ProductTable"
-import TotalProducts from "./TotalProducts"
-import SaleCards from "./SaleCards"
-import ProductMainChart from "./ProductMainChart"
+const TopList = dynamic(() => import("@/app/_components/TopList"))
+const ProductTable = dynamic(() => import("./ProductTable"))
+const TotalProducts = dynamic(() => import("./TotalProducts"))
+const SaleCards = dynamic(() => import("./SaleCards"))
+const ProductMainChart = dynamic(() => import("./ProductMainChart"))
 
 export const productsdata = [
     {
         id: 1,
-        proImage: "https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=600",
+        proImage: "",
         proName: "producst 1",
         orderedCounts: [],
         proPrice: "1000",
@@ -16,7 +17,7 @@ export const productsdata = [
     },
     {
         id: 2,
-        proImage: "https://images.pexels.com/photos/335257/pexels-photo-335257.jpeg?auto=compress&cs=tinysrgb&w=600",
+        proImage: "",
         proName: "producst 2",
         orderedCounts: [],
         proPrice: "1000",
@@ -24,7 +25,7 @@ export const productsdata = [
     },
     {
         id: 3,
-        proImage: "https://images.pexels.com/photos/4158/apple-iphone-smartphone-desk.jpg?auto=compress&cs=tinysrgb&w=600",
+        proImage: "",
         proName: "producst 3",
         orderedCounts: [],
         proPrice: "1000",

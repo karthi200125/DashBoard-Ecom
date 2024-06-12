@@ -1,5 +1,5 @@
 'use client'
-import Image from '@/components/ui/Image'
+import Image from '@/components/ui/CustomImage'
 import React, { useState } from 'react'
 import { IoCloudUploadOutline } from 'react-icons/io5';
 
@@ -29,7 +29,7 @@ const EditProfileImgUpload = () => {
                         <div className={`${per > 10 && "wave wave1 h-[20%]"}`}></div>
                         <div className='w-full h-[100%] bg-[rgba(0,0,0,0.8)] '></div>
                     </div>
-                    <Image src={productImage || ''} imgclass="w-[300px] h-[200px] bg-neutral-200 rounded-[10px] " />
+                    <Image src={productImage || ''} imgclass="w-[300px] h-[200px] bg-neutral-200 rounded-[10px] " alt='ProfileImage'/>
                 </label>
             </div>
             <label

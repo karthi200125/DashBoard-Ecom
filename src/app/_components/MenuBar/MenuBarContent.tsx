@@ -8,23 +8,23 @@ const MenuBarContent = () => {
                 <div className='flex-1 flex flex-col justify-between items-start gap-10'>
                     <div className='flex flex-row items-center gap-5 xl:gap-10'>
                         <span className='w-[100px] bg-black h-[2px]'></span>
-                        <h1 className='text-md xl:text-xl font-bold'>Categories</h1>
+                        <h2>Categories</h2>
                     </div>
                     <div className='flex flex-row justify-between items-start w-full'>
                         <div className='flex flex-col gap-2'>
-                            <h1 className='text-md xl:text-xl font-bold'>Mens</h1>
+                            <h2 >Mens</h2>
                             {Mens.map((m, i) => (
                                 <div className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max' key={i}>{m}</div>
                             ))}
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <h1 className='text-md xl:text-xl font-bold'>Women</h1>
+                            <h2 >Women</h2>
                             {Womens.map((w, i) => (
                                 <div className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max' key={i}>{w}</div>
                             ))}
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <h1 className='text-md xl:text-xl font-bold'>Kids</h1>
+                            <h2 >Kids</h2>
                             {Kids.map((k, i) => (
                                 <div className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max' key={i}>{k}</div>
                             ))}
@@ -35,7 +35,7 @@ const MenuBarContent = () => {
                 <div className='flex-1'>
                     <div className='flex flex-row items-center gap-5 xl:gap-10'>
                         <span className='w-[100px] bg-black h-[2px]'></span>
-                        <h1 className='w-[200px] xl:w-[300px] text-md xl:text-xl font-bold'>Benifits you get when you ussing our services</h1>
+                        <h2 className='w-[200px] xl:w-[300px] '>Benifits you get when you ussing our services</h2>
                     </div>
 
                     <div className='flex flex-col justify-between gap-3 w-[300px] p-5'>
@@ -45,8 +45,8 @@ const MenuBarContent = () => {
                                     {b.icon}
                                 </div>
                                 <div>
-                                    <h1 className='text-md xl:text-xl font-bold'>{b.title}</h1>
-                                    <p className='text-sm text-neutral-400'>{b.desc}</p>
+                                    <h2>{b.title}</h2>
+                                    <p>{b.desc}</p>
                                 </div>
                             </div>
                         ))}

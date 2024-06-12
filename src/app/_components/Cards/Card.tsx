@@ -1,6 +1,6 @@
 'use client'
 
-import Image from '@/components/ui/Image'
+import Image from '@/components/ui/CustomImage'
 import { ArrowRight } from 'lucide-react'
 import AddToCartBtn from '../AddToCartBtn/AddToCartBtn'
 import StarRating from './StarRating'
@@ -15,7 +15,7 @@ const Card = ({ card }: CardProps) => {
         <div className='min-w-[300px] rounded-[30px] h-[500px] overflow-hidden relative shadow-md hover:shadow-custom-shadow transition duration-300 group'>
             {/* image con */}
             <div className='h-[280px] overflow-hidden relative'>
-                <Image src={card?.proImage || ""} imgclass='w-full h-full bg-neutral-200 object-contain transform group-hover:scale-[1.3] transition duration-500' />
+                <Image src={card?.proImage || ""} imgclass='w-full h-full bg-neutral-200 object-contain transform group-hover:scale-[1.3] transition duration-500' alt=''/>
                 <div className='w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center absolute top-3 right-3'>
                     <Heart />
                 </div>
@@ -26,8 +26,8 @@ const Card = ({ card }: CardProps) => {
 
             {/* card content */}
             <div className='bg-white w-full h-[220px] p-5 flex flex-col justify-between'>
-                <h1 className='text-lg font-bold capitalize'>{card?.proName}</h1>
-                <p className='text-sm text-neutral-400 leading-0 line-clamp-2'>{card?.proDesc}</p>
+                <h2 className='capitalize'>{card?.proName}</h2>
+                <p className='leading-0 line-clamp-2'>{card?.proDesc}</p>
 
                 {/* rating */}
                 <div className='flex flex-row items-center justify-between'>

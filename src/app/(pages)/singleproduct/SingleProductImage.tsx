@@ -1,16 +1,14 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import Image from '@/components/ui/Image';
-import testimage from '../../assets/shirt.png'
-import testimage2 from '../../assets/fox.png'
-import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
+import Image from '@/components/ui/CustomImage';
+import { useEffect, useState } from 'react';
+import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 
 const SingleProductImage = () => {
     const images = [
-        testimage.src,
-        testimage2.src,
-        testimage.src,
-        testimage2.src,
+        "",
+        "",
+        "",
+        "",
     ];
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,7 +40,7 @@ const SingleProductImage = () => {
                         className={`${index === currentIndex ? "bg-neutral-200" : "border"} w-full h-full rounded-[10px] overflow-hidden p-2`}
                         data-carousel-item
                     >
-                        <Image src={src} imgclass={`w-full h-full object-contain rounded-[10px]`} />
+                        <Image src={src} imgclass={`w-full h-full object-contain rounded-[10px]`} alt=''/>
                     </div>
                 ))}
             </div>
@@ -58,7 +56,7 @@ const SingleProductImage = () => {
                             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                             data-carousel-item
                         >
-                            <Image src={src} imgclass="absolute block w-[90%] left-1/2 transform -translate-x-1/2 h-full object-contain bg-neutral-200" />
+                            <Image src={src} imgclass="absolute block w-[90%] left-1/2 transform -translate-x-1/2 h-full object-contain bg-neutral-200" alt=''/>
                         </div>
                     ))}
                 </div>

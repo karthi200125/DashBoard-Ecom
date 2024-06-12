@@ -1,5 +1,5 @@
 'use client'
-import Image from '@/components/ui/Image'
+import Image from '@/components/ui/CustomImage'
 import React, { useState } from 'react'
 import Curves from './Curves'
 import SocialIcons from './SocialIcons'
@@ -7,19 +7,19 @@ import { ArrowRight } from 'lucide-react'
 import CustomBtn from '@/app/_components/CustomBtn'
 
 const LandingPage = () => {
-    const [mainImage, setMainimage] = useState("https://img.uhdpaper.com/wallpaper/ninja-kamui-oni-mask-joe-higan-256@1@o-thumb.jpg?dl")
+    const [mainImage, setMainimage] = useState("")
 
     const miniimages = [
-        "https://img.uhdpaper.com/wallpaper/ninja-kamui-oni-mask-joe-higan-256@1@o-thumb.jpg?dl",
-        "https://img.uhdpaper.com/wallpaper/goku-dragon-ball-262@3@a-thumb.jpg?dl",
-        "https://img.uhdpaper.com/wallpaper/sunset-synthwave-sports-car-city-palm-trees-digital-art-216@1@n-thumb.jpg?dl"
+        "",
+        "",
+        "",
     ]
 
     return (
         <div className='w-full h-[92vh] py-[15px] xl:py-[10px] flex flex-col gap-2 md:flex-row justify-between relative px-2 md:pl-[50px] xl:pl-[80px]'>
 
             {/* main image */}
-            <Image src={mainImage} imgclass='w-full md:w-[87%] h-[96.5%] rounded-[30px] bg-neutral-200' />
+            <Image src={mainImage} imgclass='w-full md:w-[87%] h-[96.5%] rounded-[30px] bg-neutral-200' alt='main image' />
 
             {/* buttons */}
             <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row md:flex-col xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[95px] bottom-0 md:bottom-[-25px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
@@ -33,8 +33,8 @@ const LandingPage = () => {
                     <h1 className='text-md text-2xl xl:text-4xl font-semibold'>24K</h1>
                     <ArrowRight className='rotate-[-45deg]' size={25} />
                 </div>
-                <h2 className='text-sm md:text-sm opacity-50'>happy customer with grow </h2>
-                <h2 className='text-sm md:text-sm opacity-50'>user friendly website</h2>
+                <p className='opacity-50'>happy customer with grow </p>
+                <p className='opacity-50'>user friendly website</p>
             </div>
 
             {/* main text */}
@@ -47,7 +47,7 @@ const LandingPage = () => {
             {/* three images */}
             <div className='hidden md:flex flex-col justify-between gap-2 h-[65%] xl:w-[15%] overflow-hidden'>
                 {miniimages?.map((mi, i) => (
-                    <Image src={mi} imgclass='w-full h-full rounded-[20px] bg-neutral-100 hover:shadow-custom-shadow transition duration-300' key={i} onClick={() => setMainimage(mi)} />
+                    <Image src={mi} imgclass='w-full h-full rounded-[20px] bg-neutral-100 hover:shadow-custom-shadow transition duration-300' key={i} onClick={() => setMainimage(mi)} alt='main 3 images' />
                 ))}
             </div>
 
@@ -55,8 +55,8 @@ const LandingPage = () => {
             <div className='hidden md:flex absolute bottom-[30px] right-0 md:w-[30%] xl:w-[25%] h-[30%] md:pl-3 pl-5 md:pt-3 pt-5 bg-white' style={{ borderTopLeftRadius: "30px" }}>
                 <div className='rounded-[20px] w-full h-full p-5 bg-neutral-100 relative group hover:shadow-custom-shadow transition duration-300'>
                     <div className='flex flex-col gap-2'>
-                        <h1 className='text-md xl:text-xl font-bold'>Rigtn corner</h1>
-                        <p className='text-sm text-neutral-400 md:line-clamp-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi rem placeat minus iste asperiores aliquam quas sunt officia eum cupiditate?</p>
+                        <h2>Rigtn corner</h2>
+                        <p className='md:line-clamp-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi rem placeat minus iste asperiores aliquam quas sunt officia eum cupiditate?</p>
                     </div>
                     <div className='absolute top-2 right-2 flex items-center justify-center rounded-full bg-black w-10 h-10 text-white'>
                         <ArrowRight size={20} className='rotate-[-45deg] group-hover:rotate-[0deg] transition' />
@@ -70,8 +70,8 @@ const LandingPage = () => {
             <div className='hidden md:flex flex-col rounded-[20px] absolute bottom-[30px] left-[50px] xl:left-[80px] '>
                 <Curves curveCls='w-[45px] h-[45px] absolute top-[-45px] left-[0px]' />
                 <Curves curveCls='w-[45px] h-[45px] absolute bottom-0 right-[-45px]' />
-                <h1 className='pr-5 xl:pr-10 pt-5 max-w-max bg-white text-sm xl:text-xl font-bold' style={{ borderTopRightRadius: "20px" }}>Natural thing</h1>
-                <h1 className='pr-5 xl:pr-10 py-5 max-w-max bg-white text-sm xl:text-xl font-bold' style={{ borderTopRightRadius: "20px" }}>Wax Candle peeshfhfhfh</h1>
+                <h2 className='pr-5 xl:pr-10 pt-5 max-w-max bg-white' style={{ borderTopRightRadius: "20px" }}>Natural thing</h2>
+                <h2 className='pr-5 xl:pr-10 py-5 max-w-max bg-white' style={{ borderTopRightRadius: "20px" }}>Wax Candle peeshfhfhfh</h2>
             </div>
 
             {/* social icons */}

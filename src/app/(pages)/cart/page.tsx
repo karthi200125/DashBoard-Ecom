@@ -1,8 +1,9 @@
 'use client'
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
-import AddressStep from "./AddressStep";
-import OrderSummaryStep from "./OrderSummaryStep";
+const AddressStep = dynamic(() => import("./AddressStep"));
+const OrderSummaryStep = dynamic(() => import("./OrderSummaryStep"));
 
 
 const Cart = () => {

@@ -1,7 +1,7 @@
 'use client';
 import CustomBtn from '@/app/_components/CustomBtn';
 import ProgressBarCon from '@/app/_components/ProgressBar';
-import Image from '@/components/ui/Image';
+import Image from '@/components/ui/CustomImage';
 import React, { useState, ChangeEvent } from 'react';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import test from '../../assets/user-bg.jpg'
@@ -37,15 +37,15 @@ const ProductImageUpload = () => {
                         <div className="wave wave1 h-[20%]"></div>
                         <div className='w-full h-[100%] bg-[rgba(0,0,0,0.8)] '></div>
                     </div>
-                    <Image src={productImage || ''} imgclass="w-full h-full bg-neutral-200 rounded-[10px]" />
+                    <Image src={productImage || ''} imgclass="w-full h-full bg-neutral-200 rounded-[10px]" alt=''/>
                 </label>
             </div>
 
             <div className='flex flex-wrap items-center justify-between w-[320px] gap-3'>
-                <Image src={addedImages[0] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" />
-                <Image src={addedImages[1] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" />
-                <Image src={addedImages[2] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" />
-                <Image src={addedImages[3] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" />
+                <Image src={addedImages[0] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" alt=''/>
+                <Image src={addedImages[1] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" alt=''/>
+                <Image src={addedImages[2] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" alt=''/>
+                <Image src={addedImages[3] || ''} imgclass="rounded-[10px] w-[150px] h-[150px] bg-neutral-200" alt=''/>
             </div>
 
 

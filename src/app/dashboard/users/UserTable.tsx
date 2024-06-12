@@ -1,8 +1,8 @@
 'use client'
 
 import Icon from '@/app/_components/Icon'
-import Search from '@/app/_components/Search'
-import User from '@/app/_components/User'
+const Search = dynamic(() => import('@/app/_components/Search'))
+const User = dynamic(() => import('@/app/dashboard/users/User'))
 import UserProfile from '@/app/_components/UserProfile'
 import { Button } from '@/components/ui/button'
 import {
@@ -20,6 +20,7 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet"
 import { Skeleton } from '@/components/ui/skeleton'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import { FaUsers } from "react-icons/fa"
 import { IoIosMore } from "react-icons/io"
@@ -138,11 +139,11 @@ const UserTable = () => {
 
       {/* table top */}
       <div className="flex flex-row items-center justify-between">
-        <h1 className='font-bold flex flex-row items-center gap-2 '>
+        <h2 className='flex flex-row items-center gap-2 '>
           <FaUsers size={20} />
-          <h1>Users</h1>
+          <h2>Users</h2>
           <span>{`(${userdata?.length})`}</span>
-        </h1>
+        </h2>
         <Search />
         <div>
 
