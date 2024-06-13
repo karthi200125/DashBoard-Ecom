@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import "./globals.css";
 import Navbar from "./_components/Navbar";
 import dynamic from "next/dynamic";
+import { Toaster } from 'sonner'
 const Footer = dynamic(() => import('./_components/Footer'))
 
 const inter = Inter({ subsets: ["latin"] });
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body className={inter.className} >
         <div className="w-full realative">
           <Navbar />
+          <Toaster position="bottom-right" expand={false}  richColors/>
           {children}
           <Footer />
         </div>

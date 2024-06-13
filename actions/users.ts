@@ -8,6 +8,27 @@ import { db } from '@/lib/db'
 
 const prisma = new PrismaClient()
 
+// Function to get user by email
+export const getUserByEmail = async (email: string) => {    
+    const user = await db.user.findUnique({
+        where: {
+            email
+        }
+    });    
+    return user;
+};
+
+// Function to get user by email
+export const getUserById = async (id: string) => {
+    
+    const user = await db.user.findUnique({
+        where: {
+            id
+        }
+    });    
+    return user;
+};
+
 
 export const getAllUsers = async () => {
     try {
@@ -18,17 +39,6 @@ export const getAllUsers = async () => {
         return { error: "Fetch all users failed" }
     }
 }
-
-export const createUser = async (values: any) => {
-    try {
-        const newUser = await db.user.create(values);
-        return newUser;
-    } catch (error) {
-        Logger.error(`Creating user failed, Error: ${error}`);
-        return { error: "Creating user failed" };
-    }
-};
-
 
 
 // get sigle user data

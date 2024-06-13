@@ -10,7 +10,7 @@ import CustomInput from './Input';
 import Logo from './Logo';
 import dynamic from 'next/dynamic';
 import { useTransition } from 'react';
-import { login } from '../../../actions/auth/login';
+import { login } from '../../../actions/authentication/login';
 import { LoginSchema } from '../../../schemas';
 const Modal = dynamic(() => import('./Modal/Modal'));
 

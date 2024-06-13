@@ -1,16 +1,16 @@
 'use client'
 import Image from '@/components/ui/CustomImage';
 import { zodResolver } from '@hookform/resolvers/zod';
+import dynamic from 'next/dynamic';
+import { useTransition } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
+import { register } from '../../../actions/authentication/register';
+import { RegisterSchema } from '../../../schemas';
 import CustomBtn from './CustomBtn';
 import CustomInput from './Input';
 import Logo from './Logo';
-import dynamic from 'next/dynamic';
-import { RegisterSchema } from '../../../schemas';
-import { register } from '../../../actions/auth/register';
-import { useTransition } from 'react';
-import { createUser } from '../../../actions/users';
 const Modal = dynamic(() => import('./Modal/Modal'));
 
 interface RegsiterModalProps {
@@ -32,10 +32,14 @@ const RegsiterBody = () => {
 
     const handleSubmit = (formData: any) => {
         startTransition(() => {
-            createUser(formData)
+            register(formData)
                 .then((data) => {
-                    console.log(data.error)
-                    console.log(data.success)
+                    if (data.success) {
+                        toast.success(data.success)
+                    }
+                    if (data.error) {
+                        toast.error(data.error)
+                    }
                 })
         })
     }
