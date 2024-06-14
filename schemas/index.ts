@@ -6,7 +6,7 @@ export const LoginSchema = z.object({
 });
 
 export const RegisterSchema = z.object({
-    username: z.string().min(3, "username is required"),
+    name: z.string().min(3, "username is required"),
     email: z.string(),
     password: z.string().min(6, "Password should be mini 6 char").max(12),
 });

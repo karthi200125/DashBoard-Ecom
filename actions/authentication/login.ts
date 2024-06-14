@@ -5,8 +5,10 @@ import { LoginSchema } from '../../schemas';
 import { signIn } from '../../auth';
 import { DEFAULT_REDIRECT } from '../../routes';
 import { AuthError } from 'next-auth';
+import { getUserByEmail } from '../users';
+import { generateVerificationToken } from './tokens';
 
-export const login = async (values: z.infer<typeof LoginSchema>) => {    
+export const login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedFields = LoginSchema.safeParse(values);
 
     if (!validatedFields.success) {
@@ -15,6 +17,17 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
     const { email, password } = validatedFields.data;
 
+    const existingUser: any = await getUserByEmail(email);
+
+    if (!existingUser) {
+        return { error: "Email does not exist" };
+    }
+
+    if (!existingUser.emailVerified) {
+        const verificationToken = await generateVerificationToken(existingUser.email);
+        return { success: "Confirmation email sent" };
+    }
+
     try {
         await signIn('credentials', {
             email,
@@ -22,7 +35,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             redirectTo: DEFAULT_REDIRECT
         });
 
-        // Optionally, return success message or redirect indication
         return { success: true, message: 'Login successful' };
 
     } catch (error) {
@@ -34,7 +46,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
                     return { error: "Something went wrong" };
             }
         }
-        // Throw other errors for centralized error handling
+
         throw error;
     }
 };

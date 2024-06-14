@@ -3,8 +3,6 @@ import Image from '@/components/ui/CustomImage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import apple from '../assets/apple.webp';
-import google from '../assets/google.webp';
 import CustomBtn from './CustomBtn';
 import CustomInput from './Input';
 import Logo from './Logo';
@@ -12,6 +10,8 @@ import dynamic from 'next/dynamic';
 import { useTransition } from 'react';
 import { login } from '../../../actions/authentication/login';
 import { LoginSchema } from '../../../schemas';
+import GoogleAuth from './GoogleAuth';
+import { toast } from 'sonner';
 const Modal = dynamic(() => import('./Modal/Modal'));
 
 interface LoginModalProps {
@@ -33,10 +33,14 @@ const LoginBody = () => {
     const handleSubmit = (formData: any) => {
         startTransition(() => {
             login(formData)
-            .then((data)=>{
-                console.log(data.error)
-                console.log(data.success)
-            })
+                .then((data) => {
+                    if (data.success) {
+                        toast.success(data.success)
+                    }
+                    if (data.error) {
+                        toast.error(data.error)
+                    }
+                })
         })
     }
 
@@ -84,14 +88,7 @@ const LoginBody = () => {
                             </div>
 
                             {/* other logins */}
-                            <div className='flex flex-row items-center justify-center gap-3'>
-                                <div className='w-[60px] h-[60px] border rounded-full flex items-center justify-center cursor-pointer'>
-                                    <Image src={google.src} imgclass='w-[20px] h-[20px]' alt='google' />
-                                </div>
-                                <div className='w-[60px] h-[60px] border rounded-full flex items-center justify-center cursor-pointer'>
-                                    <Image src={apple.src} imgclass='w-[20px] h-[20px]' alt='apple' />
-                                </div>
-                            </div>
+                            <GoogleAuth />
                             <div className='text-sm flex items-center flex-row justify-center gap-2'>
                                 <p >Dont have an Account?</p>
                                 <p className='font-bold cursor-pointer hover:underline'>Sign up for free</p>

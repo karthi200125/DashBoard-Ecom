@@ -4,6 +4,7 @@ import * as z from "zod";
 import { RegisterSchema } from "../../schemas";
 import bcrypt from 'bcryptjs';
 import { db } from "@/lib/db";
+import { generateVerificationToken } from "./tokens";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
     const validateFields = RegisterSchema.safeParse(values);
@@ -11,7 +12,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         return { error: "Invalid fields" };
     }
 
-    const { username, email, password } = validateFields.data;
+    const { name, email, password } = validateFields.data;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const existingUser = await db.user.findUnique({
@@ -26,13 +27,13 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
     await db.user.create({
         data: {
-            username,
+            name,
             email,
             password: hashedPassword
         }
     });
 
-    // TODO: send verification token
-
-    return { success: "Email sent" };
+    const verificationToken = await generateVerificationToken(email)
+    
+    return { success: "confirmation email sent" };
 };

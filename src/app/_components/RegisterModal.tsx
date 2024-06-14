@@ -24,7 +24,7 @@ const RegsiterBody = () => {
     const methods = useForm<z.infer<typeof RegisterSchema>>({
         resolver: zodResolver(RegisterSchema),
         defaultValues: {
-            username: "",
+            name: "",
             email: "",
             password: ""
         }
@@ -62,7 +62,7 @@ const RegsiterBody = () => {
                             </div>
 
                             {/* inputs */}
-                            <CustomInput name='username' inputCls='w-full' label='UserName' type='text' />
+                            <CustomInput name='name' inputCls='w-full' label='UserName' type='text' />
                             <CustomInput name='email' inputCls='w-full' label='Email' type='email' />
                             <CustomInput name='password' inputCls='w-full' label='password' type='password' />
 
