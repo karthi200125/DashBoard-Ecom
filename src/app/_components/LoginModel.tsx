@@ -12,6 +12,7 @@ import { login } from '../../../actions/authentication/login';
 import { LoginSchema } from '../../../schemas';
 import GoogleAuth from './GoogleAuth';
 import { toast } from 'sonner';
+import Link from 'next/link';
 const Modal = dynamic(() => import('./Modal/Modal'));
 
 interface LoginModalProps {
@@ -74,7 +75,7 @@ const LoginBody = () => {
 
                             {/* forgrt password */}
                             <div className='w-full flex justify-end'>
-                                <h2 className='text-sm font-bold underline cursor-pointer'>Forget Password</h2>
+                                <Link href="/reset" className='text-sm font-bold hover:underline cursor-pointer'>Forget Password</Link>
                             </div>
 
                             {/* submit button */}
