@@ -8,8 +8,8 @@ export default async function Home() {
       
   return (
     <main className="min-h-screen bg-white w-full ">
-      <LandingPage />
-      <Banners />
+      {/* <LandingPage />
+      <Banners /> */}
     </main>
   );
 }

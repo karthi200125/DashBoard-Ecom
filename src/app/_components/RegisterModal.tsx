@@ -2,7 +2,7 @@
 import Image from '@/components/ui/CustomImage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import dynamic from 'next/dynamic';
-import { useTransition } from 'react';
+import { useCallback, useTransition } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
@@ -11,16 +11,15 @@ import { RegisterSchema } from '../../../schemas';
 import CustomBtn from './CustomBtn';
 import CustomInput from './Input';
 import Logo from './Logo';
+import useRegisterModal from '../hooks/useRegisterModel';
+import useLoginModal from '../hooks/useLoginModel';
 const Modal = dynamic(() => import('./Modal/Modal'));
-
-interface RegsiterModalProps {
-    isOpen: boolean;
-    isClose: () => void;
-}
 
 
 const RegsiterBody = () => {
     const [isLoading, startTransition] = useTransition()
+    const registermodel = useRegisterModal();
+    const loginmodel = useLoginModal();
     const methods = useForm<z.infer<typeof RegisterSchema>>({
         resolver: zodResolver(RegisterSchema),
         defaultValues: {
@@ -44,22 +43,22 @@ const RegsiterBody = () => {
         })
     }
 
+    const handleLoginClick = useCallback(() => {
+        loginmodel.onOpen();
+        registermodel.onClose();
+    }, [loginmodel, registermodel]);
+
     return (
         <div className='w-full max-h-max flex flex-row gap-5 overflow-hidden'>
 
             {/* left side content */}
             <div className="flex-1 h-full flex flex-col gap-3 py-3">
-                <Logo />
-
                 <FormProvider {...methods}>
                     <form onSubmit={methods.handleSubmit(handleSubmit)}>
-                        <div className='w-[80%] mx-auto h-full flex flex-col gap-3'>
-
-                            {/* welcome text */}
-                            <div>
-                                <h2 >Welcome to Karthi 😊 </h2>
-                                <p>Eneter you login credentials</p>
-                            </div>
+                        <div className='w-[80%] mx-auto h-full flex flex-col gap-3 items-center justify-center'>
+                            <Logo />
+                            <h2 >Welcome to Karthi 😊 </h2>
+                            <p>Eneter you login credentials</p>
 
                             {/* inputs */}
                             <CustomInput name='name' inputCls='w-full' label='UserName' type='text' />
@@ -87,7 +86,8 @@ const RegsiterBody = () => {
                             </div> */}
                             <div className='text-sm flex items-center flex-row justify-center gap-2'>
                                 <p>Already have an Account?</p>
-                                <p className='font-bold cursor-pointer hover:underline'>Login</p>
+                                <p className='font-bold cursor-pointer hover:underline' onClick={handleLoginClick}
+                                >Login</p>
                             </div>
                         </div>
                     </form>
@@ -107,11 +107,12 @@ const RegsiterBody = () => {
     );
 }
 
-const RegisterModel = ({ isOpen, isClose }: RegsiterModalProps) => {
+const RegisterModel = () => {
+    const registermodel = useRegisterModal();
     return (
         <Modal
-            isOpen={isOpen}
-            toggleOpen={isClose}
+            isOpen={registermodel.isOpen}
+            toggleOpen={registermodel.onClose}
             modalBody={<RegsiterBody />}
             modalCls="w-full md:w-[500px] lg:w-[900px]"
             closeBtn='glass text-white hover:bg-neutral-100 hover:text-black'

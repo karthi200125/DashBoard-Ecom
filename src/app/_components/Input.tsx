@@ -4,13 +4,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useFormContext, RegisterOptions, FieldError } from 'react-hook-form';
 
 interface InputProps {
-    name: string,
-    label?: string,
-    rules?: RegisterOptions,
-    inputCls?: string,
-    type?: string,
-    textarea?: boolean
-    isLoading?: boolean
+    name: string;
+    label?: string;
+    rules?: RegisterOptions;
+    inputCls?: string;
+    type?: string;
+    textarea?: boolean;
+    isLoading?: boolean;
+    value: any;
 }
 
 const debounce = (func: (...args: any[]) => void, delay: number) => {
@@ -25,9 +26,9 @@ const debounce = (func: (...args: any[]) => void, delay: number) => {
     };
 };
 
-const CustomInput = ({ name, label, rules, type, inputCls, textarea , isLoading }: InputProps) => {
+const CustomInput = ({ name, label, rules, type, inputCls, textarea, isLoading, value }: InputProps) => {
     const { register, formState: { errors }, setValue } = useFormContext();
-    const [inputValue, setInputValue] = useState<string>('');
+    const [inputValue, setInputValue] = useState<string>(value || '');
 
     const error = errors[name] as FieldError | undefined;
     const errorMessage = error?.message as string | undefined;
@@ -44,6 +45,12 @@ const CustomInput = ({ name, label, rules, type, inputCls, textarea , isLoading 
         setInputValue(value);
         debouncedSetValue(value);
     };
+
+    useEffect(() => {
+        if (value) {
+            setInputValue(value);
+        }
+    }, [value]);
 
     return (
         <div className={`flex flex-col gap-1.5 ${inputCls}`}>

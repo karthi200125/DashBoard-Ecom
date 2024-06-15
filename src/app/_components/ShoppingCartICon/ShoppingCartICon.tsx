@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { RiShoppingBagLine } from 'react-icons/ri';
 import './ShoppingCartIcon.scss';
 import Link from 'next/link';
+import { useCurrentUser } from '@/app/hooks/useCurrentUser';
 
 const ShoppingCartIcon = () => {
     const [cartClass, setCartClass] = useState('');
 
     const cartTotal = 2
-    const user = false
+    const user = useCurrentUser()
 
     useEffect(() => {
         if (cartTotal > 0) {

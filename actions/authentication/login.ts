@@ -9,9 +9,10 @@ import { getUserByEmail } from '../users';
 import { generateVerificationToken } from './tokens';
 import { sendVerificationEmail } from '@/lib/mail';
 
+
 export const login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedFields = LoginSchema.safeParse(values);
-
+    
     if (!validatedFields.success) {
         return { error: "Invalid fields" };
     }
@@ -31,7 +32,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             verificationToken.email,
             verificationToken.token
         )
-
+        
         return { success: "Confirmation email sent" };
     }
 
@@ -41,7 +42,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             password,
             redirectTo: DEFAULT_REDIRECT
         });
-
+        
         return { success: true, message: 'Login successful' };
 
     } catch (error) {

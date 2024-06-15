@@ -8,23 +8,34 @@ import * as z from 'zod';
 import CustomInput from "@/app/_components/Input";
 import CustomSelect from "@/app/_components/CustomSelect";
 import dynamic from "next/dynamic";
+import { ProductSchema } from "../../../../schemas";
 
-const schema = z.object({
-    productName: z.string().min(3, "Product Name is required"),
-    productDesc: z.string().min(100, "Product Description is required"),
-    productPrice: z.string().min(1, "Product Price is required"),
-    category: z.string().min(1, "Please select an category to display"),
-    colorcategory: z.string().min(1, "Please select an color to display"),
-});
 
 const CreateProduct = () => {
 
-    const methods = useForm({
-        resolver: zodResolver(schema)
+    const product = {}
+
+    const methods = useForm<z.infer<typeof ProductSchema>>({
+        resolver: zodResolver(ProductSchema),
+        defaultValues: {
+            id: "",
+            proName: "",
+            proDesc: "",
+            proImage: "",
+            proPrice: "",
+            proCategory: "",
+            proColors: "",
+            proSizes: "",
+
+        }
     });
 
-    const handleSubmit = (formData: any) => {
-        console.log(formData);
+    const handleSubmit = (values: z.infer<typeof ProductSchema>) => {
+        if (product) {
+            console.log(values, "edit product");
+        } else {
+            console.log(values, "create product");
+        }
     }
 
     return (
@@ -44,14 +55,14 @@ const CreateProduct = () => {
 
                         {/* Product Name and Description */}
                         <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-center gap-2 w-full">
-                            <CustomInput name="productName" label="Product Name" inputCls="w-full" />
-                            <CustomInput name="productDesc" label="Product Description" textarea inputCls="w-full" />
-                            <CustomInput name="productPrice" type="number" label="Product Price" inputCls="w-full" />
+                            <CustomInput name="proName" label="Product Name" inputCls="w-full" value={ } />
+                            <CustomInput name="proDesc" label="Product Description" textarea inputCls="w-full" />
+                            <CustomInput name="proPrice" type="number" label="Product Price" inputCls="w-full" />
                         </div>
 
                         <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col gap-3">
                             <CustomSelect
-                                name="category"
+                                name="proCategory"
                                 control={methods.control}
                                 defaultValue="Category"
                                 options={['Electronics', 'Apparel', 'Books']}
@@ -59,7 +70,7 @@ const CreateProduct = () => {
                                 selectCls="w-full"
                             />
                             <CustomSelect
-                                name="color category"
+                                name="proColors"
                                 control={methods.control}
                                 defaultValue="color category"
                                 options={['black', 'red', 'orange']}
@@ -75,10 +86,6 @@ const CreateProduct = () => {
                                 selectCls="w-full"
                             />
                         </div>
-
-                        {/* <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-between">
-
-                        </div> */}
 
                     </div>
 

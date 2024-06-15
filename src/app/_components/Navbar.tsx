@@ -1,27 +1,29 @@
 'use client'
 
+import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { FaRegHeart } from "react-icons/fa";
+import useLoginModal from '../hooks/useLoginModel';
+import useRegisterModal from '../hooks/useRegisterModel';
 import Icon from './Icon';
 import Logo from "./Logo";
 import Line2 from './MenuBar/Line2';
-import dynamic from 'next/dynamic';
-const MobNav = dynamic(() => import("./MenuBar/MenuMobContent"), {ssr: false})
-const RegisterModel = dynamic(() => import("./RegisterModal"), {ssr: false})
-const LoginModel = dynamic(() => import("./LoginModel"), {ssr: false})
-const Search = dynamic(() => import("./Search"), {ssr: false})
-const MenuBarContent = dynamic(() => import("./MenuBar/MenuBarContent"), {ssr: false})
-const ShoppingCartICon = dynamic(() => import("./ShoppingCartICon/ShoppingCartICon"), {ssr: false})
+import { useCurrentUser } from '../hooks/useCurrentUser';
+const MobNav = dynamic(() => import("./MenuBar/MenuMobContent"))
+const Search = dynamic(() => import("./Search"))
+const MenuBarContent = dynamic(() => import("./MenuBar/MenuBarContent"))
+const ShoppingCartICon = dynamic(() => import("./ShoppingCartICon/ShoppingCartICon"))
 const UserProfile = dynamic(() => import("./UserProfile"))
 
 
 const Navbar = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [activeLogin, setActiveLogin] = useState("login")
-    const [loginModalOpen, setloginModalOpen] = useState(false)
-    const [RegModalOpen, setRegModalOpen] = useState(false)
     const [menuOpen, setmenuOpen] = useState(false)
-    const user = false
+    const loginmodel = useLoginModal();
+    const registermodel = useRegisterModal();
+
+    const user = useCurrentUser()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -34,12 +36,12 @@ const Navbar = () => {
 
     const HandleLogin = () => {
         setActiveLogin("login")
-        setloginModalOpen(true)
+        loginmodel.onOpen()
     }
 
     const HandleRegister = () => {
         setActiveLogin("signup")
-        setRegModalOpen(true)
+        registermodel.onOpen()
     }
 
     const HandleSearch = (data: any) => {
@@ -56,8 +58,6 @@ const Navbar = () => {
                 <div className=" md:max-w-max rounded-full bg-neutral-100 p-1.5 flex flex-row items-center gap-2 z-10">
                     <div className={`hidden md:flex lg:flex px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "login" ? " bg-white text-black" : "text-black"}`} onClick={HandleLogin}>Login</div>
                     <div className={`px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "signup" ? "bg-white text-black" : "text-black"}`} onClick={HandleRegister}>SignUp</div>
-                    <RegisterModel isOpen={RegModalOpen} isClose={() => setRegModalOpen(false)} />
-                    <LoginModel isOpen={loginModalOpen} isClose={() => setloginModalOpen(false)} />
                 </div>
                 :
                 <div className='ml-3 h-full max-w-max flex items-center justify-center'>

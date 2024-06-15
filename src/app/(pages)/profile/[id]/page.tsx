@@ -1,16 +1,17 @@
 'use client';
 import CustomBtn from '@/app/_components/CustomBtn';
-const Modal = dynamic(() => import('@/app/_components/Modal/Modal'));
-const EditProfile = dynamic(() => import('./EditProfile'));
 import UserProfile from '@/app/_components/UserProfile';
 import Image from '@/components/ui/CustomImage';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoLocationOutline } from 'react-icons/io5';
-import dynamic from 'next/dynamic';
+import { getSingleUser } from '../../../../../actions/users';
+const Modal = dynamic(() => import('@/app/_components/Modal/Modal'));
+const EditProfile = dynamic(() => import('../EditProfile'));
 
-const Profile = () => {
+const Profile = async () => {
     const address = false;
     const fav: string[] = [];
     const orders: string[] = [];
@@ -18,18 +19,34 @@ const Profile = () => {
     const router = useRouter();
     const [editModalOpen, seteditModalOpen] = useState(false)
 
+    const { id } = useParams()
+
+    const [profileUser, setprofileUser] = useState(null)
+
+    useEffect(() => {
+        const fetchProfileUser = async () => {
+            if (id) {
+                const user = await getSingleUser(id);
+                setprofileUser(user)
+                console.log(user);
+            }
+        };
+
+        fetchProfileUser();
+    }, [id]);
+
     return (
         <div className='w-full py-5 min-h-screen flex flex-col gap-5'>
             <Modal closeBtn='' isOpen={editModalOpen} toggleOpen={() => seteditModalOpen(false)} modalBody={<EditProfile />} modalCls='' />
             {/* profile top */}
             <div className='py-5 border-b'>
-                <h1 className='text-4xl md:text-5xl xl:text-[120px] line-clamp-1 mb-3'>karthikeyna</h1>
+                <h1 className='text-4xl md:text-5xl xl:text-[120px] line-clamp-1 mb-3'>{profileUser?.name}</h1>
                 <div className='flex flex-col md:flex-row items-start md:items-center justify-between'>
                     <div className='flex flex-col md:flex-row items-start md:items-center gap-3'>
-                        <UserProfile proSrc='' proAlt='' profileCls='w-[60px] h-[60px]' />
+                        <UserProfile proSrc={profileUser?.image || ""} proAlt='' profileCls='w-[60px] h-[60px]' />
                         <div>
-                            <h2 className='text-sm md:text-md font-bold'>skarthiekyan@gamil.com</h2>
-                            <h2 className='text-sm md:text-md font-bold'>7904653176</h2>
+                            <h2 className='text-sm md:text-md font-bold'>{profileUser?.email}</h2>
+                            <h2 className='text-sm md:text-md font-bold'>{profileUser?.phoneNo || "add your phone number"}</h2>
                         </div>
                     </div>
                     <CustomBtn arrow btnCls='border px-3 md:px-5 mt-3 md:mt-0' onClick={() => seteditModalOpen(true)}>Edit profile</CustomBtn>
@@ -51,7 +68,7 @@ const Profile = () => {
                     {fav.length > 0 ?
                         fav.slice(0, 5).map((fav) => (
                             <div className='p-2 flex flex-row items-center justify-between' key={fav}>
-                                <Image src="" imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='profile Image'/>
+                                <Image src="" imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='profile Image' />
                             </div>
                         ))
                         :
@@ -70,9 +87,9 @@ const Profile = () => {
                     <div className='p-2'>
                         {address ?
                             <div>
-                                <h2 className='text-sm md:text-md'>7/113, Mariyamman Kovil St</h2>
-                                <h2 className='text-sm md:text-md'>Salem - 637502</h2>
-                                <h2 className='text-sm md:text-md'>Tamilnadu</h2>
+                                <h2 className='text-sm md:text-md'>{profileUser?.address}</h2>
+                                <h2 className='text-sm md:text-md'>{profileUser?.city} - {profileUser?.postalCode}</h2>
+                                <h2 className='text-sm md:text-md'>{profileUser?.state}</h2>
                                 <h2 className='text-sm md:text-md'>India</h2>
                             </div>
                             :
@@ -112,7 +129,7 @@ const Profile = () => {
                                 </div>
                                 {orders.slice(0, 5).map((order) => (
                                     <div className='flex-1 overflow-hidden flex flex-row gap-5 justify-end' key={order}>
-                                        <Image src="" imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='order image'/>
+                                        <Image src="" imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='order image' />
                                     </div>
                                 ))}
                             </div>
