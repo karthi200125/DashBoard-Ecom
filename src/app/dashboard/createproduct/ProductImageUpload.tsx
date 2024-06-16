@@ -2,9 +2,8 @@
 import CustomBtn from '@/app/_components/CustomBtn';
 import ProgressBarCon from '@/app/_components/ProgressBar';
 import Image from '@/components/ui/CustomImage';
-import React, { useState, ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { IoCloudUploadOutline } from 'react-icons/io5';
-import test from '../../assets/user-bg.jpg'
 
 const ProductImageUpload = () => {
     const [productImage, setProductImage] = useState<string | null>(null);
@@ -17,9 +16,9 @@ const ProductImageUpload = () => {
     };
 
     const addedImages: string[] = [
-        "https://images.pexels.com/photos/22475982/pexels-photo-22475982/free-photo-of-historic-stone-house-with-a-roof-overgrown-with-grass-in-an-icelandic-fjord.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-        "https://images.pexels.com/photos/24778260/pexels-photo-24778260/free-photo-of-a-view-of-a-valley-with-mountains-in-the-background.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-        "https://images.pexels.com/photos/22475982/pexels-photo-22475982/free-photo-of-historic-stone-house-with-a-roof-overgrown-with-grass-in-an-icelandic-fjord.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+        "",
+        "",
+        "",
     ]
 
     const per = 20

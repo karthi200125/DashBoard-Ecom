@@ -11,7 +11,7 @@ interface InputProps {
     type?: string;
     textarea?: boolean;
     isLoading?: boolean;
-    value: any;
+    value?: any;
 }
 
 const debounce = (func: (...args: any[]) => void, delay: number) => {

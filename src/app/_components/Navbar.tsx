@@ -14,6 +14,10 @@ const Search = dynamic(() => import("./Search"))
 const MenuBarContent = dynamic(() => import("./MenuBar/MenuBarContent"))
 const ShoppingCartICon = dynamic(() => import("./ShoppingCartICon/ShoppingCartICon"))
 const UserProfile = dynamic(() => import("./UserProfile"))
+import { usePathname } from 'next/navigation'
+import { routes } from './dummydata';
+import Link from 'next/link';
+import { Settings } from 'lucide-react';
 
 
 const Navbar = () => {
@@ -24,6 +28,9 @@ const Navbar = () => {
     const registermodel = useRegisterModal();
 
     const user = useCurrentUser()
+
+    const pathname = usePathname();    
+    const isDashBoard = pathname.startsWith('/dashboard')
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,16 +60,31 @@ const Navbar = () => {
             className={`header ${isSticky ? 'sticky' : ''} top-0 w-full px-2 left-0 h-[60px] flex flex-row items-center justify-between z-10 transition-all duration ease-in-out relative pr-[60px]`}
         >
 
-            {/* navbar left side */}
-            {!user ?
-                <div className=" md:max-w-max rounded-full bg-neutral-100 p-1.5 flex flex-row items-center gap-2 z-10">
-                    <div className={`hidden md:flex lg:flex px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "login" ? " bg-white text-black" : "text-black"}`} onClick={HandleLogin}>Login</div>
-                    <div className={`px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "signup" ? "bg-white text-black" : "text-black"}`} onClick={HandleRegister}>SignUp</div>
+            {isDashBoard ?
+                <div className={`flex flex-row gap-3 items-center bg-neutral-100 rounded-full p-2`}>
+                    {routes?.map((route) => (
+                        <Link
+                            href={route?.href}
+                            key={route.id}
+                            className={`${pathname === route?.href ?
+                                "text-black bg-white "
+                                :
+                                " "} 
+                    cursor-pointer text-sm font-semibold hover:opacity-50 h-[35px] rounded-full px-6 flex items-center justify-center`}>
+                            {route.name}
+                        </Link>
+                    ))}
                 </div>
                 :
-                <div className='ml-3 h-full max-w-max flex items-center justify-center'>
-                    <Line2 onOpen={(d: any) => setmenuOpen(d)} isSticky={isSticky} />
-                </div>
+                !user ?
+                    <div className=" md:max-w-max rounded-full bg-neutral-100 p-1.5 flex flex-row items-center gap-2 z-10">
+                        <div className={`hidden md:flex lg:flex px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "login" ? " bg-white text-black" : "text-black"}`} onClick={HandleLogin}>Login</div>
+                        <div className={`px-5 py-2 rounded-full text-sm font-bold cursor-pointer ${activeLogin === "signup" ? "bg-white text-black" : "text-black"}`} onClick={HandleRegister}>SignUp</div>
+                    </div>
+                    :
+                    <div className='ml-3 h-full max-w-max flex items-center justify-center'>
+                        <Line2 onOpen={(d: any) => setmenuOpen(d)} isSticky={isSticky} />
+                    </div>
             }
 
             {/* menu bar */}
@@ -80,19 +102,24 @@ const Navbar = () => {
                 <Logo />
             </div>
 
-            {/* navbar right side */}
-            <div className="flex flex-row items-center gap-2 lg:gap-3 ">
 
-                <Search onChange={HandleSearch} placeholder='search products...' />
-                <Icon icon={<FaRegHeart size={20} />} tooltip='Favoutites' iconCls='hidden md:flex' href='/favourite' />
-                <ShoppingCartICon />
+            <div className="flex flex-row items-center gap-2 lg:gap-3 ">
+                {isDashBoard ?
+                    <Icon icon={<Settings size={20} />} tooltip="Setting" />
+                    :
+                    <>
+                        <Search onChange={HandleSearch} placeholder='search products...' />
+                        <Icon icon={<FaRegHeart size={20} />} tooltip='Favoutites' iconCls='hidden md:flex' href='/favourite' />
+                        <ShoppingCartICon />
+                    </>
+                }
+
                 {user &&
                     <div className={`${user && "mr-[-50px] ml-[50px]"}`} onClick={() => ""}>
                         <UserProfile profileCls="w-10 h-10 bg-neutral-200" />
                     </div>
                 }
             </div>
-
 
         </div >
     );

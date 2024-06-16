@@ -9,7 +9,7 @@ const DashBoardLayout = ({
 }>) => {
     return (
         <div className="min-h-screen">
-            <DashNavbar />
+            {/* <DashNavbar /> */}
             {children}
         </div>
     )

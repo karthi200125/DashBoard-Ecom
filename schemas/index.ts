@@ -22,10 +22,10 @@ export const NewPasswordSchema = z.object({
 export const ProductSchema = z.object({
     proName: z.string().min(3, { message: "Product title must be at least 3 characters long" }),
     proDesc: z.string().min(30, { message: "Product description must be at least 30 characters long" }),
-    proImage: z.string().nonempty({ message: "Product image is required" }),
-    proPrice: z.string().nonempty({ message: "Product price is required" }),
+    proPrice: z.string().min(1, { message: "Product price is required" }),    
     proCategory: z.string().nonempty({ message: "Product category is required" }),
     proColors: z.array(z.string().nonempty({ message: "Color is required" })).min(1, { message: "At least one color is required" }),
+    isProAvailable: z.array(z.string().nonempty({ message: "product availbility is required" })).min(1, { message: "select yes or no" }),
     proSizes: z.array(z.string().nonempty({ message: "Size is required" })).min(1, { message: "At least one size is required" }),
 });
 

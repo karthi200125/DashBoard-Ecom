@@ -14,7 +14,7 @@ import { toast } from 'sonner';
 import { updateUser } from '../../../../actions/users';
 
 const EditProfile = () => {
-    const user = useCurrentUser();
+    const user: z.infer<typeof UserSchema> = useCurrentUser();
     const [isLoading, startTransition] = useTransition();
 
     const methods = useForm<z.infer<typeof UserSchema>>({

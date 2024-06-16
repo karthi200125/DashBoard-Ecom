@@ -230,7 +230,25 @@ export const sizes = [
 ];
 
 export const mainCategories = [
-    "men", "women", "kids", "all"
+    "mens", "womens", "kids", "all"
+]
+
+export const routes = [
+    {
+        id: 1,
+        name: "Users",
+        href: "/dashboard/users"
+    },
+    {
+        id: 2,
+        name: "Products",
+        href: "/dashboard/products"
+    },
+    {
+        id: 3,
+        name: "Orders",
+        href: "/dashboard/orders"
+    },        
 ]
 
 
