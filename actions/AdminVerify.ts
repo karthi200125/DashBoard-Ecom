@@ -1,9 +1,10 @@
 'use server'
+import { db } from "@/lib/db"
 import { Logger } from "./logger"
 
 export const AdminVerify = async (id: string): Promise<boolean> => {
     try {
-        const user = await prisma.user.findUnique({
+        const user = await db.user.findUnique({
             where: {
                 id: id,
             },

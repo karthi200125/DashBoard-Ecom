@@ -11,7 +11,7 @@ import { getSingleUser } from '../../../../../actions/users';
 const Modal = dynamic(() => import('@/app/_components/Modal/Modal'));
 const EditProfile = dynamic(() => import('../EditProfile'));
 
-const Profile = async () => {
+const Profile =  () => {
     const address = false;
     const fav: string[] = [];
     const orders: string[] = [];

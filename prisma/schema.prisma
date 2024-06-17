@@ -67,3 +67,19 @@ model PasswordReset {
 }
 
 
+model Product {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  proName         String?   @unique
+  proDesc         String?
+  proPrice        String?
+  proImage        String?   
+  proCategory     String?
+  proSubCategory  String?
+  isProAvailable  String?   
+  proColors       String[]  
+  proSizes        String[]  
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+

@@ -88,14 +88,14 @@ const Navbar = () => {
             }
 
             {/* menu bar */}
-            {user &&
+            {/* {user &&
                 <div className={`${menuOpen && "fixed"} w-full top-0  md:min-w-[768px] xl:w-[1336px] overflow-hidden h-screen left-1/2 transform -translate-x-1/2`}>
                     <div className={`absolute top-0 left-0 duration-500 ease-in-out z-[10] w-full h-screen  ${!menuOpen ? "-translate-x-full" : "translate-x-0"}`}>
                         <MobNav />
                         <MenuBarContent />
                     </div>
                 </div>
-            }
+            } */}
 
             {/* navbar bar mid */}
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

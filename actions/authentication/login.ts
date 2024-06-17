@@ -8,11 +8,12 @@ import { AuthError } from 'next-auth';
 import { getUserByEmail } from '../users';
 import { generateVerificationToken } from './tokens';
 import { sendVerificationEmail } from '@/lib/mail';
+import { revalidatePath } from 'next/cache';
 
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
     const validatedFields = LoginSchema.safeParse(values);
-    
+
     if (!validatedFields.success) {
         return { error: "Invalid fields" };
     }
@@ -32,7 +33,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             verificationToken.email,
             verificationToken.token
         )
-        
+
         return { success: "Confirmation email sent" };
     }
 
@@ -42,7 +43,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             password,
             redirectTo: DEFAULT_REDIRECT
         });
-        
+
+        revalidatePath('/settings')
         return { success: true, message: 'Login successful' };
 
     } catch (error) {

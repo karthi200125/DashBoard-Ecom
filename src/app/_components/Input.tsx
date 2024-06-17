@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 import { useFormContext, RegisterOptions, FieldError } from 'react-hook-form';
 
 interface InputProps {
@@ -11,46 +11,11 @@ interface InputProps {
     type?: string;
     textarea?: boolean;
     isLoading?: boolean;
-    value?: any;
 }
 
-const debounce = (func: (...args: any[]) => void, delay: number) => {
-    let timeoutId: NodeJS.Timeout;
-    return (...args: any[]) => {
-        if (timeoutId) {
-            clearTimeout(timeoutId);
-        }
-        timeoutId = setTimeout(() => {
-            func(...args);
-        }, delay);
-    };
-};
-
-const CustomInput = ({ name, label, rules, type, inputCls, textarea, isLoading, value }: InputProps) => {
-    const { register, formState: { errors }, setValue } = useFormContext();
-    const [inputValue, setInputValue] = useState<string>(value || '');
-
+const CustomInput: React.FC<InputProps> = ({ name, label, rules, type, inputCls, textarea, isLoading }) => {
+    const { register, formState: { errors } } = useFormContext();
     const error = errors[name] as FieldError | undefined;
-    const errorMessage = error?.message as string | undefined;
-
-    const debouncedSetValue = useCallback(
-        debounce((value: string) => {
-            setValue(name, value);
-        }, 500),
-        [name, setValue]
-    );
-
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { value } = event.target;
-        setInputValue(value);
-        debouncedSetValue(value);
-    };
-
-    useEffect(() => {
-        if (value) {
-            setInputValue(value);
-        }
-    }, [value]);
 
     return (
         <div className={`flex flex-col gap-1.5 ${inputCls}`}>
@@ -58,8 +23,7 @@ const CustomInput = ({ name, label, rules, type, inputCls, textarea, isLoading, 
             {textarea ? (
                 <textarea
                     id={name}
-                    value={inputValue}
-                    onChange={handleChange}
+                    {...register(name, rules)}
                     className={`h-[100px] border rounded-[10px]`}
                     disabled={isLoading}
                 ></textarea>
@@ -67,13 +31,12 @@ const CustomInput = ({ name, label, rules, type, inputCls, textarea, isLoading, 
                 <input
                     id={name}
                     type={type ? type : "text"}
-                    value={inputValue}
-                    onChange={handleChange}
+                    {...register(name, rules)}
                     className={`p-3 border rounded-[10px]`}
                     disabled={isLoading}
                 />
             )}
-            {errorMessage && <p className='text-red-500 text-sm font-semibold'>{errorMessage}</p>}
+            {error && <p className='text-red-500 text-sm font-semibold'>{error.message}</p>}
         </div>
     );
 };

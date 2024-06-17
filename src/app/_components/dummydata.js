@@ -230,7 +230,7 @@ export const sizes = [
 ];
 
 export const mainCategories = [
-    "mens", "womens", "kids", "all"
+    "mens", "womens", "kids"
 ]
 
 export const routes = [
@@ -248,7 +248,7 @@ export const routes = [
         id: 3,
         name: "Orders",
         href: "/dashboard/orders"
-    },        
+    },
 ]
 
 
@@ -345,4 +345,43 @@ export const Womens = [
 
 export const Kids = [
     "Kids shirts", "Pants", "Innerwear", "Trousers"
+];
+
+export const mensubcategory = [
+    "shirts",
+    "pants",
+    "denim",
+    "trousers",
+    "kurtas",
+    "t-shirts",
+    "blazers",
+    "suits",
+    "sherwanis",
+    "shorts"
+];
+
+export const womensubcategory = [
+    "sarees",
+    "blouses",
+    "salwar kameez",
+    "lehenga cholis",
+    "skirts",
+    "tops",
+    "tunics",
+    "dresses",
+    "leggings",
+    "jeans"
+];
+
+export const kidsubcategory = [
+    "t-shirts",
+    "shorts",
+    "dresses",
+    "skirts",
+    "shirts",
+    "pants",
+    "denim",
+    "rompers",
+    "sweaters",
+    "jackets"
 ];

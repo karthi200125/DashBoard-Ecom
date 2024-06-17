@@ -87,32 +87,18 @@ export const deleteUser = async (id: string, from: string) => {
 }
 
 // update user
-export const updateUser = async (from: string, values: z.infer<typeof UserSchema>) => {
-    const validatedFields = UserSchema.safeParse(values);
+export const updateUser = async (values: z.infer<typeof UserSchema>) => {
+    const { id, email, name, address, phoneNo, city, state, postalCode, image } = values;
 
-    if (!validatedFields.success) {
-        return { error: "Invalid fields" };
-    }
-
-    const { id, email, name, address, phoneNo, city, state, postalCode, image } = validatedFields.data;
     try {
-        if (from === "dashboard") {
-            const isAdminUser = await AdminVerify(id);
-            if (!isAdminUser) {
-                Logger.error(`${id} is not an admin, only admin can update user from the dashboard`);
-                return { error: "Only admin can update user from the dashboard" };
-            }
-        }
-
         const updatedUser = await prisma.user.update({
             where: { id },
             data: { email, name, address, phoneNo, city, state, postalCode, image },
         });
 
-        revalidatePath(from === "dashboard" ? '/dashboard/users' : `/profile/${id}`);
         return { success: "User updated successfully", data: updatedUser };
     } catch (error) {
-        Logger.error(`Update user failed for ID: ${id}, Error: ${error}`);
+        console.error("Error updating user:", error);
         return { error: "Update user failed" };
     }
 };

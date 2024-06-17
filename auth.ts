@@ -22,11 +22,21 @@ export const {
         async signIn({ user, account }) {
             if (account?.provider !== 'credentials') return true;
 
-            const existingUser = await getUserById(user.id)
+            if (!user.id) {
+                console.error('User id is missing in signIn callback.');
+                return false; // Handle the error case where user id is missing
+            }
 
-            // prevent sign in without verfication
-            if (!existingUser?.emailVerified) return false
-            // todo add 2fa check
+            const existingUser = await getUserById(user.id);
+
+            // Prevent sign in without verification
+            if (!existingUser?.emailVerified) {
+                console.error(`User with id ${user.id} has not verified their email.`);
+                return false;
+            }
+
+            // Add 2FA check if necessary
+
             return true;
         },
         async session({ token, session }) {
