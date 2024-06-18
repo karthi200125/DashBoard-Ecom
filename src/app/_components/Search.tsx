@@ -114,7 +114,7 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
                                 onClick={() => handleSuggestionClick(product.proName)}
                                 className='w-full p-2 rounded-[5px] text-sm hover:bg-neutral-100 cursor-pointer flex flex-row items-center gap-3'
                             >
-                                <Image src={product.proImage} imgclass='bg-neutral-200 w-[60px] h-[60px] rounded-[5px]' alt='' />
+                                <Image src={product?.proImage[0]} imgclass='bg-neutral-200 w-[60px] h-[60px] rounded-[5px]' alt='' />
                                 <div className='flex flex-col gap-1'>
                                     <h2 className='capitalize line-clamp-1'>{product.proName}</h2>
                                     <p className='line-clamp-1'>{product.proDesc}</p>

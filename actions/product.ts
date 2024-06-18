@@ -2,19 +2,34 @@
 
 import { AdminVerify } from './AdminVerify';
 import { db } from '@/lib/db';
+import { Prisma } from '@prisma/client';
 
 
 // get products
 export const getProducts = async (q: string, limit?: number) => {
     try {
         const allProducts = await db.product.findMany({
-            where: q ? {
+            where: {
                 proName: {
                     contains: q,
                     mode: 'insensitive',
                 },
-            } : {},
-            take: limit ? limit : 10,
+            },
+            take: 10,
+        });
+        return { success: "get query products success", data: allProducts };
+    } catch (error) {
+        return { error: "get query products failed" };
+    }
+};
+
+export const getAllProducts = async () => {
+    try {
+        const allProducts = await db.product.findMany({
+            take: 8,
+            orderBy: {
+                createdAt: 'desc'
+            }
         });
         return { success: "get all products success", data: allProducts };
     } catch (error) {
@@ -79,3 +94,66 @@ export const CreateProductAction = async (values: any) => {
     }
 }
 
+// filter products
+
+export const getAllProductByFilter = async (values: any) => {
+    const { proCategory, minPrice, maxPrice, proColors, proSizes } = values;
+
+    try {
+        const filter: Prisma.ProductWhereInput = {};
+
+        if (proCategory) {
+            filter.proCategory = proCategory;
+        }
+
+        if (minPrice !== undefined && maxPrice !== undefined) {
+            filter.proPrice = {
+                gte: minPrice,
+                lte: maxPrice,
+            };
+        } else if (minPrice !== undefined) {
+            filter.proPrice = {
+                gte: minPrice,
+            };
+        } else if (maxPrice !== undefined) {
+            filter.proPrice = {
+                lte: maxPrice,
+            };
+        }
+
+        if (proColors) {
+            filter.proColors = {
+                some: {
+                    color: {
+                        equals: proColors,
+                    },
+                },
+            };
+        }
+
+        if (proSizes) {
+            filter.proSizes = {
+                some: {
+                    size: {
+                        equals: proSizes,
+                    },
+                },
+            };
+        }
+
+        const filterOptions: Prisma.ProductFindManyArgs = {
+            where: filter,
+            orderBy: {
+                createdAt: 'desc',
+            },
+            take: 8, 
+        };
+
+        const filterProducts = await db.product.findMany(filterOptions);
+
+        return { success: "Filtered products retrieved successfully", data: filterProducts };
+    } catch (error) {
+        console.error("Error fetching filtered products:", error);
+        return { error: "Failed to retrieve filtered products" };
+    }
+};

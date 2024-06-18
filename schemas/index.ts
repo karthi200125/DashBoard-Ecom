@@ -29,11 +29,16 @@ export const ProductSchema = z.object({
     isProAvailable: z.string().nonempty({ message: "Product availability is required" }),
 });
 
+export const ReviewSchema = z.object({
+    revTitle: z.string().min(4, "rewview title should min 4 char"),
+    revRating: z.string().min(1,"cant be empty"),
+    revDesc: z.string().min(10, "review description should be mini 10 char")
+});
 
-export const UserSchema = z.object({    
+export const UserSchema = z.object({
     name: z.string().min(3, "Username must be at least 3 characters"),
     email: z.string().email("Enter a valid email"),
-    image: z.string().email("image is rquired"),    
+    image: z.string().email("image is rquired"),
     phoneNo: z.string().regex(/^\d+$/, "Enter a valid phone number"),
     address: z.string().min(5, "Enter your address"),
     postalCode: z.string().regex(/^\d+$/, "Enter a valid postal code"),

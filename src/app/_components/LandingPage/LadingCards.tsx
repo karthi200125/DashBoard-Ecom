@@ -1,20 +1,19 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { getProducts } from '../../../../actions/product';
+import { getAllProducts } from '../../../../actions/product';
 import Cards from '../Cards/Cards';
 import CustomBtn from '../CustomBtn';
 
 const LandingCards = () => {
     const [allProducts, setAllProducts] = useState<any[]>([]);
-    const [isLoading, setisLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchProducts = async () => {
-            setisLoading(true)
-            try {
-                const limit = 8;
-                const products = await getProducts(limit);
+            setIsLoading(true);
+            try {                
+                const products = await getAllProducts();
                 setAllProducts(products?.data || []);
                 if (products?.error) {
                     toast.error(products.error);
@@ -22,7 +21,7 @@ const LandingCards = () => {
             } catch (error) {
                 toast.error('Failed to fetch products');
             } finally {
-                setisLoading(false)
+                setIsLoading(false);
             }
         };
 
@@ -35,7 +34,7 @@ const LandingCards = () => {
                 <h3 className='text-neutral-600'>New Launches</h3>
                 <h1 className='mt-3'>Fresh off The Boat</h1>
             </div>
-            <Cards products={allProducts} isLoading={false} />
+            <Cards products={allProducts} isLoading={isLoading} />
             <CustomBtn arrow btnCls='w-[200px] mx-auto border'>
                 See All Products
             </CustomBtn>

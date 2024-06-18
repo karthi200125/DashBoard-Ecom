@@ -24,7 +24,7 @@ const CustomInput: React.FC<InputProps> = ({ name, label, rules, type, inputCls,
                 <textarea
                     id={name}
                     {...register(name, rules)}
-                    className={`h-[100px] border rounded-[10px]`}
+                    className={`h-[100px] border rounded-[10px] p-5`}
                     disabled={isLoading}
                 ></textarea>
             ) : (

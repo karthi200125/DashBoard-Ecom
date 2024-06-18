@@ -1,22 +1,33 @@
-'use client'
-import React, { useState } from 'react';
+'use client';
+import { useState } from 'react';
+import { likeAction } from '../../../../actions/like';
 import './Heart.scss';
+import { useCurrentUser } from '@/app/hooks/useCurrentUser';
 
-const Heart = () => {
+interface HeartProps {
+    id: string;
+}
+
+const Heart = ({ id }: HeartProps) => {
     const [isAnimated, setIsAnimated] = useState(false);
-
-    const handleClick = () => {
-        setIsAnimated(!isAnimated);
+    const user = useCurrentUser()
+    const userId = user?.id
+    const handleLike = async () => {
+        const data = await likeAction(id, userId);
+        console.log(data)
+        if (data.success) {
+            setIsAnimated(true);
+        } else if (data.error) {
+            setIsAnimated(false);
+        }
     };
 
     return (
-        <div>
-            <div
-                className={`HeartAnimation ${isAnimated ? 'animate' : ''}`}
-                onClick={handleClick}
-            ></div>
-        </div>
+        <div
+            className={`HeartAnimation ${isAnimated ? 'animate' : ''}`}
+            onClick={handleLike}
+        ></div>
     );
-}
+};
 
 export default Heart;

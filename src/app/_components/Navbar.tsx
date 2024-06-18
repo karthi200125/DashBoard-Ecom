@@ -29,7 +29,7 @@ const Navbar = () => {
 
     const user = useCurrentUser()
 
-    const pathname = usePathname();    
+    const pathname = usePathname();
     const isDashBoard = pathname.startsWith('/dashboard')
 
     useEffect(() => {
@@ -116,7 +116,7 @@ const Navbar = () => {
 
                 {user &&
                     <div className={`${user && "mr-[-50px] ml-[50px]"}`} onClick={() => ""}>
-                        <UserProfile profileCls="w-10 h-10 bg-neutral-200" />
+                        <UserProfile profileCls="w-10 h-10 bg-neutral-200" proSrc={user?.image || ""} />
                     </div>
                 }
             </div>

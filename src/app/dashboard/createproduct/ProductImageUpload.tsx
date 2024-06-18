@@ -6,18 +6,29 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import { useUpload } from '@/app/hooks/UplaodFile';
 
+interface ProductImageUploadProps {
+    success?: boolean
+}
 
-const ProductImageUpload = () => {
+const ProductImageUpload = ({ success }: ProductImageUploadProps) => {
     const [file, setFile] = useState<File | null>(null);
     const [showImage, setShowImage] = useState<string | null>(null);
     const [addedImages, setAddedImages] = useState<string[]>([]);
     const [uploading, setUploading] = useState(false);
     const { per, UploadFile, downloadUrl } = useUpload({ file });
 
+    if (success) {
+        localStorage.removeItem("addimages")
+        setAddedImages([])
+        setShowImage(null)
+        setFile(null)
+        setUploading(false)
+    }
+
     // Load initial images from local storage
     useEffect(() => {
         const initialImages: string[] = JSON.parse(localStorage.getItem('addimages') || '[]');
-        setAddedImages(initialImages);        
+        setAddedImages(initialImages);
     }, []);
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,11 +53,15 @@ const ProductImageUpload = () => {
             setAddedImages(prevImages => {
                 const newImages = [...prevImages, downloadUrl];
                 const uniqueImages = Array.from(new Set(newImages));
-                localStorage.setItem('addimages', JSON.stringify(uniqueImages));                
+                localStorage.setItem('addimages', JSON.stringify(uniqueImages));
                 return uniqueImages;
             });
         }
     }, [downloadUrl]);
+
+    const percentage = Number(per)
+
+    console.log(addedImages)
 
     return (
         <div className="bg-white border rounded-[20px] p-5 h-full flex flex-row gap-10 justify-between items-center min-h-[200px]">
@@ -55,7 +70,7 @@ const ProductImageUpload = () => {
 
                 <label htmlFor="imageupload" className='h-[300px] w-[400px] relative overflow-hidden rounded-[10px] cursor-pointer'>
                     {showImage &&
-                        <div className={`absolute bottom-0 left-0 w-full z-[9999]`} style={{ height: `${per > 15 ? 100 - per : 130}%` }}>
+                        <div className={`absolute bottom-0 left-0 w-full z-[9999]`} style={{ height: `${percentage > 15 ? 100 - percentage : 130}%` }}>
                             <div className="wave wave1 h-[20%]"></div>
                             <div className='w-full h-[100%] bg-[rgba(0,0,0,0.8)] '></div>
                         </div>
@@ -89,7 +104,7 @@ const ProductImageUpload = () => {
                     </CustomBtn>
                 )}
 
-                {per && <ProgressBarCon per={per} />}
+                {per && <ProgressBarCon per={percentage} />}
 
                 <span className='font-bold'>{addedImages.length} of 4 Images Uploaded</span>
             </div>

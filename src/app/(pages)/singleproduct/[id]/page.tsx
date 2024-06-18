@@ -34,7 +34,7 @@ const SingleProduct = () => {
             <div className='flex flex-col md:flex-row items-center gap-5 lg:gap-10 min-h-screen md:h-[600px] overflow-hidden'>
                 {/* product image */}
                 <div className='w-full md:flex-1 h-[500px] md:h-full'>
-                    <SingleProductImage />
+                    <SingleProductImage product={product}/>
                 </div>
 
                 {/* product contents */}
@@ -54,7 +54,7 @@ const SingleProduct = () => {
             <div className='flex flex-col mt-5 items-center justify-center p-2 md:p-0'>
                 <h1 className='text-4xl text-neutral-500 md:w-[350px] text-center'>Product <b>Reviews</b></h1>
                 <span className='h-[2px] w-[150px] bg-neutral-400 mt-3 mb-10'></span>
-                <ProductReview />
+                <ProductReview product={product}/>
             </div>
         </div>
     )

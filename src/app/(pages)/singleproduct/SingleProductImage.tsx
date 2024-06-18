@@ -3,30 +3,25 @@ import Image from '@/components/ui/CustomImage';
 import { useEffect, useState } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
 
-const SingleProductImage = () => {
-    const images = [
-        "",
-        "",
-        "",
-        "",
-    ];
+const SingleProductImage = ({ product }: string[]) => {
+    const images = product?.proImage;
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images?.length);
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [images.length]);
+    }, [images?.length]);
 
     const handlePrev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images?.length) % images?.length);
     };
 
     const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images?.length);
     };
 
     return (
@@ -34,13 +29,13 @@ const SingleProductImage = () => {
 
             {/* min images */}
             <div className='w-full lg:w-[200px] h-[80px] lg:h-full flex flex-row lg:flex-col justify-between gap-3'>
-                {images.map((src, index) => (
+                {images?.map((src: string, index: any) => (
                     <div
                         key={index}
                         className={`${index === currentIndex ? "bg-neutral-200" : "border"} w-full h-full rounded-[10px] overflow-hidden p-2`}
                         data-carousel-item
                     >
-                        <Image src={src} imgclass={`w-full h-full object-contain rounded-[10px]`} alt=''/>
+                        <Image src={src} imgclass={`w-full h-full object-contain rounded-[10px]`} alt='' />
                     </div>
                 ))}
             </div>
@@ -50,20 +45,20 @@ const SingleProductImage = () => {
 
                 {/*images */}
                 <div className="relative h-full overflow-hidden bg-neutral-200">
-                    {images.map((src, index) => (
+                    {images?.map((src: string, index: any) => (
                         <div
                             key={index}
                             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                             data-carousel-item
                         >
-                            <Image src={src} imgclass="absolute block w-[90%] left-1/2 transform -translate-x-1/2 h-full object-contain bg-neutral-200" alt=''/>
+                            <Image src={src} imgclass="absolute block w-[90%] left-1/2 transform -translate-x-1/2 h-full object-contain bg-neutral-200" alt='' />
                         </div>
                     ))}
                 </div>
 
                 {/* dots */}
                 <div className="absolute z-10 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                    {images.map((_, index) => (
+                    {images?.map((_, index: any) => (
                         <button
                             key={index}
                             type="button"

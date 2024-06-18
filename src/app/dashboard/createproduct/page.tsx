@@ -22,6 +22,7 @@ const CreateProduct = () => {
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [colorErr, setColorErr] = useState<string | undefined>();
     const [sizeErr, setSizeErr] = useState<string | undefined>();
+    const [success, setSuccess] = useState<string | undefined>(false);
     const images: string[] = ((): string[] => JSON.parse(localStorage.getItem('addimages') || '[]'))();
 
     const methods = useForm({
@@ -95,6 +96,7 @@ const CreateProduct = () => {
                         setSelectedColors([]);
                         setSelectedSizes([]);
                         toast.success(data.success);
+                        setSuccess(true)
                     }
                     if (data.error) {
                         toast.error(data.error);
@@ -104,7 +106,7 @@ const CreateProduct = () => {
     };
 
     return (
-        <div className="w-full min-h-screen flex flex-col gap-3">
+        <div className="w-full min-h-screen flex flex-col gap-3 mt-5">
             <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-row items-center justify-between bg-white border rounded-full px-3 py-2">
@@ -114,7 +116,7 @@ const CreateProduct = () => {
                         </CustomBtn>
                     </div>
 
-                    <div className="flex flex-row min-h-[100px] justify-between items-start gap-3 mb-5">
+                    <div className="flex flex-row min-h-[100px] justify-between items-start gap-3 mb-5 mt-5">
                         <div className="bg-white border rounded-[20px] p-5 h-full flex-1 flex flex-col justify-center gap-2 w-full">
                             <CustomInput
                                 name="proName"
@@ -208,7 +210,7 @@ const CreateProduct = () => {
                 </form>
             </FormProvider>
             {/* Image uploads */}
-            <ProductImageUpload />
+            <ProductImageUpload success={success}/>
         </div>
     );
 };

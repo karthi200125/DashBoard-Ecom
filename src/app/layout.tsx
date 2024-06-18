@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localFont from 'next/font/local'
-import "./globals.css";
-import Navbar from "./_components/Navbar";
+import { SessionProvider } from 'next-auth/react';
 import dynamic from "next/dynamic";
-import { Toaster } from 'sonner'
-import RegisterModel from "./_components/RegisterModal";
-import LoginModel from "./_components/LoginModel";
-import { SessionProvider } from 'next-auth/react'
+import { Inter } from "next/font/google";
+import localFont from 'next/font/local';
+import { Toaster } from 'sonner';
 import { auth } from "../../auth";
+import LoginModel from "./_components/LoginModel";
+import Navbar from "./_components/Navbar";
+import RegisterModel from "./_components/RegisterModal";
+import "./globals.css";
 const Footer = dynamic(() => import('./_components/Footer'))
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,7 +41,7 @@ export default async function RootLayout({
             <Navbar />
             <Toaster position="bottom-right" expand={false} richColors />
             <RegisterModel />
-            <LoginModel />
+            <LoginModel />            
             {children}
             {/* <Footer /> */}
           </div>
