@@ -1,16 +1,37 @@
 'use client'
 
-import React from 'react'
-const SingleProductImage = dynamic(() => import('./SingleProductImage'))
-const ProductContent = dynamic(() => import('./ProductContent'))
+import React, { useEffect, useState } from 'react'
+const SingleProductImage = dynamic(() => import('../SingleProductImage'))
+const ProductContent = dynamic(() => import('../ProductContent'))
 const Cards = dynamic(() => import('@/app/_components/Cards/Cards'))
-const ProductReview = dynamic(() => import('./ProductReview'))
+const ProductReview = dynamic(() => import('../ProductReview'))
 import dynamic from 'next/dynamic'
+import { useParams, usePathname } from 'next/navigation'
+import { getSingleProduct } from '../../../../../actions/product'
 
 const SingleProduct = () => {
+
+    const params = useParams()
+    const { id } = params
+
+    const [product, setProduct] = useState()
+
+    useEffect(() => {
+        const fetchSingleProduct = async () => {
+            if (id) {
+                const product = await getSingleProduct(id);
+                setProduct(product)
+                console.log(product);
+            }
+        };
+
+        fetchSingleProduct();
+    }, [id]);
+
+
     return (
         <div className='py-5 w-full min-h-screen flex flex-col gap-10'>
-            <div className='flex flex-col md:flex-row items-center gap-5 lg:gap-10 min-h-screen md:h-[600px]'>
+            <div className='flex flex-col md:flex-row items-center gap-5 lg:gap-10 min-h-screen md:h-[600px] overflow-hidden'>
                 {/* product image */}
                 <div className='w-full md:flex-1 h-[500px] md:h-full'>
                     <SingleProductImage />
@@ -18,7 +39,7 @@ const SingleProduct = () => {
 
                 {/* product contents */}
                 <div className='w-full md:flex-1 h-full'>
-                    <ProductContent />
+                    <ProductContent product={product} />
                 </div>
             </div>
 

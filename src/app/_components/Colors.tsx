@@ -3,14 +3,17 @@ import { colors } from './dummydata';
 
 interface ColorProps {
     onColorSelect: (color: string) => void;
+    alreadyColor?: string[]
 }
 
-const Colors = ({ onColorSelect }: ColorProps) => {
+const Colors = ({ onColorSelect , alreadyColor}: ColorProps) => {
     const [selectedColor, setSelectedColor] = useState<string>('');
+
+    const colorsArray = alreadyColor ? alreadyColor : colors
 
     return (
         <div className="flex flex-wrap items-center">
-            {colors.map((color, index) => (
+            {colorsArray.map((color, index) => (
                 <div
                     key={color}
                     className={`w-[35px] h-[35px] rounded-full flex items-center justify-center cursor-pointer ${color === selectedColor && "border"}`}

@@ -6,6 +6,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 import { useUpload } from '@/app/hooks/UplaodFile';
 
+
 const ProductImageUpload = () => {
     const [file, setFile] = useState<File | null>(null);
     const [showImage, setShowImage] = useState<string | null>(null);
@@ -13,12 +14,13 @@ const ProductImageUpload = () => {
     const [uploading, setUploading] = useState(false);
     const { per, UploadFile, downloadUrl } = useUpload({ file });
 
-    useEffect(() => {        
+    // Load initial images from local storage
+    useEffect(() => {
         const initialImages: string[] = JSON.parse(localStorage.getItem('addimages') || '[]');
-        setAddedImages(initialImages);
+        setAddedImages(initialImages);        
     }, []);
 
-    const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             const selectedFile = e.target.files[0];
             setFile(selectedFile);
@@ -37,10 +39,10 @@ const ProductImageUpload = () => {
         if (downloadUrl) {
             setUploading(false);
             setFile(null);
-            setAddedImages(prevImages => {                
+            setAddedImages(prevImages => {
                 const newImages = [...prevImages, downloadUrl];
-                const uniqueImages = Array.from(new Set(newImages)); 
-                localStorage.setItem('addimages', JSON.stringify(uniqueImages));
+                const uniqueImages = Array.from(new Set(newImages));
+                localStorage.setItem('addimages', JSON.stringify(uniqueImages));                
                 return uniqueImages;
             });
         }
@@ -71,13 +73,15 @@ const ProductImageUpload = () => {
             <div className="flex flex-col gap-5 w-[440px] h-[300px]">
                 <label className="font-bold text-lg">Upload Product Images</label>
                 <p className='text-sm text-neutral-400'>You can add up to 4 pictures</p>
-                <label
-                    htmlFor="imageupload"
-                    className="flex flex-row gap-3 items-center justify-center border p-3 rounded-[10px] cursor-pointer hover:bg-neutral-100 w-full"
-                >
-                    <IoCloudUploadOutline size={25} />
-                    <h2>Select image</h2>
-                </label>
+                {addedImages?.length !== 4 &&
+                    <label
+                        htmlFor="imageupload"
+                        className="flex flex-row gap-3 items-center justify-center border p-3 rounded-[10px] cursor-pointer hover:bg-neutral-100 w-full"
+                    >
+                        <IoCloudUploadOutline size={25} />
+                        <h2>Select image</h2>
+                    </label>
+                }
 
                 {file && (
                     <CustomBtn btnCls="bg-blue-400 p-5" onClick={handleUpload} isLoading={uploading}>

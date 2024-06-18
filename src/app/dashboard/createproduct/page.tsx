@@ -22,6 +22,7 @@ const CreateProduct = () => {
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [colorErr, setColorErr] = useState<string | undefined>();
     const [sizeErr, setSizeErr] = useState<string | undefined>();
+    const images: string[] = ((): string[] => JSON.parse(localStorage.getItem('addimages') || '[]'))();
 
     const methods = useForm({
         resolver: zodResolver(ProductSchema),
@@ -76,17 +77,21 @@ const CreateProduct = () => {
                 setSizeErr("You must select at least one size");
                 return;
             }
+            if (images?.length === 0) {
+                setSizeErr("You must select at least one image");
+                return;
+            }
             const data = {
                 ...formData,
                 user,
                 adminId: user?.id,
                 proColors: selectedColors,
                 proSizes: selectedSizes,
-                proImage: "https://smaple.png"
+                proImage: images
             }
             CreateProductAction(data)
                 .then((data) => {
-                    if (data.success) {                           
+                    if (data.success) {
                         setSelectedColors([]);
                         setSelectedSizes([]);
                         toast.success(data.success);

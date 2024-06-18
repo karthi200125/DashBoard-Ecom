@@ -4,20 +4,41 @@ import Image from '@/components/ui/CustomImage';
 import React, { useEffect, useState } from 'react'
 import { FiSearch } from "react-icons/fi";
 import { IoIosClose } from 'react-icons/io'
-import { productsdata } from '../dashboard/products/page';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { getProducts } from '../../../actions/product';
+import { toast } from 'sonner';
+import Link from 'next/link';
 
 interface SearchProps {
     placeholder?: string;
     name?: string;
     onChange?: (value: any) => void;
-    searchCls?: string
+    searchCls?: string;
 }
 
 const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls }: SearchProps) => {
-    const [inputValue, setInputValue] = useState('');
-    const [debouncedValue, setDebouncedValue] = useState(inputValue);
+    const searchParams = useSearchParams();
+    const { replace } = useRouter();
+    const pathname = usePathname();
+
+    const q = searchParams.get('q') || "";
+
+    const [inputValue, setInputValue] = useState(q);
+    const [debouncedValue, setDebouncedValue] = useState(q);
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [searchExpand, setSearchExpand] = useState(false);
+    const [allProducts, setAllProducts] = useState<any[]>([]);  
+
+    // Fetch products 
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const products = await getProducts(debouncedValue);
+            setAllProducts(products?.data || []); 
+            if (products.error) toast.error(products.error);
+        };
+
+        fetchProducts();
+    }, [debouncedValue]);
 
     // Update debounced value after a delay
     useEffect(() => {
@@ -25,29 +46,29 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
             setDebouncedValue(inputValue);
         }, 500);
 
-        // Cleanup the timeout if the value changes before delay
         return () => {
             clearTimeout(handler);
         };
     }, [inputValue]);
 
-    // Call the onChange handler with the debounced value
     useEffect(() => {
         if (onChange) {
             onChange(debouncedValue);
         }
     }, [debouncedValue, onChange]);
 
-    const searchItems = [
-        "test1", "test2", "test3", "test4", "test5"
-    ];
+    const handleInputChange = (e: any) => {
+        const value = e.target.value;
+        const params = new URLSearchParams(searchParams);
 
-    const filteredSuggestItems = productsdata.filter((data) =>
-        data.proName.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase())
-    );
+        if (value) {
+            params.set('q', value);
+        } else {
+            params.delete('q');
+        }
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
+        replace(`${pathname}?${params.toString()}`);
+        setInputValue(value);
         setShowSuggestions(true);
     };
 
@@ -62,7 +83,7 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
             setShowSuggestions(false);
         }
         setSearchExpand(!searchExpand);
-    }
+    };
 
     return (
         <div className={`hidden lg:flex md:hidden h-full items-center transform-transition transition-all ease-in-out duration-500 ${searchExpand ? "absolute left-0 w-full z-[9999] rounded-full border" : "relative"} ${searchCls}`}>
@@ -83,21 +104,28 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
                 {searchExpand ? <IoIosClose size={20} /> : <FiSearch size={20} />}
             </div>
 
-            {inputValue && showSuggestions && filteredSuggestItems.length > 0 && (
+            {inputValue && showSuggestions && (
                 <div className='absolute left-0 top-[70px] bg-white border shadow-xl w-full max-h-[500px] rounded-[10px] p-3 flex flex-col overflow-y-auto'>
-                    {filteredSuggestItems.map((si: any, i) => (
-                        <div
-                            key={i}
-                            onClick={() => handleSuggestionClick(si)}
-                            className='w-full p-2 rounded-[5px] text-sm hover:bg-neutral-100 cursor-pointer flex flex-row items-center gap-3'
-                        >
-                            <Image src={si.proImage} imgclass='bg-neutral-200 w-[60px] h-[60px] rounded-[5px]' alt=''/>
-                            <div className='flex flex-col gap-1'>
-                                <h2 className='capitalize line-clamp-1'>{si.proName}</h2>
-                                <p className='line-clamp-1'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, repellendus?</p>
-                            </div>
+                    {allProducts.length > 0 ? (
+                        allProducts.map((product, index) => (
+                            <Link
+                                href={`/singleproduct/${product.id}`}
+                                key={index}
+                                onClick={() => handleSuggestionClick(product.proName)}
+                                className='w-full p-2 rounded-[5px] text-sm hover:bg-neutral-100 cursor-pointer flex flex-row items-center gap-3'
+                            >
+                                <Image src={product.proImage} imgclass='bg-neutral-200 w-[60px] h-[60px] rounded-[5px]' alt='' />
+                                <div className='flex flex-col gap-1'>
+                                    <h2 className='capitalize line-clamp-1'>{product.proName}</h2>
+                                    <p className='line-clamp-1'>{product.proDesc}</p>
+                                </div>
+                            </Link>
+                        ))
+                    ) : (
+                        <div>
+                            No products
                         </div>
-                    ))}
+                    )}
                 </div>
             )}
         </div>

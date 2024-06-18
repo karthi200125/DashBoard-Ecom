@@ -5,23 +5,45 @@ import { db } from '@/lib/db';
 
 
 // get products
-export const getProducts = async () => {
+export const getProducts = async (q: string, limit?: number) => {
     try {
-        const allproducts = await db.product.find()
-        return allproducts;
+        const allProducts = await db.product.findMany({
+            where: q ? {
+                proName: {
+                    contains: q,
+                    mode: 'insensitive',
+                },
+            } : {},
+            take: limit ? limit : 10,
+        });
+        return { success: "get all products success", data: allProducts };
     } catch (error) {
-        return (error: "get all products failed")
+        return { error: "get all products failed" };
     }
 }
 
 // get proucts by time zone
-export const getProductsbytime = async (query: string) => {
+// export const getProductsbytime = async (query: string) => {
+//     try {
+//         const allproducts = await db.product.find({            
+//         })
+//         return allproducts;
+//     } catch (error) {
+//         return (error: "get all products failed")
+//     }
+// }
+
+// get single product
+export const getSingleProduct = async (id: string) => {
     try {
-        const allproducts = await db.product.find({            
+        const getProduct = await db.product.findUnique({
+            where: {
+                id: id
+            }
         })
-        return allproducts;
+        return getProduct
     } catch (error) {
-        return (error: "get all products failed")
+        return { error: "get that single product failed" }
     }
 }
 
