@@ -10,7 +10,7 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-const CustomPagination = ({ count }: number) => {
+const CustomPagination = ({ count }: number ) => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
@@ -18,7 +18,7 @@ const CustomPagination = ({ count }: number) => {
     const displayPageCount = 3;
     const page = parseInt(searchParams.get("page") || "1");
 
-    const ITEM_PER_PAGE = 1;
+    const ITEM_PER_PAGE = 8;
     const pageCount = Math.ceil(count / ITEM_PER_PAGE);
 
     const hasPrev = page > 1;

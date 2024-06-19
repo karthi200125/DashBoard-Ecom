@@ -126,7 +126,7 @@ export const CreateProductAction = async (values: any) => {
 // filter products
 export const getAllProductByFilter = async (values: any) => {
     const { category, price, color, size , page} = values;
-    const ITEM_PER_PAGE = 2;
+    const ITEM_PER_PAGE = 8;
     try {
         const filters: any = {};
         let filterProducts;

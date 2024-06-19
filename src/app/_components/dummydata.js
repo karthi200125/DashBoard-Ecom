@@ -414,3 +414,56 @@ export const Kids = [
     "Kids shirts", "Pants", "Innerwear", "Trousers"
 ];
 
+
+// testimonial
+export const Testimonials = [
+    {
+        id: 1,
+        name: "Jane Doe",
+        pro: "Verified Buyer",
+        feedback: "Amazing product! High quality and fast shipping. Will definitely buy again.",
+        image: "/images/testimonials/jane.jpg",
+        marginTop: false
+    },
+    {
+        id: 2,
+        name: "John Smith",
+        pro: "Verified Buyer",
+        feedback: "Great customer service and excellent value for money. Highly recommend.",
+        image: "/images/testimonials/john.jpg",
+        marginTop: true
+    },
+    {
+        id: 3,
+        name: "Emily Johnson",
+        pro: "Verified Buyer",
+        feedback: "The product exceeded my expectations. I am very satisfied with my purchase.",
+        image: "/images/testimonials/emily.jpg",
+        marginTop: false
+    },
+    {
+        id: 4,
+        name: "Michael Brown",
+        pro: "Verified Buyer",
+        feedback: "Fast delivery and fantastic quality. I'm a happy customer!",
+        image: "/images/testimonials/michael.jpg",
+        marginTop: true
+    },
+    {
+        id: 5,
+        name: "Sophia Davis",
+        pro: "Verified Buyer",
+        feedback: "Excellent product! I love it. The customer support was also very helpful.",
+        image: "/images/testimonials/sophia.jpg",
+        marginTop: false
+    },
+    {
+        id: 6,
+        name: "James Wilson",
+        pro: "Verified Buyer",
+        feedback: "Very pleased with my purchase. The product is top-notch and the service was great.",
+        image: "/images/testimonials/james.jpg",
+        marginTop: true
+    }
+];
+

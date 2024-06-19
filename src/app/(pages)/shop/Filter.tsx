@@ -27,14 +27,22 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
 
     useEffect(() => {
         const params = new URLSearchParams(searchParams);
-        if (category) {
+        if (category !== "" && category !== undefined) {
             setCat(category);
         }
-        if (!params.has('cat')) {
+        if (!params.has('cat') && cat) {
             params.set('cat', cat);
             router.replace(`${pathname}?${params.toString()}`);
         }
-    }, [ pathname, router, searchParams]);
+    }, [pathname, router, searchParams, category, cat]);
+
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams);
+        if (cat) {
+            params.set('cat', cat);
+            router.replace(`${pathname}?${params.toString()}`);
+        }
+    }, [cat, pathname, router, searchParams]);
 
     const handleChanges = (_: Event, newValue: number | number[]) => {
         const newRange = newValue as number[];
@@ -94,7 +102,11 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
     };
 
     const HandleResetAll = () => {
-        localStorage.removeItem('filterValues')
+        localStorage.removeItem('filterValues');
+        setCat(null);
+        setRange([0, 5000]);
+        setSelectedColors([]);
+        setSelectedSizes([]);
     }
 
     return (
@@ -139,7 +151,7 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
 
             <div className="flex flex-col gap-2">
                 <h1 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Sizes </h1>
-                <Sizes onSizeSelect={(d) => console.log(d)} />
+                <Sizes onSizeSelect={(d) => setSelectedSizes(d)} />
             </div>
 
         </div>

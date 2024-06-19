@@ -56,6 +56,7 @@ const Shop = () => {
                 const { data, error, count } = await getAllProductByFilter(filterParams);
                 setFilterProducts(data || []);
                 setCount(count);
+                console.log("count", count)
                 if (error) toast.error(error);
             } catch (error) {
                 toast.error('Failed to fetch products');
