@@ -3,6 +3,7 @@
 import { AdminVerify } from './AdminVerify';
 import { db } from '@/lib/db';
 import { Prisma } from '@prisma/client';
+import { getUserById } from './users';
 
 
 // get products
@@ -37,6 +38,24 @@ export const getAllProducts = async () => {
     }
 }
 
+// get fav products
+export const getFavProducts = async (userId: string) => {
+    try {
+        const user = await getUserById(userId);                
+        const favProductIds = user.favorite;        
+        const favProducts = await db.product.findMany({
+            where: {
+                id: {
+                    in: favProductIds 
+                }
+            },
+            take: 8 
+        });        
+        return { success: "Successfully retrieved favorite products", data: favProducts };
+    } catch (error) {        
+        return { error: "Failed to retrieve favorite products" };
+    }
+};
 // get proucts by time zone
 // export const getProductsbytime = async (query: string) => {
 //     try {
@@ -95,61 +114,51 @@ export const CreateProductAction = async (values: any) => {
 }
 
 // filter products
-
 export const getAllProductByFilter = async (values: any) => {
-    const { proCategory, minPrice, maxPrice, proColors, proSizes } = values;
-
+    const { category, price, color, size } = values;
     try {
-        const filter: Prisma.ProductWhereInput = {};
+        const filters: any = {};
+        let filterProducts;
 
-        if (proCategory) {
-            filter.proCategory = proCategory;
+        if (category) {
+            filters.proCategory = category;
         }
 
-        if (minPrice !== undefined && maxPrice !== undefined) {
-            filter.proPrice = {
-                gte: minPrice,
-                lte: maxPrice,
-            };
-        } else if (minPrice !== undefined) {
-            filter.proPrice = {
-                gte: minPrice,
-            };
-        } else if (maxPrice !== undefined) {
-            filter.proPrice = {
-                lte: maxPrice,
+        if (price && price[0] !== undefined && price[1] !== undefined) {
+            filters.proPrice = {
+                gte: String(Math.min(price[0])),
+                lte: String(Math.max(price[1])),
             };
         }
 
-        if (proColors) {
-            filter.proColors = {
-                some: {
-                    color: {
-                        equals: proColors,
-                    },
-                },
+        if (color) {
+            filters.proColors = {
+                hasSome: [color]
             };
         }
 
-        if (proSizes) {
-            filter.proSizes = {
-                some: {
-                    size: {
-                        equals: proSizes,
-                    },
-                },
+        if (size) {
+            filters.proSizes = {
+                hasSome: [size]
             };
         }
 
-        const filterOptions: Prisma.ProductFindManyArgs = {
-            where: filter,
-            orderBy: {
-                createdAt: 'desc',
-            },
-            take: 8, 
-        };
-
-        const filterProducts = await db.product.findMany(filterOptions);
+        if (Object.keys(filters).length > 0) {
+            filterProducts = await db.product.findMany({
+                where: filters,
+                take: 8,
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            });
+        } else {
+            filterProducts = await db.product.findMany({
+                take: 8,
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            });
+        }
 
         return { success: "Filtered products retrieved successfully", data: filterProducts };
     } catch (error) {

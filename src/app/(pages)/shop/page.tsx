@@ -10,8 +10,7 @@ import Filter from './Filter';
 const Shop = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [category, setCategory] = useState<string>('');
-    const [minPrice, setMinPrice] = useState<string>('');
-    const [maxPrice, setMaxPrice] = useState<string>('');
+    const [priceRange, setPriceRange] = useState<number[]>([0, 5000]);
     const [color, setColor] = useState<string>('');
     const [size, setSize] = useState<string>('');
     const [filterProducts, setFilterProducts] = useState<any[]>([]);
@@ -21,12 +20,8 @@ const Shop = () => {
         setCategory(selectedCategory);
     };
 
-    const handleMinPriceChange = (newMinPrice: string) => {
-        setMinPrice(newMinPrice);
-    };
-
-    const handleMaxPriceChange = (newMaxPrice: string) => {
-        setMaxPrice(newMaxPrice);
+    const handlePriceRangeChange = (range: number[]) => {
+        setPriceRange(range);
     };
 
     const handleColorSelect = (selectedColor: string) => {
@@ -40,15 +35,17 @@ const Shop = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             setIsLoading(true);
+            const price = priceRange.map(String);
             try {
                 const filterParams = {
                     category,
-                    minPrice,
-                    maxPrice,
+                    price,
                     color,
                     size,
                 };
+                console.log(filterParams)
                 const { data } = await getAllProductByFilter(filterParams);
+                console.log(data)
                 setFilterProducts(data || []);
             } catch (error) {
                 console.error('Error fetching filtered products:', error);
@@ -58,7 +55,7 @@ const Shop = () => {
         };
 
         fetchProducts();
-    }, [category, minPrice, maxPrice, color, size]);
+    }, [category, priceRange, color, size]);
 
     return (
         <div className="w-full min-h-screen py-5 flex flex-col gap-5">
@@ -76,15 +73,14 @@ const Shop = () => {
                         body={
                             <Filter
                                 onCategory={handleCategoryChange}
-                                onMinPriceRange={handleMinPriceChange}
-                                onMaxPriceRange={handleMaxPriceChange}
+                                onPriceRange={handlePriceRangeChange}
                                 onColorSelect={handleColorSelect}
                                 onSizeSelect={handleSizeSelect}
                             />
                         }
                         title="Filter Products"
                     />
-                    <div className="flex flex-row items-center gap-2 cursor-pointer hover:opacity-50">                        
+                    <div className="flex flex-row items-center gap-2 cursor-pointer hover:opacity-50">
                         <h2>Filter</h2>
                         <FaArrowRight size={20} onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
                     </div>

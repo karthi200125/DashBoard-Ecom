@@ -8,7 +8,8 @@ import { FaParachuteBox } from "react-icons/fa";
 const AddToCartBtn = () => {
     const [clicked, setClicked] = useState(false);
 
-    const handleAddToCart = () => {
+    const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.stopPropagation(); // Prevent propagation
         setClicked(true);
         setTimeout(() => {
             setClicked(false);

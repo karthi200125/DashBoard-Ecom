@@ -12,14 +12,17 @@ const Heart = ({ id }: HeartProps) => {
     const [isAnimated, setIsAnimated] = useState(false);
     const user = useCurrentUser()
     const userId = user?.id
-    const handleLike = async () => {
-        const data = await likeAction(id, userId);
-        console.log(data)
-        if (data.success) {
-            setIsAnimated(true);
-        } else if (data.error) {
-            setIsAnimated(false);
-        }
+    const handleLike = async (e: any) => {
+        e.stopPropagation(); // Prevent propagation
+        setIsAnimated(!isAnimated);
+        console.log('like')
+        // const data = await likeAction(id, userId);
+        // console.log(data)
+        // if (data.success) {
+        //     setIsAnimated(true);
+        // } else if (data.error) {
+        //     setIsAnimated(false);
+        // }
     };
 
     return (
