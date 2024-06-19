@@ -1,46 +1,56 @@
 'use client'
 import Cards from '@/app/_components/Cards/Cards';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import { toast } from 'sonner';
 import { getFavProducts } from '../../../../actions/product';
 import { useCurrentUser } from '@/app/hooks/useCurrentUser';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const Favourite = () => {
-    const user = useCurrentUser()
+    const user = useCurrentUser();
     const [allProducts, setAllProducts] = useState<any[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [count, setCount] = useState<number>(0);
+    const [isLoading, startTransition] = useTransition();
+    const userId = user?.id;
+
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const page = searchParams.get('page') || '1';
+
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams);
+        if (!params.has('page')) {
+            params.set('page', page);
+            router.replace(`${pathname}?${params.toString()}`);
+        }
+    }, [page, pathname, router, searchParams]);
 
     useEffect(() => {
         const fetchProducts = async () => {
-            setIsLoading(true);
-            const userId = user?.id
-            try {
-                const products = await getFavProducts(userId);
-                setAllProducts(products?.data || []);
-                if (products?.error) {
-                    toast.error(products.error);
+            startTransition(async () => {
+                const { data, count, error } = await getFavProducts(userId, page);
+                setAllProducts(data || []);
+                setCount(count)
+                if (error) {
+                    toast.error(error);
                 }
-            } catch (error) {
-                toast.error('Failed to fetch products');
-            } finally {
-                setIsLoading(false);
-            }
+            })
         };
-
         fetchProducts();
-    }, []);
-
+    }, [userId, page]);
 
     return (
         <div className='w-full min-h-screen py-5 flex flex-col gap-5'>
-            <div className='p-2 md:p-0 flex flex-col gap-2 '>
+            <div className='p-2 md:p-0 flex flex-col gap-2'>
                 <h1>Your Favourite Products</h1>
-                <p>You have {allProducts?.length} products in Favourites</p>
+                <p>You have {count} products in Favourites</p>
             </div>
 
-            <Cards products={allProducts} isLoading={isLoading} />
+            <Cards products={allProducts} isLoading={isLoading} count={count} />
         </div>
-    )
-}
+    );
+};
 
-export default Favourite
+export default Favourite;

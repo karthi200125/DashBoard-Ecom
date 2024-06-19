@@ -233,6 +233,73 @@ export const mainCategories = [
     "mens", "womens", "kids"
 ]
 
+export const mensubcategory = [
+    "shirts",
+    "pants",
+    "denim",
+    "trousers",
+    "kurtas",
+    "t-shirts",
+    "blazers",
+    "suits",
+    "sherwanis",
+    "shorts"
+];
+
+export const womensubcategory = [
+    "sarees",
+    "blouses",
+    "salwar kameez",
+    "lehenga cholis",
+    "skirts",
+    "tops",
+    "tunics",
+    "dresses",
+    "leggings",
+    "jeans"
+];
+
+export const kidsubcategory = [
+    "t-shirts",
+    "shorts",
+    "dresses",
+    "skirts",
+    "shirts",
+    "pants",
+    "denim",
+    "rompers",
+    "sweaters",
+    "jackets"
+];
+
+
+export const LadingCategories = [
+    {
+        id: 1,
+        image: "",
+        cat: "Male - Fashion",
+        price: "1000",
+        href: "/shop?cat=mens",
+        subCat: mensubcategory
+    },
+    {
+        id: 2,
+        image: "",
+        cat: "Female - Fashion",
+        price: "1000",
+        href: "/shop?cat=womens",
+        subCat: womensubcategory
+    },
+    {
+        id: 3,
+        image: "",
+        cat: "Kid - Fashion",
+        price: "1000",
+        href: "/shop?cat=kids",
+        subCat: kidsubcategory
+    },
+]
+
 export const routes = [
     {
         id: 1,
@@ -347,41 +414,3 @@ export const Kids = [
     "Kids shirts", "Pants", "Innerwear", "Trousers"
 ];
 
-export const mensubcategory = [
-    "shirts",
-    "pants",
-    "denim",
-    "trousers",
-    "kurtas",
-    "t-shirts",
-    "blazers",
-    "suits",
-    "sherwanis",
-    "shorts"
-];
-
-export const womensubcategory = [
-    "sarees",
-    "blouses",
-    "salwar kameez",
-    "lehenga cholis",
-    "skirts",
-    "tops",
-    "tunics",
-    "dresses",
-    "leggings",
-    "jeans"
-];
-
-export const kidsubcategory = [
-    "t-shirts",
-    "shorts",
-    "dresses",
-    "skirts",
-    "shirts",
-    "pants",
-    "denim",
-    "rompers",
-    "sweaters",
-    "jackets"
-];

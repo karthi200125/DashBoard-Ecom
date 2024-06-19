@@ -39,23 +39,33 @@ export const getAllProducts = async () => {
 }
 
 // get fav products
-export const getFavProducts = async (userId: string) => {
+export const getFavProducts = async (userId: string, page: string) => {
+    const ITEM_PER_PAGE = 8;
     try {
-        const user = await getUserById(userId);                
-        const favProductIds = user.favorite;        
+        const user = await getUserById(userId);
+        const count = await db.product.count({
+            where: {
+                id: {
+                    in: user?.favorite
+                }
+            },
+        })
         const favProducts = await db.product.findMany({
             where: {
                 id: {
-                    in: favProductIds 
+                    in: user?.favorite
                 }
             },
-            take: 8 
-        });        
-        return { success: "Successfully retrieved favorite products", data: favProducts };
-    } catch (error) {        
+            take: ITEM_PER_PAGE,
+            skip: (ITEM_PER_PAGE * (parseInt(page) - 1)),
+        });
+        return { success: "Successfully retrieved favorite products", data: favProducts, count };
+    } catch (error) {
         return { error: "Failed to retrieve favorite products" };
     }
 };
+
+
 // get proucts by time zone
 // export const getProductsbytime = async (query: string) => {
 //     try {
@@ -115,10 +125,12 @@ export const CreateProductAction = async (values: any) => {
 
 // filter products
 export const getAllProductByFilter = async (values: any) => {
-    const { category, price, color, size } = values;
+    const { category, price, color, size , page} = values;
+    const ITEM_PER_PAGE = 2;
     try {
         const filters: any = {};
         let filterProducts;
+        let count;
 
         if (category) {
             filters.proCategory = category;
@@ -146,23 +158,35 @@ export const getAllProductByFilter = async (values: any) => {
         if (Object.keys(filters).length > 0) {
             filterProducts = await db.product.findMany({
                 where: filters,
-                take: 8,
+                take: ITEM_PER_PAGE,
+                skip: (ITEM_PER_PAGE * (parseInt(page) - 1)),
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            });
+            count = await db.product.count({
+                where: filters,
                 orderBy: {
                     createdAt: 'desc'
                 }
             });
         } else {
             filterProducts = await db.product.findMany({
-                take: 8,
+                take: ITEM_PER_PAGE,
+                skip: (ITEM_PER_PAGE * (parseInt(page) - 1)),
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            });
+            count = await db.product.count({
                 orderBy: {
                     createdAt: 'desc'
                 }
             });
         }
 
-        return { success: "Filtered products retrieved successfully", data: filterProducts };
+        return { success: "Filtered products retrieved successfully", data: filterProducts, count };
     } catch (error) {
-        console.error("Error fetching filtered products:", error);
         return { error: "Failed to retrieve filtered products" };
     }
 };

@@ -1,8 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { likeAction } from '../../../../actions/like';
 import './Heart.scss';
 import { useCurrentUser } from '@/app/hooks/useCurrentUser';
+import { getUserById } from '../../../../actions/users';
 
 interface HeartProps {
     id: string;
@@ -10,19 +11,15 @@ interface HeartProps {
 
 const Heart = ({ id }: HeartProps) => {
     const [isAnimated, setIsAnimated] = useState(false);
-    const user = useCurrentUser()
-    const userId = user?.id
+    const user = useCurrentUser();    
+    const isLiked = true; 
+
+    useEffect(() => {        
+        setIsAnimated(isLiked);
+    }, [isLiked]);
+
     const handleLike = async (e: any) => {
-        e.stopPropagation(); // Prevent propagation
-        setIsAnimated(!isAnimated);
-        console.log('like')
-        // const data = await likeAction(id, userId);
-        // console.log(data)
-        // if (data.success) {
-        //     setIsAnimated(true);
-        // } else if (data.error) {
-        //     setIsAnimated(false);
-        // }
+        e.stopPropagation();        
     };
 
     return (

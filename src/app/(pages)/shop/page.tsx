@@ -3,9 +3,11 @@
 import Cards from '@/app/_components/Cards/Cards';
 import SideBar from '@/app/_components/SideBar';
 import { useEffect, useState } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
+import { toast } from 'sonner';
 import { getAllProductByFilter } from '../../../../actions/product';
 import Filter from './Filter';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const Shop = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -13,24 +15,31 @@ const Shop = () => {
     const [priceRange, setPriceRange] = useState<number[]>([0, 5000]);
     const [color, setColor] = useState<string>('');
     const [size, setSize] = useState<string>('');
+    const [count, setCount] = useState<number>(0);
     const [filterProducts, setFilterProducts] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const handleCategoryChange = (selectedCategory: string) => {
-        setCategory(selectedCategory);
-    };
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname();
 
-    const handlePriceRangeChange = (range: number[]) => {
-        setPriceRange(range);
-    };
+    const page = searchParams.get('page') || '1';
+    const cat = searchParams.get('cat') || '';
 
-    const handleColorSelect = (selectedColor: string) => {
-        setColor(selectedColor);
-    };
-
-    const handleSizeSelect = (selectedSize: string) => {
-        setSize(selectedSize);
-    };
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams);
+        if (!params.has('page')) {
+            params.set('page', page);
+            router.replace(`${pathname}?${params.toString()}`);
+        }
+        if (cat) {
+            setCategory(cat);
+        }
+        if (!params.has('cat')) {
+            params.set('cat', category);
+            router.replace(`${pathname}?${params.toString()}`);
+        }
+    }, [page, pathname, router, searchParams]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -42,27 +51,28 @@ const Shop = () => {
                     price,
                     color,
                     size,
+                    page
                 };
-                console.log(filterParams)
-                const { data } = await getAllProductByFilter(filterParams);
-                console.log(data)
+                const { data, error, count } = await getAllProductByFilter(filterParams);
                 setFilterProducts(data || []);
+                setCount(count);
+                if (error) toast.error(error);
             } catch (error) {
-                console.error('Error fetching filtered products:', error);
+                toast.error('Failed to fetch products');
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchProducts();
-    }, [category, priceRange, color, size]);
+    }, [category, priceRange, color, size, page]);
 
     return (
         <div className="w-full min-h-screen py-5 flex flex-col gap-5">
             {/* shop top */}
             <div className="w-full h-[60px] flex flex-col md:flex-row items-center justify-between px-5 gap-3">
                 <h1 className="w-full text-start text-xl md:text-3xl font-bold">
-                    All Products ({filterProducts.length})
+                    All Products ({count})
                 </h1>
                 <div className="flex flex-row items-center gap-10">
                     <SideBar
@@ -72,10 +82,10 @@ const Shop = () => {
                         isClose={() => setIsSidebarOpen(false)}
                         body={
                             <Filter
-                                onCategory={handleCategoryChange}
-                                onPriceRange={handlePriceRangeChange}
-                                onColorSelect={handleColorSelect}
-                                onSizeSelect={handleSizeSelect}
+                                onCategory={(selectedCategory: string) => setCategory(selectedCategory)}
+                                onPriceRange={(range: number[]) => setPriceRange(range)}
+                                onColorSelect={(selectedColor: string) => setColor(selectedColor)}
+                                onSizeSelect={(selectedSize: string) => setSize(selectedSize)}
                             />
                         }
                         title="Filter Products"
@@ -89,7 +99,7 @@ const Shop = () => {
             </div>
 
             {/* shop products */}
-            <Cards products={filterProducts} isLoading={isLoading} />
+            <Cards products={filterProducts} isLoading={isLoading} count={count} />
         </div>
     );
 };

@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import Colors from "@/app/_components/Colors";
 import Sizes from "@/app/_components/Sizes";
 import { mainCategories } from "@/app/_components/dummydata";
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface FilterProps {
     onColorSelect: (color: string) => void;
@@ -18,6 +19,22 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
     const [range, setRange] = useState<number[]>([0, 5000]);
     const [selectedColors, setSelectedColors] = useState<string[]>([]);
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
+
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname();
+    const category = searchParams.get('cat') || '';
+
+    useEffect(() => {
+        const params = new URLSearchParams(searchParams);
+        if (category) {
+            setCat(category);
+        }
+        if (!params.has('cat')) {
+            params.set('cat', cat);
+            router.replace(`${pathname}?${params.toString()}`);
+        }
+    }, [ pathname, router, searchParams]);
 
     const handleChanges = (_: Event, newValue: number | number[]) => {
         const newRange = newValue as number[];

@@ -5,10 +5,8 @@ import { getUserById } from './users';
 
 export const likeAction = async (id: string, userId: string) => {
     const user = await getUserById(userId);    
-
     try {
-        const isLiked = user?.favorite?.includes(id);
-        console.log(isLiked)        
+        const isLiked = user?.favorite?.includes(id);        
 
         if (isLiked) {
             await db.user.update({
