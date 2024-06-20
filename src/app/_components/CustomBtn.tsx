@@ -19,7 +19,7 @@ interface BtnProps {
 const CustomBtn = ({ children, arrow, btnCls, isLoading, border, arrowCls, onClick , type }: BtnProps) => {
     return (
         <button
-            className={`px-2 group flex flex-row items-center gap-3 rounded-full h-[55px] ${border ? "border" : ""} hover:bg-blck hover:txt-white transition duration-300 hover:shadow-xl ${isLoading ? "cursor-not-allowed" : ""} ${btnCls}`}
+            className={`px-2 group flex flex-row items-center gap-3 rounded-full h-[55px] ${border ? "border" : ""} hover:bg-blck hover:txt-white transition duration-300 hover:shadow-xl flex items-center justify-center ${isLoading ? "cursor-not-allowed" : ""} ${btnCls}`}
             disabled={isLoading}
             onClick={onClick}
             type={type}

@@ -4,17 +4,15 @@ import CustomImage from "@/components/ui/CustomImage";
 import {
     Carousel,
     CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
-import sample from '../../assets/sample.webp'
+    CarouselItem
+} from "@/components/ui/carousel";
+import sample from '../../assets/sample.webp';
 import { Testimonials } from "../dummydata";
 
 export const TestMonials = () => {
 
     return (
-        <div className="w-full h-screen flex items-center justify-center flex-col gap-10 text-white bg-black">
+        <div className="w-full h-[600px] rounded-[30px] p-5 flex items-center justify-center flex-col gap-5 text-white bg-black">
             <h1>What Customer says</h1>
             <Carousel className="w-full">
                 <CarouselContent className="flex flex-row">
