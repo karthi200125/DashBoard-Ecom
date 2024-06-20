@@ -25,7 +25,7 @@ const ProductMainChart = () => {
         <div className='p-5'>
             <div className='flex flex-row items-center gap-2'>
                 <FaUsers size={20} />
-                <h1 className='font-bold text-md'>New users</h1>
+                <h2>New users</h2>
             </div>
 
             <div className='w-full h-[280px] mt-5 ml-[-30px]'>

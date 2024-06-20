@@ -1,63 +1,52 @@
-// import dynamic from "next/dynamic"
-// import { FaUsers } from "react-icons/fa"
-// const TopList = dynamic(() => import("@/app/_components/TopList"))
-// const ProductTable = dynamic(() => import("./ProductTable"))
-// const TotalProducts = dynamic(() => import("./TotalProducts"))
-// const SaleCards = dynamic(() => import("./SaleCards"))
-// const ProductMainChart = dynamic(() => import("./ProductMainChart"))
+'use client'
 
-// export const productsdata = [
-//     {
-//         id: 1,
-//         proImage: "",
-//         proName: "producst 1",
-//         orderedCounts: [],
-//         proPrice: "1000",
-//         createdAt: "may-10-2020"
-//     },
-//     {
-//         id: 2,
-//         proImage: "",
-//         proName: "producst 2",
-//         orderedCounts: [],
-//         proPrice: "1000",
-//         createdAt: "may-10-2020"
-//     },
-//     {
-//         id: 3,
-//         proImage: "",
-//         proName: "producst 3",
-//         orderedCounts: [],
-//         proPrice: "1000",
-//         createdAt: "may-10-2020"
-//     },
-// ]
+import dynamic from "next/dynamic"
+import { useEffect, useState } from 'react'
+import { FaUsers } from "react-icons/fa"
+import { MostLikedProducts } from "../../../../actions/dashboard/dashProduct"
 
-// const Products = () => {
+const TopList = dynamic(() => import("@/app/_components/TopList"), { ssr: false })
+const ProductTable = dynamic(() => import("./ProductTable"), { ssr: false })
+const TotalProducts = dynamic(() => import("./TotalProducts"), { ssr: false })
+const SaleCards = dynamic(() => import("./SaleCards"), { ssr: false })
+const ProductMainChart = dynamic(() => import("./ProductMainChart"), { ssr: false })
 
-//     return (
-//         <div className="w-full h-full flex flex-col gap-3">
-//             <div className="flex flex-row gap-3">
-//                 <div className="w-[76%] h-full flex flex-col gap-3">
-//                     <div className="flex flex-row items-center h-[300px] w-full gap-3">
-//                         <TotalProducts />
-//                         <SaleCards />
-//                         <div className="w-full border bg-white rounded-[20px] p-5 h-full">
+const Products = () => {
+    const [products, setProducts] = useState([])
 
-//                         </div>
-//                     </div>
-//                     <div className="border rounded-[20px] bg-white h-[350px]">
-//                         <ProductMainChart />
-//                     </div>
-//                 </div>
-//                 <div className="bg-white border rounded-[20px] w-[23%] p-5 h-[660px] overflow-y-hidden">
-//                     <TopList title="Top Products" icon={<FaUsers size={20} />} data={productsdata} route="products" />
-//                 </div>
-//             </div>
-//             <ProductTable />
+    useEffect(() => {
+        const get = async () => {
+            const response = await MostLikedProducts()
+            console.log(response)
+            if (response.success) {                
+                setProducts(response.data)
+            } 
+        }
+        get()
+    }, [])
 
-//         </div>
-//     )
-// }
+    return (
+        <div className="w-full h-full flex flex-col gap-3 mt-5">
+            <div className="flex flex-row gap-3">
+                <div className="w-[76%] h-full flex flex-col gap-3">
+                    <div className="flex flex-row items-center h-[300px] w-full gap-3">
+                        {/* <TotalProducts /> */}
+                        <SaleCards />
+                        <div className="w-full border bg-white rounded-[20px] p-5 h-full">
+                            {/* Add any additional content here */}
+                        </div>
+                    </div>
+                    <div className="border rounded-[20px] bg-white h-[350px]">
+                        {/* <ProductMainChart /> */}
+                    </div>
+                </div>
+                <div className="bg-white border rounded-[20px] w-[23%] p-5 h-[660px] overflow-y-hidden">
+                    <TopList title="Top Products" icon={<FaUsers size={20} />} data={products} route="products" />
+                </div>
+            </div>
+            {/* <ProductTable /> */}
+        </div>
+    )
+}
 
-// export default Products
+export default Products

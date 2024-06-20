@@ -467,3 +467,8 @@ export const Testimonials = [
     }
 ];
 
+
+// time zone data 
+export const TimeSelectData = [
+    "all", "lastweek", "lastmonth", "newProduct", "mostLiked" 
+]

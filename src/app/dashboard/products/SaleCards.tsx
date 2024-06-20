@@ -31,7 +31,7 @@ const SaleCards = () => {
                         <Icon icon={sc?.icon} tooltip='Sales' />
                         <div className='flex flex-row gap-1 items-center'>
                             <GoArrowUpRight className='text-green-400 font-bold text-lg' />
-                            <h1 className='font-bold text-sm'>100 %</h1>
+                            <h3>100 %</h3>
                         </div>
                     </div>
                     <div>

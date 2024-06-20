@@ -4,9 +4,10 @@ import { AdminVerify } from './AdminVerify';
 import { db } from '@/lib/db';
 import { Prisma } from '@prisma/client';
 import { getUserById } from './users';
+import { revalidatePath } from 'next/cache';
 
 
-// get products
+//search query get products
 export const getProducts = async (q: string, limit?: number) => {
     try {
         const allProducts = await db.product.findMany({
@@ -16,7 +17,7 @@ export const getProducts = async (q: string, limit?: number) => {
                     mode: 'insensitive',
                 },
             },
-            take: 10,
+            take: 8,
         });
         return { success: "get query products success", data: allProducts };
     } catch (error) {
@@ -26,15 +27,36 @@ export const getProducts = async (q: string, limit?: number) => {
 
 export const getAllProducts = async () => {
     try {
+        const count = await db.product.count({
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });
         const allProducts = await db.product.findMany({
             take: 8,
             orderBy: {
                 createdAt: 'desc'
             }
         });
-        return { success: "get all products success", data: allProducts };
+        return { success: "get all products success", data: allProducts, count };
     } catch (error) {
         return { error: "get all products failed" };
+    }
+}
+
+// delete product
+
+export const deletProduct = async (id: string) => {
+    try {
+        await db.product.delete({
+            where: {
+                id: id
+            }
+        })
+        revalidatePath('/dashboard/products')
+        return { success: "product has deleted" }
+    } catch (error) {
+        return { error: "product delete failed" }
     }
 }
 
@@ -125,7 +147,8 @@ export const CreateProductAction = async (values: any) => {
 
 // filter products
 export const getAllProductByFilter = async (values: any) => {
-    const { category, price, color, size , page} = values;
+    const { category, price, color, size, page } = values;
+    console.log(values)
     const ITEM_PER_PAGE = 8;
     try {
         const filters: any = {};

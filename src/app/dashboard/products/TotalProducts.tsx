@@ -9,6 +9,8 @@ import {
     Legend,
 } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
+import { categoryCount } from '../../../../actions/dashboard/dashProduct'
+import { CustomFetch } from '@/app/hooks/CustomFetch'
 
 ChartJs.register(
     ArcElement,
@@ -17,51 +19,66 @@ ChartJs.register(
 );
 
 const TotalProducts = () => {
+    const { data } = CustomFetch({
+        dependencies: [],
+        functionProp: categoryCount,
+    });
 
-    const data = {
+    const count = data?.categoryCounts ?? { mens: 0, womens: 0, kids: 0 };
+    const products = data?.data ?? [];
+
+    const graphData = {
         datasets: [{
-            data: [10, 6, 3],
+            data: [count.mens, count.womens, count.kids],
             backgroundColor: ["#4FD2B5", "#FFCB49", "#7464FF"],
             borderColor: ["#4FD2B5", "#FFCB49", "#7464FF"],
             cutout: '80%'
         }]
     };
 
-    const total = "1000"
+    const total = products.length;
 
     return (
         <div className='w-[280px] border bg-white rounded-[20px] p-5 h-full'>
             <div className='flex flex-row items-center gap-2'>
                 <FaUsers size={20} />
-                <h1 className='font-bold text-md'>Total Products</h1>
+                <h2>Total Products</h2>
             </div>
 
             <div className='w-full h-full flex items-center justify-center flex-col gap-5'>
                 <div className="w-[150px] h-[150px] relative">
-                    <Doughnut data={data} />
+                    <Doughnut data={graphData} />
                     <div className="absolute inset-0 flex flex-col gap-2 items-center justify-center leading-none text-center mt-3">
-                        <h1 className="text-[12px] font-bold">Total Users</h1>
+                        <p className='text-black'>Total Products</p>
                         <p className="text-[12px] ">{total}</p>
                     </div>
                 </div>
                 <div className='flex flex-row gap-5 w-full items-center justify-center'>
-                    <div className='flex flex-row gap-2 items-center'>
-                        <span className='w-[10px] h-[10px] rounded-full bg-[#4FD2B5]'></span>
-                        <h1>Male</h1>
+                    <div className='flex flex-row gap-2 items-start '>
+                        <span className='w-[10px] h-[10px] rounded-full bg-[#4FD2B5] mt-2'></span>
+                        <div className="flex flex-col justify-center">
+                            <h3>Mens</h3>
+                            <p>{count.mens}</p>
+                        </div>
                     </div>
-                    <div className='flex flex-row gap-2 items-center'>
-                        <span className='w-[10px] h-[10px] rounded-full bg-[#FFCB49]'></span>
-                        <h1>FeMale</h1>
+                    <div className='flex flex-row gap-2 items-start'>
+                        <span className='w-[10px] h-[10px] rounded-full bg-[#FFCB49] mt-2'></span>
+                        <div className="flex flex-col justify-center">
+                            <h3>Womens</h3>
+                            <p>{count.womens}</p>
+                        </div>
                     </div>
-                    <div className='flex flex-row gap-2 items-center'>
-                        <span className='w-[10px] h-[10px] rounded-full bg-[#7464FF]'></span>
-                        <h1>Others</h1>
+                    <div className='flex flex-row gap-2 items-start'>
+                        <span className='w-[10px] h-[10px] rounded-full bg-[#7464FF] mt-2'></span>
+                        <div className="flex flex-col justify-center">
+                            <h3>Kids</h3>
+                            <p>{count.kids}</p>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default TotalProducts
+export default TotalProducts;

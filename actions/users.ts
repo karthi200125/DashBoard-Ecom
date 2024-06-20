@@ -62,28 +62,18 @@ export const getSingleUser = async (id: string) => {
 }
 
 // delete user 
-export const deleteUser = async (id: string, from: string) => {
+export const deleteUser = async (id: string) => {
     try {
-        if (from === "dashboard") {
-            const isAdminUser = await AdminVerify(id)
-            if (!isAdminUser) {
-                Logger.error(`${id} is not an admin, only admin can delete user from the dashboard`)
-                return { error: "Only admin can delete user from the dashboard" }
-            }
-        }
-
-        const deletedUser = await prisma.user.delete({
+        await db.product.user({
             where: {
-                id: id,
-            },
+                id: id
+            }
         })
         revalidatePath('/dashboard/users')
-        return deletedUser
+        return { success: "user has deleted" }
     } catch (error) {
-        Logger.error(`Delete user failed for ID: ${id}, Error: ${error}`)
-        return { error: "Delete user failed" }
+        return { error: "user delete failed" }
     }
-
 }
 
 // update user
