@@ -17,6 +17,9 @@ import testimonial6 from '../assets/testimonials/1 (6).webp'
 import LadingPageImagemens from '../assets/landingpage/mens.webp'
 import LadingPageImagewomens from '../assets/landingpage/womens.webp'
 import LadingPageImagekids from '../assets/landingpage/kids.jpg'
+import lcmen from '../assets/ladingcat/lcmens.webp'
+import lcwomen from '../assets/ladingcat/lcwomen.webp'
+import lckid from '../assets/ladingcat/lckid.webp'
 
 const isAdmin = false;
 const user = true;
@@ -49,6 +52,74 @@ export const LadingPageMainContents = [
         heading3: "Kids' Wear",
         subHeading1: "KIDS",
         subHeading2: "Little Trendsetters"
+    },
+]
+
+// sub categories
+export const mensubcategory = [
+    "shirts",
+    "pants",
+    "denim",
+    "trousers",
+    "kurtas",
+    "t-shirts",
+    "blazers",
+    "suits",
+    "sherwanis",
+    "shorts"
+];
+
+export const womensubcategory = [
+    "sarees",
+    "blouses",
+    "salwar kameez",
+    "lehenga cholis",
+    "skirts",
+    "tops",
+    "tunics",
+    "dresses",
+    "leggings",
+    "jeans"
+];
+
+export const kidsubcategory = [
+    "t-shirts",
+    "shorts",
+    "dresses",
+    "skirts",
+    "shirts",
+    "pants",
+    "denim",
+    "rompers",
+    "sweaters",
+    "jackets"
+];
+
+// main catgories
+export const LadingCategories = [
+    {
+        id: 1,
+        image: lcmen,
+        cat: "Male - Fashion",
+        price: "1000",
+        href: "/shop?cat=mens",
+        subCat: mensubcategory
+    },
+    {
+        id: 2,
+        image: lcwomen,
+        cat: "Female - Fashion",
+        price: "1000",
+        href: "/shop?cat=womens",
+        subCat: womensubcategory
+    },
+    {
+        id: 3,
+        image: lckid,
+        cat: "Kid - Fashion",
+        price: "1000",
+        href: "/shop?cat=kids",
+        subCat: kidsubcategory
     },
 ]
 
@@ -273,72 +344,9 @@ export const mainCategories = [
     "mens", "womens", "kids"
 ]
 
-export const mensubcategory = [
-    "shirts",
-    "pants",
-    "denim",
-    "trousers",
-    "kurtas",
-    "t-shirts",
-    "blazers",
-    "suits",
-    "sherwanis",
-    "shorts"
-];
-
-export const womensubcategory = [
-    "sarees",
-    "blouses",
-    "salwar kameez",
-    "lehenga cholis",
-    "skirts",
-    "tops",
-    "tunics",
-    "dresses",
-    "leggings",
-    "jeans"
-];
-
-export const kidsubcategory = [
-    "t-shirts",
-    "shorts",
-    "dresses",
-    "skirts",
-    "shirts",
-    "pants",
-    "denim",
-    "rompers",
-    "sweaters",
-    "jackets"
-];
 
 
-export const LadingCategories = [
-    {
-        id: 1,
-        image: "",
-        cat: "Male - Fashion",
-        price: "1000",
-        href: "/shop?cat=mens",
-        subCat: mensubcategory
-    },
-    {
-        id: 2,
-        image: "",
-        cat: "Female - Fashion",
-        price: "1000",
-        href: "/shop?cat=womens",
-        subCat: womensubcategory
-    },
-    {
-        id: 3,
-        image: "",
-        cat: "Kid - Fashion",
-        price: "1000",
-        href: "/shop?cat=kids",
-        subCat: kidsubcategory
-    },
-]
+
 
 export const routes = [
     {

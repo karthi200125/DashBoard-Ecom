@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { LadingPageMainContents } from '../dummydata'
 import Curves from './Curves'
 import SocialIcons from './SocialIcons'
+import TransitionLink from '@/app/Animations/TransitionLink'
 
 const LandingPage = ({ onLoad }: any) => {
     const [mainImage, setMainImage] = useState(LadingPageMainContents[0]?.image)
@@ -17,8 +18,8 @@ const LandingPage = ({ onLoad }: any) => {
 
     const miniImages = [
         LadingPageMainContents[0]?.image,
-        LadingPageMainContents[1]?.image,
-        LadingPageMainContents[2]?.image,
+        LadingPageMainContents[0]?.image,
+        LadingPageMainContents[0]?.image,
     ]
 
     const handleClick = (index: any) => {
@@ -44,25 +45,29 @@ const LandingPage = ({ onLoad }: any) => {
 
             {/* buttons */}
             <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row md:flex-col xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[95px] bottom-0 md:bottom-[-25px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                <CustomBtn arrow btnCls='bg-black text-white border-black pl-5 md:pl-10' arrowCls='bg-white text-black'>Shop Now</CustomBtn>
+                <TransitionLink href='/shop'>
+                    <CustomBtn arrow btnCls='bg-black text-white pl-5 md:pl-10 ' arrowCls='bg-white text-black'>
+                        Shop Now
+                    </CustomBtn>
+                </TransitionLink>
                 <CustomBtn btnCls='bg-white text-black px-5 sm:px-10'>Contact Us</CustomBtn>
             </div>
 
             {/* customer happy div */}
-            <div className='glass md:flex w-[220px] xl:w-[300px] max-h-max gap-2 rounded-[10px] md:rounded-[30px] p-5 md:p-8 absolute right-[8%] md:right-[17%] top-[8%] md:top-[25%] xl:top-[7%] xl:flex flex-col justify-between text-white'>
+            <div className='glass md:flex w-[220px] xl:w-[300px] max-h-max gap-2 rounded-[10px] md:rounded-[30px] p-5 md:p-8 absolute right-[8%] md:right-[17%] top-[8%] md:top-[25%] xl:top-[25%] xl:flex flex-col justify-between text-white'>
                 <div className='flex flex-row items-center justify-between'>
-                    <h1 className='text-md text-2xl xl:text-4xl font-semibold'>24K</h1>
+                    <h1>24K</h1>
                     <ArrowRight className='rotate-[-45deg]' size={25} />
                 </div>
-                <p className='opacity-50'>happy customer with grow</p>
-                <p className='opacity-50'>user friendly website</p>
+                <p className='opacity-50 text-white'>happy customer grow</p>
+                <p className='opacity-50 text-white'>user friendly website</p>
             </div>
 
             {/* main text */}
             <div className='md:flex flex-col p-5 rounded-[20px] absolute max-w-max top-[30%] md:top-[7%] left-[2%] md:left-[7%]'>
-                <h1 className='text-white font-bold text-[29px] md:text-5xl px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }}>{heading1}</h1>
-                <h1 className='text-white font-bold text-[29px] md:text-5xl px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px" }}>{heading2}</h1>
-                <h1 className='text-white font-bold text-[29px] md:text-5xl px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>{heading3}</h1>
+                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >{heading1}</h1>
+                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px" }}>{heading2}</h1>
+                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>{heading3}</h1>
             </div>
 
             {/* three images */}

@@ -1,26 +1,12 @@
 import type { Metadata } from "next";
 import { SessionProvider } from 'next-auth/react';
-import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
-import localFont from 'next/font/local';
 import { Toaster } from 'sonner';
 import { auth } from "../../auth";
 import LoginModel from "./_components/LoginModel";
 import Navbar from "./_components/Navbar";
 import RegisterModel from "./_components/RegisterModal";
 import "./globals.css";
-const Footer = dynamic(() => import('./_components/Footer'))
-
-const inter = Inter({ subsets: ["latin"] });
-
-const myfont = localFont({
-  src: [
-    {
-      path: "../../public/fonts/fonnts.com-Regulator_Nova_Bold.otf",
-      // weight: "200"
-    }
-  ],
-})
 
 export const metadata: Metadata = {
   title: "E-Commerce",
@@ -36,13 +22,13 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang="en">
-        <body className={inter.className} >
+        <body style={{ fontFamily: 'Conthrax' }} >
           <div className="w-full realative">
             <Navbar />
             <Toaster position="bottom-right" expand={false} richColors />
             <RegisterModel />
-            <LoginModel />            
-            {children}            
+            <LoginModel />
+            {children}
           </div>
         </body>
       </html>

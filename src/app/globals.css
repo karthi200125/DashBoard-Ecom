@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'conthrax';
+    src: url('/fonts/conthrax-sb.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
     margin: 0;
@@ -15,14 +21,7 @@
 
 body {
     @apply md:container min-h-screen bg-white;
-    /* @apply container min-h-screen bg-[#f2f2f2]; */
-}
-
-@font-face {
-    font-family: 'conthrax';
-    src: url('/fonts/conthrax-sb.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+    font-family: 'conthrax', sans-serif;
 }
 
 .myCustomClass {
@@ -46,7 +45,6 @@ body {
 }
 
 .header.sticky {
-    /* background: rgba(245, 245, 245, 0.05); */
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(17.5px);
     box-shadow: 0 8px 10px 10px rgba(0, 0, 0, 0.2);
@@ -332,7 +330,7 @@ h1 {
 }
 
 h2 {
-    @apply text-lg md:text-xl font-bold
+    @apply text-lg md:text-[15px] font-bold
 }
 
 h3 {
@@ -344,5 +342,5 @@ h4 {
 }
 
 p {
-    @apply text-sm text-neutral-400;
+    @apply text-[10px] text-neutral-400;
 }

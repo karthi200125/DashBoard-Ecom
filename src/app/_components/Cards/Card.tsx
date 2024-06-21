@@ -51,8 +51,8 @@ const Card = ({ card }: CardProps) => {
 
                 {/* rating */}
                 <div className='flex flex-row items-center justify-between'>
-                    <StarRating rating={averageRating} />
-                    <div className="font-bold">₹ {card?.proPrice} <span className="text-sm text-neutral-400">Rs</span></div>
+                    <StarRating rating={averageRating} size='15'/>
+                    <h2>₹ {card?.proPrice} <span className="text-neutral-400">Rs</span></h2>
                 </div>
 
                 {/*  add to car button*/}

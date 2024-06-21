@@ -13,7 +13,7 @@ const RollText = ({ children, href, RtCls }: RollTextProps) => {
     const [isHover, setIsHover] = useState(false);
 
     return (
-        <Link href={href || '#'} className={`relative overflow-hidden no-underline ${RtCls}`}>
+        <Link href={href || '#'} className={`relative overflow-hidden ${RtCls}`}>
             <motion.div
                 className="absolute w-full h-full"
                 animate={{ top: isHover ? '-100%' : '0' }}
