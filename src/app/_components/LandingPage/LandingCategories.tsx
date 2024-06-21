@@ -1,13 +1,17 @@
 'use client'
 import Image from '@/components/ui/CustomImage';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiShoppingBagFill } from "react-icons/ri";
 import { LadingCategories } from '../dummydata';
 
-const LandingCategories = () => {
+const LandingCategories = ({ onLoad }: any) => {
   const [activeId, setActiveId] = useState(2);
+
+  useEffect(() => {
+    onLoad && onLoad('LandingCategories');
+  }, []);
 
   return (
     <div className='py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto rounded-[20px] flex flex-col items-center justify-center gap-10'>

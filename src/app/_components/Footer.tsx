@@ -4,16 +4,19 @@ import Link from 'next/link'
 import Image from '@/components/ui/CustomImage'
 import { Aboutus, Help, OnlineShpping } from './dummydata';
 import TextSlideUp from '../Animations/TextSlideUp';
+import { useEffect } from 'react';
 
-const Footer = () => {
-
+const Footer = ({ onLoad }: any) => {
+    useEffect(() => {
+        onLoad && onLoad('Footer');
+    }, []);
 
     return (
         <div className='w-full max-h-max flex flex-col justify-between'>
             <div className='h-[300px] relative'>
-                <Image src={''} imgclass='w-full h-full brightness-[0.5]' alt=''/>
+                <Image src={''} imgclass='w-full h-full brightness-[0.5]' alt='' />
                 <div className='absolute bottom-0 left-0 w-full max-h-max text-9xl font-bold text-center text-white'>
-                    <TextSlideUp word='karthick' textSlideUpCls='text-[30px] md:text-[80px] xl:text-[100px]' />
+                    {/* <TextSlideUp word='karthick' textSlideUpCls='text-[30px] md:text-[80px] xl:text-[100px]' /> */}
                 </div>
             </div>
 
@@ -41,14 +44,14 @@ const Footer = () => {
                 </div>
                 <div className='w-full md:w-[500px] h-full '>
                     <div className='flex flex-row gap-5 items-center text-white'>
-                        <Image src={''} imgclass='w-[90px] h-[60px] rounded-full' alt=''/>
+                        <Image src={''} imgclass='w-[90px] h-[60px] rounded-full' alt='' />
                         <p>
                             <span className='font-bold text-md mr-2'>100% ORIGINAL</span>
                             guarantee for all products at myntra.com
                         </p>
                     </div>
                     <div className='flex flex-row gap-5 items-center text-white mt-5'>
-                        <Image src={''} imgclass='w-[70px] h-[60px] rounded-full' alt=''/>
+                        <Image src={''} imgclass='w-[70px] h-[60px] rounded-full' alt='' />
                         <p>
                             <span className='font-bold text-md mr-2'>Return within 14days</span>
                             of receiving your order

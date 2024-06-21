@@ -1,7 +1,12 @@
 import Image from '@/components/ui/CustomImage'
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Banners = () => {
+const Banners = ({ onLoad }: any) => {
+
+    useEffect(() => {
+        onLoad && onLoad('Banners');
+    }, []);
+
     return (
         <div className='flex flex-col md:flex-row h-screen w-full md:h-[600px] items-center justify-center gap-10 px-20 py-5'>
             <div className='min-w-[300px] md:flex-1 h-[80%] md:h-[450px] relative group overflow-hidden rounded-[20px]'>

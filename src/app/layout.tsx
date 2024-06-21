@@ -42,8 +42,7 @@ export default async function RootLayout({
             <Toaster position="bottom-right" expand={false} richColors />
             <RegisterModel />
             <LoginModel />            
-            {children}
-            {/* <Footer /> */}
+            {children}            
           </div>
         </body>
       </html>

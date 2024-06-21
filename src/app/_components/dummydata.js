@@ -8,9 +8,49 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { HiOutlineHome } from "react-icons/hi2";
 import { LiaProductHunt } from "react-icons/lia";
 import { TbLogout } from "react-icons/tb";
+import testimonial1 from '../assets/testimonials/1 (1).webp'
+import testimonial2 from '../assets/testimonials/1 (2).webp'
+import testimonial3 from '../assets/testimonials/1 (3).webp'
+import testimonial4 from '../assets/testimonials/1 (4).webp'
+import testimonial5 from '../assets/testimonials/1 (5).webp'
+import testimonial6 from '../assets/testimonials/1 (6).webp'
+import LadingPageImagemens from '../assets/landingpage/mens.webp'
+import LadingPageImagewomens from '../assets/landingpage/womens.webp'
+import LadingPageImagekids from '../assets/landingpage/kids.jpg'
 
 const isAdmin = false;
 const user = true;
+
+// lading page images
+export const LadingPageMainContents = [
+    {
+        id: 1,
+        image: LadingPageImagemens?.src,
+        heading1: "Elevate Your Style with",
+        heading2: "Our Premium",
+        heading3: "Men's Collection",
+        subHeading1: "MENS",
+        subHeading2: "Essentials for Him"
+    },
+    {
+        id: 2,
+        image: LadingPageImagewomens?.src,
+        heading1: "Unleash Your Elegance",
+        heading2: " with Our Exclusive",
+        heading3: "Women's fashion",
+        subHeading1: "WOMENS",
+        subHeading2: "Chic and Sophisticated"
+    },
+    {
+        id: 3,
+        image: LadingPageImagekids?.src,
+        heading1: "Discover Fun and Comfort",
+        heading2: "with Our Trendy",
+        heading3: "Kids' Wear",
+        subHeading1: "KIDS",
+        subHeading2: "Little Trendsetters"
+    },
+]
 
 export const mainproductsdata = [
     {
@@ -422,7 +462,7 @@ export const Testimonials = [
         name: "Jane Doe",
         pro: "Verified Buyer",
         feedback: "Amazing product! High quality and fast shipping. Will definitely buy again.",
-        image: "/images/testimonials/jane.jpg",
+        image: testimonial1,
         marginTop: false
     },
     {
@@ -430,7 +470,7 @@ export const Testimonials = [
         name: "John Smith",
         pro: "Verified Buyer",
         feedback: "Great customer service and excellent value for money. Highly recommend.",
-        image: "/images/testimonials/john.jpg",
+        image: testimonial2,
         marginTop: true
     },
     {
@@ -438,7 +478,7 @@ export const Testimonials = [
         name: "Emily Johnson",
         pro: "Verified Buyer",
         feedback: "The product exceeded my expectations. I am very satisfied with my purchase.",
-        image: "/images/testimonials/emily.jpg",
+        image: testimonial3,
         marginTop: false
     },
     {
@@ -446,7 +486,7 @@ export const Testimonials = [
         name: "Michael Brown",
         pro: "Verified Buyer",
         feedback: "Fast delivery and fantastic quality. I'm a happy customer!",
-        image: "/images/testimonials/michael.jpg",
+        image: testimonial4,
         marginTop: true
     },
     {
@@ -454,7 +494,7 @@ export const Testimonials = [
         name: "Sophia Davis",
         pro: "Verified Buyer",
         feedback: "Excellent product! I love it. The customer support was also very helpful.",
-        image: "/images/testimonials/sophia.jpg",
+        image: testimonial5,
         marginTop: false
     },
     {
@@ -462,7 +502,7 @@ export const Testimonials = [
         name: "James Wilson",
         pro: "Verified Buyer",
         feedback: "Very pleased with my purchase. The product is top-notch and the service was great.",
-        image: "/images/testimonials/james.jpg",
+        image: testimonial6,
         marginTop: true
     }
 ];
@@ -470,5 +510,5 @@ export const Testimonials = [
 
 // time zone data 
 export const TimeSelectData = [
-    "all", "lastweek", "lastmonth", "newProduct", "mostLiked" 
+    "all", "lastweek", "lastmonth", "newProduct", "mostLiked"
 ]
