@@ -24,7 +24,7 @@ export const {
 
             if (!user.id) {
                 console.error('User id is missing in signIn callback.');
-                return false; // Handle the error case where user id is missing
+                return false;
             }
 
             const existingUser = await getUserById(user.id);
@@ -34,19 +34,50 @@ export const {
                 console.error(`User with id ${user.id} has not verified their email.`);
                 return false;
             }
-
-            // Add 2FA check if necessary
-
             return true;
         },
-        async session({ token, session }) {
-            if (token.sub && session.user) {
-                session.user.id = token.sub;
+        async session({ session, token }) {
+            if (!token.sub) return session;
+
+            const existingUser = await db.user.findUnique({
+                where: { id: token.sub },
+                select: {
+                    id: true,
+                    name: true,
+                    email: true,
+                    image: true,
+                    isAdmin: true,
+                    gender: true,
+                    address: true,
+                    city: true,
+                    state: true,
+                    phoneNo: true,
+                    postalCode: true,
+                    favorite: true,
+                    likes: true,
+                    reviews: true
+                }
+            });
+
+            if (existingUser) {
+                session.user = {
+                    id: existingUser.id,
+                    name: existingUser.name,
+                    email: existingUser.email,
+                    image: existingUser.image,
+                    isAdmin: existingUser.isAdmin,
+                    gender: existingUser.gender,
+                    address: existingUser.address,
+                    city: existingUser.city,
+                    state: existingUser.state,
+                    phoneNo: existingUser.phoneNo,
+                    postalCode: existingUser.postalCode,
+                    favorite: existingUser.favorite,
+                    likes: existingUser.likes,
+                    reviews: existingUser.reviews
+                };
             }
 
-            if (token.isAdmin && session.user) {
-                session.user.isAdmin = token.isAdmin as true | false;
-            }
             return session;
         },
         async jwt({ token }) {
@@ -54,9 +85,10 @@ export const {
 
             const existingUser = await getUserById(token.sub);
 
-            if (!existingUser) return token;
+            if (existingUser) {
+                token.isAdmin = existingUser.isAdmin;
+            }
 
-            token.isAdmin = existingUser.isAdmin;
             return token;
         }
     },

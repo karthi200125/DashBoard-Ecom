@@ -1,23 +1,23 @@
 'use client'
 
+import { Settings } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaRegHeart } from "react-icons/fa";
+import { useCurrentUser } from '../hooks/useCurrentUser';
 import useLoginModal from '../hooks/useLoginModel';
 import useRegisterModal from '../hooks/useRegisterModel';
 import Icon from './Icon';
 import Logo from "./Logo";
 import Line2 from './MenuBar/Line2';
-import { useCurrentUser } from '../hooks/useCurrentUser';
+import { routes } from './dummydata';
 const MobNav = dynamic(() => import("./MenuBar/MenuMobContent"))
 const Search = dynamic(() => import("./Search"))
 const MenuBarContent = dynamic(() => import("./MenuBar/MenuBarContent"))
 const ShoppingCartICon = dynamic(() => import("./ShoppingCartICon/ShoppingCartICon"))
 const UserProfile = dynamic(() => import("./UserProfile"))
-import { usePathname } from 'next/navigation'
-import { routes } from './dummydata';
-import Link from 'next/link';
-import { Settings } from 'lucide-react';
 
 
 const Navbar = () => {
@@ -49,10 +49,6 @@ const Navbar = () => {
     const HandleRegister = () => {
         setActiveLogin("signup")
         registermodel.onOpen()
-    }
-
-    const HandleSearch = (data: any) => {
-        console.log(data)
     }
 
     return (
@@ -108,15 +104,17 @@ const Navbar = () => {
                     <Icon icon={<Settings size={20} />} tooltip="Setting" />
                     :
                     <>
-                        <Search onChange={HandleSearch} placeholder='search products...' />
-                        <Icon icon={<FaRegHeart size={20} />} tooltip='Favoutites' iconCls='hidden md:flex' href='/favourite' />
+                        <Search placeholder='search products...' />
+                        {user &&
+                            <Icon icon={<FaRegHeart size={20} />} tooltip='Favoutites' iconCls='hidden md:flex' href='/favourite' count={user?.favorite?.length} />
+                        }
                         <ShoppingCartICon />
                     </>
                 }
 
                 {user &&
                     <div className={`${user && "mr-[-50px] ml-[50px]"}`} onClick={() => ""}>
-                        <UserProfile profileCls="w-10 h-10 bg-neutral-200" proSrc={user?.image || ""} />
+                        <UserProfile profileCls="w-10 h-10 bg-neutral-200" proSrc={user?.image || ""} user={user} type='nav'/>
                     </div>
                 }
             </div>

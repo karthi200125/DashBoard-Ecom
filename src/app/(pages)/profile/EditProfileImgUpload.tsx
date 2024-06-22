@@ -20,7 +20,7 @@ const EditProfileImgUpload = () => {
 
     return (
         <div className='w-full flex flex-col gap-3'>
-            <h1>Prodile Image</h1>
+            <h2>Profile Image</h2>
             <div className='flex flex-row items-center gap-10 h-full flex-1 '>
                 <input type="file" accept="image/*" className="hidden" id="imageupload" onChange={handleImageUpload} />
 

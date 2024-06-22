@@ -20,6 +20,9 @@ import LadingPageImagekids from '../assets/landingpage/kids.jpg'
 import lcmen from '../assets/ladingcat/lcmens.webp'
 import lcwomen from '../assets/ladingcat/lcwomen.webp'
 import lckid from '../assets/ladingcat/lckid.webp'
+import b1 from '../assets/banner/b1.webp'
+import b2 from '../assets/banner/b2.webp'
+import b3 from '../assets/banner/b3.webp'
 
 const isAdmin = false;
 const user = true;
@@ -121,6 +124,11 @@ export const LadingCategories = [
         href: "/shop?cat=kids",
         subCat: kidsubcategory
     },
+]
+
+// banner images
+export const bannerImage = [
+    b1, b2, b3
 ]
 
 export const mainproductsdata = [

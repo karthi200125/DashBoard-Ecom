@@ -64,7 +64,7 @@ export const getSingleUser = async (id: string) => {
 // delete user 
 export const deleteUser = async (id: string) => {
     try {
-        await db.product.user({
+        await db.user.delete({
             where: {
                 id: id
             }
@@ -81,11 +81,11 @@ export const updateUser = async (values: z.infer<typeof UserSchema>) => {
     const { id, email, name, address, phoneNo, city, state, postalCode, image } = values;
 
     try {
-        const updatedUser = await prisma.user.update({
+        const updatedUser = await db.user.update({
             where: { id },
             data: { email, name, address, phoneNo, city, state, postalCode, image },
         });
-
+        revalidatePath(`/profile/${id}`)
         return { success: "User updated successfully", data: updatedUser };
     } catch (error) {
         console.error("Error updating user:", error);

@@ -19,12 +19,12 @@ const CustomInput: React.FC<InputProps> = ({ name, label, rules, type, inputCls,
 
     return (
         <div className={`flex flex-col gap-1.5 ${inputCls}`}>
-            {label && <label htmlFor={name} className='font-bold'>{label}</label>}
+            {label && <label htmlFor={name} className='text-[12px] font-bold'>{label}</label>}
             {textarea ? (
                 <textarea
                     id={name}
                     {...register(name, rules)}
-                    className={`h-[100px] border rounded-[10px] p-5`}
+                    className={`h-[100px] border text-[10px] rounded-[10px] p-3`}
                     disabled={isLoading}
                 ></textarea>
             ) : (
@@ -32,11 +32,11 @@ const CustomInput: React.FC<InputProps> = ({ name, label, rules, type, inputCls,
                     id={name}
                     type={type ? type : "text"}
                     {...register(name, rules)}
-                    className={`p-3 border rounded-[10px]`}
+                    className={`p-3 border rounded-[10px] text-[10px]`}
                     disabled={isLoading}
                 />
             )}
-            {error && <p className='text-red-500 text-sm font-semibold'>{error.message}</p>}
+            {error && <p className='text-red-500 text-[10px] font-semibold'>{error.message}</p>}
         </div>
     );
 };

@@ -27,7 +27,7 @@ const ProductReview = ({ product }: string[]) => {
       <ReviewModel product={product} />
       {/* review top */}
       <div className='flex flex-col md:flex-row lg:flex-col w-full lg:w-[30%] h-full items-center justify-between lg:justify-start gap-3 lg:sticky top-[100px]'>
-        <CustomBtn arrow onClick={reviewModel.onOpen}>Add your review</CustomBtn>
+        <CustomBtn arrow onClick={reviewModel.onOpen} btnCls='border w-full'>Add your review</CustomBtn>
 
         <div className='w-full flex flex-col gap-3 rounded-[20px] p-5 bg-white border'>
           <h2 className='text-md'>Total reviews</h2>
@@ -41,9 +41,9 @@ const ProductReview = ({ product }: string[]) => {
           <p className='text-sm text-neutral-400'>Average rating this year</p>
         </div>
 
-        <div className='w-full border rounded-[20px] p-5'>
+        {/* <div className='w-full border rounded-[20px] p-5'>
           last
-        </div>
+        </div> */}
       </div>
 
       {/* reviews */}
@@ -53,7 +53,7 @@ const ProductReview = ({ product }: string[]) => {
             <Review key={rev?.id} review={rev} />
           ))
         ) : (
-          <div className='w-full text-center bg-red-400'>No reviews yet</div>
+          <div className='w-full text-center '>No reviews yet , be first reviwer of this product</div>
         )}
       </div>
     </div>

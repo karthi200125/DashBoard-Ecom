@@ -11,12 +11,13 @@ const GoogleAuth = () => {
         })
     }
     return (
-        <div className='flex flex-row items-center justify-center gap-3'>
+        <div className='flex flex-row items-center justify-center gap-3 w-full'>
             <div
-                className='w-[60px] h-[60px] border rounded-full flex items-center justify-center cursor-pointer'
+                className='w-full h-[50px] border rounded-full flex flex-row gap-3 items-center justify-center cursor-pointer'
                 onClick={() => onClick("google")}
             >
                 <CustomImage src={google.src} imgclass='w-[20px] h-[20px]' alt='google' />
+                <h3 className="text-[12px]">Google</h3>
             </div>            
         </div>
     )

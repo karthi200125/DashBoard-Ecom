@@ -31,20 +31,38 @@ export const ProductSchema = z.object({
 
 export const ReviewSchema = z.object({
     revTitle: z.string().min(4, "rewview title should min 4 char"),
-    revRating: z.string().min(1,"cant be empty"),
+    revRating: z.string().min(1, "cant be empty"),
     revDesc: z.string().min(10, "review description should be mini 10 char")
 });
 
 export const UserSchema = z.object({
     name: z.string().min(3, "Username must be at least 3 characters"),
     email: z.string().email("Enter a valid email"),
-    image: z.string().email("image is rquired"),
-    phoneNo: z.string().regex(/^\d+$/, "Enter a valid phone number"),
-    address: z.string().min(5, "Enter your address"),
-    postalCode: z.string().regex(/^\d+$/, "Enter a valid postal code"),
-    city: z.string().min(1, "Select a city"),
-    state: z.string().min(1, "Select a state"),
+    // image: z.string().url("Enter a valid URL").optional(),
+    phoneNo: z.string().regex(/^\d+$/, "Enter a valid phone number").optional(),
+    address: z.string().min(5, "Enter your address").optional(),
+    postalCode: z.string().regex(/^\d+$/, "Enter a valid postal code").optional(),
+    city: z.string().min(1, "Select a city").optional(),
+    state: z.string().min(1, "Select a state").optional(),
 });
 
 
+export const CartItemSchema = z.object({
+    id: z.string(),
+    proName: z.string(),
+    proDesc: z.string(),
+    proPrice: z.number(),
+    proQuantity: z.number(),
+    proImage: z.array(z.string()),
+    proColors: z.array(z.string()),
+    proSizes: z.array(z.string())
+});
 
+export const AddressSchema = z.object({
+    name: z.string().min(3, "Enter your username"),
+    address: z.string().min(3, "Enter your address (door no, street name, city/village)"),
+    postalCode: z.string().min(6, "Enter your postal code").max(6),
+    city: z.string().min(3, "Select your city"),
+    state: z.string().min(3, "Select your state"),
+    phoneNo: z.string().min(10, "Enter your phone number").max(10),
+});

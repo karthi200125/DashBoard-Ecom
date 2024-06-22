@@ -1,18 +1,13 @@
 'use client'
-import SocialIcons from './LandingPage/SocialIcons'
-import Link from 'next/link'
-import Image from '@/components/ui/CustomImage'
+import Image from '@/components/ui/CustomImage';
+import Link from 'next/link';
+import SocialIcons from './LandingPage/SocialIcons';
 import { Aboutus, Help, OnlineShpping } from './dummydata';
-import TextSlideUp from '../Animations/TextSlideUp';
-import { useEffect } from 'react';
 
-const Footer = ({ onLoad }: any) => {
-    useEffect(() => {
-        onLoad && onLoad('Footer');
-    }, []);
-
+const Footer = () => {
+    
     return (
-        <div className='w-full max-h-max flex flex-col justify-between'>
+        <div className='w-full max-h-max flex flex-col justify-between mt-5'>
             <div className='h-[300px] relative'>
                 <Image src={''} imgclass='w-full h-full brightness-[0.5]' alt='' />
                 <div className='absolute bottom-0 left-0 w-full max-h-max text-9xl font-bold text-center text-white'>

@@ -23,7 +23,7 @@ interface SelectProps {
 const CustomSelect = ({ name, control, defaultValue = "", options, selectCls, label, errors }: SelectProps) => {
     return (
         <div className={`grid items-center gap-1.5 ${selectCls}`}>
-            {label && <label className='font-bold'>{label}</label>}
+            {label && <label className='font-bold text-[12px]'>{label}</label>}
             <Controller
                 name={name}
                 control={control}
@@ -43,7 +43,7 @@ const CustomSelect = ({ name, control, defaultValue = "", options, selectCls, la
                             </SelectContent>
                         </Select>
                         {errors && errors[name] && (
-                            <p className="text-red-500 text-sm mt-1">{errors[name].message}</p>
+                            <p className="text-red-500 text-sm mt-1 text-[12px]">{errors[name].message}</p>
                         )}
                     </div>
                 )}

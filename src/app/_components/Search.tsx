@@ -91,7 +91,7 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
                 <input
                     type="text"
                     onChange={handleInputChange}
-                    className='w-full h-full text-black font-bold capitalize text-lg pl-5 rounded-full z-[9999] placeholder:text-md transition-all ease-in-out duration-500 transform-transition'
+                    className='w-full h-full text-black font-bold capitalize text-[12px] pl-5 rounded-full z-[9999] placeholder:text-[12px] transition-all ease-in-out duration-500 transform-transition'
                     placeholder={placeholder}
                     name={name}
                     value={inputValue}

@@ -4,11 +4,15 @@ import { RiShoppingBagLine } from 'react-icons/ri';
 import './ShoppingCartIcon.scss';
 import Link from 'next/link';
 import { useCurrentUser } from '@/app/hooks/useCurrentUser';
+import { useCart } from '../ContextApi/CartContext';
 
 const ShoppingCartIcon = () => {
     const [cartClass, setCartClass] = useState('');
 
-    const cartTotal = 2
+    const { state } = useCart();
+    const { items } = state;
+
+    const cartTotal = items?.length
     const user = useCurrentUser()
 
     useEffect(() => {

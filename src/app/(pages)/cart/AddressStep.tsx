@@ -4,45 +4,61 @@ import CustomBtn from '@/app/_components/CustomBtn';
 import CustomSelect from '@/app/_components/CustomSelect';
 import CustomInput from '@/app/_components/Input';
 import { cities, states } from '@/app/_components/dummydata';
+import { useCurrentUser } from '@/app/hooks/useCurrentUser';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
-
-const schema = z.object({
-    username: z.string().min(3, "Enter your username"),
-    addressLine: z.string().min(3, "Enter your address (door no, street name, city/village)"),
-    postalCode: z.string().min(6, "Enter your postal code").max(6),
-    city: z.string().min(3, "Select your city"),
-    state: z.string().min(3, "Select your state"),
-    phoneNumber: z.string().min(10, "Enter your phone number").max(10),
-    landmark: z.string().min(3, "Enter your near landmark"),
-});
+import { AddressSchema, UserSchema } from '../../../../schemas';
+import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 
 const AddressStep = () => {
-    const methods = useForm({
-        resolver: zodResolver(schema)
+    const user: z.infer<typeof UserSchema> = useCurrentUser();
+    const [next, setNext] = useState(false);
+
+    useEffect(() => {
+        if (user?.name && user?.address && user?.city && user?.state && user?.phoneNo && user?.postalCode) {
+            setNext(true);
+        } else {
+            setNext(false);
+        }
+    }, [user]);
+
+    const methods = useForm<z.infer<typeof AddressSchema>>({
+        resolver: zodResolver(AddressSchema),
+        defaultValues: {
+            name: user?.name || '',
+            address: user?.address || '',
+            city: user?.city || '',
+            state: user?.state || '',
+            phoneNo: user?.phoneNo || '',
+            postalCode: user?.postalCode || ''
+        }
     });
 
     const handleSubmit = (formData: any) => {
+        if (!(user?.name && user?.address && user?.city && user?.state && user?.phoneNo && user?.postalCode)) {
+            toast.error("Enter all information");
+        }
         console.log(formData);
-    }
+    };
 
     return (
         <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(handleSubmit)}>
                 <div className='w-full min-h-[500px] py-3 lg:h-[500px] flex flex-col gap-5'>
                     <div className='flex flex-col gap-2'>
-                        <h1 >Address Details</h1>
-                        <p >Fill in your shipping address details</p>
+                        <h1>Address Details</h1>
+                        <p>Fill in your shipping address details</p>
                     </div>
                     <div className='flex flex-col lg:flex-row gap-3 lg:gap-10'>
                         <div className='flex-1 flex flex-col gap-3'>
-                            <CustomInput label='Full Name' name='username' />
-                            <CustomInput label='Address Line 1' name='addressLine' />
+                            <CustomInput label='Full Name' name='name' />
+                            <CustomInput label='Address Line 1' name='address' />
                             <CustomSelect
                                 name="city"
                                 control={methods.control}
-                                defaultValue="Select City Name"
+                                defaultValue={methods.getValues("city")}
                                 options={cities}
                                 label="Select City"
                                 selectCls="w-full"
@@ -51,7 +67,7 @@ const AddressStep = () => {
                             <CustomSelect
                                 name="state"
                                 control={methods.control}
-                                defaultValue="Select State Name"
+                                defaultValue={methods.getValues("state")}
                                 options={states}
                                 label="Select State"
                                 selectCls="w-full"
@@ -59,12 +75,11 @@ const AddressStep = () => {
                             />
                         </div>
                         <div className='flex-1 flex flex-col gap-3'>
-                            <CustomInput label='Phone Number' name='phoneNumber' type='number' />
+                            <CustomInput label='Phone Number' name='phoneNo' type='number' />
                             <CustomInput label='Postal Code' name='postalCode' type='number' />
-                            <CustomInput label='LandMark' name='landmark' type='text' />
                             <div className='flex flex-row items-center justify-between mt-7 gap-5'>
-                                <CustomBtn arrow btnCls='border w-[200px] ' isLoading={false}>Update Address</CustomBtn>
-                                <CustomBtn btnCls='bg-black w-[200px] text-white' >Next</CustomBtn>
+                                <CustomBtn arrow btnCls='border w-[200px]' isLoading={false}>Update Address</CustomBtn>
+                                <CustomBtn btnCls='bg-black w-[200px] text-white' onClick={() => ""} disabled={!next}>Next</CustomBtn>
                             </div>
                         </div>
                     </div>
@@ -72,6 +87,6 @@ const AddressStep = () => {
             </form>
         </FormProvider>
     );
-}
+};
 
 export default AddressStep;

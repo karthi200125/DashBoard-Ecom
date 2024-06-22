@@ -31,12 +31,14 @@ const CustomImage = ({ src, imgclass, onClick, alt }: CustomImageProps) => {
                     <Image
                         src={src}
                         alt={alt || ''}
-                        fill
-                        priority
+                        layout='responsive'
+                        width={100} 
+                        height={100} 
+                        className={`${imgclass}`}
+                        style={{ imageRendering: 'auto' }}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 </div>
-                // <img src={src} alt="" className={`${imgclass}`} loading='lazy' onClick={onClick} />
             }
         </>
     );

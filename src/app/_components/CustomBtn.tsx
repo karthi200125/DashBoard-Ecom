@@ -15,16 +15,17 @@ interface BtnProps {
     isLoading?: boolean;
     type?: 'button' | 'submit' | 'reset';
     onClick?: () => void;
+    disabled?: boolean
 }
 
-const CustomBtn = ({ children, arrow, btnCls, isLoading, border, arrowCls, onClick, type , RtCls }: BtnProps) => {
+const CustomBtn = ({ children, arrow, btnCls, isLoading, border, arrowCls, onClick, type, RtCls, disabled }: BtnProps) => {
 
     const [isHover, setIsHover] = useState(false);
 
     return (
         <button
             className={`relative overflow-hidden px-2 group flex flex-row items-center gap-3 rounded-full h-[55px] ${border ? "border" : ""} hover:bg-blck hover:txt-white transition duration-300 hover:shadow-xl flex items-center justify-center ${isLoading ? "cursor-not-allowed" : ""} ${btnCls}`}
-            disabled={isLoading}
+            disabled={disabled || isLoading}
             onClick={onClick}
             type={type}
         >
@@ -48,8 +49,8 @@ const CustomBtn = ({ children, arrow, btnCls, isLoading, border, arrowCls, onCli
                         <p className="flex items-center justify-center w-full h-full absolute top-full font-bold uppercase whitespace-nowrap">
                             {children}
                         </p>
-                    </motion.div> */}                    
-                        {children}                    
+                    </motion.div> */}
+                    {children}
                     {arrow && (
                         <div className={`w-[40px] h-[40px] flex items-center justify-center bg-neutral-200 rounded-full rotate-[-45deg] transition duration-500 group-hover:rotate-0 ${arrowCls}`}>
                             <ArrowRight />

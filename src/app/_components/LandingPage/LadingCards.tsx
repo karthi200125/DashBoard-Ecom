@@ -4,14 +4,11 @@ import { toast } from 'sonner';
 import { getAllProducts } from '../../../../actions/product';
 import Cards from '../Cards/Cards';
 import CustomBtn from '../CustomBtn';
+import { useCart } from '../ContextApi/CartContext';
 
-const LandingCards = ({ onLoad }: any) => {
+const LandingCards = () => {
     const [allProducts, setAllProducts] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    useEffect(() => {
-        onLoad && onLoad('LandingCards');
-    }, []);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -31,6 +28,11 @@ const LandingCards = ({ onLoad }: any) => {
 
         fetchProducts();
     }, []);
+
+    const { state, dispatch } = useCart();
+    const { items } = state;
+
+    console.log(items)
 
     return (
         <div className='min-h-screen w-full flex flex-col gap-5 py-5'>

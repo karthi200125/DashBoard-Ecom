@@ -1,5 +1,5 @@
 import moment from 'moment';
 
-export const formatDate = (dateString) => {
+export const formatDate = (dateString:string) => {
     return moment(dateString).format('MMM DD YYYY');
 };

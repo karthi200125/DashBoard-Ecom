@@ -13,6 +13,7 @@ interface IconProps {
 }
 
 const Icon = ({ icon, tooltip, onClick, count, iconCls, href }: IconProps) => {
+    
     return (
         <ToolTip tooltip={tooltip}>
             <Link
@@ -24,7 +25,7 @@ const Icon = ({ icon, tooltip, onClick, count, iconCls, href }: IconProps) => {
                 {icon}
                 {count > 0 && (
                     <div className="absolute top-[-5px] right-[-5px] bg-red-400 w-[12px] h-[12px] flex items-center justify-center rounded-full border-[2px] border-solid border-white">
-                        {/* <span className="text-white text-[8px] font-semibold">{count}</span> */}
+                        {/* <span className="text-white text-[8px] font-semibold"></span> */}
                     </div>
                 )}
             </Link>

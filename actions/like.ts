@@ -2,33 +2,53 @@
 
 import { db } from '@/lib/db';
 import { getUserById } from './users';
+import { getSingleProduct } from './product';
 
-export const likeAction = async (id: string, userId: string) => {
-    const user = await getUserById(userId);    
+export const likeAction = async (productId: string, userId: string) => {
+    const user = await getUserById(userId);
+    const product = await getSingleProduct(productId);
+    if (!user) {
+        return { error: "You are not authorized" };
+    }
+
     try {
-        const isLiked = user?.favorite?.includes(id);        
+        const isLiked = user.favorite.includes(productId);
+        const isProHasLikesUserId = product?.likes?.includes(userId)
+        
+        if (!isLiked && !isProHasLikesUserId) {            
+            const updatedFavorites = [...user.favorite, productId];
 
-        if (isLiked) {
             await db.user.update({
-                where: { id: user.id },
-                data: {
-                    favorite: {
-                        pull: id,
-                    },
-                },
+                where: { id: userId },
+                data: { favorite: updatedFavorites }
             });
-            return { success: "You have removed this product from favorites" };
-        } else {
+            
+            const updatedLikes = [...product?.likes, userId];
+
+            await db.product.update({
+                where: { id: productId },
+                data: { likes: updatedLikes }
+            });
+
+            return { success: "Product has been liked" };        
+        } else {            
+            const updatedFavorites = user.favorite.filter(fav => fav !== productId);
+
             await db.user.update({
-                where: { id: user.id },
-                data: {
-                    favorite: {
-                        push: id,
-                    },
-                },
+                where: { id: userId },
+                data: { favorite: updatedFavorites }
             });
-            return { success: "You have added this product to favorites" };
+            
+            const updatedLikes = product?.likes?.filter(like => like !== userId);
+
+            await db.product.update({
+                where: { id: productId },
+                data: { likes: updatedLikes }
+            });
+
+            return { success: "Product has been disliked" };
         }
+
     } catch (error) {
         return { error: "Failed to update favorites" };
     }

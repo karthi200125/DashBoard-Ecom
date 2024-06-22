@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { SessionProvider } from 'next-auth/react';
-import { Inter } from "next/font/google";
 import { Toaster } from 'sonner';
 import { auth } from "../../auth";
 import LoginModel from "./_components/LoginModel";
 import Navbar from "./_components/Navbar";
 import RegisterModel from "./_components/RegisterModal";
 import "./globals.css";
+import { CartProvider } from './_components/ContextApi/CartContext';
 
 export const metadata: Metadata = {
   title: "E-Commerce",
@@ -23,13 +23,15 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang="en">
         <body style={{ fontFamily: 'Conthrax' }} >
-          <div className="w-full realative">
-            <Navbar />
-            <Toaster position="bottom-right" expand={false} richColors />
-            <RegisterModel />
-            <LoginModel />
-            {children}
-          </div>
+          <CartProvider>
+            <div className="w-full realative">
+              <Navbar />
+              <Toaster position="bottom-right" expand={false} richColors />
+              <RegisterModel />
+              <LoginModel />
+              {children}
+            </div>
+          </CartProvider>
         </body>
       </html>
     </SessionProvider>

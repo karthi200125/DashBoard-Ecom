@@ -4,16 +4,34 @@ import React, { useState } from 'react';
 import './AddToCartBtn.scss';
 import { MdShoppingCart } from "react-icons/md";
 import { FaParachuteBox } from "react-icons/fa";
+import { useCart } from '../ContextApi/CartContext';
+import { CartItemSchema } from '../../../../schemas';
+import { toast } from 'sonner';
 
-const AddToCartBtn = () => {
+type AddToCartBtnProps = {
+    product: z.infer<typeof CartItemSchema>;
+};
+
+const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
     const [clicked, setClicked] = useState(false);
+    const { dispatch } = useCart();
 
     const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation(); // Prevent propagation
+        e.stopPropagation();
         setClicked(true);
         setTimeout(() => {
             setClicked(false);
         }, 3000);
+
+        try {
+            dispatch({
+                type: 'ADD_ITEM',
+                item: { ...product, proQuantity: 1 },
+            });
+            toast.success(`"${product?.proName}" added to the cart`)
+        } catch (error) {
+            toast.error(`"${product?.proName}" add to the cart failed`);
+        }
     };
 
     return (

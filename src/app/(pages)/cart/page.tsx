@@ -1,5 +1,6 @@
 'use client'
 
+import { useCart } from "@/app/_components/ContextApi/CartContext";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 const AddressStep = dynamic(() => import("./AddressStep"));
@@ -10,6 +11,9 @@ const Cart = () => {
 
     const [step, setStep] = useState(1)
 
+    const { state } = useCart();
+    const { items } = state;
+    
     return (
         <div className='p-2 md:p-0 w-full min-h-screen py-5 flex flex-col gap-5 relative'>
 

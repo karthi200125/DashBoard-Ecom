@@ -97,12 +97,12 @@ const LandingPage = ({ onLoad }: any) => {
             {/* bottom left box */}
             <div className='hidden md:flex flex-col absolute bottom-[30px] left-[50px] xl:left-[80px] '>
                 <Curves curveCls='w-[45px] h-[45px] absolute top-[-45px] left-[0px]' />
-                <Curves curveCls='w-[45px] h-[45px] absolute bottom-0 right-[-45px]' />
-                <div className="pt-2 pb-2 pr-5 max-w-max bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
-                    <h2 className='text-[25px] w-full h-full p-3 rounded-[10px] text-black'><b className="text-red-400">{subHeading1}</b> Fashion</h2>
+                <Curves curveCls='w-[45px] h-[45px] absolute bottom-0 right-[-43px]' />
+                <div className="pt-5 pr-5 max-w-max bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
+                    <h2 className='text-[32px] w-full h-full leading-0 rounded-[10px] text-black'><b className="text-red-400">{subHeading1}</b> Fashion</h2>
                 </div>
-                <div className="pt-2 pb-2 pr-5 max-w-max bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
-                    <h2 className='text-[25px] w-full h-full p-3 rounded-[10px] text-black'>{subHeading2}</h2>
+                <div className="pt-5 pr-5 max-w-max bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
+                    <h2 className='text-[32px] w-full h-full leading-0 rounded-[10px] text-black'>{subHeading2}</h2>
                 </div>
             </div>
 

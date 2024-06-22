@@ -61,7 +61,7 @@ export const deletProduct = async (id: string) => {
 }
 
 // get fav products
-export const getFavProducts = async (userId: string, page: string) => {
+export const getFavProducts = async (userId: string, page?: string) => {    
     const ITEM_PER_PAGE = 8;
     try {
         const user = await getUserById(userId);
@@ -80,7 +80,7 @@ export const getFavProducts = async (userId: string, page: string) => {
             },
             take: ITEM_PER_PAGE,
             skip: (ITEM_PER_PAGE * (parseInt(page) - 1)),
-        });
+        });        
         return { success: "Successfully retrieved favorite products", data: favProducts, count };
     } catch (error) {
         return { error: "Failed to retrieve favorite products" };

@@ -45,7 +45,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         });
 
         revalidatePath('/settings')
-        return { success: true, message: 'Login successful' };
+        return { success: 'Login successful' };
 
     } catch (error) {
         if (error instanceof AuthError) {
