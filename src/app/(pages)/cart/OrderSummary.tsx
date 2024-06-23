@@ -1,39 +1,86 @@
-import CustomBtn from '@/app/_components/CustomBtn'
-import React from 'react'
+'use client'
+
+import { useCart } from '@/app/_components/ContextApi/CartContext';
+import CustomBtn from '@/app/_components/CustomBtn';
+import React, { useTransition } from 'react';
+import { CheckOutSession } from '../../../../actions/stripe';
+import { useCurrentUser } from '@/app/hooks/useCurrentUser';
+import { redirect } from 'next/navigation';
+import { toast } from 'sonner';
 
 interface OrderSummaryProps {
-    onStep: () => void; 
+    step: number;
+    onNext: () => void;
+    onBack: () => void;
 }
 
-const OrderSummary = ({ onStep }: OrderSummaryProps) => {
-    const subtotal = 140
-    const estimatedShipping = 40
-    const discountPercentage = 20
-    const discount = (subtotal * discountPercentage) / 100
-    const orderTotal = subtotal + estimatedShipping - discount
+const OrderSummary = ({ step, onNext, onBack }: OrderSummaryProps) => {
+    const [isLoading, startTransition] = useTransition();
+    const { state } = useCart();
+    const { items } = state;
+
+    const user = useCurrentUser()
+
+    const subtotal = items?.reduce((acc, product) => {
+        const productTotal = product.proPrice * product.proQuantity;
+        return acc + productTotal;
+    }, 0);
+
+    const estimatedShipping = 0;
+    const discountPercentage = 20;
+    const discount = (subtotal * discountPercentage) / 100;
+    const orderTotal = subtotal + estimatedShipping - discount;
+
+    const HandleCheckOut = () => {
+        const data = {
+            user,
+            products: items
+        }
+        startTransition(() => {
+            CheckOutSession(data)
+                .then((data) => {
+                    if (data?.sessionUrl) {
+                        window.location.href = data?.sessionUrl
+                    }
+                    if (data?.error) {
+                        toast.error(data?.error)
+                    }
+                })
+        })
+
+    }
 
     return (
         <div className='w-full h-full flex flex-col justify-between'>
-            <h1 className='text-xl font-bold border-b-[1px] pb-2'>Cart Summary</h1>
-            <div className='flex flex-row justify-between items-center'>
-                <h3>Subtotal</h3>
-                <span className='text-md font-bold'>${subtotal.toFixed(2)}</span>
+            <h3 className='border-b-[1px] pb-2'>Cart Summary</h3>
+            <div className='flex flex-row justify-between items-center text-neutral-400 text-[15px]'>
+                <p className='text-[15px]'>Subtotal</p>
+                <span>₹ {subtotal?.toFixed(2)}</span>
+            </div>
+            <div className='flex flex-row justify-between items-center text-neutral-400 text-[15px]'>
+                <p className='text-[15px]'>Estimated Shipping</p>
+                <span>₹ {estimatedShipping.toFixed(2)}</span>
+            </div>
+            <div className='flex flex-row justify-between items-center text-neutral-400 text-[15px]'>
+                <p className='text-[15px]'>Discount</p>
+                <span>₹ {discount.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center'>
-                <h3>Estimated Shipping</h3>
-                <span className='text-md font-bold'>${estimatedShipping.toFixed(2)}</span>
+                <h4 >Order Total</h4>
+                <span className='text-md font-bold'>₹{orderTotal.toFixed(2)}</span>
             </div>
-            <div className='flex flex-row justify-between items-center'>
-                <h3>Discount</h3>
-                <span className='text-md font-bold'>${discount.toFixed(2)}</span>
+            <div className="flex flex-row items-center gap-5">
+                {step !== 0 &&
+                    <CustomBtn btnCls='flex-1 border hover:opacity-70' onClick={onBack} disabled={step === 0}>
+                        {step === 1 ? "Back" : "Back"}
+                    </CustomBtn>
+                }
+                <CustomBtn btnCls='flex-1 bg-black text-white hover:opacity-70' onClick={step === 3 ? HandleCheckOut : onNext} isLoading={step === 3 && isLoading}>
+                    {step === 0 || step === 1 ? "Next" : "CheckOut"}
+                </CustomBtn>
             </div>
-            <div className='flex flex-row justify-between items-center border p-2'>
-                <h3 className='font-bold'>Order Total</h3>
-                <span className='text-md font-bold'>${orderTotal.toFixed(2)}</span>
-            </div>
-            <CustomBtn btnCls='bg-black text-white hover:opacity-70' onClick={onStep}>Continue</CustomBtn>
         </div>
-    )
-}
+    );
+};
 
-export default OrderSummary
+export default OrderSummary;

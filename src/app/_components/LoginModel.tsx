@@ -33,6 +33,7 @@ const LoginBody = () => {
         startTransition(() => {
             login(formData)
                 .then((data) => {
+                    console.log(data)
                     if (data.success) {
                         loginmodel.onClose()
                         toast.success(data.success);

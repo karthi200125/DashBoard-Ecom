@@ -73,7 +73,7 @@ const CartContext = createContext<{
     dispatch: () => null,
 });
 
-export const CartProvider: React.FC = ({ children }) => {
+export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     const [state, dispatch] = useReducer(cartReducer, initialCartState);
 
     // Load cart items from local storage on initial render (Client-side only)

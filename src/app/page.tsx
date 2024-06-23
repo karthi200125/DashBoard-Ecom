@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import PreLoading from './_components/Loaders/PreLoading';
 
+
 // const LandingPage = dynamic(() => import('./_components/LandingPage/LandingPage'), { ssr: false });
 // const Banners = dynamic(() => import('./_components/LandingPage/Banners'), { ssr: false });
 const LandingCards = dynamic(() => import('./_components/LandingPage/LadingCards'), { ssr: false });

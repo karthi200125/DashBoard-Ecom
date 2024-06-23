@@ -78,12 +78,12 @@ export const deleteUser = async (id: string) => {
 
 // update user
 export const updateUser = async (values: z.infer<typeof UserSchema>) => {
-    const { id, email, name, address, phoneNo, city, state, postalCode, image } = values;
+    const { id, ...updateData } = values;
 
     try {
         const updatedUser = await db.user.update({
             where: { id },
-            data: { email, name, address, phoneNo, city, state, postalCode, image },
+            data: updateData,
         });
         revalidatePath(`/profile/${id}`)
         return { success: "User updated successfully", data: updatedUser };
@@ -93,4 +93,3 @@ export const updateUser = async (values: z.infer<typeof UserSchema>) => {
     }
 };
 
-// 

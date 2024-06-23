@@ -50,7 +50,7 @@ const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserPr
                     </AvatarFallback>
                 </Avatar>
             </HoverCardTrigger>
-            <HoverCardContent className="w-100 rounded-[20px] bg-white z-10 p-3">
+            <HoverCardContent className="w-150 rounded-[20px] bg-white z-10 p-3">
 
                 <div className="flex justify-between flex-row items-start gap-5">
                     <Avatar className="w-12 h-12">

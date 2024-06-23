@@ -1,3 +1,4 @@
+import AllProviders from "@/lib/AllProviders";
 import type { Metadata } from "next";
 import { SessionProvider } from 'next-auth/react';
 import { Toaster } from 'sonner';
@@ -6,7 +7,6 @@ import LoginModel from "./_components/LoginModel";
 import Navbar from "./_components/Navbar";
 import RegisterModel from "./_components/RegisterModal";
 import "./globals.css";
-import { CartProvider } from './_components/ContextApi/CartContext';
 
 export const metadata: Metadata = {
   title: "E-Commerce",
@@ -20,10 +20,10 @@ export default async function RootLayout({
 }>) {
   const session = await auth()
   return (
-    <SessionProvider session={session}>
-      <html lang="en">
-        <body style={{ fontFamily: 'Conthrax' }} >
-          <CartProvider>
+    <AllProviders>
+      <SessionProvider session={session}>
+        <html lang="en">
+          <body style={{ fontFamily: 'Conthrax' }} >
             <div className="w-full realative">
               <Navbar />
               <Toaster position="bottom-right" expand={false} richColors />
@@ -31,9 +31,9 @@ export default async function RootLayout({
               <LoginModel />
               {children}
             </div>
-          </CartProvider>
-        </body>
-      </html>
-    </SessionProvider>
+          </body>
+        </html>
+      </SessionProvider>
+    </AllProviders>
   );
 }

@@ -1,28 +1,19 @@
 'use client'
 import StarRating from '@/app/_components/Cards/StarRating'
+import { monthsAgo } from '@/app/hooks/MomentDate'
 import Image from '@/components/ui/CustomImage'
-import React, { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 import { getUserById } from '../../../../actions/users'
 
 const Review = ({ review }: string[]) => {
 
     const [showMore, setShowMore] = useState<boolean>(false);
-    const [reviewUser, setreviewUser] = useState<string[]>([]);
-
-    const handleToggle = () => {
-        setShowMore(!showMore);
-    };
-
-    useEffect(() => {
-        const getReviewUser = async () => {
-            if (review?.userId) {
-                const reviewUser = await getUserById(review.userId);
-                setreviewUser(reviewUser);
-                console.log(reviewUser)
-            }
-        };
-        getReviewUser();
-    }, [review?.userId]);
+    
+    const { isPending, data: reviewUser } = useQuery({
+        queryKey: ['reviewuser'],
+        queryFn: async () => await getUserById(review.userId)
+    })
 
     const rating = Number(review?.revRating)
 
@@ -44,13 +35,13 @@ const Review = ({ review }: string[]) => {
                 <p className={`capitalize ${showMore ? '' : 'line-clamp-2'}`}>
                     {review?.revDesc}
                 </p>
-                <button onClick={handleToggle} className="text-blue-500 mt-2 text-sm">
+                <button onClick={() => setShowMore(!showMore)} className="text-blue-500 mt-2 text-sm">
                     {showMore ? 'Show Less' : 'Show More'}
                 </button>
                 <div className='md:hidden flex flex-row items-center gap-2 text-sm '>
                     <h1 className='font-bold'>by {reviewUser?.name}</h1>
                     <span className='w-[5px] h-[5px] rounded-full bg-black'></span>
-                    <p className='text-sm text-neutral-400'>"date"</p>
+                    <p className='text-sm text-neutral-400'>{monthsAgo(reviewUser?.createdAt)}</p>
                 </div>
             </div>
         </div>
