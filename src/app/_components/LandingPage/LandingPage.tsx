@@ -7,6 +7,7 @@ import { LadingPageMainContents } from '../dummydata'
 import Curves from './Curves'
 import SocialIcons from './SocialIcons'
 import TransitionLink from '@/app/Animations/TransitionLink'
+import LetterAnimation from '@/app/Animations/LetterAnimation'
 
 const LandingPage = ({ onLoad }: any) => {
     const [mainImage, setMainImage] = useState(LadingPageMainContents[0]?.image)
@@ -44,7 +45,7 @@ const LandingPage = ({ onLoad }: any) => {
             </div>
 
             {/* buttons */}
-            <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row md:flex-col xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[95px] bottom-0 md:bottom-[-25px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+            <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row  xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[95px] bottom-0 md:bottom-[125px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                 <TransitionLink href='/shop'>
                     <CustomBtn arrow btnCls='bg-black text-white pl-5 md:pl-10 ' arrowCls='bg-white text-black'>
                         Shop Now
@@ -54,7 +55,7 @@ const LandingPage = ({ onLoad }: any) => {
             </div>
 
             {/* customer happy div */}
-            <div className='glass md:flex w-[220px] xl:w-[300px] max-h-max gap-2 rounded-[10px] md:rounded-[30px] p-5 md:p-8 absolute right-[8%] md:right-[17%] top-[8%] md:top-[25%] xl:top-[25%] xl:flex flex-col justify-between text-white'>
+            <div className='hidden glass xl:flex w-[220px] xl:w-[300px] max-h-max gap-2 rounded-[10px] md:rounded-[30px] p-5 md:p-8 absolute right-[8%] md:right-[17%] top-[8%] md:top-[25%] xl:top-[25%] flex-col justify-between text-white'>
                 <div className='flex flex-row items-center justify-between'>
                     <h1>24K</h1>
                     <ArrowRight className='rotate-[-45deg]' size={25} />
@@ -65,13 +66,19 @@ const LandingPage = ({ onLoad }: any) => {
 
             {/* main text */}
             <div className='md:flex flex-col p-5 rounded-[20px] absolute max-w-max top-[30%] md:top-[7%] left-[2%] md:left-[7%]'>
-                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >{heading1}</h1>
-                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px" }}>{heading2}</h1>
-                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>{heading3}</h1>
+                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >
+                    <LetterAnimation title={heading1} />
+                </h1>
+                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px" }}>
+                    <LetterAnimation title={heading2} />
+                </h1>
+                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>
+                    <LetterAnimation title={heading3} />
+                </h1>
             </div>
 
             {/* three images */}
-            <div className='hidden md:flex flex-col justify-between gap-2 h-[65%] xl:w-[15%] overflow-hidden'>
+            <div className='hidden md:flex flex-col justify-between gap-2 h-[65%] md:w-[20%] xl:w-[15%] overflow-hidden'>
                 {miniImages?.map((mi, i) => (
                     <div className="w-full h-full rounded-[20px] bg-neutral-100 transition duration-300 overflow-hidden" key={i} onClick={() => handleClick(i)}>
                         <Image src={mi} imgclass='w-full h-full bg-neutral-100' alt='main 3 images' />
@@ -99,10 +106,10 @@ const LandingPage = ({ onLoad }: any) => {
                 <Curves curveCls='w-[45px] h-[45px] absolute top-[-45px] left-[0px]' />
                 <Curves curveCls='w-[45px] h-[45px] absolute bottom-0 right-[-43px]' />
                 <div className="pt-5 pr-5 max-w-max bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
-                    <h2 className='text-[32px] w-full h-full leading-0 rounded-[10px] text-black'><b className="text-red-400">{subHeading1}</b> Fashion</h2>
+                    <h2 className='md:text-xl xl:text-[32px] w-full h-full leading-0 rounded-[10px] text-black'><b className="text-red-400">{subHeading1}</b> Fashion</h2>
                 </div>
                 <div className="pt-5 pr-5 max-w-max bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
-                    <h2 className='text-[32px] w-full h-full leading-0 rounded-[10px] text-black'>{subHeading2}</h2>
+                    <h2 className='md:text-xl xl:text-[32px] w-full h-full leading-0 rounded-[10px] text-black'>{subHeading2}</h2>
                 </div>
             </div>
 

@@ -62,7 +62,7 @@ const OrderSummary = ({ step, onNext, onBack }: OrderSummaryProps) => {
                 <span>₹ {estimatedShipping.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center text-neutral-400 text-[15px]'>
-                <p className='text-[15px]'>Discount</p>
+                <p className='text-[15px]'>Discount ({discountPercentage}%)</p>
                 <span>₹ {discount.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center'>
@@ -75,7 +75,7 @@ const OrderSummary = ({ step, onNext, onBack }: OrderSummaryProps) => {
                         {step === 1 ? "Back" : "Back"}
                     </CustomBtn>
                 }
-                <CustomBtn btnCls='flex-1 bg-black text-white hover:opacity-70' onClick={step === 3 ? HandleCheckOut : onNext} isLoading={step === 3 && isLoading}>
+                <CustomBtn btnCls='flex-1 bg-black text-white hover:opacity-70' onClick={step === 3 ? HandleCheckOut : onNext} isLoading={step === 3 && isLoading} disabled={items?.length === 0}>
                     {step === 0 || step === 1 ? "Next" : "CheckOut"}
                 </CustomBtn>
             </div>

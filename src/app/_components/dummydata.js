@@ -251,6 +251,7 @@ export const colors = [
     'red',
     'yellow',
     'blue',
+    'black',
     'green',
     'magneta',
     'orange',

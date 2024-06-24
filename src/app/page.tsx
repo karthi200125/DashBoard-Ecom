@@ -4,12 +4,12 @@ import { useState } from 'react';
 import PreLoading from './_components/Loaders/PreLoading';
 
 
-// const LandingPage = dynamic(() => import('./_components/LandingPage/LandingPage'), { ssr: false });
-// const Banners = dynamic(() => import('./_components/LandingPage/Banners'), { ssr: false });
+const LandingPage = dynamic(() => import('./_components/LandingPage/LandingPage'), { ssr: false });
+const Banners = dynamic(() => import('./_components/LandingPage/Banners'), { ssr: false });
 const LandingCards = dynamic(() => import('./_components/LandingPage/LadingCards'), { ssr: false });
-// const LandingCategories = dynamic(() => import('./_components/LandingPage/LandingCategories'), { ssr: false });
-// const Testimonials = dynamic(() => import('./_components/LandingPage/TestMonials'), { ssr: false });
-// const Footer = dynamic(() => import('./_components/Footer'), { ssr: false });
+const LandingCategories = dynamic(() => import('./_components/LandingPage/LandingCategories'), { ssr: false });
+const Testimonials = dynamic(() => import('./_components/LandingPage/TestMonials'), { ssr: false });
+const Footer = dynamic(() => import('./_components/Footer'), { ssr: false });
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,17 +20,17 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white w-full">
-      {/* {isLoading && <PreLoading />}
+      {isLoading && <PreLoading />}
       <LandingPage onLoad={handleLoad} />
-      {!isLoading && */}
+      {!isLoading &&
         <>
-          {/* <LandingCategories />
-          <Banners /> */}
+          <LandingCategories />
+          <Banners />
           <LandingCards />
-          {/* <Testimonials />
-          <Footer /> */}
+          <Testimonials />
+          <Footer />
         </>
-      {/* } */}
+      }
     </main>
   );
 }

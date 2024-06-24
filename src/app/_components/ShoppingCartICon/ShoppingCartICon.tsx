@@ -25,11 +25,13 @@ const ShoppingCartIcon = () => {
     }, [cartTotal]);
 
     return (
-        <Link href={'/cart'} className={`hidden md:flex cart ${!user ? "right-[10px]" : "right-[60px]"} ${cartClass}`} prefetch={false}>
+        <Link href={'/cart'} className={`flex cart ${!user ? "right-[10px]" : "right-[10px] md:right-[60px]"} ${cartClass}`} prefetch={false}>
             <RiShoppingBagLine size={20} />
-            <div className={`absolute top-[-5px] right-[-5px] bg-red-400 w-[20px] h-[20px] flex items-center justify-center rounded-full border-[2px] border-solid border-white text-white text-[10px]`}>
-                {cartTotal}
-            </div>
+            {cartTotal > 0 &&
+                <div className={`absolute top-[-5px] right-[-5px] bg-red-400 w-[20px] h-[20px] flex items-center justify-center rounded-full border-[2px] border-solid border-white text-white text-[10px]`}>
+                    {cartTotal}
+                </div>
+            }
         </Link>
     );
 };

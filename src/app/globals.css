@@ -20,7 +20,7 @@
 }
 
 body {
-    @apply md:container min-h-screen bg-white;
+    @apply md:container min-h-screen bg-white overflow-x-hidden;
     font-family: 'conthrax', sans-serif;
 }
 
@@ -184,57 +184,6 @@ body {
 }
 
 
-/* mobile nav css */
-.menu {
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-}
-
-.menu div {
-    width: 25px;
-    height: 40px;
-    position: relative;
-}
-
-.menu span {
-    /* background-color: black; */
-    height: 2px;
-    width: 100%;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: transform 0.3s, width 0.3s;
-    border-radius: 30px;
-}
-
-.menu .line1 {
-    transform: translate(-50%, -8px);
-}
-
-.menu .line2 {
-    transform: translate(-50%, 0px);
-}
-
-.menu .line3 {
-    transform: translate(-50%, 8px);
-    width: 80%;
-}
-
-.openmenu .line1 {
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.openmenu .line3 {
-    transform: translate(-50%, -50%) rotate(-45deg);
-    width: 100%;
-}
-
-.openmenu .line2 {
-    width: 0;
-}
 
 
 
@@ -326,7 +275,7 @@ svg circle:nth-child(2) {
 /* custom elemtns */
 
 h1 {
-    @apply text-3xl md:text-5xl font-bold
+    @apply text-xl md:text-3xl lg:text-5xl font-bold
 }
 
 h2 {
@@ -343,4 +292,18 @@ h4 {
 
 p {
     @apply text-[10px] text-neutral-400;
+}
+
+.custom-sloped-corner {
+    clip-path: polygon(0 0, 100% 0, 100% 0, 85% 100%, 0 100%);
+}
+
+
+.row-title {
+    display: inline-block;
+}
+
+.row-letter {
+    display: inline-block;
+    overflow: hidden;
 }

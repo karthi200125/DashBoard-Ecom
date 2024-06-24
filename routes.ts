@@ -1,3 +1,15 @@
+// 'use client'
+
+// import { usePathname } from "next/navigation";
+
+// export const test = () => {
+//     return (
+//         <div>
+//             test
+//         </div>
+//     )
+// }
+// const pathname = usePathname()
 /**
  * An array of routes that are accessible to the public.
  * These routes do not require authentication.
@@ -8,7 +20,6 @@ export const publicRoutes = [
     '/',
     '/shop',
     '/cart',
-    '/favourite',
     '/new-verification',
     '/reset',
     '/new-password'
@@ -26,4 +37,5 @@ export const apiAuthPrefix = '/api/auth';
  * Default redirect after login.
  * @type {string}
  */
-export const DEFAULT_REDIRECT = '/settings';
+// export const DEFAULT_REDIRECT = '/settings';
+export const DEFAULT_REDIRECT = `/`;

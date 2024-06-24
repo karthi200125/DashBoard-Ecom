@@ -8,3 +8,8 @@ Invalid `prisma.user.findUnique()` invocation:
 
 
 Error in connector: Error creating a database connection. (Kind: An error occurred during DNS resolution: proto error: io error: A socket operation was attempted to an unreachable network. (os error 10051), labels: {})
+2024-06-23T16:31:49.487Z error: Fetch single user failed for ID: 1, Error: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation:
+
+
+Inconsistent column data: Malformed ObjectID: provided hex string representation must be exactly 12 bytes, instead got: "1", length 1.

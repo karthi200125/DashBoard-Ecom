@@ -21,19 +21,19 @@ const Footer = () => {
                     <div className='flex flex-col gap-2'>
                         <h2 className='text-white'>About Us</h2>
                         {Aboutus?.map((about) => (
-                            <Link key={about?.id} href={''} className='max-w-max text-neutral-400 text-md hoveranimation'>{about?.title}</Link>
+                            <Link key={about?.id} href={''} className='max-w-max text-neutral-400 text-[12px] hoveranimation'>{about?.title}</Link>
                         ))}
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h2 className=' text-white'>Help</h2>
                         {Help?.map((help) => (
-                            <Link key={help?.id} href={''} className='max-w-max text-neutral-400 text-md hoveranimation'>{help?.title}</Link>
+                            <Link key={help?.id} href={''} className='max-w-max text-neutral-400 text-[12px] hoveranimation'>{help?.title}</Link>
                         ))}
                     </div>
                     <div className='flex flex-col gap-2'>
                         <h2 className='text-white'>Online Shopping</h2>
                         {OnlineShpping?.map((os) => (
-                            <Link key={os?.id} href={''} className='max-w-max text-neutral-400 text-md hoveranimation'>{os?.title}</Link>
+                            <Link key={os?.id} href={''} className='max-w-max text-neutral-400 text-[12px] hoveranimation'>{os?.title}</Link>
                         ))}
                     </div>
                 </div>
@@ -57,7 +57,7 @@ const Footer = () => {
 
             {/* bottom rights reserved */}
             <div className='max-h-max md:h-[80px] flex flex-col md:flex-row items-center justify-between gap-5 py-5'>
-                <h3 className='text-center'>© 2024 www.myntra.com. All rights reserved</h3>
+                <p className='text-center text-black text-[12px]'>© 2024 Dexons All rights reserved</p>
                 <div className='flex fex-row gap-3 items-center'>
                     <p className='hoveranimation'>Privacy Policy</p>
                     <p className='hoveranimation'>Terms & Services</p>

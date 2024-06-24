@@ -1,5 +1,4 @@
-// import { redirect } from "next/navigation";
-// import { useCurrentUser } from "../hooks/useCurrentUser";
+import ProtectedRoute from "../_components/ProtectedRoute";
 
 const DashBoardLayout = ({
     children
@@ -7,18 +6,12 @@ const DashBoardLayout = ({
     children: React.ReactNode;
 }>) => {
 
-    // const user = useCurrentUser()
-
-    // console.log("user", !user)
-
-    // if(!user && user?.isAdmin !== true){
-    //     return redirect('/')
-    // }
-
     return (
+        <ProtectedRoute>
         <div className="min-h-screen">            
             {children}
         </div>
+        </ProtectedRoute>
     )
 }
 

@@ -31,12 +31,12 @@ const CustomImage = ({ src, imgclass, onClick, alt }: CustomImageProps) => {
                     <Image
                         src={src}
                         alt={alt || ''}
-                        layout='responsive'
+                        // layout='responsive'
                         width={100} 
                         height={100} 
                         className={`${imgclass}`}
-                        style={{ imageRendering: 'auto' }}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        // style={{ imageRendering: 'auto' }}
+                        // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 </div>
             }

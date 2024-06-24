@@ -9,6 +9,8 @@ const CartItemSchema = z.object({
     proDesc: z.string(),
     proPrice: z.number(),
     proQuantity: z.number(),
+    proSelectedColor: z.number(),
+    proSelectedsize: z.number(),
     proImage: z.array(z.string()),
     proColors: z.array(z.string()),
     proSizes: z.array(z.string())
@@ -23,7 +25,11 @@ type CartState = {
 type CartAction =
     | { type: 'ADD_ITEM'; item: CartItem }
     | { type: 'REMOVE_ITEM'; id: string }
-    | { type: 'UPDATE_ITEM'; id: string; quantity: number }
+    | { type: 'UPDATE_ITEM_QUANTITY'; id: string; quantity: number }
+    | { type: 'UPDATE_ITEM_COLORS'; id: string; colors: string[] }
+    | { type: 'UPDATE_ITEM_SIZES'; id: string; sizes: string[] }
+    | { type: 'UPDATE_ITEM_SELECTED_COLOR'; id: string; color: string }
+    | { type: 'UPDATE_ITEM_SELECTED_SIZE'; id: string; size: string }
     | { type: 'CLEAR_CART' }
     | { type: 'SET_CART'; items: CartItem[] };
 
@@ -49,11 +55,39 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
                 ...state,
                 items: state.items.filter(item => item.id !== action.id)
             };
-        case 'UPDATE_ITEM':
+        case 'UPDATE_ITEM_QUANTITY':
             return {
                 ...state,
                 items: state.items.map(item =>
                     item.id === action.id ? { ...item, proQuantity: action.quantity } : item
+                ),
+            };
+        case 'UPDATE_ITEM_COLORS':
+            return {
+                ...state,
+                items: state.items.map(item =>
+                    item.id === action.id ? { ...item, proColors: action.colors } : item
+                ),
+            };
+        case 'UPDATE_ITEM_SIZES':
+            return {
+                ...state,
+                items: state.items.map(item =>
+                    item.id === action.id ? { ...item, proSizes: action.sizes } : item
+                ),
+            };
+        case 'UPDATE_ITEM_SELECTED_COLOR':
+            return {
+                ...state,
+                items: state.items.map(item =>
+                    item.id === action.id ? { ...item, proSelectedColor: action.color } : item
+                ),
+            };
+        case 'UPDATE_ITEM_SELECTED_SIZE':
+            return {
+                ...state,
+                items: state.items.map(item =>
+                    item.id === action.id ? { ...item, proSelectedSize: action.size } : item
                 ),
             };
         case 'CLEAR_CART':

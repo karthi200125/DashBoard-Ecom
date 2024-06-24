@@ -24,7 +24,7 @@ const CustomBtn = ({ children, arrow, btnCls, isLoading, border, arrowCls, onCli
 
     return (
         <button
-            className={`relative overflow-hidden px-2 group flex flex-row items-center gap-3 rounded-full h-[55px] ${border ? "border" : ""} hover:bg-blck hover:txt-white transition duration-300 hover:shadow-xl flex items-center justify-center ${isLoading ? "cursor-not-allowed" : ""} ${btnCls}`}
+            className={`relative overflow-hidden px-2 group  text-[12px] md:text-[15px] flex flex-row items-center gap-3 rounded-full h-[55px] ${border ? "border" : ""} hover:bg-blck hover:txt-white transition duration-300 hover:shadow-xl flex items-center justify-center whitespace-nowrap ${isLoading || disabled ? "cursor-not-allowed" : ""} ${btnCls}`}
             disabled={disabled || isLoading}
             onClick={onClick}
             type={type}

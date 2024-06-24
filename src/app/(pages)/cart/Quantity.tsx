@@ -1,47 +1,43 @@
-'use client'
-import React, { useState, useEffect } from 'react'
+'use client';
+import React, { useState, useEffect } from 'react';
+import { useCart } from '@/app/_components/ContextApi/CartContext';
 
 interface QuantityProps {
-    quanityCls?: string,
-    onQuantity?: (value: number) => void;
+    id: string;
+    quantity: number;
 }
 
-const Quantity = ({ quanityCls, onQuantity }: QuantityProps) => {
-    const [quantity, setQuantity] = useState(1)
+const Quantity = ({ id, quantity }: QuantityProps) => {
+    const [currentQuantity, setCurrentQuantity] = useState(quantity || 1);
+    const { dispatch } = useCart();
 
     const handleDecrease = () => {
-        setQuantity(prevQuantity => {
-            const newQuantity = Math.max(1, prevQuantity - 1)
-            if (onQuantity) {
-                onQuantity(newQuantity)
-            }
-            return newQuantity
-        })
-    }
+        setCurrentQuantity(prevQuantity => {
+            const newQuantity = Math.max(1, prevQuantity - 1);
+            dispatch({ type: 'UPDATE_ITEM', id, quantity: newQuantity });
+            return newQuantity;
+        });
+    };
 
     const handleIncrease = () => {
-        setQuantity(prevQuantity => {
-            const newQuantity = prevQuantity + 1
-            if (onQuantity) {
-                onQuantity(newQuantity)
-            }
-            return newQuantity
-        })
-    }
+        setCurrentQuantity(prevQuantity => {
+            const newQuantity = prevQuantity + 1;
+            dispatch({ type: 'UPDATE_ITEM', id, quantity: newQuantity });
+            return newQuantity;
+        });
+    };
 
     useEffect(() => {
-        if (onQuantity) {
-            onQuantity(quantity)
-        }
-    }, [quantity, onQuantity])
+        dispatch({ type: 'UPDATE_ITEM', id, quantity: currentQuantity });
+    }, [currentQuantity, dispatch, id]);
 
     return (
-        <div className={`border h-[50px] flex flex-row gap-3 justify-between items-center px-5 ${quanityCls}`}>
+        <div className='border h-[50px] flex flex-row gap-3 justify-between items-center px-5'>
             <button onClick={handleDecrease}>-</button>
-            <h2>{quantity}</h2>
+            <h2>{currentQuantity}</h2>
             <button onClick={handleIncrease}>+</button>
         </div>
-    )
-}
+    );
+};
 
-export default Quantity
+export default Quantity;

@@ -5,9 +5,10 @@ import { getAllProducts } from '../../../../actions/product';
 import Cards from '../Cards/Cards';
 import { useCart } from '../ContextApi/CartContext';
 import CustomBtn from '../CustomBtn';
+import { useRouter } from 'next/navigation';
 
 const LandingCards = () => {    
-    
+    const router = useRouter()
     const { isPending, error, data } = useQuery({
         queryKey: ['allproducts'],
         queryFn: async () => await getAllProducts()
@@ -27,7 +28,7 @@ const LandingCards = () => {
                 <h1 className='mt-3'>Fresh off The Boat</h1>
             </div>
             <Cards products={data?.data} isLoading={isPending} />
-            <CustomBtn arrow btnCls='w-[200px] mx-auto border'>
+            <CustomBtn arrow btnCls='w-[300px] mx-auto border' onClick={()=> router.push('/shop')}>
                 See All Products
             </CustomBtn>
         </div>

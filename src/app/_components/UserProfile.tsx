@@ -36,6 +36,7 @@ const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserPr
     const handleLogout = () => {
         router.push('/')
         signOut()
+        router.refresh()
         localStorage.removeItem('addimages')
         localStorage.removeItem('filterValues')
     }
@@ -71,7 +72,7 @@ const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserPr
                         {user?.id === CurrentUser?.id && type === "nav" &&
                             < div className="border-t py-1">
                                 <div className="flex flex-row items-center gap-3 hover:bg-neutral-100 cursor-pointer rounded-[5px] w-full h-[40px] px-2" onClick={handleLogout}>
-                                    <LogOut size={18}/>
+                                    <LogOut size={18} />
                                     <p className="text-muted-foreground">Logout</p>
                                 </div>
                             </div>

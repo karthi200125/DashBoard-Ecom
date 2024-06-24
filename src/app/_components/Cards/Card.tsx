@@ -8,6 +8,7 @@ import AddToCartBtn from '../AddToCartBtn/AddToCartBtn'
 import Heart from '../Heart/Heart'
 import StarRating from './StarRating'
 import { useRouter } from 'next/navigation'
+import { FaStar } from 'react-icons/fa'
 
 interface CardProps {
     card?: any
@@ -17,7 +18,7 @@ const Card = ({ card }: CardProps) => {
     const router = useRouter()
     const [reviews, setReviews] = useState([]);
     const totalRating = reviews?.length > 0 ? reviews.reduce((sum, review) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
-    const averageRating = reviews.length > 0 ? totalRating / reviews.length : 0;
+    const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
 
     useEffect(() => {
         const getReviews = async () => {
@@ -38,7 +39,7 @@ const Card = ({ card }: CardProps) => {
                 <Image
                     src={card?.proImage[0] || ""}
                     imgclass='w-full h-full bg-neutral-200 object-contain transition duration-500 transform group-hover:scale-[1.3]'
-                    alt=''                    
+                    alt=''
                 />
                 <div className='w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center absolute top-3 right-3'>
                     <Heart product={card} />
@@ -56,7 +57,15 @@ const Card = ({ card }: CardProps) => {
 
                 {/* rating */}
                 <div className='flex flex-row items-center justify-between'>
-                    <StarRating rating={averageRating} size='15' />
+                    {/* <StarRating rating={averageRating} size='15'/> */}
+                    <div className='border rounded-full px-5 h-[35px] flex flex-row items-center gap-3'>
+                        <div className="flex flex-row items-center gap-2">
+                            <p className='text-muted-foreground'>{averageRating}</p>
+                            <FaStar className="text-yellow-500" size={10}/>
+                        </div>
+                        <span className="h-[20px] w-[1px] bg-neutral-200"></span>
+                        <p className='text-muted-foreground'>{reviews?.length}</p>
+                    </div>
                     <h2>₹ {card?.proPrice} <span className="text-neutral-400">Rs</span></h2>
                 </div>
 
@@ -65,7 +74,7 @@ const Card = ({ card }: CardProps) => {
                     <div className='w-[50px] h-[50px] border rounded-full flex items-center justify-center rotate-[-45deg] group-hover:rotate-0 transition duration-500 group-hover:bg-black group-hover:text-white cursor-pointer'>
                         <ArrowRight />
                     </div>
-                    <AddToCartBtn product={card}/>
+                    <AddToCartBtn product={card} />
                 </div>
 
             </div>

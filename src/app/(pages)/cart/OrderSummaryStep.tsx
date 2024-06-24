@@ -4,14 +4,10 @@ import Colors from '@/app/_components/Colors';
 import { useCart } from '@/app/_components/ContextApi/CartContext';
 import Sizes from '@/app/_components/Sizes';
 import Image from '@/components/ui/CustomImage';
-import { useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import Quantity from './Quantity';
 
-
 const OrderSummaryStep = () => {
-    const [quantity, setQuantity] = useState(1);
-
     const { state, dispatch } = useCart();
     const { items } = state;
 
@@ -21,6 +17,14 @@ const OrderSummaryStep = () => {
 
     const handleClearCart = () => {
         dispatch({ type: 'CLEAR_CART' });
+    };
+
+    const handleColorSelect = (id: string, color: string) => {
+        dispatch({ type: 'UPDATE_ITEM_SELECTED_COLOR', id, color });
+    };
+
+    const handleSizeSelect = (id: string, size: string) => {
+        dispatch({ type: 'UPDATE_ITEM_SELECTED_SIZE', id, size });
     };
 
     return (
@@ -39,33 +43,38 @@ const OrderSummaryStep = () => {
                 </div>
             </div>
 
-            {/* left products */}
             {items?.map((cartpro) => (
                 <div
                     className='flex flex-col md:flex-row items-center gap-5 border rounded-[20px] h-[200px] p-3 hover:shadow-custom-shadow transition duration-300'
                     key={cartpro.id}
                 >
-                    {/* products */}
-                    <div className='flex flex-row gap-5 w-full md:w-[70%] '>
+                    <div className='flex flex-row gap-5 w-full md:w-[70%]'>
                         <Image
                             src={cartpro?.proImage[0]}
                             imgclass='w-[80px] md:w-[180px] h-[80px] md:h-[180px] bg-neutral-200 rounded-[15px]'
                             alt={cartpro?.proName}
                         />
-                        {/* product content */}
                         <div className='flex flex-col h-full gap-2'>
                             <h2 className='line-clamp-1'>{cartpro?.proName}</h2>
                             <p className='line-clamp-2'>{cartpro?.proDesc}</p>
-                            <Colors onColorSelect={() => ''} />
-                            <Sizes onSizeSelect={() => ''} />
+                            <Colors
+                                onColorSelect={(colors) => handleColorSelect(cartpro.id, colors)}
+                                alreadyColor={cartpro?.proColors}
+                                type='cartitem'
+                            />
+                            <Sizes
+                                onSizeSelect={(sizes) => handleSizeSelect(cartpro.id, sizes)}
+                                alreadySize={cartpro?.proSizes}
+                                type='cartitem'
+                            />
                         </div>
                     </div>
 
                     <div className='flex flex-col items-center justify-end gap-3 w-full md:w-[30%] h-full relative'>
-                        <h2>${(quantity * cartpro?.proPrice).toFixed(2)}</h2>
+                        <h2>${(cartpro.proQuantity * cartpro.proPrice).toFixed(2)}</h2>
                         <Quantity
-                            quanityCls='w-[100px] lg:w-[150px]'
-                            onQuantity={(value) => setQuantity(value)}
+                            id={cartpro.id}
+                            quantity={cartpro?.proQuantity}
                         />
                         <IoIosClose
                             size={30}

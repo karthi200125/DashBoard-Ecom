@@ -7,6 +7,7 @@ import { FaParachuteBox } from "react-icons/fa";
 import { useCart } from '../ContextApi/CartContext';
 import { CartItemSchema } from '../../../../schemas';
 import { toast } from 'sonner';
+import { z } from 'zod';
 
 type AddToCartBtnProps = {
     product: z.infer<typeof CartItemSchema>;
@@ -14,7 +15,8 @@ type AddToCartBtnProps = {
 
 const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
     const [clicked, setClicked] = useState(false);
-    const { dispatch } = useCart();
+    const { dispatch, state } = useCart();
+    const { items } = state;
 
     const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -23,7 +25,14 @@ const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
             setClicked(false);
         }, 3000);
 
+        const isInCartAlready = items.some(item => item.id === product.id);
+        if (isInCartAlready) {
+            toast.error("Already added to the cart");
+            return;
+        }
+        
         try {
+
             dispatch({
                 type: 'ADD_ITEM',
                 item: { ...product, proQuantity: 1 },

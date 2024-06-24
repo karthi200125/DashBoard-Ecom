@@ -6,15 +6,16 @@ import { useState } from "react";
 import CustomStepper from "./Stepper";
 import CheckOutShowProducts from "./CheckOutShowProducts";
 import OrderSummary from "./OrderSummary";
+import { useCurrentUser } from "@/app/hooks/useCurrentUser";
 const AddressStep = dynamic(() => import("./AddressStep"));
 const OrderSummaryStep = dynamic(() => import("./OrderSummaryStep"));
 
 const Cart = () => {
     const [step, setStep] = useState(0);
-
+    const user = useCurrentUser()
     const { state } = useCart();
     const { items } = state;
-    
+
     return (
         <div className='p-2 md:p-0 w-full min-h-screen py-5 flex flex-col gap-5 relative'>
             {/* Stepper */}
@@ -31,13 +32,15 @@ const Cart = () => {
                 </div>
 
                 {/* Right checkout box */}
-                <div className='w-full md:min-w-[30%] lg:w-[30%] h-[300px] sticky top-[100px] rounded-[20px] border p-5 right-0'>
-                    <OrderSummary
-                        step={step}
-                        onNext={() => setStep(step + 1)}
-                        onBack={() => setStep(step - 1)}
-                    />
-                </div>
+                {user &&
+                    <div className='w-full md:min-w-[30%] lg:w-[30%] h-[300px] sticky top-[100px] rounded-[20px] border p-5 right-0'>
+                        <OrderSummary
+                            step={step}
+                            onNext={() => setStep(step + 1)}
+                            onBack={() => setStep(step - 1)}
+                        />
+                    </div>
+                }
             </div>
         </div>
     );
