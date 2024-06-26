@@ -3,9 +3,12 @@ import Image from '@/components/ui/CustomImage';
 import Link from 'next/link';
 import SocialIcons from './LandingPage/SocialIcons';
 import { Aboutus, Help, OnlineShpping } from './dummydata';
+import LetterAnimation from '../Animations/LetterAnimation';
+import { perspective } from './MenuBar/MenuMobContent';
+import { motion } from 'framer-motion'
 
 const Footer = () => {
-    
+
     return (
         <div className='w-full max-h-max flex flex-col justify-between mt-5'>
             <div className='h-[300px] relative'>
@@ -19,21 +22,54 @@ const Footer = () => {
             <div className='max-h-max bg-[#222222] flex flex-col md:flex-row gap-10 p-5 md:p-10'>
                 <div className='w-full h-full flex flex-wrap justify-center md:flex-row md:justify-between md:items-start gap-10'>
                     <div className='flex flex-col gap-2'>
-                        <h2 className='text-white'>About Us</h2>
-                        {Aboutus?.map((about) => (
-                            <Link key={about?.id} href={''} className='max-w-max text-neutral-400 text-[12px] hoveranimation'>{about?.title}</Link>
+                        <h2 className='text-white'>
+                            <LetterAnimation title='About Us' />
+                        </h2>
+                        {Aboutus?.map((about, i) => (
+                            <motion.div
+                                key={i}
+                                variants={perspective}
+                                animate="enter"
+                                exit="exit"
+                                initial="initial"
+                                custom={i}
+                                className='max-w-max text-neutral-400 text-[12px] hoveranimation'>
+                                {about?.title}
+                            </motion.div>
                         ))}
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <h2 className=' text-white'>Help</h2>
-                        {Help?.map((help) => (
-                            <Link key={help?.id} href={''} className='max-w-max text-neutral-400 text-[12px] hoveranimation'>{help?.title}</Link>
+                        <h2 className=' text-white'>
+                            <LetterAnimation title='Help' />
+                        </h2>
+                        {Help?.map((help, i) => (
+                            < motion.div
+                                key={i}
+                                variants={perspective}
+                                animate="enter"
+                                exit="exit"
+                                initial="initial"
+                                custom={i}
+                                className='max-w-max text-neutral-400 text-[12px] hoveranimation'
+                            >{help?.title}
+                            </motion.div>
                         ))}
                     </div>
                     <div className='flex flex-col gap-2'>
-                        <h2 className='text-white'>Online Shopping</h2>
-                        {OnlineShpping?.map((os) => (
-                            <Link key={os?.id} href={''} className='max-w-max text-neutral-400 text-[12px] hoveranimation'>{os?.title}</Link>
+                        <h2 className='text-white'>
+                            <LetterAnimation title='Online Shopping' />
+                        </h2>
+                        {OnlineShpping?.map((os, i) => (
+                            <motion.div
+                                key={i}
+                                variants={perspective}
+                                animate="enter"
+                                exit="exit"
+                                initial="initial"
+                                custom={i}
+                                className='max-w-max text-neutral-400 text-[12px] hoveranimation'>
+                                {os?.title}
+                            </motion.div>
                         ))}
                     </div>
                 </div>

@@ -24,7 +24,7 @@ export default async function RootLayout({
       <SessionProvider session={session}>
         <html lang="en">
           <body style={{ fontFamily: 'Conthrax' }} >
-            <div className="w-full realative">
+            <div className="w-full relative">
               <Navbar />
               <Toaster position="bottom-right" expand={false} richColors />
               <RegisterModel />

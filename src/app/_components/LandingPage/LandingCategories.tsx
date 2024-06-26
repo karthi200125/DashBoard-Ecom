@@ -5,26 +5,41 @@ import { useState, useEffect } from 'react';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiShoppingBagFill } from "react-icons/ri";
 import { LadingCategories } from '../dummydata';
+import { perspective } from '../MenuBar/MenuMobContent';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import LetterAnimation from '@/app/Animations/LetterAnimation';
+import { slideUp } from '@/app/Animations/animate';
 
-const LandingCategories = ({ onLoad }: any) => {
+const LandingCategories = () => {
   const [activeId, setActiveId] = useState(2);
+  const { ref, inView } = useInView(
+    // { threshold: 0.5 }
+  );
 
   useEffect(() => {
-    onLoad && onLoad('LandingCategories');
-  }, []);
+  }, [inView]);
 
   return (
-    <div className='py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto rounded-[20px] flex flex-col items-center justify-center gap-10'>
+    <div ref={ref} className='relative py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto rounded-[20px] flex flex-col items-center justify-center gap-10'>
       <div className='text-center'>
-        <h3 className='text-neutral-600'>New Launches</h3>
-        <h1 className='mt-3'>Fresh off The Boat</h1>
+        <h3 className='text-neutral-600'>
+          <LetterAnimation title="New Launches" />
+        </h3>
+        <h1 className='mt-3'>
+          <LetterAnimation title="Fresh off The Boat" />
+        </h1>
       </div>
 
       <div className='flex flex-col md:flex-row items-center justify-between md:gap-5 w-full md:w-[95%] lg:w-[70%] h-[860px] md:h-[60%]'>
-        {LadingCategories?.map((cat) => (
-          <Link
-            href={cat?.href}
-            key={cat.id}
+        {LadingCategories?.map((cat, i) => (
+          <motion.div
+            key={i}
+            variants={perspective}
+            animate={inView ? "enter" : "initial"}
+            exit="exit"
+            initial="initial"
+            custom={i}
             className={`min-w-[300px] md:min-w-[30%] lg:flex-1 md:h-full flex flex-col gap-3 items-center justify-center ${cat.id === 2 ? "md:mt-20" : ""}`}
             onMouseEnter={() => setActiveId(cat.id)}
             onMouseLeave={() => setActiveId(2)}
@@ -48,11 +63,11 @@ const LandingCategories = ({ onLoad }: any) => {
               <h2 className='uppercase'>{cat.cat}</h2>
               <h3 className='flex flex-row items-center gap-3 w-full justify-center'>${cat.price}</h3>
             </div>
-          </Link>
+          </motion.div>
         ))}
       </div>
     </div>
   )
 }
 
-export default LandingCategories
+export default LandingCategories;

@@ -20,14 +20,46 @@
 }
 
 body {
-    @apply md:container min-h-screen bg-white overflow-x-hidden;
+    @apply md:container min-h-screen overflow-x-hidden;
     font-family: 'conthrax', sans-serif;
 }
+
+.border {
+    @apply border-[1px] border-solid border-neutral-200;
+}
+
+input {
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+h1 {
+    @apply text-xl md:text-3xl lg:text-5xl font-bold
+}
+
+h2 {
+    @apply text-lg md:text-[15px] font-bold
+}
+
+h3 {
+    @apply text-lg font-semibold
+}
+
+h4 {
+    @apply text-[15px] font-semibold
+}
+
+p {
+    @apply text-[10px] text-neutral-400;
+}
+
 
 .myCustomClass {
     display: inline-block;
 }
-
 
 .sidebarcon {
     background: rgba(0, 0, 0, 0.75);
@@ -54,17 +86,6 @@ body {
     top: 10px;
 }
 
-.border {
-    @apply border-[1px] border-solid border-neutral-200;
-}
-
-input {
-    border: none;
-}
-
-input:focus {
-    outline: none;
-}
 
 /* text hover animation */
 .hoveranimation::after {
@@ -109,8 +130,6 @@ input:focus {
     box-shadow: -50px 50px 0 0 white;
 }
 
-
-
 @keyframes animate {
     0% {
         background-position-x: 0;
@@ -121,38 +140,6 @@ input:focus {
     }
 }
 
-
-/* Hide scrollbar for webkit browsers */
-.scroll::-webkit-scrollbar {
-    background-color: transparent;
-    width: 5px;
-}
-
-.scroll::-webkit-scrollbar-thumb {
-    width: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-}
-
-.scroll::-webkit-scrollbar-track {
-    border-radius: 5px;
-}
-
-/* Hide scrollbar for IE, Edge, and Firefox */
-body {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
-}
-
-/* text overflwo ellipese */
-.textover {
-    width: 250px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
 
 /* products collections */
 .productcollections {
@@ -182,9 +169,6 @@ body {
     position: absolute;
     left: 45px;
 }
-
-
-
 
 
 /* loading animation */
@@ -245,53 +229,6 @@ body {
     100% {
         transform: rotate(-360deg);
     }
-}
-
-/* Toatal user code */
-
-/* svg {
-    position: relative;
-    width: 250px;
-    height: 250px;    
-    background-color: red;
-    padding: 20px;
-}
-
-svg circle {
-    width: 100%;
-    height: 100%;
-    fill: transparent;
-    stroke-width: 5;
-    stroke: rgba(0, 0, 0, 0.1);        
-}
-
-svg circle:nth-child(2) {
-    stroke: black;
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-} */
-
-
-/* custom elemtns */
-
-h1 {
-    @apply text-xl md:text-3xl lg:text-5xl font-bold
-}
-
-h2 {
-    @apply text-lg md:text-[15px] font-bold
-}
-
-h3 {
-    @apply text-lg font-semibold
-}
-
-h4 {
-    @apply text-[15px] font-semibold
-}
-
-p {
-    @apply text-[10px] text-neutral-400;
 }
 
 .custom-sloped-corner {

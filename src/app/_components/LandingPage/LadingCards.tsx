@@ -22,7 +22,7 @@ const LandingCards = () => {
     const { items } = state;
     
     return (
-        <div className='min-h-screen w-full flex flex-col gap-5 py-5'>
+        <div className='sticky_01_panel min-h-screen w-full flex flex-col gap-5 py-5'>
             <div className='text-center'>
                 <h3 className='text-neutral-600'>New Launches</h3>
                 <h1 className='mt-3'>Fresh off The Boat</h1>

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import Image from '@/components/ui/CustomImage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { useCallback, useTransition } from 'react';
+import { memo, useCallback, useMemo, useTransition } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -16,26 +16,30 @@ import GoogleAuth from './GoogleAuth';
 import CustomInput from './Input';
 import Logo from './Logo';
 import Modal from './Modal/Modal';
+import { useRouter } from 'next/navigation';
 
 const LoginBody = () => {
     const [isLoading, startTransition] = useTransition();
-    const registermodel = useRegisterModal();
-    const loginmodel = useLoginModal();
+    const registerModel = useRegisterModal();
+    const loginModel = useLoginModal();
+    const router = useRouter()
+
     const methods = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
-        defaultValues: {
+        defaultValues: useMemo(() => ({
             email: '',
             password: ''
-        }
+        }), [])
     });
 
-    const handleSubmit = (formData: any) => {
+    const handleSubmit = useCallback((formData: any) => {
         startTransition(() => {
             login(formData)
                 .then((data) => {
-                    console.log(data)
+                    console.log(data);
+                    router.refresh()
                     if (data.success) {
-                        loginmodel.onClose()
+                        loginModel.onClose();
                         toast.success(data.success);
                     }
                     if (data.error) {
@@ -43,12 +47,12 @@ const LoginBody = () => {
                     }
                 });
         });
-    };
+    }, [loginModel]);
 
     const handleRegisterClick = useCallback(() => {
-        loginmodel.onClose();
-        registermodel.onOpen();
-    }, [loginmodel, registermodel]);
+        loginModel.onClose();
+        registerModel.onOpen();
+    }, [loginModel, registerModel]);
 
     return (
         <div className='w-full max-h-max flex flex-row gap-5 overflow-hidden'>
@@ -56,7 +60,7 @@ const LoginBody = () => {
             <div className='hidden lg:flex lg:flex-1 rounded-[20px] overflow-hidden relative'>
                 <Image src={''} imgclass='bg-neutral-200 w-full h-full' alt='' />
                 <div className='absolute bottom-0 left-0 w-full max-h-max p-2 flex flex-col gap-2'>
-                    <CustomBtn arrow btnCls='glass bg-black text-white w-[300px] ' arrowCls='text-black'>
+                    <CustomBtn arrow btnCls='glass bg-black text-white w-[300px]' arrowCls='text-black'>
                         Exclusive content
                     </CustomBtn>
                     <p className='line-clamp-3 leading-0'>
@@ -72,7 +76,7 @@ const LoginBody = () => {
                 <FormProvider {...methods}>
                     <form onSubmit={methods.handleSubmit(handleSubmit)}>
                         <div className='w-[80%] mx-auto h-full flex flex-col gap-3 items-center justify-center'>
-                            <Logo />                            
+                            <Logo />
                             <p>Enter your login credentials</p>
 
                             {/* Inputs */}
@@ -118,16 +122,18 @@ const LoginBody = () => {
 };
 
 const LoginModel = () => {
-    const loginmodel = useLoginModal();
+    const loginModel = useLoginModal();
+
+    const modalBody = useMemo(() => <LoginBody />, []);
 
     return (
         <Modal
-            isOpen={loginmodel.isOpen}
-            toggleOpen={loginmodel.onClose}
-            modalBody={<LoginBody />}
+            isOpen={loginModel.isOpen}
+            toggleOpen={loginModel.onClose}
+            modalBody={modalBody}
             modalCls='w-full md:w-[500px] lg:w-[900px]'
         />
     );
 };
 
-export default LoginModel;
+export default memo(LoginModel);

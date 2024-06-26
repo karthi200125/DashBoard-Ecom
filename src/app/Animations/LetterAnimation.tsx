@@ -1,12 +1,12 @@
-'use client';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 interface LetterAnimationProps {
     title: string;
 }
 
-const letterAni = {
+export const letterAni = {
     initial: { y: 800 },
     animate: {
         y: 0,
@@ -18,21 +18,26 @@ const letterAni = {
     },
 };
 
-const LetterAnimation: React.FC<LetterAnimationProps> = ({ title }) => {
+const LetterAnimation = ({ title }: LetterAnimationProps) => {
     const [currentTitle, setCurrentTitle] = useState(title);
     const [key, setKey] = useState(0);
+    const { ref, inView } = useInView({
+        // triggerOnce: true, 
+        threshold: 0.5,
+    });
 
     useEffect(() => {
         setCurrentTitle(title);
-        setKey((prevKey) => prevKey + 1); 
+        setKey((prevKey) => prevKey + 1);
     }, [title]);
 
     return (
         <motion.span
             key={key}
-            className='row-title'
+            className='row-title overflow-hidden'
             initial='initial'
-            animate='animate'
+            animate={inView ? 'animate' : 'initial'}
+            ref={ref}
             variants={{
                 animate: {
                     transition: {

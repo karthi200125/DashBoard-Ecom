@@ -103,7 +103,7 @@ model Order {
   userId      String     @db.ObjectId
   productsIds String[]   @db.ObjectId
   quantity    Int        
-  total       Float      
+  total       Float
   status      String     @default("pending")
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt

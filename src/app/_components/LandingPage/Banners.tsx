@@ -6,7 +6,7 @@ import { bannerImage } from '../dummydata';
 const Banners = () => {
     
     return (
-        <div className='flex flex-col md:flex-row h-screen w-full md:h-[600px] items-center justify-center gap-10 px-20 py-5'>
+        <div className='sticky_01_panel flex flex-col md:flex-row h-screen w-full md:h-[600px] items-center justify-center gap-10 px-20 py-5'>
             <div className='min-w-[300px] md:flex-1 h-[80%] md:h-[450px] relative group overflow-hidden rounded-[20px]'>
                 <Image src={bannerImage[0].src} imgclass='w-full h-full bg-neutral-200 absolute left-0 top-0 object-cover brightness-[0.6] transform group-hover:scale-[1.2] transistion duration-500' alt='banner image 1'
                 />

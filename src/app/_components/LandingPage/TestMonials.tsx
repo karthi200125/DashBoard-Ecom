@@ -16,7 +16,7 @@ export const TestMonials = ({ onLoad }: any) => {
     }, []);
 
     return (
-        <div className="w-full max-h-max rounded-[30px] pt-5 flex items-center justify-center flex-col gap-5 text-white bg-black">
+        <div className="sticky_01_panel w-full max-h-max rounded-[30px] pt-5 flex items-center justify-center flex-col gap-5 text-white bg-black">
             <h1>What Customer says</h1>
             <Carousel className="w-full">
                 <CarouselContent className="flex flex-row">

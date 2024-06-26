@@ -3,13 +3,14 @@
 import { db } from '@/lib/db';
 
 export const OrderCreate = async (values: any) => {
-    const { userId, productIds, quantity, totalPrice } = values;
-    try {        
+    const { userId, productIds, quantities, totalPrice } = values;
+    console.log("in orer function", values)
+    try {
         const newOrder = await db.order.create({
             data: {
                 userId,
-                productsIds: productIds,
-                quantity: quantity,
+                productIds,
+                quantities,
                 total: totalPrice,
                 status: 'pending',
             },
