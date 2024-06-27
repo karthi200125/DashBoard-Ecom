@@ -112,7 +112,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Load cart items from local storage on initial render (Client-side only)
     useEffect(() => {
-        const storedCart = localStorage.getItem('cart');
+        const storedCart = sessionStorage.getItem('cart');
         if (storedCart) {
             dispatch({ type: 'SET_CART', items: JSON.parse(storedCart) });
         }
@@ -120,7 +120,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Save cart items to local storage whenever they change (Client-side only)
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(state.items));
+        sessionStorage.setItem('cart', JSON.stringify(state.items));
     }, [state.items]);
 
     return (

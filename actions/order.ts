@@ -2,27 +2,19 @@
 
 import { db } from '@/lib/db';
 
-export const OrderCreate = async (values: any) => {
-    const { userId, productIds, quantities, totalPrice } = values;
-    console.log("in orer function", values)
+export const getOrder = async (userId: string) => {    
     try {
-        const newOrder = await db.order.create({
-            data: {
-                userId,
-                productIds,
-                quantities,
-                total: totalPrice,
-                status: 'pending',
+        const order = await db.order.findFirst({
+            where: {
+                userId: userId
             },
-        });
-
-        await db.user.update({
-            where: { id: userId },
-            data: { Orders: { connect: { id: newOrder.id } } },
-        });
-
-        return { success: 'Order created successfully' };
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });        
+        return { success: 'Successfully retrieved the most recent order', data: order };
     } catch (error) {
-        return { error: 'Failed to create order' };
+        console.error('Error fetching order:', error);
+        return { error: 'Failed to get order' };
     }
 };

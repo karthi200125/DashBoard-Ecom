@@ -8,7 +8,7 @@ import { revalidatePath } from 'next/cache';
 
 
 //search query get products
-export const getProducts = async (q: string, limit?: number) => {
+export const getProducts = async (q: string) => {
     try {
         const allProducts = await db.product.findMany({
             where: {
@@ -61,7 +61,7 @@ export const deletProduct = async (id: string) => {
 }
 
 // get fav products
-export const getFavProducts = async (userId: string, page?: string) => {    
+export const getFavProducts = async (userId: string, page?: string) => {
     const ITEM_PER_PAGE = 8;
     try {
         const user = await getUserById(userId);
@@ -80,24 +80,29 @@ export const getFavProducts = async (userId: string, page?: string) => {
             },
             take: ITEM_PER_PAGE,
             skip: (ITEM_PER_PAGE * (parseInt(page) - 1)),
-        });        
+        });
         return { success: "Successfully retrieved favorite products", data: favProducts, count };
     } catch (error) {
         return { error: "Failed to retrieve favorite products" };
     }
 };
 
-
-// get proucts by time zone
-// export const getProductsbytime = async (query: string) => {
-//     try {
-//         const allproducts = await db.product.find({            
-//         })
-//         return allproducts;
-//     } catch (error) {
-//         return (error: "get all products failed")
-//     }
-// }
+// get order products
+export const getOrderProducts = async (productIds: string[]) => {    
+    try {
+        const products = await db.product.findMany({
+            where: {
+                id: {
+                    in: productIds,
+                },
+            },
+        });
+        return { success: 'Products fetched successfully', data: products };
+    } catch (error) {
+        console.error('Failed to fetch products:', error);
+        return { error: 'Failed to fetch products' };
+    }
+};
 
 // get single product
 export const getSingleProduct = async (id: string) => {
