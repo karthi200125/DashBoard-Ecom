@@ -52,7 +52,7 @@ const Card = ({ card }: CardProps) => {
 
             {/* card content */}
             <div className='bg-white w-full h-[220px] p-5 flex flex-col justify-between'>
-                <h2 className='capitalize'>{card?.proName}</h2>
+                <h5 className='capitalize'>{card?.proName}</h5>
                 <p className='leading-0 line-clamp-2'>{card?.proDesc}</p>
 
                 {/* rating */}
@@ -61,12 +61,12 @@ const Card = ({ card }: CardProps) => {
                     <div className='border rounded-full px-5 h-[35px] flex flex-row items-center gap-3'>
                         <div className="flex flex-row items-center gap-2">
                             <p className='text-muted-foreground'>{averageRating}</p>
-                            <FaStar className="text-yellow-500" size={10}/>
+                            <FaStar className="text-yellow-500" size={10} />
                         </div>
                         <span className="h-[20px] w-[1px] bg-neutral-200"></span>
                         <p className='text-muted-foreground'>{reviews?.length}</p>
                     </div>
-                    <h2>₹ {card?.proPrice} <span className="text-neutral-400">Rs</span></h2>
+                    <h5>₹ {card?.proPrice} <span className="text-neutral-400">Rs</span></h5>
                 </div>
 
                 {/*  add to car button*/}

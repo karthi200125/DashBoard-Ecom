@@ -18,7 +18,7 @@ const Banners = () => {
 
                 </div>
             </div>
-            <div className='min-w-[300px] md:flex-1  h-[200px] md:h-[450px] flex flex-col md:flex-row gap-5'>
+            <div className='min-w-[300px] md:flex-1 h-[200px] md:h-[450px] flex flex-col gap-5'>
                 <div className='rounded-[20px] w-full h-full overflow-hidden'>
                     <Image src={bannerImage[1].src} imgclass='w-full h-full bg-neutral-200 rounded-[20px]' alt='banner image 2' />
                 </div>

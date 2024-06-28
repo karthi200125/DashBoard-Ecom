@@ -57,19 +57,19 @@ export default function Home() {
       {/* <LandingPage onLoad={handleLoad} /> */}
       {/* {!isLoading && ( */}
         <>
-          <div ref={(el) => (sectionsRef.current[0] = el)} className="section">
+          {/* <div ref={(el) => (sectionsRef.current[0] = el)} className="section">
             <LandingCategories />
           </div>
           <div ref={(el) => (sectionsRef.current[1] = el)} className="section">
             <Banners />
-          </div>
+          </div> */}
           {/* <div ref={(el) => (sectionsRef.current[2] = el)} className="section">
             <LandingCards />
           </div> */}
-          {/* <div ref={(el) => (sectionsRef.current[3] = el)} className="section">
+          <div ref={(el) => (sectionsRef.current[3] = el)} className="section">
             <Testimonials />
           </div>
-          <div ref={(el) => (sectionsRef.current[4] = el)} className="section">
+          {/* <div ref={(el) => (sectionsRef.current[4] = el)} className="section">
             <Footer />
           </div> */}
         </>

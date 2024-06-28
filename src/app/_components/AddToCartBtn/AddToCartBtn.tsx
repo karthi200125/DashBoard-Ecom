@@ -46,7 +46,7 @@ const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
     return (
         <button className={`cart-button border px-2 pl-5 rounded-full ${clicked ? 'clicked' : ''}`} onClick={handleAddToCart}>
             <div className={`add-to-cart flex flex-row items-center justify-center gap-3 ${clicked && "opacity-0"}`}>
-                <h4>Add to Cart</h4>
+                <h5>Add to Cart</h5>
                 <div className='w-[40px] h-[40px] rounded-full bg-blue-400 flex items-center justify-center text-white'>
                     <MdShoppingCart size={20} />
                 </div>

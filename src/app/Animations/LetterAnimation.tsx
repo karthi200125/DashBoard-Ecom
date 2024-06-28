@@ -48,7 +48,7 @@ const LetterAnimation = ({ title }: LetterAnimationProps) => {
         >
             {[...currentTitle].map((letter, index) => (
                 <motion.span
-                    className='row-letter'
+                    className='row-letter leading-none'
                     variants={letterAni}
                     key={index}
                 >
