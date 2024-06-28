@@ -25,7 +25,7 @@ const SingleProductImage = ({ product }: string[]) => {
     };
 
     return (
-        <div className="w-full relative h-full overflow-hidden flex flex-col lg:flex-row gap-3 items-center">
+        <div className="p-2 md:p-0 w-full relative h-full overflow-hidden flex flex-col lg:flex-row gap-3 items-center">
 
             {/* min images */}
             <div className='w-full lg:w-[200px] h-[80px] lg:h-full flex flex-row lg:flex-col justify-between gap-3'>

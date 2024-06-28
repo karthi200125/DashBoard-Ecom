@@ -77,7 +77,7 @@ const LandingPage = ({ onLoad }: any) => {
             </div>
 
             {/* buttons */}
-            <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row  xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[95px] bottom-0 md:bottom-[125px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+            <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row  xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[115px] bottom-0 md:bottom-[125px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                 <TransitionLink href='/shop'>
                     <CustomBtn arrow btnCls='bg-black text-white pl-5 md:pl-10 ' arrowCls='bg-white text-black'>
                         Shop Now
@@ -87,9 +87,9 @@ const LandingPage = ({ onLoad }: any) => {
             </div>
 
             {/* customer happy div */}
-            <div className='hidden glass xl:flex w-[220px] xl:w-[300px] max-h-max gap-2 rounded-[10px] md:rounded-[30px] p-5 md:p-8 absolute right-[8%] md:right-[17%] top-[8%] md:top-[25%] xl:top-[25%] flex-col justify-between text-white'>
+            <div className='glass md:hidden xl:hidden w-[90%] xl:w-[300px] h-[150px] md:max-h-max gap-2 rounded-[10px] p-5 md:p-8 absolute left-1/2 transform -translate-x-1/2 right-2 top-[15%] xl:top-[25%] xl:right-0 flex-col justify-between text-white'>
                 <div className='flex flex-row items-center justify-between'>
-                    <h1>24K</h1>
+                    <h2>24K</h2>
                     <ArrowRight className='rotate-[-45deg]' size={25} />
                 </div>
                 <p className='opacity-50 text-white'>happy customer grow</p>
@@ -97,14 +97,14 @@ const LandingPage = ({ onLoad }: any) => {
             </div>
 
             {/* main text */}
-            <div className='md:flex flex-col p-5 rounded-[20px] absolute max-w-max top-[30%] md:top-[7%] left-[2%] md:left-[7%]'>
-                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >
+            <div className='hidden md:flex flex-col p-5 rounded-[20px] absolute max-w-max top-[5%] md:top-[7%] left-[2%] md:left-[7%]'>
+                <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >
                     <LetterAnimation title={heading1} />
                 </h1>
-                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px" }}>
+                <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px" }}>
                     <LetterAnimation title={heading2} />
                 </h1>
-                <h1 className='text-white px-4 py-2 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>
+                <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>
                     <LetterAnimation title={heading3} />
                 </h1>
             </div>
@@ -143,7 +143,7 @@ const LandingPage = ({ onLoad }: any) => {
             >
                 <div className='rounded-[20px] w-full h-full p-5 bg-[#303533] text-white relative group hover:shadow-custom-shadow transition duration-300'>
                     <div className='flex flex-col gap-2'>
-                        <h2>Right corner</h2>
+                        <h4>Right corner</h4>
                         <p className='md:line-clamp-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi rem placeat minus iste asperiores aliquam quas sunt officia eum cupiditate?</p>
                     </div>
                     <div className='absolute top-2 right-2 flex items-center justify-center rounded-full bg-white w-10 h-10 text-black'>
@@ -163,16 +163,16 @@ const LandingPage = ({ onLoad }: any) => {
                     duration: 1,
                     delay: 0.6,
                 }}
-                className='hidden md:flex flex-col absolute bottom-[30px] left-[50px] xl:left-[80px] '
+                className='w-full md:flex flex-col absolute left-2 transform -translate-x-1/2 bottom-[25%] md:bottom-[30px] md:left-[50px] xl:left-[80px] '
             >
-                <Curves curveCls='w-[45px] h-[45px] absolute top-[-45px] left-[0px]' />
-                <Curves curveCls='w-[45px] h-[45px] absolute bottom-0 right-[-43px]' />
-                <div className="pt-5 pr-5 max-w-max bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
-                    <h2 className='md:text-xl xl:text-[32px] w-full h-full leading-0 rounded-[10px] text-black'>
+                <Curves curveCls='hidden md:flex w-[45px] h-[45px] absolute top-[-45px] left-[0px]' />
+                <Curves curveCls='hidden md:flex w-[45px] h-[45px] absolute bottom-0 right-[-43px]' />
+                <div className=" md:pt-5 md:pr-5 w-full md:max-w-max md:bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
+                    <h2 className=' md:text-xl xl:text-[32px] w-full h-full leading-0 rounded-[10px] text-black text-center md:text-start'>
                         <b className="text-red-400"><LetterAnimation title={`${subHeading1} Fashion`} /></b>
                     </h2>
                 </div>
-                <div className="pt-5 pr-5 max-w-max bg-white flex items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
+                <div className="hidden md:flex pt-5 pr-5 max-w-max bg-white items-center justify-center" style={{ borderTopRightRadius: "20px" }}>
                     <h2 className='md:text-xl xl:text-[32px] w-full h-full leading-0 rounded-[10px] text-black'>
                         <LetterAnimation title={subHeading2} />
                     </h2>

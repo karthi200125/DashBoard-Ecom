@@ -49,7 +49,7 @@ const SingleProduct = () => {
                 :
                 <div className='py-5 w-full min-h-screen flex flex-col gap-10'>
 
-                    <div className='flex flex-col md:flex-row items-start justify-center gap-20 py-10 border-b max-h-[250px]'>
+                    <div className='p-2 md:p-0 flex flex-col md:flex-row items-start justify-center gap-5 md:gap-20 py-10 border-b max-h-[250px]'>
                         <h1 className="flex-1">{product?.proName}</h1>
                         <p className='flex-1 text-[10px] md:text-[15px]'>{product?.proDesc}</p>
                     </div>

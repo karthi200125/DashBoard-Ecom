@@ -15,10 +15,10 @@ const ProductContent = ({ product }: any) => {
     const router = useRouter()    
     const percentage = 20
     const discountAmount = (percentage / 100) * product?.proPrice;
-    const productPercentagePrice = product?.proPrice + discountAmount;
+    const productPercentagePrice = parseInt(product?.proPrice) + parseInt(discountAmount);
 
     return (
-        <div className='w-full h-full p-2 md:p-5 flex flex-col md:gap-3 lg:gap-10 '>
+        <div className='w-full h-full p-2 md:p-5 flex flex-col gap-3 lg:gap-10 '>
             <div className='flex flex-row items-center justify-between'>
                 <CustomBtn btnCls='px-5 border max-w-max' onClick={() => router.push('/')}>back to home</CustomBtn>
                 <div className='w-[40px] h-[40px] rounded-full flex items-center justify-center bg-neutral-100'>
@@ -29,7 +29,7 @@ const ProductContent = ({ product }: any) => {
             {/* product price */}
             <div className='flex flex-row items-center gap-2'>
                 <h2 className='text-neutral-400 line-through'>MRP {productPercentagePrice}</h2>
-                <h2 className='text-3xl font-bold'>₹ {product?.proPrice}</h2>
+                <h2 className='text-sl md:text-3xl font-bold'>₹ {product?.proPrice}</h2>
                 <div className='px-3 bg-gradient-to-r from-red-500 to-orange-500 text-white text-[12px] h-[35px] custom-sloped-corner w-[110px] flex items-center justify-start'>
                     {percentage}% OFF!
                 </div>

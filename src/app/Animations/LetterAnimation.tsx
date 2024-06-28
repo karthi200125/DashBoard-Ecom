@@ -52,7 +52,7 @@ const LetterAnimation = ({ title }: LetterAnimationProps) => {
                     variants={letterAni}
                     key={index}
                 >
-                    {letter}
+                    {letter === ' ' ? '\u00A0' : letter}
                 </motion.span>
             ))}
         </motion.span>
