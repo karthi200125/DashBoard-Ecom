@@ -5,17 +5,14 @@ import { useState, useEffect } from 'react';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiShoppingBagFill } from "react-icons/ri";
 import { LadingCategories } from '../dummydata';
-import { perspective } from '../MenuBar/MenuMobContent';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import LetterAnimation from '@/app/Animations/LetterAnimation';
-import { slideUp } from '@/app/Animations/animate';
+import { perspective, slideUp } from '@/app/Animations/animate';
 
 const LandingCategories = () => {
   const [activeId, setActiveId] = useState(2);
-  const { ref, inView } = useInView(
-    // { threshold: 0.5 }
-  );
+  const { ref, inView } = useInView();
 
   useEffect(() => {
   }, [inView]);
@@ -23,10 +20,10 @@ const LandingCategories = () => {
   return (
     <div ref={ref} className='relative py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto rounded-[20px] flex flex-col items-center justify-center gap-10'>
       <div className='text-center'>
-        <h3 className='text-neutral-600'>
+        <h4 className='text-neutral-600'>
           <LetterAnimation title="New Launches" />
-        </h3>
-        <h1 className='mt-3'>
+        </h4>
+        <h1 className='mt-1'>
           <LetterAnimation title="Fresh off The Boat" />
         </h1>
       </div>
@@ -60,8 +57,8 @@ const LandingCategories = () => {
               </div>
             </div>
             <div className='w-full text-center'>
-              <h2 className='uppercase'>{cat.cat}</h2>
-              <h3 className='flex flex-row items-center gap-3 w-full justify-center'>${cat.price}</h3>
+              <h4 className='uppercase'>{cat.cat}</h4>
+              <p className='flex flex-row items-center gap-3 w-full justify-center'>${cat.price}</p>
             </div>
           </motion.div>
         ))}

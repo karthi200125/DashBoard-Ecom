@@ -54,15 +54,15 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white w-full">
       {/* {isLoading && <PreLoading />} */}
-      <LandingPage onLoad={handleLoad} />
+      {/* <LandingPage onLoad={handleLoad} /> */}
       {/* {!isLoading && ( */}
         <>
-          {/* <div ref={(el) => (sectionsRef.current[0] = el)} className="section">
+          <div ref={(el) => (sectionsRef.current[0] = el)} className="section">
             <LandingCategories />
           </div>
           <div ref={(el) => (sectionsRef.current[1] = el)} className="section">
             <Banners />
-          </div> */}
+          </div>
           {/* <div ref={(el) => (sectionsRef.current[2] = el)} className="section">
             <LandingCards />
           </div> */}

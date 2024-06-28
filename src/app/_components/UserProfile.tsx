@@ -1,7 +1,7 @@
 'use client'
 
 import { CalendarDays, LogOut } from "lucide-react"
-
+import noprofile from '../assets/noprofile.webp'
 import {
     Avatar,
     AvatarFallback,
@@ -45,7 +45,7 @@ const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserPr
         <HoverCard>
             <HoverCardTrigger asChild>
                 <Avatar className={`${profileCls} cursor-pointer`} onClick={() => router.push(`/profile/${user?.id}`)}>
-                    <AvatarImage src={proSrc} alt={proAlt} />
+                    <AvatarImage src={proSrc || noprofile.src} alt={proAlt} />
                     <AvatarFallback>
                         <Skeleton className={`${profileCls}  bg-neutral-200 rounded-full`} />
                     </AvatarFallback>
@@ -55,7 +55,7 @@ const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserPr
 
                 <div className="flex justify-between flex-row items-start gap-5">
                     <Avatar className="w-12 h-12">
-                        <AvatarImage src={user?.image} />
+                        <AvatarImage src={user?.image || noprofile.src} />                        
                         <AvatarFallback>
                             <Skeleton className={`w-10 h-10 bg-neutral-200 rounded-full`} />
                         </AvatarFallback>
