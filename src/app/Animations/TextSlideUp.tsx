@@ -1,19 +1,22 @@
 'use client';
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { slideUp } from './animate'
+import { motion } from 'framer-motion';
+import { slideUp } from './animate'; 
+import { useInView } from 'react-intersection-observer';
 
 interface TextSlideUpProps {
   word: string;
   textSlideUpCls?: string;
 }
 
-const TextSlideUp = ({ word, textSlideUpCls = '' }: TextSlideUpProps) => {
+const TextSlideUp = ({ word, textSlideUpCls }: TextSlideUpProps) => {
   const descriptionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(descriptionRef, { once: true });
+  const { ref, inView } = useInView({    
+    threshold: 0.5 
+  });
 
   return (
-    <div ref={descriptionRef} className="">
+    <div ref={descriptionRef} className={textSlideUpCls}>
       <p>
         {
           word.split("").map((letter, index) => (
@@ -21,9 +24,9 @@ const TextSlideUp = ({ word, textSlideUpCls = '' }: TextSlideUpProps) => {
               variants={slideUp}
               custom={index}
               initial="initial"
-              animate={isInView ? "open" : "closed"}
+              animate={inView ? "open" : "closed"}
               key={index}
-              className={`${textSlideUpCls} myCustomClass`}
+              ref={ref} 
             >
               {letter}
             </motion.span>
@@ -35,5 +38,3 @@ const TextSlideUp = ({ word, textSlideUpCls = '' }: TextSlideUpProps) => {
 };
 
 export default TextSlideUp;
-
-

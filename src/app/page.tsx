@@ -66,12 +66,12 @@ export default function Home() {
           {/* <div ref={(el) => (sectionsRef.current[2] = el)} className="section">
             <LandingCards />
           </div> */}
-          <div ref={(el) => (sectionsRef.current[3] = el)} className="section">
+          {/* <div ref={(el) => (sectionsRef.current[3] = el)} className="section"> */}
             <Testimonials />
-          </div>
-          {/* <div ref={(el) => (sectionsRef.current[4] = el)} className="section">
+          {/* </div>
+          <div ref={(el) => (sectionsRef.current[4] = el)} className="section"> */}
             <Footer />
-          </div> */}
+          {/* </div> */}
         </>
       {/* )} */}
     </main>

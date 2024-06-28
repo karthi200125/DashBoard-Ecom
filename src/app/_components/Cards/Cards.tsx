@@ -23,9 +23,9 @@ export const cardsSlipUpOneByOne = {
             ease: [.255, .61, .355, 1]
         }
     }),
-    // exit: {
-    //     opacity: 0
-    // }
+    exit: {
+        opacity: 0
+    }
 };
 
 interface CardsProps {
