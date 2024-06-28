@@ -1,4 +1,6 @@
 'use client';
+
+import React, { memo, useMemo } from 'react';
 import StarRating from '@/app/_components/Cards/StarRating';
 import CustomBtn from '@/app/_components/CustomBtn';
 import ReviewModel from '@/app/_components/Modal/ReviewModel';
@@ -15,11 +17,17 @@ const ProductReview = ({ product }: z.infer<typeof ProductSchema>) => {
   const { isPending, data } = useQuery({
     queryKey: ['getReviews'],
     queryFn: async () => await GetReviewByProduct(product?.id)
-  })
-  const reviews = data?.data || []
+  });
 
-  const totalRating = reviews?.length > 0 ? reviews?.reduce((sum, review) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
-  const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
+  const reviews = data?.data || [];
+
+  const totalRating = useMemo(() => {
+    return reviews.length > 0 ? reviews.reduce((sum, review) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
+  }, [reviews]);
+
+  const averageRating = useMemo(() => {
+    return reviews.length > 0 ? totalRating / reviews.length : 0;
+  }, [reviews, totalRating]);
 
   return (
     <div className='w-full flex flex-col lg:flex-row gap-10 relative justify-between'>
@@ -29,31 +37,30 @@ const ProductReview = ({ product }: z.infer<typeof ProductSchema>) => {
         <CustomBtn arrow onClick={reviewModel.onOpen} btnCls='border w-full'>Add your review</CustomBtn>
 
         <div className='w-full flex flex-col gap-3 rounded-[20px] p-5 bg-white border'>
-          <h2 className='text-md'>Total reviews</h2>
-          <h1 className='text-2xl font-bold'>{reviews?.length || 0}</h1>
-          <p className='text-sm text-neutral-400'>Growth this year</p>
+          <h4>Total reviews</h4>
+          <h2>{reviews.length || 0}</h2>
+          <p>Growth this year</p>
         </div>
 
         <div className='w-full flex flex-col gap-3 rounded-[20px] p-5 bg-white border'>
-          <h2 className='text-md'>Average Rating</h2>
+          <h4 >Average Rating</h4>
           <StarRating size='' rating={averageRating} />
-          <p className='text-sm text-neutral-400'>Average rating this year</p>
+          <p>Average rating this year</p>
         </div>
-
       </div>
 
       {/* reviews */}
       <div className='flex flex-col rounded-[30px] md:border md:p-5 gap-3 h-full w-full'>
-        {reviews?.length > 0 ? (
-          reviews?.map((rev) => (
-            <Review key={rev?.id} review={rev} />
+        {reviews.length > 0 ? (
+          reviews.map((rev) => (
+            <Review key={rev.id} review={rev} />
           ))
         ) : (
-          <div className='w-full text-center '>No reviews yet , be first reviwer of this product</div>
+          <div className='w-full text-center '>No reviews yet, be the first reviewer of this product</div>
         )}
       </div>
     </div>
   );
 };
 
-export default ProductReview;
+export default memo(ProductReview);

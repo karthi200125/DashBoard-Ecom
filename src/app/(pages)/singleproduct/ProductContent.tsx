@@ -28,8 +28,8 @@ const ProductContent = ({ product }: any) => {
 
             {/* product price */}
             <div className='flex flex-row items-center gap-2'>
-                <h2 className='text-neutral-400 line-through'>MRP {productPercentagePrice}</h2>
-                <h2 className='text-sl md:text-3xl font-bold'>₹ {product?.proPrice}</h2>
+                <h4 className='text-neutral-400 line-through'>MRP {productPercentagePrice}</h4>
+                <h4 className='text-sl md:text-3xl font-bold'>₹ {product?.proPrice}</h4>
                 <div className='px-3 bg-gradient-to-r from-red-500 to-orange-500 text-white text-[12px] h-[35px] custom-sloped-corner w-[110px] flex items-center justify-start'>
                     {percentage}% OFF!
                 </div>
@@ -37,12 +37,12 @@ const ProductContent = ({ product }: any) => {
 
             {/* product color */}
             <div className='flex flex-col gap-3'>
-                <h1 className='text-xl font-bold'>Colors</h1>
+                <h4>Colors</h4>
                 <Colors onColorSelect={() => ""} alreadyColor={product?.proColors} />
             </div>
 
             <div className='flex flex-col gap-3'>
-                <h1 className='text-xl font-bold'>sizes</h1>
+                <h4>sizes</h4>
                 <Sizes onSizeSelect={() => ""} alreadySize={product?.proSizes} />
             </div>
 

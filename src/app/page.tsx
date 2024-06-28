@@ -53,27 +53,27 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white w-full">
-      {/* {isLoading && <PreLoading />} */}
-      {/* <LandingPage onLoad={handleLoad} /> */}
-      {/* {!isLoading && ( */}
+      {isLoading && <PreLoading />}
+      <LandingPage onLoad={handleLoad} />
+      {!isLoading && (
         <>
-          {/* <div ref={(el) => (sectionsRef.current[0] = el)} className="section">
-            <LandingCategories />
-          </div>
-          <div ref={(el) => (sectionsRef.current[1] = el)} className="section">
-            <Banners />
-          </div> */}
-          {/* <div ref={(el) => (sectionsRef.current[2] = el)} className="section">
-            <LandingCards />
-          </div> */}
+          {/* <div ref={(el) => (sectionsRef.current[0] = el)} className="section"> */}
+          <LandingCategories />
+          {/* </div>
+          <div ref={(el) => (sectionsRef.current[1] = el)} className="section"> */}
+          <Banners />
+          {/* </div>
+          <div ref={(el) => (sectionsRef.current[2] = el)} className="section"> */}
+          <LandingCards />
+          {/* </div> */}
           {/* <div ref={(el) => (sectionsRef.current[3] = el)} className="section"> */}
-            <Testimonials />
+          <Testimonials />
           {/* </div>
           <div ref={(el) => (sectionsRef.current[4] = el)} className="section"> */}
-            <Footer />
+          <Footer />
           {/* </div> */}
         </>
-      {/* )} */}
+      )}
     </main>
   );
 }

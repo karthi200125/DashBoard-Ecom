@@ -9,7 +9,7 @@ import CustomBtn from '../CustomBtn';
 
 const LandingCards = () => {
     const router = useRouter()
-    const { isPending, error, data } = useQuery({
+    const { isPending, data } = useQuery({
         queryKey: ['allproducts'],
         queryFn: async () => await getAllProducts()
     })

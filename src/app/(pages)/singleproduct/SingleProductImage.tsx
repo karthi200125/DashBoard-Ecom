@@ -1,51 +1,59 @@
 'use client';
 import Image from '@/components/ui/CustomImage';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
+import { motion } from 'framer-motion'
 
-const SingleProductImage = ({ product }: string[]) => {
-    const images = product?.proImage;
+const SingleProductImage = ({ product }: { product: { proImage: string[] } }) => {
+    const images = useMemo(() => product?.proImage, [product?.proImage]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % images?.length);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [images?.length]);
+    }, [images.length]);
 
-    const handlePrev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + images?.length) % images?.length);
-    };
+    const handlePrev = useCallback(() => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    }, [images.length]);
 
-    const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % images?.length);
-    };
+    const handleNext = useCallback(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, [images.length]);
 
     return (
         <div className="p-2 md:p-0 w-full relative h-full overflow-hidden flex flex-col lg:flex-row gap-3 items-center">
 
             {/* min images */}
             <div className='w-full lg:w-[200px] h-[80px] lg:h-full flex flex-row lg:flex-col justify-between gap-3'>
-                {images?.map((src: string, index: any) => (
-                    <div
+                {images.map((src, index) => (
+                    <motion.div
+                        initial={{ opacity: 0, x: -180 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{
+                            ease: "easeInOut",
+                            duration: 1,
+                            delay: 0.6,
+                        }}
                         key={index}
                         className={`${index === currentIndex ? "bg-neutral-200" : "border"} w-full h-full rounded-[10px] overflow-hidden p-2`}
                         data-carousel-item
                     >
                         <Image src={src} imgclass={`w-full h-full object-contain rounded-[10px]`} alt='' />
-                    </div>
+                    </motion.div>
                 ))}
             </div>
 
             {/* main image slide */}
             <div id="default-carousel" className="relative w-full h-[400px] lg:h-full rounded-[20px] overflow-hidden" data-carousel="slide">
 
-                {/*images */}
+                {/* images */}
                 <div className="relative h-full overflow-hidden bg-neutral-200">
-                    {images?.map((src: string, index: any) => (
+                    {images.map((src, index) => (
                         <div
                             key={index}
                             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
@@ -58,7 +66,7 @@ const SingleProductImage = ({ product }: string[]) => {
 
                 {/* dots */}
                 <div className="absolute z-10 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                    {images?.map((_, index: any) => (
+                    {images.map((_, index) => (
                         <button
                             key={index}
                             type="button"

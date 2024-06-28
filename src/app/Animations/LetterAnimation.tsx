@@ -22,7 +22,7 @@ const LetterAnimation = ({ title }: LetterAnimationProps) => {
     const [currentTitle, setCurrentTitle] = useState(title);
     const [key, setKey] = useState(0);
     const { ref, inView } = useInView({
-        // triggerOnce: true, 
+        triggerOnce: true, 
         threshold: 0.5,
     });
 

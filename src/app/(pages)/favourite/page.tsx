@@ -38,8 +38,8 @@ const Favourite = () => {
         
         <div className='w-full min-h-screen py-5 flex flex-col gap-5'>
             <div className='p-2 md:p-0 flex flex-col gap-2'>
-                <h1>Your Favourite Products</h1>
-                <p>You have {data?.count} products in Favourites</p>
+                <h2>Your Favourite Products</h2>
+                <p>You have {data?.count || 0} products in Favourites</p>
             </div>
 
             <Cards products={data?.data} isLoading={isPending} count={data?.count} />

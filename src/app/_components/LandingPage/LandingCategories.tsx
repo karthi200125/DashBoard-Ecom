@@ -12,7 +12,10 @@ import { perspective, slideUp } from '@/app/Animations/animate';
 
 const LandingCategories = () => {
   const [activeId, setActiveId] = useState(2);
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
 
   useEffect(() => {
   }, [inView]);

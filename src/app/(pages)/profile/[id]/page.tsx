@@ -55,7 +55,7 @@ const Profile = () => {
                     <div className='flex flex-col md:flex-row items-start md:items-center gap-3'>
                         <UserProfile proSrc={profileUser?.image || ""} proAlt='' profileCls='w-[60px] h-[60px]' />
                         <div>
-                            <h2>{profileUser?.email}</h2>
+                            <h4>{profileUser?.email}</h4>
                             <p>{profileUser?.phoneNo || "Add your phone number"}</p>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ const Profile = () => {
                     <div className='flex flex-row items-center justify-between'>
                         <div className='flex flex-row gap-2 items-center font-bold'>
                             <IoMdHeartEmpty size={20} />
-                            <h3>Favourites</h3>
+                            <h5>Favourites</h5>
                         </div>
                         <CustomBtn btnCls='border h-[30px] md:h-[40px] px-3 md:px-5 bg-blue-400 text-white text-[12px]' onClick={() => router.push('/favourite')}>View all</CustomBtn>
                     </div>
@@ -81,7 +81,7 @@ const Profile = () => {
                 <div className='flex-1 p-5 border rounded-[10px] flex flex-col gap-3 h-[200px] justify-start'>
                     <div className='flex flex-row items-center gap-2 font-bold'>
                         <IoLocationOutline size={20} />
-                        <h3>Address</h3>
+                        <h5>Address</h5>
                     </div>
                     <div className='p-2'>
                         {profileUser?.address ? (
@@ -102,8 +102,8 @@ const Profile = () => {
             <div className='flex flex-col gap-5'>
                 {/* Order top heading */}
                 <div>
-                    <h2>My Orders</h2>
-                    <h3>Customer orders</h3>
+                    <h4>My Orders</h4>
+                    <h5>Customer orders</h5>
                 </div>
 
                 {/* Orders */}
@@ -111,12 +111,12 @@ const Profile = () => {
                     {orders.length > 0 ? (
                         <div className='border rounded-[10px] p-5 h-[200px]'>
                             <div className='flex flex-row items-center justify-between'>
-                                <h1 className='text-lg md:text-2xl font-bold'>Order ID: 16236565365365</h1>
-                                <h2 className='text-lg md:text-xl font-bold'>$10000</h2>
+                                <h4>Order ID: 16236565365365</h4>
+                                <h5>$10000</h5>
                             </div>
                             <div className='flex flex-col md:flex-row items-start md:items-center mt-3 gap-3 md:gap-10'>
                                 <div className='flex-1'>
-                                    <h2 className='text-sm font-semibold'>Collected: <span className='text-sm text-neutral-400'>12/03/2024</span></h2>
+                                    <h4>Collected: <span className='text-sm text-neutral-400'>12/03/2024</span></h4>
                                     <div className='flex flex-row items-center gap-5'>
                                         <CustomBtn btnCls='border-blue-500 bg-blue-200 px-3 md:px-5'>Add to cart again</CustomBtn>
                                         <CustomBtn btnCls='border-blue-500 bg-blue-200 px-3 md:px-5'>View details</CustomBtn>

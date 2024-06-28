@@ -5,8 +5,8 @@ import LetterAnimation from '../Animations/LetterAnimation';
 import { perspective } from '../Animations/animate';
 import SocialIcons from './LandingPage/SocialIcons';
 import { Aboutus, Help, OnlineShpping } from './dummydata';
-import logo from '../assets/logo.webp';
 import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react'
 
 const Footer = () => {
     const slideUp = {
@@ -19,9 +19,15 @@ const Footer = () => {
         }
     };
 
-    const { ref, inView } = useInView();
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.5,
+    });
 
-    const word = "DEXONS";
+    useEffect(() => {
+    }, [inView]);
+
+    const word = "DEXON";
 
     return (
         <div ref={ref} className='w-full max-h-max flex flex-col justify-between mt-5'>
@@ -102,13 +108,13 @@ const Footer = () => {
                 </div>
                 <div className='w-full md:w-[500px] h-full'>
                     <div className='flex flex-row gap-5 items-center text-white'>
-                        <Image src={logo.src} imgclass='w-[60px] h-[60px] rounded-full object-contain' alt='' />
+                        <Image src={''} imgclass='w-[60px] h-[60px] rounded-full object-contain' alt='' />
                         <p>
                             100% ORIGINAL guarantee for all products at myntra.com
                         </p>
                     </div>
                     <div className='flex flex-row gap-5 items-center text-white mt-5'>
-                        <Image src={logo.src} imgclass='w-[60px] h-[60px] rounded-full object-contain' alt='' />
+                        <Image src={''} imgclass='w-[60px] h-[60px] rounded-full object-contain' alt='' />
                         <p>
                             Return within 14 days of receiving your order
                         </p>

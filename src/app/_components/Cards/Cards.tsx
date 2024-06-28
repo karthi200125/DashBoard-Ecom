@@ -11,11 +11,11 @@ import { useInView } from 'react-intersection-observer';
 export const cardsSlipUpOneByOne = {
     initial: {
         opacity: 0,
-        translateY: 600,        
+        translateY: 600,
     },
     enter: (i: number) => ({
         opacity: 1,
-        translateY: 0,        
+        translateY: 0,
         transition: {
             delay: 0.5 + (i * 0.1),
             opacity: { duration: 0.35 },
@@ -36,7 +36,10 @@ interface CardsProps {
 
 const Cards = ({ products, isLoading, count }: CardsProps) => {
     const pathname = usePathname();
-    const { ref, inView } = useInView();
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.5,
+    });
 
     useEffect(() => {
     }, [inView]);
