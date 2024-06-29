@@ -10,13 +10,17 @@ import TransitionLink from '@/app/Animations/TransitionLink'
 import LetterAnimation from '@/app/Animations/LetterAnimation'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const LandingPage = ({ onLoad }: any) => {
+const LandingPage = ({ onLoaded }: any) => {
     const [mainImageIndex, setMainImageIndex] = useState(0)
     const [heading1, setHeading1] = useState(LadingPageMainContents[0]?.heading1)
     const [heading2, setHeading2] = useState(LadingPageMainContents[0]?.heading2)
     const [heading3, setHeading3] = useState(LadingPageMainContents[0]?.heading3)
     const [subHeading1, setsubHeading1] = useState(LadingPageMainContents[0]?.subHeading1)
     const [subHeading2, setsubHeading2] = useState(LadingPageMainContents[0]?.subHeading2)
+
+    useEffect(() => {
+        onLoaded();
+    }, []);
 
     const miniImages = [
         LadingPageMainContents[0]?.image,
@@ -34,8 +38,6 @@ const LandingPage = ({ onLoad }: any) => {
     }
 
     useEffect(() => {
-        onLoad && onLoad('LandingPage');
-
         const interval = setInterval(() => {
             setMainImageIndex((prevIndex) => (prevIndex + 1) % LadingPageMainContents.length);
         }, 10000);

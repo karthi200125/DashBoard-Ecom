@@ -473,7 +473,7 @@ export const Kids = [
 
 
 // testimonial
-export const Testimonials = [
+export const Testimonialsdata = [
     {
         id: 1,
         name: "Jane Doe",

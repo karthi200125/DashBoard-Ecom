@@ -1,16 +1,15 @@
 'use client'
+import LetterAnimation from '@/app/Animations/LetterAnimation';
+import { perspective } from '@/app/Animations/animate';
 import Image from '@/components/ui/CustomImage';
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiShoppingBagFill } from "react-icons/ri";
-import { LadingCategories } from '../dummydata';
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import LetterAnimation from '@/app/Animations/LetterAnimation';
-import { perspective, slideUp } from '@/app/Animations/animate';
+import { LadingCategories } from '../dummydata';
 
-const LandingCategories = () => {
+const LandingCategories = ({ onLoaded }: any) => {
   const [activeId, setActiveId] = useState(2);
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -19,6 +18,12 @@ const LandingCategories = () => {
 
   useEffect(() => {
   }, [inView]);
+
+  useEffect(() => {
+    onLoaded();
+  }, []);
+
+
 
   return (
     <div ref={ref} className='relative py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto rounded-[20px] flex flex-col items-center justify-center gap-10'>

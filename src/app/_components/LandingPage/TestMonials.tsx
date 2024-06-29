@@ -1,31 +1,27 @@
 'use client'
 
+import LetterAnimation from "@/app/Animations/LetterAnimation";
 import CustomImage from "@/components/ui/CustomImage";
 import {
     Carousel,
-    CarouselContent,
-    CarouselItem
+    CarouselContent
 } from "@/components/ui/carousel";
-import { Testimonials } from "../dummydata";
-import { useEffect } from 'react'
-import LetterAnimation from "@/app/Animations/LetterAnimation";
-import { cardsSlipUpOneByOne } from "../Cards/Cards";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { cardsSlipUpOneByOne } from "../Cards/Cards";
+import { Testimonialsdata } from "../dummydata";
+import { useEffect } from 'react'
 
-export const TestMonials = ({ onLoad }: any) => {
 
-    useEffect(() => {
-        onLoad && onLoad('TestMonials');
-    }, []);
-
+export const Testimonials = ({ onLoaded }: any) => {
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.5,
     });
 
     useEffect(() => {
-    }, [inView]);
+        onLoaded();
+    }, []);
 
     return (
         <div ref={ref} className="sticky_01_panel w-full max-h-max rounded-[30px] pt-5 flex items-center justify-center flex-col gap-5 text-white bg-black">
@@ -39,7 +35,7 @@ export const TestMonials = ({ onLoad }: any) => {
             </div>
             <Carousel className="w-full">
                 <CarouselContent className="flex flex-row">
-                    {Testimonials.map((t, i) => (
+                    {Testimonialsdata.map((t, i) => (
                         <motion.CarouselItem
                             key={i}
                             variants={cardsSlipUpOneByOne}
@@ -51,7 +47,10 @@ export const TestMonials = ({ onLoad }: any) => {
                                 <div className="absolute top-3 left-3 px-5 rounded-full h-[40px] text-sm font-bold bg-white text-black flex items-center justify-center z-10">
                                     <LetterAnimation title="explore" />
                                 </div>
-                                <CustomImage src={t?.image?.src} imgclass="absolute w-full h-full bg-neutral-200 left-0 top-0 object-cover" />
+                                <CustomImage
+                                    src={t?.image?.src}
+                                    imgclass="absolute w-full h-full bg-neutral-200 left-0 top-0 object-cover"
+                                />
                                 <div className="absolute bottom-5 right-5 w-[80px] h-[80px] rounded-full bg-white text-black flex items-center justify-center text-sm font-bold cursor-pointer">
                                     <LetterAnimation title="see" />
                                 </div>
@@ -69,11 +68,9 @@ export const TestMonials = ({ onLoad }: any) => {
                         </motion.CarouselItem>
                     ))}
                 </CarouselContent>
-                {/* <CarouselPrevious />
-                <CarouselNext /> */}
             </Carousel>
         </div>
     )
 }
 
-export default TestMonials;
+export default Testimonials;
