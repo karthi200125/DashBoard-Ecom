@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { RiShoppingBagLine } from 'react-icons/ri';
-import './ShoppingCartIcon.scss';
+import './ShoppingCartICon.scss';
 import Link from 'next/link';
 import { useCurrentUser } from '@/app/hooks/useCurrentUser';
 import { useCart } from '../ContextApi/CartContext';
