@@ -58,7 +58,6 @@ h5 {
 
 p {
     @apply text-base md:text-[10px] lg:text-[12px] text-neutral-400;
-    /* @apply text-base md:text-[10px] lg:text-[12px] text-neutral-400 leading-relaxed md:leading-loose lg:leading-loose; */
 }
 
 

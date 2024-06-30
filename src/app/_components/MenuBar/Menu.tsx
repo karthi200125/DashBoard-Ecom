@@ -9,21 +9,21 @@ import './MenuBar.scss'
 
 export const variants = {
     open: {
-        width: "130%",
+        width: "100%",
         height: "100vh",
         transition: {
             duration: 0.75,
             ease: [0.76, 0, 0.24, 1],
         },
-        left: "-40px",
-        top: "-20px",
+        left: "0",
+        top: "0",
     },
     closed: {
         width: 0,
         height: 0,
         transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
-        left: "10px",
-        top: "15px",
+        left: "25px",
+        top: "30px",
         borderRadius: "30px"
     }
 };
@@ -38,7 +38,7 @@ const Menu = ({ isSticky }: MenuProps) => {
     return (
         <div className='w-full'>
             <motion.div
-                className="expandmenu absolute w-full"
+                className="expandmenu absolute w-full bg-black text-white"
                 variants={variants}
                 animate={menuOpen ? "open" : "closed"}
                 initial="closed"
@@ -46,10 +46,18 @@ const Menu = ({ isSticky }: MenuProps) => {
 
                 <AnimatePresence>
                     {menuOpen &&
-                        <>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{
+                                duration: 0.75,
+                                delay: 0.5,
+                            }}
+                        >
                             <MobNav />
                             <MenuBarContent />
-                        </>
+                        </motion.div>
                     }
                 </AnimatePresence>
             </motion.div>

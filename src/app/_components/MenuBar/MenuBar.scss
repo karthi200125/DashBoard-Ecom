@@ -1,7 +1,5 @@
-.expandmenu{    
-    background-color: white;  
-    border-radius: 30px;  
-    /* background-color: #c9fd74;     */
+.expandmenu{        
+    border-radius: 30px;      
 }
 
 /* mobile nav css */
@@ -45,15 +43,18 @@
 
 .openmenu .line1 {
     transform: translate(-50%, -50%) rotate(45deg);
+    color: white;
 }
 
 .openmenu .line3 {
     transform: translate(-50%, -50%) rotate(-45deg);
     width: 100%;
+    color: white;
 }
 
 .openmenu .line2 {
     width: 0;
+    color: white;
 }
 
 

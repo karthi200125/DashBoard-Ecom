@@ -98,8 +98,8 @@ const Navbar = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className="ml-3 h-full w-full flex items-center justify-center">
-                        <Menu isSticky={isSticky} />
+                    <div className="ml-3 max-w-max">
+                        <Menu isSticky={isSticky}/>                        
                     </div>
                 )}
 

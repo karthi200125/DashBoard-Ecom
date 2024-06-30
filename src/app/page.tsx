@@ -1,11 +1,11 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PreLoading from './_components/Loaders/PreLoading';
-import TestimonialsSkeleton from './_components/Skeletons/TestMonialsSkeleton';
-import LCatSkeleton from './_components/Skeletons/LCatSkeleton';
 import BannerSkeleton from './_components/Skeletons/BannerSkeleton';
+import LCatSkeleton from './_components/Skeletons/LCatSkeleton';
+import TestimonialsSkeleton from './_components/Skeletons/TestMonialsSkeleton';
 
 const LandingPage = dynamic(() => import('./_components/LandingPage/LandingPage'), { ssr: false });
 const Banners = dynamic(() => import('./_components/LandingPage/Banners'), { ssr: false });
@@ -22,67 +22,43 @@ export default function Home() {
   const [isTestimonialsLoaded, setIsTestimonialsLoaded] = useState(true);
   const [isFooterLoaded, setIsFooterLoaded] = useState(true);
 
-  useEffect(() => {
-    if (!isLandingPageLoaded) {
-      setIsLandingCategoriesLoaded(false);
-    }
-  }, [isLandingPageLoaded]);
-
-  useEffect(() => {
-    if (!isLandingCategoriesLoaded) {
-      setIsBannersLoaded(false);
-    }
-  }, [isLandingCategoriesLoaded]);
-
-  useEffect(() => {
-    if (!isBannersLoaded) {
-      setIsLandingCardsLoaded(false);
-    }
-  }, [isBannersLoaded]);
-
-  useEffect(() => {
-    if (!isLandingCardsLoaded) {
-      setIsTestimonialsLoaded(false);
-    }
-  }, [isLandingCardsLoaded]);
-
   return (
     <main className="min-h-screen bg-white w-full">
-      {isLandingPageLoaded ? (
+      {/* {isLandingPageLoaded && (
         <PreLoading />
-      ) : (
-        <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
-      )}
+      )} */}
 
-      {isLandingCategoriesLoaded ? (
-        <LCatSkeleton />
-      ) : (
-        <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
-      )}
+      {/* <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} /> */}
 
-      {isBannersLoaded ? (
-        <BannerSkeleton />
-      ) : (
-        <Banners onLoaded={() => setIsBannersLoaded(false)} />
-      )}
+
+      {/* {isLandingCategoriesLoaded &&
+        <LCatSkeleton />}
+
+      <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
+
+
+      {isBannersLoaded &&
+        <BannerSkeleton />}
+
+      <Banners onLoaded={() => setIsBannersLoaded(false)} />
+ */}
 
       {/* {isLandingCardsLoaded ? (
         <PreLoading />
       ) : ( */}
-        <LandingCards />
+      {/* <LandingCards /> */}
       {/* )} */}
+{/* 
+      {isTestimonialsLoaded &&
+        <TestimonialsSkeleton />}
 
-      {isTestimonialsLoaded ? (
-        <TestimonialsSkeleton />
-      ) : (
-        <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
-      )}
+      <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
 
-      {isFooterLoaded ? (
-        <div>loading</div>
-      ) : (
-        <Footer onLoaded={() => setIsFooterLoaded(false)} />
-      )}
+
+      {isFooterLoaded &&
+        <div>loading</div>}
+      <Footer onLoaded={() => setIsFooterLoaded(false)} /> */}
+
     </main>
   );
 }

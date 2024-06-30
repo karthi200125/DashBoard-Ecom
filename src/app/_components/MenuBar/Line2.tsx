@@ -18,11 +18,11 @@ const Line3 = ({ onOpen, isSticky }: Line2Props) => {
     return (
         <div className={`${open && "openmenu"} menu ${isSticky && "bg-black z-[9999]"} flex items-center justify-center rounded-full ml-[-10px] z-[9999]`} onClickCapture={click}>
             <div className="">
-                <span className={`line1 ${isSticky ? open ? "bg-black" : "bg-white" : "bg-black"}`}></span>
-                <span className={`line2 ${isSticky ? open ? "bg-black" : "bg-white" : "bg-black"}`}></span>
-                <span className={`line3 ${isSticky ? open ? "bg-black" : "bg-white" : "bg-black"}`}></span>
-            </div>
-        </div>
+                <span className={`line1 ${isSticky ? open ? "bg-white" : "bg-white" : open ? "bg-white" : "bg-black"}`}></span>
+                <span className={`line2 ${isSticky ? open ? "bg-white" : "bg-white" : open ? "bg-white" : "bg-black"}`}></span>
+                <span className={`line3 ${isSticky ? open ? "bg-white" : "bg-white" : open ? "bg-white" : "bg-black"}`}></span>
+            </div >
+        </div >
     )
 }
 
