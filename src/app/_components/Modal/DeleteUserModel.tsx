@@ -36,7 +36,7 @@ const DeleteUserBody = ({ user }: DeleteUserBodyProps) => {
         <div className="w-full h-full p-5 rounded-[20px] flex flex-col gap-3">
             <h2 className='py-2 border-b'>Delete user</h2>
             <div className="flex flex-col gap-5 items-center justify-center py-2">
-                <p className="text-center">Are you sure you want to delete this user <b>"{user?.name}"</b>?</p>
+                <p className="text-center">Are you sure you want to delete this user <b>{user?.name}</b>?</p>
                 <CustomBtn
                     btnCls='bg-black text-white w-[200px] flex items-center justify-center'
                     onClick={HandleDelete}
