@@ -19,9 +19,12 @@ export const categoryCount = async () => {
         });
 
         const formattedCategoryCounts = categoryCounts.reduce((acc, item) => {
-            acc[item.proCategory] = item._count.proCategory;
+            if (item.proCategory !== null) {
+                acc[item.proCategory] = item._count.proCategory;
+            }
             return acc;
-        }, {});
+        }, {} as { [key: string]: number });
+
 
         return {
             success: "get all products success",
