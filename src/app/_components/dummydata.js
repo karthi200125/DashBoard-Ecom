@@ -14,9 +14,6 @@ import testimonial3 from '../assets/testimonials/1 (3).webp'
 import testimonial4 from '../assets/testimonials/1 (4).webp'
 import testimonial5 from '../assets/testimonials/1 (5).webp'
 import testimonial6 from '../assets/testimonials/1 (6).webp'
-import LadingPageImagemens from '../assets/landingpage/mens.webp'
-import LadingPageImagewomens from '../assets/landingpage/womens.webp'
-import LadingPageImagekids from '../assets/landingpage/kids.jpg'
 import lcmen from '../assets/ladingcat/lcmens.webp'
 import lcwomen from '../assets/ladingcat/lcwomen.webp'
 import lckid from '../assets/ladingcat/lckid.webp'
@@ -31,7 +28,7 @@ const user = true;
 export const LadingPageMainContents = [
     {
         id: 1,
-        image: LadingPageImagemens?.src,
+        image: "https://res.cloudinary.com/duextvtta/image/upload/v1719735028/mens_ztpxpn.webp",
         heading1: "Elevate Your Style with",
         heading2: "Our Premium",
         heading3: "Men's Collection",
@@ -40,16 +37,16 @@ export const LadingPageMainContents = [
     },
     {
         id: 2,
-        image: LadingPageImagewomens?.src,
+        image: "https://res.cloudinary.com/duextvtta/image/upload/v1719734896/jpeg-optimizer_front-view-woman-posing-with-black-outfit_1_qxj0ox.webp",
         heading1: "Unleash Your Elegance",
-        heading2: " with Our Exclusive",
+        heading2: "with Our Exclusive",
         heading3: "Women's fashion",
         subHeading1: "WOMENS",
         subHeading2: "Chic and Sophisticated"
     },
     {
         id: 3,
-        image: LadingPageImagekids?.src,
+        image: "https://res.cloudinary.com/duextvtta/image/upload/v1719735029/womens_ehx5gr.webp",
         heading1: "Discover Fun and Comfort",
         heading2: "with Our Trendy",
         heading3: "Kids' Wear",

@@ -24,11 +24,11 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white w-full">
-      {/* {isLandingPageLoaded && (
+      {isLandingPageLoaded && (
         <PreLoading />
-      )} */}
+      )}
 
-      {/* <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} /> */}
+      <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
 
 
       {/* {isLandingCategoriesLoaded &&

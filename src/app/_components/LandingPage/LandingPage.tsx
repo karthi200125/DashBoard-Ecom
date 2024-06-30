@@ -1,22 +1,22 @@
-'use client'
-import CustomBtn from '@/app/_components/CustomBtn'
-import Image from '@/components/ui/CustomImage'
-import { ArrowRight } from 'lucide-react'
-import { useState, useEffect } from 'react'
-import { LadingPageMainContents } from '../dummydata'
-import Curves from './Curves'
-import SocialIcons from './SocialIcons'
-import TransitionLink from '@/app/Animations/TransitionLink'
-import LetterAnimation from '@/app/Animations/LetterAnimation'
-import { motion, AnimatePresence } from 'framer-motion'
+'use client';
+import CustomBtn from '@/app/_components/CustomBtn';
+import Image from '@/components/ui/CustomImage';
+import { ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { LadingPageMainContents } from '../dummydata';
+import Curves from './Curves';
+import SocialIcons from './SocialIcons';
+import TransitionLink from '@/app/Animations/TransitionLink';
+import LetterAnimation from '@/app/Animations/LetterAnimation';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const LandingPage = ({ onLoaded }: any) => {
-    const [mainImageIndex, setMainImageIndex] = useState(0)
-    const [heading1, setHeading1] = useState(LadingPageMainContents[0]?.heading1)
-    const [heading2, setHeading2] = useState(LadingPageMainContents[0]?.heading2)
-    const [heading3, setHeading3] = useState(LadingPageMainContents[0]?.heading3)
-    const [subHeading1, setsubHeading1] = useState(LadingPageMainContents[0]?.subHeading1)
-    const [subHeading2, setsubHeading2] = useState(LadingPageMainContents[0]?.subHeading2)
+const LandingPage = ({ onLoaded }) => {
+    const [mainImageIndex, setMainImageIndex] = useState(0);
+    const [heading1, setHeading1] = useState(LadingPageMainContents[0]?.heading1);
+    const [heading2, setHeading2] = useState(LadingPageMainContents[0]?.heading2);
+    const [heading3, setHeading3] = useState(LadingPageMainContents[0]?.heading3);
+    const [subHeading1, setsubHeading1] = useState(LadingPageMainContents[0]?.subHeading1);
+    const [subHeading2, setsubHeading2] = useState(LadingPageMainContents[0]?.subHeading2);
 
     useEffect(() => {
         onLoaded();
@@ -24,18 +24,18 @@ const LandingPage = ({ onLoaded }: any) => {
 
     const miniImages = [
         LadingPageMainContents[0]?.image,
-        LadingPageMainContents[0]?.image,
-        LadingPageMainContents[0]?.image,
-    ]
+        LadingPageMainContents[1]?.image,
+        LadingPageMainContents[2]?.image,
+    ];
 
-    const handleClick = (index: any) => {
-        setMainImageIndex(index)
-        setHeading1(LadingPageMainContents[index]?.heading1)
-        setHeading2(LadingPageMainContents[index]?.heading2)
-        setHeading3(LadingPageMainContents[index]?.heading3)
-        setsubHeading1(LadingPageMainContents[index]?.subHeading1)
-        setsubHeading2(LadingPageMainContents[index]?.subHeading2)
-    }
+    const handleClick = (index) => {
+        setMainImageIndex(index);
+        setHeading1(LadingPageMainContents[index]?.heading1);
+        setHeading2(LadingPageMainContents[index]?.heading2);
+        setHeading3(LadingPageMainContents[index]?.heading3);
+        setsubHeading1(LadingPageMainContents[index]?.subHeading1);
+        setsubHeading2(LadingPageMainContents[index]?.subHeading2);
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -58,28 +58,26 @@ const LandingPage = ({ onLoaded }: any) => {
         <div className='sticky_01_panel w-full h-[92vh] py-[15px] xl:py-[10px] flex flex-col gap-2 md:flex-row justify-between relative px-2 md:pl-[50px] xl:pl-[80px]'>
 
             {/* main image */}
-            <div className='w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden'>
+            <div className='w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden relative'>
                 <AnimatePresence>
                     <motion.div
                         key={mainImageIndex}
-                        initial={{ opacity: 0, x: '100%' }}
+                        initial={{ opacity: 1, x: '100%' }}
                         animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: '-100%' }}
+                        exit={{ opacity: 0, x: 0 }}
                         transition={{
                             ease: [0.76, 0, 0.24, 1],
-                            delay: 0.35,
                             duration: 2,
                         }}
-                        className="w-full h-full"
+                        className="absolute w-full h-full"
                     >
                         <Image src={LadingPageMainContents[mainImageIndex]?.image} imgclass='w-full h-full bg-black' alt='main image' />
                     </motion.div>
                 </AnimatePresence>
-
             </div>
 
             {/* buttons */}
-            <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row  xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[115px] bottom-0 md:bottom-[125px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+            <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[115px] bottom-0 md:bottom-[125px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                 <TransitionLink href='/shop'>
                     <CustomBtn arrow btnCls='bg-black text-white pl-5 md:pl-10 ' arrowCls='bg-white text-black'>
                         Shop Now
@@ -165,7 +163,7 @@ const LandingPage = ({ onLoaded }: any) => {
                     duration: 1,
                     delay: 0.6,
                 }}
-                className='w-full md:flex flex-col absolute left-2 transform -translate-x-1/2 bottom-[25%] md:bottom-[30px] md:left-[50px] xl:left-[80px] '
+                className='w-full md:flex flex-col absolute left-2 transform -translate-x-1/2 bottom-[25%] md:bottom-[30px] md:left-[50px] xl:left-[80px]'
             >
                 <Curves curveCls='hidden md:flex w-[45px] h-[45px] absolute top-[-45px] left-[0px]' />
                 <Curves curveCls='hidden md:flex w-[45px] h-[45px] absolute bottom-0 right-[-43px]' />
@@ -185,9 +183,8 @@ const LandingPage = ({ onLoaded }: any) => {
             <div className='hidden md:flex md:w-[40px] xl:w-[60px] h-[200px] absolute top-1/2 transform -translate-y-1/2 left-[0px]'>
                 <SocialIcons />
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default LandingPage
+export default LandingPage;

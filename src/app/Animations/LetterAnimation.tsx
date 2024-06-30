@@ -4,9 +4,10 @@ import { useInView } from 'react-intersection-observer';
 
 interface LetterAnimationProps {
     title: string;
+    type?: 'word';
 }
 
-export const letterAni = {
+const letterAni = {
     initial: { y: 800 },
     animate: {
         y: 0,
@@ -18,11 +19,23 @@ export const letterAni = {
     },
 };
 
-const LetterAnimation = ({ title }: LetterAnimationProps) => {
+const wordAni = {
+    initial: { y: 800 },
+    animate: {
+        y: 0,
+        transition: {
+            ease: [0.6, 0.01, -0.05, 0.95],
+            duration: 1,
+            staggerChildren: 0.05,
+        },
+    },
+};
+
+const LetterAnimation = ({ title, type }: LetterAnimationProps) => {
     const [currentTitle, setCurrentTitle] = useState(title);
     const [key, setKey] = useState(0);
     const { ref, inView } = useInView({
-        triggerOnce: true, 
+        triggerOnce: true,
         threshold: 0.5,
     });
 
@@ -30,6 +43,8 @@ const LetterAnimation = ({ title }: LetterAnimationProps) => {
         setCurrentTitle(title);
         setKey((prevKey) => prevKey + 1);
     }, [title]);
+
+    const words = type === 'word' ? title.split(' ') : [...title];
 
     return (
         <motion.span
@@ -41,18 +56,18 @@ const LetterAnimation = ({ title }: LetterAnimationProps) => {
             variants={{
                 animate: {
                     transition: {
-                        staggerChildren: 0.05,
+                        staggerChildren: type === 'word' ? 0.05 : 0.05,
                     },
                 },
             }}
         >
-            {[...currentTitle].map((letter, index) => (
+            {words.map((wordOrLetter, index) => (
                 <motion.span
                     className='row-letter leading-none'
-                    variants={letterAni}
+                    variants={type === 'word' ? wordAni : letterAni}
                     key={index}
                 >
-                    {letter === ' ' ? '\u00A0' : letter}
+                    {type === 'word' ? `${wordOrLetter}\u00A0` : (wordOrLetter === ' ' ? '\u00A0' : wordOrLetter)}
                 </motion.span>
             ))}
         </motion.span>
