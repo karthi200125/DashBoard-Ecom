@@ -31,15 +31,15 @@ const OrderSummaryStep = () => {
         <div className='flex flex-col gap-2 w-full lg:w-full max-h-max border rounded-[20px] p-2 md:p-5'>
             <div className='flex flex-row justify-between items-start py-3 relative'>
                 <div className='flex flex-col gap-2'>
-                    <h1>Your Cart</h1>
-                    <p>You have {items.length} products in your cart</p>
+                    <h2>Your Cart</h2>
+                    <p>You have {items.length || 0} products in your cart</p>
                 </div>
                 <div
                     className='absolute right-0 flex flex-row items-center cursor-pointer max-w-max'
                     onClick={handleClearCart}
                 >
                     <IoIosClose size={30} className='text-red-500 cursor-pointer font-bold ' />
-                    <h1 className='text-red-400 font-bold text-sm'>ClearAll</h1>
+                    <h4 className='text-red-400 font-bold text-sm'>ClearAll</h4>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@ const OrderSummaryStep = () => {
                             alt={cartpro?.proName}
                         />
                         <div className='flex flex-col h-full gap-2'>
-                            <h2 className='line-clamp-1'>{cartpro?.proName}</h2>
+                            <h4 className='line-clamp-1'>{cartpro?.proName}</h4>
                             <p className='line-clamp-2'>{cartpro?.proDesc}</p>
                             <Colors
                                 onColorSelect={(colors) => handleColorSelect(cartpro.id, colors)}
@@ -71,7 +71,7 @@ const OrderSummaryStep = () => {
                     </div>
 
                     <div className='flex flex-col items-center justify-end gap-3 w-full md:w-[30%] h-full relative'>
-                        <h2>${(cartpro.proQuantity * cartpro.proPrice).toFixed(2)}</h2>
+                        <h4>${(cartpro.proQuantity * cartpro.proPrice).toFixed(2)}</h4>
                         <Quantity
                             id={cartpro.id}
                             quantity={cartpro?.proQuantity}

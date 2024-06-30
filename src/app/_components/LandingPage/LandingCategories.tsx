@@ -32,7 +32,7 @@ const LandingCategories = ({ onLoaded }: any) => {
           <LetterAnimation title="New Launches" />
         </h4>
         <h1 className='mt-1'>
-          <LetterAnimation title="Fresh off The Boat" />
+          <LetterAnimation title="Start with categories" />
         </h1>
       </div>
 

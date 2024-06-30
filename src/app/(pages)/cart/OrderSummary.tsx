@@ -52,7 +52,7 @@ const OrderSummary = ({ step, onNext, onBack }: OrderSummaryProps) => {
 
     return (
         <div className='w-full h-full flex flex-col justify-between'>
-            <h3 className='border-b-[1px] pb-2'>Cart Summary</h3>
+            <h4 className='border-b-[1px] pb-2'>Cart Summary</h4>
             <div className='flex flex-row justify-between items-center text-neutral-400 text-[15px]'>
                 <p className='text-[15px]'>Subtotal</p>
                 <span>₹ {subtotal?.toFixed(2)}</span>
@@ -75,7 +75,7 @@ const OrderSummary = ({ step, onNext, onBack }: OrderSummaryProps) => {
                         {step === 1 ? "Back" : "Back"}
                     </CustomBtn>
                 }
-                <CustomBtn btnCls='flex-1 bg-black text-white hover:opacity-70' onClick={step === 3 ? HandleCheckOut : onNext} isLoading={step === 3 && isLoading} disabled={items?.length === 0}>
+                <CustomBtn btnCls='flex-1 bg-black text-white hover:opacity-70' onClick={step === 2 ? HandleCheckOut : onNext} isLoading={step === 2 && isLoading} disabled={items?.length === 0}>
                     {step === 0 || step === 1 ? "Next" : "CheckOut"}
                 </CustomBtn>
             </div>

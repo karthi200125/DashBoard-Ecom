@@ -27,13 +27,13 @@ const CheckOutShowProducts = () => {
     return (
         <div className='flex flex-col gap-2 w-full lg:w-full max-h-max border rounded-[20px] p-2 md:p-5'>
             <div className='flex flex-row justify-between items-start py-3 relative'>
-                <h1>Final Check Items</h1>
+                <h2>Final Check Items</h2>
                 <div
                     className='absolute right-0 flex flex-row items-center cursor-pointer max-w-max'
                     onClick={handleClearCart}
                 >
-                    <IoIosClose size={30} className='text-red-500 cursor-pointer font-bold ' />
-                    <h1 className='text-red-400 font-bold text-sm'>ClearAll</h1>
+                    <IoIosClose size={30} className='text-red-500 cursor-pointer font-bold'/>
+                    <h4 className='text-red-400 font-bold text-sm'>ClearAll</h4>
                 </div>
             </div>
 
@@ -52,7 +52,7 @@ const CheckOutShowProducts = () => {
                         />
                         {/* product content */}
                         <div className='flex flex-col h-full gap-2'>
-                            <h2 className='line-clamp-1'>{cartpro?.proName}</h2>
+                            <h4 className='line-clamp-1'>{cartpro?.proName}</h4>
                             <p className='line-clamp-2'>{cartpro?.proDesc}</p>
                             <Colors onColorSelect={() => ''} />
                             <Sizes onSizeSelect={() => ''} />
@@ -60,7 +60,7 @@ const CheckOutShowProducts = () => {
                     </div>
 
                     <div className='flex flex-col items-center justify-end gap-3 w-full md:w-[30%] h-full relative'>
-                        <h2>${(quantity * cartpro?.proPrice).toFixed(2)}</h2>
+                        <h4>${(quantity * cartpro?.proPrice).toFixed(2)}</h4>
                         <Quantity
                             quanityCls='w-[100px] lg:w-[150px]'
                             onQuantity={(value) => setQuantity(value)}

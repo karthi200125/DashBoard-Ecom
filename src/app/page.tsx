@@ -24,40 +24,23 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white w-full">
-      {isLandingPageLoaded && (
-        <PreLoading />
-      )}
 
+      {isLandingPageLoaded && <PreLoading />}
       <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
 
-
-      {/* {isLandingCategoriesLoaded &&
-        <LCatSkeleton />}
-
+      {isLandingCategoriesLoaded && <LCatSkeleton />}
       <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
 
-
-      {isBannersLoaded &&
-        <BannerSkeleton />}
-
+      {isBannersLoaded && <BannerSkeleton />}
       <Banners onLoaded={() => setIsBannersLoaded(false)} />
- */}
 
-      {/* {isLandingCardsLoaded ? (
-        <PreLoading />
-      ) : ( */}
-      {/* <LandingCards /> */}
-      {/* )} */}
-{/* 
-      {isTestimonialsLoaded &&
-        <TestimonialsSkeleton />}
+      <LandingCards />
 
+      {isTestimonialsLoaded && <TestimonialsSkeleton />}
       <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
 
-
-      {isFooterLoaded &&
-        <div>loading</div>}
-      <Footer onLoaded={() => setIsFooterLoaded(false)} /> */}
+      {isFooterLoaded && <div>loading</div>}
+      <Footer onLoaded={() => setIsFooterLoaded(false)} />
 
     </main>
   );

@@ -34,7 +34,7 @@ const Quantity = ({ id, quantity }: QuantityProps) => {
     return (
         <div className='border h-[50px] flex flex-row gap-3 justify-between items-center px-5'>
             <button onClick={handleDecrease}>-</button>
-            <h2>{currentQuantity}</h2>
+            <h4>{currentQuantity}</h4>
             <button onClick={handleIncrease}>+</button>
         </div>
     );

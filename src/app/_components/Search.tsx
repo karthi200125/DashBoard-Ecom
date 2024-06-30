@@ -116,7 +116,7 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
                             >
                                 <Image src={product?.proImage[0]} imgclass='bg-neutral-200 w-[60px] h-full rounded-[5px] object-contain' alt='' />
                                 <div className='flex flex-col gap-1'>
-                                    <h2 className='capitalize line-clamp-1'>{product.proName}</h2>
+                                    <h4 className='capitalize line-clamp-1'>{product.proName}</h4>
                                     <p className='line-clamp-1'>{product.proDesc}</p>
                                 </div>
                             </Link>

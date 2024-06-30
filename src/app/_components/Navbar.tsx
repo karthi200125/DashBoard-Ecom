@@ -14,9 +14,10 @@ import Logo from './Logo';
 import Menu from './MenuBar/Menu';
 import { routes } from './dummydata';
 import { motion, AnimatePresence } from 'framer-motion';
+import TransitionLink from '../Animations/TransitionLink';
 
 const Search = dynamic(() => import('./Search'));
-const ShoppingCartIcon = dynamic(() => import('./ShoppingCartIcon/ShoppingCartIcon'));
+const ShoppingCartIcon = dynamic(() => import('./ShoppingCartICon/ShoppingCartICon'));
 const UserProfile = dynamic(() => import('./UserProfile'));
 
 const Navbar = () => {
@@ -99,7 +100,7 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <div className="ml-3 max-w-max">
-                        <Menu isSticky={isSticky}/>                        
+                        <Menu isSticky={isSticky} />
                     </div>
                 )}
 
@@ -115,7 +116,9 @@ const Navbar = () => {
                         <>
                             <Search placeholder="search products..." />
                             {user && (
-                                <Icon icon={<FaRegHeart size={20} />} tooltip="Favorites" iconCls="hidden md:flex" href="/favourite" count={user?.favorite?.length} />
+                                <TransitionLink href='/favourite'>
+                                    <Icon icon={<FaRegHeart size={20} />} tooltip="Favorites" iconCls="hidden md:flex" count={user?.favorite?.length} />
+                                </TransitionLink>
                             )}
                             <ShoppingCartIcon />
                         </>

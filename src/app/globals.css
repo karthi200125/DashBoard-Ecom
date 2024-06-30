@@ -96,15 +96,16 @@ p {
     content: '';
     width: 0;
     height: 2px;
-    background-color: black;
+    background-color: #FF0844;
     margin: auto;
     display: block;
     transition: width 0.3s linear;
-    z-index: 1;
+    z-index: 1;    
 }
 
 .hoveranimation:hover::after {
     width: 100%;
+    cursor: pointer;
 }
 
 .wave {
