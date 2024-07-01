@@ -146,12 +146,12 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
 
             <div className="flex flex-col gap-2">
                 <h1 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Colors </h1>
-                <Colors onColorSelect={(d) => setSelectedColors(d)} />
+                <Colors onColorSelect={(d: any) => setSelectedColors(d)} />
             </div>
 
             <div className="flex flex-col gap-2">
                 <h1 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Sizes </h1>
-                <Sizes onSizeSelect={(d) => setSelectedSizes(d)} />
+                <Sizes onSizeSelect={(d: any) => setSelectedSizes(d)} />
             </div>
 
         </div>
