@@ -38,9 +38,8 @@ export default function Home() {
 
       {isTestimonialsLoaded && <TestimonialsSkeleton />}
       <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
-
-      {isFooterLoaded && <div>loading</div>}
-      <Footer onLoaded={() => setIsFooterLoaded(false)} />
+      
+      <Footer/>
 
     </main>
   );

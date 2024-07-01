@@ -44,7 +44,13 @@ const LetterAnimation = ({ title, type }: LetterAnimationProps) => {
         setKey((prevKey) => prevKey + 1);
     }, [title]);
 
-    const words = type === 'word' ? title.split(' ') : [...title];
+    let words: string[] = [];
+    if (type === 'word') {
+        words = title.split(' ');
+    } else {
+        // For characters, create an array of characters
+        words = Array.from(title);
+    }
 
     return (
         <motion.span
