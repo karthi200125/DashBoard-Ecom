@@ -1,5 +1,3 @@
-'use client';
-
 import React, { memo, useMemo } from 'react';
 import StarRating from '@/app/_components/Cards/StarRating';
 import CustomBtn from '@/app/_components/CustomBtn';
@@ -11,7 +9,12 @@ import { GetReviewByProduct } from '../../../../actions/review';
 import { ProductSchema } from '../../../../schemas';
 import Review from './Review';
 
-const ProductReview = ({ product }: z.infer<typeof ProductSchema>) => {
+
+interface ProductReviewProps {
+  product: any
+}
+
+const ProductReview = ({ product }: ProductReviewProps) => {
   const reviewModel = useReviewModal();
 
   const { isPending, data } = useQuery({
@@ -29,11 +32,17 @@ const ProductReview = ({ product }: z.infer<typeof ProductSchema>) => {
     return reviews.length > 0 ? totalRating / reviews.length : 0;
   }, [reviews, totalRating]);
 
+  // Ensure createdAt is converted to string format
+  const formattedReviews = reviews.map((rev) => ({
+    ...rev,
+    createdAt: rev.createdAt.toISOString()
+  }));
+
   return (
     <div className='w-full flex flex-col lg:flex-row gap-10 relative justify-between'>
       <ReviewModel product={product} />
       {/* review top */}
-      <div className='flex flex-col md:flex-row lg:flex-col w-full lg:w-[30%] h-full items-center justify-between lg:justify-start gap-3 lg:sticky top-[100px]'>
+      <div className='flex flex-col md:flex-row lg:flex-col w-full lg:w-[30%] h-full items-center justify-between lg:sticky top-[100px]'>
         <CustomBtn arrow onClick={reviewModel.onOpen} btnCls='border w-full'>Add your review</CustomBtn>
 
         <div className='w-full flex flex-col gap-3 rounded-[20px] p-5 bg-white border'>
@@ -52,7 +61,7 @@ const ProductReview = ({ product }: z.infer<typeof ProductSchema>) => {
       {/* reviews */}
       <div className='flex flex-col rounded-[30px] md:border md:p-5 gap-3 h-full w-full'>
         {reviews.length > 0 ? (
-          reviews.map((rev) => (
+          formattedReviews.map((rev) => (
             <Review key={rev.id} review={rev} />
           ))
         ) : (
