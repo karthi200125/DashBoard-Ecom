@@ -10,7 +10,7 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-const CustomPagination = ({ count }: number ) => {
+const CustomPagination = ({ count }: any) => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();

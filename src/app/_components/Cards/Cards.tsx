@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { usePathname } from 'next/navigation';
 import CustomPagination from '../CustomPagination';
@@ -52,8 +52,8 @@ const Cards = ({ products, isLoading, count }: CardsProps) => {
                         <CardSkeleton key={index} />
                     ))
                     :
-                    products?.length > 0 ?
-                        products?.map((card, i) => (
+                    products && products.length > 0 ?
+                        products.map((card, i) => (
                             <motion.div
                                 key={i}
                                 variants={cardsSlipUpOneByOne}
@@ -70,7 +70,7 @@ const Cards = ({ products, isLoading, count }: CardsProps) => {
                         </div>
                 }
             </div>
-            {pathname !== "/" && products?.length > 8 && (
+            {pathname !== "/" && products && products.length > 8 && (
                 <CustomPagination count={count} />
             )}
 
