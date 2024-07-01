@@ -9,14 +9,14 @@ import CustomImage from "@/components/ui/CustomImage";
 
 
 const Success = () => {
-    const user = useCurrentUser();
+    const user:any = useCurrentUser();
 
     const { data: orderData, isLoading: isOrderLoading } = useQuery({
         queryKey: ['getorder', user?.id],
         queryFn: async () => await getOrder(user?.id)
     });
 
-    const order = orderData?.data;
+    const order:any = orderData?.data;
     const productIds = order?.productsIds || [];
 
     const { data: productsData, isLoading: isProductsLoading } = useQuery({

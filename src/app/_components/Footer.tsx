@@ -8,7 +8,7 @@ import { Aboutus, Help, OnlineShpping } from './dummydata';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react'
 
-const Footer = ({ onLoaded }: any) => {
+const Footer = () => {
     const slideUp = {
         initial: {
             y: "-100%"
@@ -27,10 +27,7 @@ const Footer = ({ onLoaded }: any) => {
     useEffect(() => {
     }, [inView]);
 
-    useEffect(() => {
-        onLoaded();
-    }, []);
-
+    
     const word = "DEXON";
 
     return (
