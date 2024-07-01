@@ -16,34 +16,35 @@ interface FormattedGenderCounts {
 
 // gender counts
 export const genderCount = async () => {
-    try {
-        const genderCounts: GenderCount[] = await db.user.groupBy({
-            by: ['gender'],
-            _count: {
-                gender: true,
-            },
-        });
+    console.log('some error later solve')
+    // try {
+    //     const genderCounts = await db.user.groupBy({
+    //         by: ['gender'],
+    //         _count: {
+    //             gender: true,
+    //         },
+    //     }) as GenderCount[];
 
-        const allUsers = await db.user.findMany({
-            orderBy: {
-                createdAt: 'desc'
-            }
-        });
+    //     const allUsers = await db.user.findMany({
+    //         orderBy: {
+    //             createdAt: 'desc'
+    //         }
+    //     });
 
-        const formattedGenderCounts: FormattedGenderCounts = genderCounts.reduce<FormattedGenderCounts>((acc, item) => {
-            const genderKey = item.gender !== null ? item.gender : 'unknown';
-            acc[genderKey] = item._count.gender;
-            return acc;
-        }, {});
+    //     const formattedGenderCounts: FormattedGenderCounts = genderCounts.reduce<FormattedGenderCounts>((acc, item) => {
+    //         const genderKey = item.gender !== null ? item.gender : 'unknown';
+    //         acc[genderKey] = item._count.gender;
+    //         return acc;
+    //     }, {});
 
-        return {
-            success: "get all users success",
-            data: allUsers,
-            genderCounts: formattedGenderCounts
-        };
-    } catch (error) {
-        return { error: "get all users failed" };
-    }
+    //     return {
+    //         success: "get all users success",
+    //         data: allUsers,
+    //         genderCounts: formattedGenderCounts
+    //     };
+    // } catch (error) {
+    //     return { error: "get all users failed" };
+    // }
 }
 
 
