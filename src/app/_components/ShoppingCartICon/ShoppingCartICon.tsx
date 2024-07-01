@@ -1,10 +1,9 @@
 'use client'
-import React, { useState, useEffect } from 'react';
-import { RiShoppingBagLine } from 'react-icons/ri';
-import './ShoppingCartICon.scss';
-import Link from 'next/link';
 import { useCurrentUser } from '@/app/hooks/useCurrentUser';
+import { useEffect, useState } from 'react';
+import { RiShoppingBagLine } from 'react-icons/ri';
 import { useCart } from '../ContextApi/CartContext';
+import './ShoppingCartICon.scss';
 
 const ShoppingCartIcon = () => {
     const [cartClass, setCartClass] = useState('');
@@ -25,14 +24,14 @@ const ShoppingCartIcon = () => {
     }, [cartTotal]);
 
     return (
-        <Link href={'/cart'} className={`flex cart ${!user ? "right-[10px]" : "right-[10px] md:right-[60px]"} ${cartClass}`} prefetch={false}>
+        <div className={`flex cart ${!user ? "right-[10px]" : "right-[10px] md:right-[60px]"} ${cartClass}`}>
             <RiShoppingBagLine size={20} />
             {cartTotal > 0 &&
                 <div className={`absolute top-[-5px] right-[-5px] bg-red-400 w-[20px] h-[20px] flex items-center justify-center rounded-full border-[2px] border-solid border-white text-white text-[10px]`}>
                     {cartTotal}
                 </div>
             }
-        </Link>
+        </div>
     );
 };
 
