@@ -61,10 +61,10 @@ const CheckOutShowProducts = () => {
 
                     <div className='flex flex-col items-center justify-end gap-3 w-full md:w-[30%] h-full relative'>
                         <h4>${(quantity * cartpro?.proPrice).toFixed(2)}</h4>
-                        <Quantity
-                            // quantityCls='w-[100px] lg:w-[150px]' 
-                            // onQuantity={(value) => setQuantity(value)}
-                        />
+                        {/* <Quantity
+                            quantityCls='w-[100px] lg:w-[150px]' 
+                            onQuantity={(value) => setQuantity(value)}
+                        /> */}
                         <IoIosClose
                             size={30}
                             className='text-red-500 cursor-pointer font-bold md:absolute top-0 right-0'
