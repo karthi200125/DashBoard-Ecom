@@ -15,41 +15,41 @@ import { getFavProducts } from '../../../../../actions/product';
 import { getSingleUser } from '../../../../../actions/users';
 
 const Profile = () => {
-    const orders: string[] = [];
-    const editProfileModel = useEditProfileModal();
+    // const orders: string[] = [];
+    // const editProfileModel = useEditProfileModal();
 
-    const router = useRouter();
-    const { id } = useParams();
+    // const router = useRouter();
+    // const { id } = useParams();
 
-    const { isLoading: profileLoading, data: profileUser } = useQuery({
-        queryKey: ['profileuser', id],
-        queryFn: async () => await getSingleUser(id),        
-    });
+    // const { isLoading: profileLoading, data: profileUser } = useQuery({
+    //     queryKey: ['profileuser', id],
+    //     queryFn: async () => await getSingleUser(id),        
+    // });
 
-    const { isLoading: favProLoading, data: profileUserFav } = useQuery({
-        queryKey: ['favproducts', id],
-        queryFn: async () => await getFavProducts(id, 1),
-    });
+    // const { isLoading: favProLoading, data: profileUserFav } = useQuery({
+    //     queryKey: ['favproducts', id],
+    //     queryFn: async () => await getFavProducts(id, 1),
+    // });
 
-    const favoriteItems = useMemo(() => (
-        profileUserFav?.data?.length > 0
-            ? profileUserFav.data.slice(0, 5).map(fav => (
-                <div className='p-2 flex flex-row items-center justify-between' key={fav.id}>
-                    <Image src={fav.proImage[0]} imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='Favourite Image' />
-                </div>
-            ))
-            : <p>No favourites yet</p>
-    ), [profileUserFav]);
+    // const favoriteItems = useMemo(() => (
+    //     profileUserFav?.data?.length > 0
+    //         ? profileUserFav.data.slice(0, 5).map(fav => (
+    //             <div className='p-2 flex flex-row items-center justify-between' key={fav.id}>
+    //                 <Image src={fav.proImage[0]} imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='Favourite Image' />
+    //             </div>
+    //         ))
+    //         : <p>No favourites yet</p>
+    // ), [profileUserFav]);
 
-    if (profileLoading) {
-        return <ProfilePageSkeleton />;
-    }
+    // if (profileLoading) {
+    //     return <ProfilePageSkeleton />;
+    // }
 
     return (
         <div className='w-full py-5 min-h-screen flex flex-col gap-5'>
             <EditProfileModel />
             {/* Profile top */}
-            <div className='py-5 border-b'>
+            {/* <div className='py-5 border-b'>
                 <h1 className='text-4xl md:text-5xl xl:text-[120px] line-clamp-1 mb-3'>{profileUser?.name}</h1>
                 <div className='flex flex-col md:flex-row items-start md:items-center justify-between'>
                     <div className='flex flex-col md:flex-row items-start md:items-center gap-3'>
@@ -61,7 +61,7 @@ const Profile = () => {
                     </div>
                     <CustomBtn arrow btnCls='border px-3 md:px-5 mt-3 md:mt-0' onClick={() => editProfileModel.onOpen()}>Edit profile</CustomBtn>
                 </div>
-            </div>
+            </div> */}
 
             {/* Profile favourite and address */}
             <div className='flex flex-col md:flex-row items-start md:items-center justify-between gap-5'>
@@ -72,9 +72,9 @@ const Profile = () => {
                             <IoMdHeartEmpty size={20} />
                             <h5>Favourites</h5>
                         </div>
-                        <CustomBtn btnCls='border h-[30px] md:h-[40px] px-3 md:px-5 bg-blue-400 text-white text-[12px]' onClick={() => router.push('/favourite')}>View all</CustomBtn>
+                        {/* <CustomBtn btnCls='border h-[30px] md:h-[40px] px-3 md:px-5 bg-blue-400 text-white text-[12px]' onClick={() => router.push('/favourite')}>View all</CustomBtn> */}
                     </div>
-                    {favoriteItems}
+                    {/* {favoriteItems} */}
                 </div>
 
                 {/* Address details */}
@@ -83,7 +83,7 @@ const Profile = () => {
                         <IoLocationOutline size={20} />
                         <h5>Address</h5>
                     </div>
-                    <div className='p-2'>
+                    {/* <div className='p-2'>
                         {profileUser?.address ? (
                             <div>
                                 <p className='text-muted-foreground'>{profileUser?.address}</p>
@@ -94,7 +94,7 @@ const Profile = () => {
                         ) : (
                             <p>+ Add your address details</p>
                         )}
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
@@ -108,7 +108,7 @@ const Profile = () => {
 
                 {/* Orders */}
                 <div className='flex flex-col gap-2'>
-                    {orders.length > 0 ? (
+                    {/* {orders.length > 0 ? (
                         <div className='border rounded-[10px] p-5 h-[200px]'>
                             <div className='flex flex-row items-center justify-between'>
                                 <h4>Order ID: 16236565365365</h4>
@@ -133,7 +133,7 @@ const Profile = () => {
                         <div className='text-md md:text-xl text-neutral-400'>
                             No orders yet made
                         </div>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>
