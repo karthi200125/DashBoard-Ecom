@@ -22,7 +22,7 @@ const CreateProduct = () => {
     const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
     const [colorErr, setColorErr] = useState<string | undefined>();
     const [sizeErr, setSizeErr] = useState<string | undefined>();
-    const [success, setSuccess] = useState<string | undefined>(false);
+    const [success, setSuccess] = useState<boolean | undefined>(false);
     const images: string[] = ((): string[] => JSON.parse(localStorage.getItem('addimages') || '[]'))();
 
     const methods = useForm({
