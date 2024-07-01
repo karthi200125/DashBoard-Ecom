@@ -55,26 +55,28 @@ export const {
                     postalCode: true,
                     favorite: true,
                     likes: true,
-                    reviews: true
+                    reviews: true,
+                    emailVerified: true
                 }
             });
 
             if (existingUser) {
                 session.user = {
                     id: existingUser.id,
-                    name: existingUser.name,
-                    email: existingUser.email,
-                    image: existingUser.image,
+                    name: existingUser.name ?? '',
+                    email: existingUser.email ?? '',
+                    image: existingUser.image ?? null,
                     isAdmin: existingUser.isAdmin,
-                    gender: existingUser.gender,
-                    address: existingUser.address,
-                    city: existingUser.city,
-                    state: existingUser.state,
-                    phoneNo: existingUser.phoneNo,
-                    postalCode: existingUser.postalCode,
-                    favorite: existingUser.favorite,
-                    likes: existingUser.likes,
-                    reviews: existingUser.reviews
+                    gender: existingUser.gender ?? null,
+                    address: existingUser.address ?? null,
+                    city: existingUser.city ?? null,
+                    state: existingUser.state ?? null,
+                    phoneNo: existingUser.phoneNo ?? null,
+                    postalCode: existingUser.postalCode ?? null,
+                    favorite: existingUser.favorite ?? null,
+                    likes: existingUser.likes ?? null,
+                    reviews: existingUser.reviews ?? null,
+                    emailVerified: existingUser.emailVerified ?? null
                 };
             }
 
