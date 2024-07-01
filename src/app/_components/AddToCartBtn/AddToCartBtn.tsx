@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 type AddToCartBtnProps = {
-    product: z.infer<typeof CartItemSchema>;
+    product: any;
 };
 
 const AddToCartBtn = ({ product }: AddToCartBtnProps) => {
