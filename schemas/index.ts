@@ -36,6 +36,7 @@ export const ReviewSchema = z.object({
 });
 
 export const UserSchema = z.object({
+    id: z.string().optional(),
     name: z.string().min(3, "Username must be at least 3 characters"),
     email: z.string().email("Enter a valid email"),
     // image: z.string().url("Enter a valid URL").optional(),
