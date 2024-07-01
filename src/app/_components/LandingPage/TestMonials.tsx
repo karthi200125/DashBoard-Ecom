@@ -39,10 +39,10 @@ export const Testimonials = ({ onLoaded }: any) => {
                     {Testimonialsdata.map((t, i) => (
                         <CarouselItem
                             key={i}
-                            variants={cardsSlipUpOneByOne}
-                            animate={inView ? "enter" : "exit"}
-                            initial="initial"
-                            custom={i}
+                            // variants={cardsSlipUpOneByOne}
+                            // animate={inView ? "enter" : "exit"}
+                            // initial="initial"
+                            // custom={i}
                             className={`pl-1 md:basis-1/2 lg:basis-1/4 h-[500px] p-5 flex flex-col justify-between ${t?.marginTop && "mt-10"}`}>
                             <div className="w-full h-[88%] relative rounded-[30px] overflow-hidden flex items-center justify-center group">
                                 <div className="absolute top-3 left-3 px-5 rounded-full h-[40px] text-sm font-bold bg-white text-black flex items-center justify-center z-10">
