@@ -65,22 +65,29 @@ export const getFavProducts = async (userId: string, page?: string) => {
     const ITEM_PER_PAGE = 8;
     try {
         const user = await getUserById(userId);
+        if (!user) {
+            return { error: "User not found" };
+        }
         const count = await db.product.count({
             where: {
                 id: {
-                    in: user?.favorite
+                    in: user.favorite
                 }
             },
-        })
+        });
+
+        const currentPage = page ? parseInt(page) : 1; 
+
         const favProducts = await db.product.findMany({
             where: {
                 id: {
-                    in: user?.favorite
+                    in: user.favorite
                 }
             },
             take: ITEM_PER_PAGE,
-            skip: (ITEM_PER_PAGE * (parseInt(page) - 1)),
+            skip: (ITEM_PER_PAGE * (currentPage - 1)),
         });
+
         return { success: "Successfully retrieved favorite products", data: favProducts, count };
     } catch (error) {
         return { error: "Failed to retrieve favorite products" };
