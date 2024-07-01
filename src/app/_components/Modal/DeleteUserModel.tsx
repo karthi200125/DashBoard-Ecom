@@ -1,19 +1,14 @@
 'use client'
 
-import useDeleteUserModal from '@/app/hooks/useDeleteUserModel';
 import React, { useTransition } from 'react';
 import Modal from './Modal';
 import CustomBtn from '../CustomBtn';
-import { deleteUser } from '../../../../actions/user';
 import { toast } from 'sonner';
+import { deleteUser } from '../../../../actions/users';
+import useDeleteUserModal from '@/app/hooks/useDeleteUserModal';
 
-interface DeleteUserBodyProps {
-    user: {
-        name: string;
-    };
-}
 
-const DeleteUserBody = ({ user }: DeleteUserBodyProps) => {
+const DeleteUserBody = ({ user }: any) => {
     const deleteuserModal = useDeleteUserModal();
     const [isLoading, startTransition] = useTransition();
 
