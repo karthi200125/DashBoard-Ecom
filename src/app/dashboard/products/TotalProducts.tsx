@@ -1,16 +1,15 @@
 'use client'
 
-import React from 'react'
-import { FaUsers } from 'react-icons/fa'
+import { useQuery } from '@tanstack/react-query'
 import {
-    Chart as ChartJs,
-    Tooltip,
     ArcElement,
+    Chart as ChartJs,
     Legend,
+    Tooltip,
 } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
+import { FaUsers } from 'react-icons/fa'
 import { categoryCount } from '../../../../actions/dashboard/dashProduct'
-import { CustomFetch } from '@/app/hooks/CustomFetch'
 
 ChartJs.register(
     ArcElement,
@@ -19,11 +18,12 @@ ChartJs.register(
 );
 
 const TotalProducts = () => {
-    const { data } = CustomFetch({
-        dependencies: [],
-        functionProp: categoryCount,
-    });
 
+    const { isPending, data } = useQuery({
+        queryKey: ['categorycount'],
+        queryFn: async () => await categoryCount()
+    })
+    
     const count = data?.categoryCounts ?? { mens: 0, womens: 0, kids: 0 };
     const products = data?.data ?? [];
 
@@ -42,7 +42,7 @@ const TotalProducts = () => {
         <div className='w-[280px] border bg-white rounded-[20px] p-5 h-full'>
             <div className='flex flex-row items-center gap-2'>
                 <FaUsers size={20} />
-                <h2>Total Products</h2>
+                <h4>Total Products</h4>
             </div>
 
             <div className='w-full h-full flex items-center justify-center flex-col gap-5'>
@@ -57,21 +57,21 @@ const TotalProducts = () => {
                     <div className='flex flex-row gap-2 items-start '>
                         <span className='w-[10px] h-[10px] rounded-full bg-[#4FD2B5] mt-2'></span>
                         <div className="flex flex-col justify-center">
-                            <h3>Mens</h3>
+                            <h4>Mens</h4>
                             <p>{count.mens}</p>
                         </div>
                     </div>
                     <div className='flex flex-row gap-2 items-start'>
                         <span className='w-[10px] h-[10px] rounded-full bg-[#FFCB49] mt-2'></span>
                         <div className="flex flex-col justify-center">
-                            <h3>Womens</h3>
+                            <h4>Womens</h4>
                             <p>{count.womens}</p>
                         </div>
                     </div>
                     <div className='flex flex-row gap-2 items-start'>
                         <span className='w-[10px] h-[10px] rounded-full bg-[#7464FF] mt-2'></span>
                         <div className="flex flex-col justify-center">
-                            <h3>Kids</h3>
+                            <h4>Kids</h4>
                             <p>{count.kids}</p>
                         </div>
                     </div>

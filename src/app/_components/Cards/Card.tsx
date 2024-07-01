@@ -7,8 +7,9 @@ import { GetReviewByProduct } from '../../../../actions/review'
 import AddToCartBtn from '../AddToCartBtn/AddToCartBtn'
 import Heart from '../Heart/Heart'
 import StarRating from './StarRating'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { FaStar } from 'react-icons/fa'
+import { animatePageOut } from '@/app/Animations/pageTransistionAnimate'
 
 interface CardProps {
     card?: any
@@ -16,6 +17,7 @@ interface CardProps {
 
 const Card = ({ card }: CardProps) => {
     const router = useRouter()
+    const pathname = usePathname();
     const [reviews, setReviews] = useState<any>([]);
     const totalRating = reviews?.length > 0 ? reviews.reduce((sum: any, review: any) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
     const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
@@ -29,7 +31,12 @@ const Card = ({ card }: CardProps) => {
     }, [card?.id]);
 
     const cardClick = useCallback(() => {
-        router.push(`/singleproduct/${card?.id}`)
+        const href = `/singleproduct/${card?.id}`
+        if (href && pathname !== href) {
+            animatePageOut(href, router);
+            router.push(href)
+        }
+
     }, [router])
 
     return (
