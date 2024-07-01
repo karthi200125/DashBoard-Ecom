@@ -14,7 +14,7 @@ import { useTransition } from 'react';
 import { updateUser } from '../../../../actions/users';
 
 const AddressStep = () => {
-    const user: z.infer<typeof UserSchema> = useCurrentUser();
+    const user = useCurrentUser();
     const [isLoading, startTransition] = useTransition();
 
     const methods = useForm<z.infer<typeof AddressSchema>>({
