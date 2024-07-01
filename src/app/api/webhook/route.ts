@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 async function getCartItems(line_items: Stripe.ApiList<Stripe.LineItem>) {
-    const cartItems = await Promise.all(line_items.data.map(async (item) => {
+    const cartItems = await Promise.all(line_items.data.map(async (item: any) => {
         const product = await stripe.products.retrieve(item.price.product as string);
         const productId = product.metadata.productId;
 
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
                 signature!,
                 process.env.STRIPE_WEBHOOK_SECRET!
             );
-        } catch (err) {
+        } catch (err: any) {
             console.error('Webhook signature verification failed.', err.message);
             return new NextResponse('Webhook error: Invalid signature', { status: 400 });
         }
