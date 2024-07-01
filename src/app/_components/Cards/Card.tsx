@@ -16,8 +16,8 @@ interface CardProps {
 
 const Card = ({ card }: CardProps) => {
     const router = useRouter()
-    const [reviews, setReviews] = useState([]);
-    const totalRating = reviews?.length > 0 ? reviews.reduce((sum, review) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
+    const [reviews, setReviews] = useState<any>([]);
+    const totalRating = reviews?.length > 0 ? reviews.reduce((sum: any, review: any) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
     const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
 
     useEffect(() => {
