@@ -36,7 +36,7 @@ export const Testimonials = ({ onLoaded }: any) => {
             <Carousel className="w-full">
                 <CarouselContent className="flex flex-row">
                     {Testimonialsdata.map((t, i) => (
-                        <motion.CarouselItem
+                        <CarouselItem
                             key={i}
                             variants={cardsSlipUpOneByOne}
                             animate={inView ? "enter" : "exit"}
@@ -65,7 +65,7 @@ export const Testimonials = ({ onLoaded }: any) => {
                                 <h5><LetterAnimation title={t?.name} /></h5>
                                 <p><LetterAnimation title={t?.pro} /></p>
                             </div>
-                        </motion.CarouselItem>
+                        </CarouselItem>
                     ))}
                 </CarouselContent>
             </Carousel>
