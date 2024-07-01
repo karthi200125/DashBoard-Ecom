@@ -23,7 +23,7 @@ import { FaUsers } from "react-icons/fa"
 import { IoIosMore } from "react-icons/io"
 import OrderProducts from './OrderProducts'
 import Order from './Order'
-import { orderdata } from './page'
+
 
 export const userdata = [
     {
@@ -133,6 +133,8 @@ const OrderTable = () => {
     const [CurrentPage, SetCurrentPage] = useState(1)
     const LastPage = true
 
+    const orderdata: any = [];
+
     const isLoading = false
 
     return (
@@ -140,11 +142,11 @@ const OrderTable = () => {
 
             {/* table top */}
             <div className="flex flex-row items-center justify-between">
-                <h1 className='font-bold flex flex-row items-center gap-2 '>
+                <h4 className='font-bold flex flex-row items-center gap-2 '>
                     <FaUsers size={20} />
-                    <h1>Orders</h1>
+                    <h4>Orders</h4>
                     <span>{`(${orderdata?.length})`}</span>
-                </h1>
+                </h4>
                 <Search />
                 <div>
 
@@ -204,7 +206,7 @@ const OrderTable = () => {
                         </div>
                         :
                         orderdata?.length > 0 ?
-                            orderdata?.map((order) => (
+                            orderdata?.map((order: any) => (
                                 <tr key={order?.id}>
                                     <td className="px-3 py-4 text-sm whitespace-nowrap">{order?.orderId}</td>
                                     <td className="px-6 py-4 text-sm whitespace-nowrap flex flex-row items-center gap-2">

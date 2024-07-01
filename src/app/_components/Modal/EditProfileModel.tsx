@@ -16,7 +16,7 @@ import { UserSchema } from '../../../../schemas';
 import Modal from './Modal';
 
 const EditProfile = () => {
-    const user: z.infer<typeof UserSchema> = useCurrentUser();
+    const user: any = useCurrentUser();
     const [isLoading, startTransition] = useTransition();
     const editprofilemodel = useEditProfileModal()
 

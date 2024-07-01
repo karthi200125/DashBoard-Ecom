@@ -15,6 +15,7 @@ import { FaUsers } from 'react-icons/fa';
 import { IoIosMore } from 'react-icons/io';
 import { getAllProductByFilter } from '../../../../actions/product';
 import { TimeSelectData } from '@/app/_components/dummydata';
+import { useQuery } from '@tanstack/react-query';
 
 const Product = dynamic(() => import('./Product'));
 
@@ -36,25 +37,22 @@ const ProductTable = () => {
 
     const value = { page, time };
 
-    const { data } = CustomFetch({
-        functionProp: () => getAllProductByFilter(value),
-        args: value,
-        dependencies: [page, time]
-    });
-    
-    const isLoading = false
+    const { isPending, data } = useQuery({
+        queryKey: ['getproducts', value],
+        queryFn: async () => await getAllProductByFilter(value)
+    })
 
-    const allProducts = data?.data ?? [];
-    const count = data?.count ?? 0;
+    const allProducts: any = data?.data ?? [];
+    const count: any = data?.count || 0;
 
     return (
-        <div className={`w-full ${isLoading ? "h-[800px]" : "min-h-[300px]"} border bg-white rounded-[20px] p-5 flex flex-col`}>
+        <div className={`w-full ${isPending ? "h-[800px]" : "min-h-[300px]"} border bg-white rounded-[20px] p-5 flex flex-col`}>
 
             {/* Table top */}
             <div className="flex flex-row items-center justify-between">
                 <div className='font-bold flex flex-row items-center gap-2'>
                     <FaUsers size={20} />
-                    <h2>Products</h2>
+                    <h4>Products</h4>
                     <span>{`(${count})`}</span>
                 </div>
                 <Search placeholder='Search products' name='products' onChange={(value: string) => console.log(value)} />
@@ -86,7 +84,7 @@ const ProductTable = () => {
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {isLoading ?
+                    {isPending ?
                         <div className='w-full absolute flex flex-col gap-1 mt-2'>
                             {[...Array(10)].map((_, index) => (
                                 <Skeleton key={index} className='w-full bg-neutral-200 h-[60px]' />
@@ -94,7 +92,7 @@ const ProductTable = () => {
                         </div>
                         :
                         allProducts.length > 0 ?
-                            allProducts.map((pro) => (
+                            allProducts.map((pro: any) => (
                                 <tr key={pro.id}>
                                     <td className="px-6 py-4 text-sm whitespace-nowrap">{pro.id}</td>
                                     <td className="px-6 py-4 text-sm whitespace-nowrap flex flex-row items-center gap-2">

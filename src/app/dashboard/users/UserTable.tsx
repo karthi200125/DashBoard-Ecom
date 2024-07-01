@@ -14,6 +14,7 @@ import { formatDate } from '@/app/hooks/MomentDate';
 import { Skeleton } from '@/components/ui/skeleton';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useQuery } from '@tanstack/react-query';
 
 const User = dynamic(() => import('@/app/dashboard/users/User'));
 
@@ -55,33 +56,26 @@ const UserTable = () => {
     router.replace(`${pathname}?${newParams.toString()}`);
   };
 
-  // const { data } = CustomFetch({
-  //   functionProp: () => getAllUsersByFilter({ q: searchQuery, page }),
-  //   args: { q: searchQuery, page },
-  //   dependencies: [searchQuery, page]
-  // });
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const users = await getAllUsersByFilter({ q: searchQuery, page })
-      setUsers(users)      
-    }
-    getUsers()
-  }, [searchQuery, page])
 
-  const isLoading = false;
-  const allUsers = users?.data ?? [];
-  const count = users?.count ?? 0;
+  const { isPending, data } = useQuery({
+    queryKey: ['getusers'],
+    queryFn: async () => await getAllUsersByFilter({ q: searchQuery, page })
+  })
+
+  
+  const allUsers: any = data?.data || [];
+  const count: any = data?.count || 0;
 
   return (
-    <div className={`w-full ${isLoading ? "h-[800px]" : "min-h-[300px]"} border bg-white rounded-[20px] p-5 flex flex-col`}>
+    <div className={`w-full ${isPending ? "h-[800px]" : "min-h-[300px]"} border bg-white rounded-[20px] p-5 flex flex-col`}>
 
       <div className="flex flex-row items-center justify-between">
-        <h2 className='flex flex-row items-center gap-2 '>
+        <h4 className='flex flex-row items-center gap-2 '>
           <FaUsers size={20} />
-          <h2>Users</h2>
+          <h4>Users</h4>
           <span>{`(${count})`}</span>
-        </h2>
+        </h4>
         <DashSearch placeholder="Search Users" onChange={handleSearch} />
         <div>
           <div className='flex flex-row items-center gap-3'>
@@ -105,7 +99,7 @@ const UserTable = () => {
         </thead>
 
         <tbody className="bg-white divide-y divide-gray-200">
-          {isLoading ?
+          {isPending ?
             <div className='w-full absolute flex flex-col gap-1 mt-2'>
               {[...Array(10)].map((_, index) => (
                 <Skeleton key={index} className='w-full bg-neutral-200 h-[60px]' />
@@ -113,7 +107,7 @@ const UserTable = () => {
             </div>
             :
             allUsers?.length > 0 ?
-              allUsers?.map((user) => (
+              allUsers?.map((user: any) => (
                 <tr key={user?.id}>
                   <td className="px-6 py-4 text-sm whitespace-nowrap">{user?.id}</td>
                   <td className="px-6 py-4 text-sm whitespace-nowrap flex flex-row items-center gap-2">

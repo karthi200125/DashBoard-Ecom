@@ -7,13 +7,8 @@ import CustomBtn from '../CustomBtn';
 import { deletProduct } from '../../../../actions/product';
 import { toast } from 'sonner';
 
-interface DeleteProductBodyProps {
-    product: {
-        proName: string;
-    };
-}
 
-const DeleteProductBody = ({ product }: DeleteProductBodyProps) => {
+const DeleteProductBody = ({ product }: any) => {
     const deleteProductModal = useDeleteProductModal();
     const [isLoading, startTransition] = useTransition();
 
