@@ -42,9 +42,9 @@ const OrderSummary = ({ step, onNext, onBack }: OrderSummaryProps) => {
                     if (data?.sessionUrl) {
                         window.location.href = data?.sessionUrl
                     }
-                    if (data?.error) {
-                        toast.error(data?.error)
-                    }
+                    // if (data?.error) {
+                    //     toast.error(data?.error)
+                    // }
                 })
         })
 
