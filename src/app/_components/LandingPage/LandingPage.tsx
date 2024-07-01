@@ -10,7 +10,7 @@ import TransitionLink from '@/app/Animations/TransitionLink';
 import LetterAnimation from '@/app/Animations/LetterAnimation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const LandingPage = ({ onLoaded }) => {
+const LandingPage = ({ onLoaded }: any) => {
     const [mainImageIndex, setMainImageIndex] = useState(0);
     const [heading1, setHeading1] = useState(LadingPageMainContents[0]?.heading1);
     const [heading2, setHeading2] = useState(LadingPageMainContents[0]?.heading2);
@@ -28,7 +28,7 @@ const LandingPage = ({ onLoaded }) => {
         LadingPageMainContents[2]?.image,
     ];
 
-    const handleClick = (index) => {
+    const handleClick = (index:any) => {
         setMainImageIndex(index);
         setHeading1(LadingPageMainContents[index]?.heading1);
         setHeading2(LadingPageMainContents[index]?.heading2);
