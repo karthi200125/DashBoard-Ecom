@@ -4,7 +4,8 @@ import LetterAnimation from "@/app/Animations/LetterAnimation";
 import CustomImage from "@/components/ui/CustomImage";
 import {
     Carousel,
-    CarouselContent
+    CarouselContent,
+    CarouselItem
 } from "@/components/ui/carousel";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
