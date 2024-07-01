@@ -32,7 +32,7 @@ const CheckOutShowProducts = () => {
                     className='absolute right-0 flex flex-row items-center cursor-pointer max-w-max'
                     onClick={handleClearCart}
                 >
-                    <IoIosClose size={30} className='text-red-500 cursor-pointer font-bold'/>
+                    <IoIosClose size={30} className='text-red-500 cursor-pointer font-bold' />
                     <h4 className='text-red-400 font-bold text-sm'>ClearAll</h4>
                 </div>
             </div>
@@ -62,8 +62,8 @@ const CheckOutShowProducts = () => {
                     <div className='flex flex-col items-center justify-end gap-3 w-full md:w-[30%] h-full relative'>
                         <h4>${(quantity * cartpro?.proPrice).toFixed(2)}</h4>
                         <Quantity
-                            quanityCls='w-[100px] lg:w-[150px]'
-                            onQuantity={(value) => setQuantity(value)}
+                            // quantityCls='w-[100px] lg:w-[150px]' 
+                            // onQuantity={(value) => setQuantity(value)}
                         />
                         <IoIosClose
                             size={30}
@@ -71,6 +71,7 @@ const CheckOutShowProducts = () => {
                             onClick={() => handleRemoveItem(cartpro.id)}
                         />
                     </div>
+
                 </div>
             ))}
         </div>

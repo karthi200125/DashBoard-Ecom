@@ -20,7 +20,8 @@ const OrderSummaryStep = () => {
     };
 
     const handleColorSelect = (id: string, color: string) => {
-        dispatch({ type: 'UPDATE_ITEM_SELECTED_COLOR', id, color });
+        const colorNumber = parseInt(color, 10); 
+        dispatch({ type: 'UPDATE_ITEM_SELECTED_COLOR', id, color: colorNumber });
     };
 
     const handleSizeSelect = (id: string, size: string) => {
@@ -39,7 +40,7 @@ const OrderSummaryStep = () => {
                     onClick={handleClearCart}
                 >
                     <IoIosClose size={30} className='text-red-500 cursor-pointer font-bold ' />
-                    <h4 className='text-red-400 font-bold text-sm'>ClearAll</h4>
+                    <h4 className='text-red-400 font-bold text-sm'>Clear All</h4>
                 </div>
             </div>
 
@@ -58,12 +59,12 @@ const OrderSummaryStep = () => {
                             <h4 className='line-clamp-1'>{cartpro?.proName}</h4>
                             <p className='line-clamp-2'>{cartpro?.proDesc}</p>
                             <Colors
-                                onColorSelect={(colors) => handleColorSelect(cartpro.id, colors)}
+                                onColorSelect={(color) => handleColorSelect(cartpro.id, color)}
                                 alreadyColor={cartpro?.proColors}
                                 type='cartitem'
                             />
                             <Sizes
-                                onSizeSelect={(sizes) => handleSizeSelect(cartpro.id, sizes)}
+                                onSizeSelect={(size) => handleSizeSelect(cartpro.id, size)}
                                 alreadySize={cartpro?.proSizes}
                                 type='cartitem'
                             />

@@ -28,10 +28,11 @@ type CartAction =
     | { type: 'UPDATE_ITEM_QUANTITY'; id: string; quantity: number }
     | { type: 'UPDATE_ITEM_COLORS'; id: string; colors: string[] }
     | { type: 'UPDATE_ITEM_SIZES'; id: string; sizes: string[] }
-    | { type: 'UPDATE_ITEM_SELECTED_COLOR'; id: string; color: string }
+    | { type: 'UPDATE_ITEM_SELECTED_COLOR'; id: string; color: any }
     | { type: 'UPDATE_ITEM_SELECTED_SIZE'; id: string; size: string }
     | { type: 'CLEAR_CART' }
-    | { type: 'SET_CART'; items: CartItem[] };
+    | { type: 'SET_CART'; items: CartItem[] }
+    | { type: 'UPDATE_ITEM'; id: string; quantity: number }; 
 
 const initialCartState: CartState = {
     items: [],

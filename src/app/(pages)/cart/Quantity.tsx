@@ -4,10 +4,11 @@ import { useCart } from '@/app/_components/ContextApi/CartContext';
 
 interface QuantityProps {
     id: string;
+    quanityCls?: string;
     quantity: number;
 }
 
-const Quantity = ({ id, quantity }: QuantityProps) => {
+const Quantity = ({ id, quantity, quanityCls }: QuantityProps) => {
     const [currentQuantity, setCurrentQuantity] = useState(quantity || 1);
     const { dispatch } = useCart();
 
