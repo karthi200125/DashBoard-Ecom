@@ -27,7 +27,7 @@ interface UserProfileProps {
     proAlt?: string,
     tooltip?: string,
     type?: string,
-    user?: z.infer<typeof UserSchema>
+    user?: any
 }
 
 const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserProfileProps) => {
