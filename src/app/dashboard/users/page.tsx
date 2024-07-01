@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic"
 import { FaUsers } from "react-icons/fa"
-import { userdata } from "../users/UserTable"
 const UserTable = dynamic(() => import("../users/UserTable"), { ssr: false })
 const TopList = dynamic(() => import("@/app/_components/TopList"), { ssr: false })
 const Image = dynamic(() => import("@/components/ui/CustomImage"), { ssr: false })
