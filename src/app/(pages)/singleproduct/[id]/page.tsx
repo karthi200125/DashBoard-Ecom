@@ -15,13 +15,15 @@ import { motion } from 'framer-motion'
 
 const SingleProduct = () => {
 
-    const params = useParams()
-    const { id } = params
+    const params = useParams();
+    const id: string = Array.isArray(params?.id) ? params.id[0] : params?.id;
 
-    const { isPending, error, data: product } = useQuery({
+    const { isPending, error, data } = useQuery({
         queryKey: ['fetchProduct', id],
         queryFn: async () => await getSingleProduct(id)
-    })
+    });
+
+    const product: any = data
 
     return (
         <>
@@ -55,7 +57,7 @@ const SingleProduct = () => {
                         </motion.div>
 
                         {/* product contents */}
-                        <motion.div                            
+                        <motion.div
                             initial={{ opacity: 0, x: 180 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{
