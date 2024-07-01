@@ -7,16 +7,10 @@ import { useRouter } from 'next/navigation';
 import useLoginModal from '@/app/hooks/useLoginModel';
 import { toast } from 'sonner';
 
-interface HeartProps {
-    product: {
-        id: string;
-        likes: string[];
-    };
-}
 
-const Heart = ({ product }: HeartProps) => {
+const Heart = ({ product }: any) => {
     const [isAnimated, setIsAnimated] = useState(false);
-    const user = useCurrentUser();
+    const user:any = useCurrentUser();
     const router = useRouter();
     const loginModal = useLoginModal();
 
