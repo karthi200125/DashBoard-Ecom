@@ -38,9 +38,9 @@ export default function Home() {
 
       {isTestimonialsLoaded && <TestimonialsSkeleton />}
       <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
-      
-      <Footer/>
 
+      {/* add footer test tag */}
+      <Footer />
     </main>
   );
 }
