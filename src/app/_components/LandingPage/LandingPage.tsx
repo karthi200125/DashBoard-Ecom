@@ -28,7 +28,7 @@ const LandingPage = ({ onLoaded }: any) => {
         LadingPageMainContents[2]?.image,
     ];
 
-    const handleClick = (index:any) => {
+    const handleClick = (index: any) => {
         setMainImageIndex(index);
         setHeading1(LadingPageMainContents[index]?.heading1);
         setHeading2(LadingPageMainContents[index]?.heading2);
@@ -58,7 +58,15 @@ const LandingPage = ({ onLoaded }: any) => {
         <div className='sticky_01_panel w-full h-[92vh] py-[15px] xl:py-[10px] flex flex-col gap-2 md:flex-row justify-between relative px-2 md:pl-[50px] xl:pl-[80px]'>
 
             {/* main image */}
-            <div className='w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden relative'>
+            <motion.div
+                initial={{ opacity: 0.5, scale: 0 }}
+                animate={{ opacity: 1, x: 1 }}
+                transition={{
+                    ease: [0.76, 0, 0.24, 1],
+                    duration: 0.75,
+                }}
+                className='w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden relative'
+            >
                 <AnimatePresence>
                     <motion.div
                         key={mainImageIndex}
@@ -74,7 +82,7 @@ const LandingPage = ({ onLoaded }: any) => {
                         <Image src={LadingPageMainContents[mainImageIndex]?.image} imgclass='w-full h-full bg-black' alt='main image' />
                     </motion.div>
                 </AnimatePresence>
-            </div>
+            </motion.div>
 
             {/* buttons */}
             <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[115px] bottom-0 md:bottom-[125px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>

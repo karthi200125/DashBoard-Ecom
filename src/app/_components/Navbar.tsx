@@ -120,9 +120,9 @@ const Navbar = () => {
                                     <Icon icon={<FaRegHeart size={20} />} tooltip="Favorites" iconCls="hidden md:flex" count={user?.favorite?.length} />
                                 </TransitionLink>
                             )}
-                            <TransitionLink href='/favourite'>
+                            {/* <TransitionLink href='/cart'> */}
                                 <ShoppingCartIcon />
-                            </TransitionLink>
+                            {/* </TransitionLink> */}
                         </>
                     )}
 
