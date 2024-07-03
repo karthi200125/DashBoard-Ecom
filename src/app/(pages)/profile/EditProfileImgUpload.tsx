@@ -20,7 +20,7 @@ const EditProfileImgUpload = () => {
 
     return (
         <div className='w-full flex flex-col gap-3'>
-            <h2>Profile Image</h2>
+            <h5>Profile Image</h5>
             <div className='flex flex-row items-center gap-10 h-full flex-1 '>
                 <input type="file" accept="image/*" className="hidden" id="imageupload" onChange={handleImageUpload} />
 
@@ -37,7 +37,7 @@ const EditProfileImgUpload = () => {
                 className="flex flex-row gap-3 items-center justify-center border p-3 rounded-[10px] cursor-pointer hover:bg-neutral-100 w-full"
             >
                 <IoCloudUploadOutline size={25} />
-                <h2>Select image</h2>
+                <h5>Select image</h5>
             </label>
         </div>
     )

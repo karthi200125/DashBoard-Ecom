@@ -14,11 +14,13 @@ import EditProfileImgUpload from '../../(pages)/profile/EditProfileImgUpload';
 import { updateUser } from '../../../../actions/users';
 import { UserSchema } from '../../../../schemas';
 import Modal from './Modal';
+import { useRouter } from 'next/navigation';
 
 const EditProfile = () => {
     const user: any = useCurrentUser();
     const [isLoading, startTransition] = useTransition();
     const editprofilemodel = useEditProfileModal()
+    const router = useRouter()
 
     const methods = useForm<z.infer<typeof UserSchema>>({
         resolver: zodResolver(UserSchema),
@@ -44,6 +46,7 @@ const EditProfile = () => {
                 .then((data) => {
                     if (data.success) {
                         toast.success(data.success);
+                        router.refresh()
                         editprofilemodel.onClose()
                     } else if (data.error) {
                         toast.error(data.error);
@@ -57,7 +60,7 @@ const EditProfile = () => {
             <form onSubmit={methods.handleSubmit(handleSubmit)}>
                 <div className='max-w-full md:w-[1000px] p-5'>
                     <div className='py-2 border-b'>
-                        <h2>Edit Profile</h2>
+                        <h4>Edit Profile</h4>
                         <p>Here you can edit public information about yourself</p>
                     </div>
                     <div className='flex flex-col md:flex-row gap-5 justify-between'>

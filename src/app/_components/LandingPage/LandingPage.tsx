@@ -63,14 +63,14 @@ const LandingPage = ({ onLoaded }: any) => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{
                     ease: [0.76, 0, 0.24, 1],
-                    duration: 0.75,
+                    duration: 2,
                 }}
-                className='w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden relative'
+                className="w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden relative bg-black"
             >
                 <AnimatePresence>
                     <motion.div
                         key={mainImageIndex}
-                        initial={{ opacity: 1, x: '100%' }}
+                        initial={{ opacity: 0, x: '100%' }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: 0 }}
                         transition={{
@@ -79,7 +79,11 @@ const LandingPage = ({ onLoaded }: any) => {
                         }}
                         className="absolute w-full h-full"
                     >
-                        <Image src={LadingPageMainContents[mainImageIndex]?.image} imgclass='w-full h-full bg-black' alt='main image' />
+                        <Image
+                            src={LadingPageMainContents[mainImageIndex]?.image}
+                            imgclass="w-full h-full bg-black"
+                            alt="main image"
+                        />
                     </motion.div>
                 </AnimatePresence>
             </motion.div>
@@ -151,8 +155,10 @@ const LandingPage = ({ onLoaded }: any) => {
             >
                 <div className='rounded-[20px] w-full h-full p-5 bg-[#303533] text-white relative group hover:shadow-custom-shadow transition duration-300'>
                     <div className='flex flex-col gap-2'>
-                        <h4>Right corner</h4>
-                        <p className='md:line-clamp-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi rem placeat minus iste asperiores aliquam quas sunt officia eum cupiditate?</p>
+                        <h4>
+                            <LetterAnimation title='E-commerce' />
+                        </h4>
+                        <p className='line-clamp-3 md:line-clamp-4'>At Dexons, we bring you the latest and greatest in fashions and more. Explore our wide range of products and enjoy unbeatable prices and special discounts.</p>
                     </div>
                     <div className='absolute top-2 right-2 flex items-center justify-center rounded-full bg-white w-10 h-10 text-black'>
                         <ArrowRight size={20} className='rotate-[-45deg] group-hover:rotate-[0deg] transition' />

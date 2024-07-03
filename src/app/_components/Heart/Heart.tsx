@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 
 const Heart = ({ product }: any) => {
     const [isAnimated, setIsAnimated] = useState(false);
-    const user:any = useCurrentUser();
+    const user: any = useCurrentUser();
     const router = useRouter();
     const loginModal = useLoginModal();
 
@@ -41,8 +41,8 @@ const Heart = ({ product }: any) => {
         likeAction(product?.id, userId)
             .then((data) => {
                 if (data.success) {
-                    router.refresh();
                     toast.success(data.success);
+                    router.refresh();
                 } else if (data.error) {
                     toast.error(data.error);
                 }
@@ -50,11 +50,13 @@ const Heart = ({ product }: any) => {
     }, [user, product, router, loginModal]);
 
     return (
-        <div
-            className={`HeartAnimation ${isAnimated ? 'animate' : ''}`}
-            onClick={handleLike}
-        >
-        </div>
+        <>
+            <div
+                className={`HeartAnimation ${isAnimated ? 'animate' : ''}`}
+                onClick={handleLike}
+            >
+            </div>
+        </>
     );
 };
 

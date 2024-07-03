@@ -31,19 +31,19 @@ const CustomSelect = ({ name, control, defaultValue = "", options, selectCls, la
                 render={({ field }) => (
                     <div>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <SelectTrigger className='w-full rounded-[8px] h-[50px] bg-white'>
+                            <SelectTrigger className='w-full rounded-[8px] h-[50px] bg-white text-[12px]'>
                                 <SelectValue placeholder={defaultValue} />
                             </SelectTrigger>
-                            <SelectContent className="bg-white z-10">
+                            <SelectContent className="bg-white z-10 text-[10px]">
                                 <SelectGroup>
                                     {options?.length > 0 && options?.map((opt, i) => (
-                                        <SelectItem key={i} value={opt}>{opt}</SelectItem>
+                                        <SelectItem className="text-[12px]" key={i} value={opt}>{opt}</SelectItem>
                                     ))}
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
                         {errors && errors[name] && (
-                            <p className="text-red-500 text-sm mt-1 text-[12px]">{errors[name].message}</p>
+                            <p className="text-red-500 mt-1">{errors[name].message}</p>
                         )}
                     </div>
                 )}

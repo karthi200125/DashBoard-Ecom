@@ -28,12 +28,12 @@ const LandingCategories = ({ onLoaded }: any) => {
   return (
     <div ref={ref} className='relative py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto  md:rounded-[20px] flex flex-col items-center justify-center gap-10'>
       <div className='text-center'>
-        <h4 className='text-neutral-600'>
+        <h5 className='text-neutral-600'>
           <LetterAnimation title="New Launches" />
-        </h4>
-        <h1 className='mt-1'>
+        </h5>
+        <h2 className='mt-1'>
           <LetterAnimation title="Start with categories" />
-        </h1>
+        </h2>
       </div>
 
       <div className='flex flex-col md:flex-row items-center justify-between md:gap-5 w-full md:w-[95%] lg:w-[70%] h-[860px] md:h-[60%]'>
@@ -56,12 +56,12 @@ const LandingCategories = ({ onLoaded }: any) => {
                 <Image src={cat?.image?.src} imgclass='w-[200px] h-[200px] object-contain transform group-hover:scale-125 transition duration-500' alt='' />
               </div>
               <div className={`transition duration-500 ${activeId === cat.id ? "scale-100" : "scale-0"} transform group-hover:scale-100 flex flex-row items-center gap-3 absolute`}>
-                <div className='w-10 h-10 flex items-center justify-center rounded-full glass cursor-pointer text-white hover:bg-orange-400 hover:text-white'>
+                {/* <div className='w-10 h-10 flex items-center justify-center rounded-full glass cursor-pointer text-white hover:bg-orange-400'>
                   <MdOutlineRemoveRedEye />
                 </div>
-                <div className='w-10 h-10 flex items-center justify-center rounded-full glass cursor-pointer text-white hover:bg-orange-400 hover:text-white'>
+                <div className='w-10 h-10 flex items-center justify-center rounded-full glass cursor-pointer text-white hover:bg-orange-400'>
                   <RiShoppingBagFill />
-                </div>
+                </div> */}
               </div>
             </div>
             <div className='w-full text-center'>

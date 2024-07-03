@@ -53,12 +53,12 @@ const Profile = () => {
             <EditProfileModel />
             {/* Profile top */}
             <div className='py-5 border-b'>
-                <h1 className='text-4xl md:text-5xl xl:text-[120px] line-clamp-1 mb-3'>{profileUser?.name}</h1>
+                <h1 className='line-clamp-1 mb-3'>{profileUser?.name}</h1>
                 <div className='flex flex-col md:flex-row items-start md:items-center justify-between'>
                     <div className='flex flex-col md:flex-row items-start md:items-center gap-3'>
                         <UserProfile proSrc={profileUser?.image || ""} proAlt='' profileCls='w-[60px] h-[60px]' />
                         <div>
-                            <h4>{profileUser?.email}</h4>
+                            <h5>{profileUser?.email}</h5>
                             <p>{profileUser?.phoneNo || "Add your phone number"}</p>
                         </div>
                     </div>
@@ -133,9 +133,9 @@ const Profile = () => {
                             </div>
                         </div>
                     ) : (
-                        <div className='text-md md:text-xl text-neutral-400'>
+                        <p>
                             No orders yet made
-                        </div>
+                        </p>
                     )}
                 </div>
             </div>

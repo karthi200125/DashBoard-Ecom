@@ -25,7 +25,7 @@ const LandingCards = () => {
                     <LetterAnimation title="New Launches" />
                 </h5>
                 <h2 className='mt-1'>
-                    <LetterAnimation title="Fresh off The Boat" />
+                    <LetterAnimation title="Fresh & new Arrivals" />
                 </h2>
             </div>
             <Cards products={data?.data} isLoading={isPending} />

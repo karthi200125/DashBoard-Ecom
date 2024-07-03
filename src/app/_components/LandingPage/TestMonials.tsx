@@ -28,10 +28,10 @@ export const Testimonials = ({ onLoaded }: any) => {
         <div ref={ref} className="sticky_01_panel w-full max-h-max md:rounded-[30px] pt-5 flex items-center justify-center flex-col gap-5 text-white bg-black">
             <div className='text-center'>
                 <h5 className='text-neutral-600'>
-                    <LetterAnimation title="New Launches" />
+                    <LetterAnimation title="Our customers" />
                 </h5>
                 <h2 className='mt-1'>
-                    <LetterAnimation title="Fresh off The Boat" />
+                    <LetterAnimation title="what Customers say" />
                 </h2>
             </div>
             <Carousel className="w-full">

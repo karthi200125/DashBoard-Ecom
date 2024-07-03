@@ -10,6 +10,7 @@ import StarRating from './StarRating'
 import { usePathname, useRouter } from 'next/navigation'
 import { FaStar } from 'react-icons/fa'
 import { animatePageOut } from '@/app/Animations/pageTransistionAnimate'
+import Spinners from '../Spinners'
 
 interface CardProps {
     card?: any
