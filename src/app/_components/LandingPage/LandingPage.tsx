@@ -59,12 +59,12 @@ const LandingPage = ({ onLoaded }: any) => {
 
             {/* main image */}
             <motion.div
-                initial={{ opacity: 0.5, scale: 0 }}
-                animate={{ opacity: 1, x: 1 }}
-                transition={{
-                    ease: [0.76, 0, 0.24, 1],
-                    duration: 0.75,
-                }}
+                // initial={{ opacity: 0.5, scale: 0 }}
+                // animate={{ opacity: 1, x: 1 }}
+                // transition={{
+                //     ease: [0.76, 0, 0.24, 1],
+                //     duration: 0.75,
+                // }}
                 className='w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden relative'
             >
                 <AnimatePresence>

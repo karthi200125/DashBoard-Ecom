@@ -24,7 +24,7 @@ const TopList = ({ data, title, icon, route }: TopListProps) => {
             <div className='flex flex-col items-center justify-between '>
                 <div className='flex flex-row items-center gap-2 border-b-[1px] border-solid border-neutral-200 py-2 w-full '>
                     <div>{icon}</div>
-                    <h2 >{title}</h2>
+                    <h5 >{title}</h5>
                 </div>
                 <div className='flex flex-col w-full py-2 gap-2'>
                     {!isLoading ?
@@ -32,10 +32,10 @@ const TopList = ({ data, title, icon, route }: TopListProps) => {
                             data.map((data: any) => (
                                 <Sheet key={data?.id}>
                                     <SheetTrigger>
-                                        <div className='flex flex-row items-center gap-5 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2'>
-                                            <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200 object-cover' proSrc={route === "products" ? data?.proImage : data?.profilepic} />
+                                        <div className='flex flex-row items-center gap-5 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2 hover:bg-neutral-100'>
+                                            <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200 object-cover' proSrc={route === "products" ? data?.proImage[0] : data?.image} user={data}/>
                                             <div className='flex items-start justify-start flex-col gap-1'>
-                                                <h4 className='leading-none line-clamp-1'>{route === "products" ? data?.proName : data?.name}</h4>
+                                                <h6 className='leading-none line-clamp-1'>{route === "products" ? data?.proName : data?.name}</h6>
                                                 <p>{route === "products" ? `${data?.proPrice} Rs` : data?.email}</p>
                                             </div>
                                         </div>

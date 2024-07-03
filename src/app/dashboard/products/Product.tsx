@@ -15,8 +15,8 @@ const Product = ({ product }: any) => {
             <DeleteProductModel product={product} />
             <div className='flex items-center justify-center gap-3 flex-col border-b-[1px] pb-3 mt-5'>
                 <CustomImage src={product?.proImage[0]} alt="" imgclass='w-full h-[250px] object-contain bg-neutral-200' />
-                <h2 className='capitalize text-center line-clamp-2'>{product?.proName}</h2>
-                <p className='text-center line-clamp-4'>{product?.proDesc}</p>
+                <h4 className='capitalize text-center line-clamp-2'>{product?.proName}</h4>
+                <p className='text-center line-clamp-3'>{product?.proDesc}</p>
             </div>
 
             <div className='w-full flex flex-row items-center gap-5 border-b-[1px] py-5 justify-center'>
@@ -32,11 +32,11 @@ const Product = ({ product }: any) => {
 
                 <div className='w-[150px] flex flex-row items-center gap-2 m-2'>
                     <Icon icon={<IoPricetagsOutline size={25} />} tooltip={"Product price"} />
-                    <span>₹ {product?.proPrice}</span>
+                    <h6>₹ {product?.proPrice}</h6>
                 </div>
                 <div className='w-[150px] flex flex-row items-center gap-2 m-2'>
                     <Icon icon={<CiCalendarDate size={25} />} tooltip={"Product Created At"} />
-                    <span>{formatDate(product?.createdAt)}</span>
+                    <h6>{formatDate(product?.createdAt)}</h6>
                 </div>
             </div>
 

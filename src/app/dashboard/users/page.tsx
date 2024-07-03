@@ -31,15 +31,15 @@ const Users = () => {
                     {/* users top row */}
                     <div className="flex flex-row justify-between items-center h-[300px] gap-3">
                         <div className="h-full flex-1 flex flex-col justify-between">
-                            <h1>Overview</h1>
-                            <h3>Welcome to users dashbaord</h3>
+                            <h4>Overview</h4>
+                            <h6>Welcome to users dashbaord</h6>
                             <Image src={""} imgclass="border rounded-[20px] h-[170px]" alt="" />
                         </div>
                         <TotalUser />
                         {/* <NewUsers /> */}
                     </div>
 
-                    {/* users mide row */}
+                {/* users mide row */}
                     <div className="mid">
                         <UserGraph />
                     </div>

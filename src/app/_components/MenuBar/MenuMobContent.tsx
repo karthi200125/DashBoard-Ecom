@@ -36,7 +36,7 @@ const MobNav = () => {
         },
         {
             id: 2,
-            href: "/profile",
+            href: `/profile/${user?.id}`,
             name: "Profile",
             icon: <MdOutlinePersonOutline size={25} />,
             count: "",
@@ -68,7 +68,7 @@ const MobNav = () => {
         },
         {
             id: 6,
-            href: "/dashboard",
+            href: "/dashboard/users",
             name: "Dashboard",
             icon: <CiGrid31 size={25} />,
             count: "",

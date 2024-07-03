@@ -48,7 +48,7 @@ const UserGraph = () => {
     <div className='w-full h-[350px] border bg-white rounded-[20px] p-5 flex flex-col gap-3 overflow-hidden'>
       <div className='flex flex-row items-center gap-2'>
         <FaUsers size={20} />
-        <h2 >Main graph monthly users</h2>
+        <h4 >Main graph monthly users</h4>
       </div>
       <Bar data={data} options={options} width="800px" height='250px' />
     </div>

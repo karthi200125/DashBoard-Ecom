@@ -35,7 +35,7 @@ const Products = () => {
                     </div>
                 </div>
                 <div className="bg-white border rounded-[20px] w-[23%] p-5 h-[660px] overflow-y-hidden">
-                    <TopList title="Top Products" icon={<FaUsers size={20} />} data={products} route="products" />
+                    <TopList title="Top Products" icon={<FaUsers size={20} />} data={products?.data} route="products" />
                 </div>
             </div>
             <ProductTable />

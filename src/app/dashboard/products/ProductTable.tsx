@@ -45,8 +45,10 @@ const ProductTable = () => {
     const allProducts: any = data?.data ?? [];
     const count: any = data?.count || 0;
 
+    const is = false
+
     return (
-        <div className={`w-full ${isPending ? "h-[800px]" : "min-h-[300px]"} border bg-white rounded-[20px] p-5 flex flex-col`}>
+        <div className={`w-full ${is ? "h-[800px]" : "min-h-[300px]"} border bg-white rounded-[20px] p-5 flex flex-col`}>
 
             {/* Table top */}
             <div className="flex flex-row items-center justify-between">
@@ -84,7 +86,7 @@ const ProductTable = () => {
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {isPending ?
+                    {is ?
                         <div className='w-full absolute flex flex-col gap-1 mt-2'>
                             {[...Array(10)].map((_, index) => (
                                 <Skeleton key={index} className='w-full bg-neutral-200 h-[60px]' />

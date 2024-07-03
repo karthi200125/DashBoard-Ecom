@@ -24,10 +24,9 @@ const TotalUser = () => {
         queryFn: async () => await genderCount(),
     });
 
-    // const count = data?.genderCounts ?? { male: 0, female: 0, others: 0 };
-    // const users = data?.data ?? [];
-    const count = { male: 0, female: 0, others: 0 };
-    const users = [];
+    const count = data?.genderCounts ?? { male: 0, female: 0, others: 0 };
+    const users = data?.data ?? [];
+   
 
     const graphData = {
         datasets: [{
@@ -44,14 +43,15 @@ const TotalUser = () => {
         <div className='flex-1 h-full border bg-white rounded-[20px] p-5'>
             <div className='flex flex-row items-center gap-2'>
                 <FaUsers size={20} />
-                <h2>Total users</h2>
+                <h4>Total users</h4>
             </div>
 
             <div className='w-full h-full flex items-center justify-center flex-col gap-5'>
                 <div className="w-[150px] h-[150px] relative">
                     <Doughnut data={graphData} />
                     <div className="absolute inset-0 flex flex-col gap-2 items-center justify-center leading-none text-center mt-3">
-                        <h4>Total Users</h4>
+                        <h6>Total</h6>
+                        <h6>Users</h6>
                         <p>{total}</p>
                     </div>
                 </div>
@@ -59,21 +59,21 @@ const TotalUser = () => {
                     <div className='flex flex-row gap-2 items-center'>
                         <span className='w-[10px] h-[10px] rounded-full bg-[#4FD2B5]'></span>
                         <div className="flex flex-col justify-center">
-                            <h4>Male</h4>
+                            <h6>Male</h6>
                             <p>{count.male}</p>
                         </div>
                     </div>
                     <div className='flex flex-row gap-2 items-center'>
                         <span className='w-[10px] h-[10px] rounded-full bg-[#FFCB49]'></span>
                         <div className="flex flex-col justify-center">
-                            <h4>Female</h4>
+                            <h6>Female</h6>
                             <p>{count.female}</p>
                         </div>
                     </div>
                     <div className='flex flex-row gap-2 items-center'>
                         <span className='w-[10px] h-[10px] rounded-full bg-[#7464FF]'></span>
                         <div className="flex flex-col justify-center">
-                            <h4>Others</h4>
+                            <h6>Others</h6>
                             <p>{count.others}</p>
                         </div>
                     </div>

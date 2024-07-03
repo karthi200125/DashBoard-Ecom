@@ -111,7 +111,8 @@ const Navbar = () => {
 
                 <div className="flex flex-row items-center gap-2 lg:gap-3">
                     {isDashboard ? (
-                        <Icon icon={<Settings size={20} />} tooltip="Setting" />
+                        // <Icon icon={<Settings size={20} />} tooltip="Setting" />
+                        ""
                     ) : (
                         <>
                             <Search placeholder="search products..." />

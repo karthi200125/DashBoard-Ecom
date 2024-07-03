@@ -46,7 +46,7 @@ const OrderSummaryStep = () => {
 
             {items?.map((cartpro) => (
                 <div
-                    className='flex flex-col md:flex-row items-center gap-5 border rounded-[20px] h-[200px] p-1 md:p-3 hover:shadow-custom-shadow transition duration-300 overflow-hidden'
+                    className='flex flex-col md:flex-row items-center gap-5 border rounded-[5px] md:rounded-[20px] max-h-max md:h-[200px] p-1 md:p-3 hover:shadow-custom-shadow transition duration-300 overflow-hidden'
                     key={cartpro.id}
                 >
                     <div className='flex flex-row gap-5 w-full md:w-[70%]'>

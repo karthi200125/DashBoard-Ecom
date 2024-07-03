@@ -56,6 +56,10 @@ h5 {
     @apply text-[15px] font-medium;
 }
 
+h6 {
+    @apply text-[10px] text-[12px];
+}
+
 p {
     @apply text-base md:text-[10px] lg:text-[12px] text-neutral-400;
 }
