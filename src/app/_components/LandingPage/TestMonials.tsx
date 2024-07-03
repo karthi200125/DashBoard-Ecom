@@ -25,7 +25,7 @@ export const Testimonials = ({ onLoaded }: any) => {
     }, []);
 
     return (
-        <div ref={ref} className="sticky_01_panel w-full max-h-max rounded-[30px] pt-5 flex items-center justify-center flex-col gap-5 text-white bg-black">
+        <div ref={ref} className="sticky_01_panel w-full max-h-max md:rounded-[30px] pt-5 flex items-center justify-center flex-col gap-5 text-white bg-black">
             <div className='text-center'>
                 <h5 className='text-neutral-600'>
                     <LetterAnimation title="New Launches" />
@@ -55,7 +55,7 @@ export const Testimonials = ({ onLoaded }: any) => {
                                 <div className="absolute bottom-5 right-5 w-[80px] h-[80px] rounded-full bg-white text-black flex items-center justify-center text-sm font-bold cursor-pointer">
                                     <LetterAnimation title="see" />
                                 </div>
-                                <div className="bg-white text-black rounded-full transform scale-0 w-full h-[150%] absolute transition duration-500 ease-out group-hover:scale-100 flex items-center justify-center z-20">
+                                <div className="bg-white text-black md:rounded-full transform scale-0 w-full h-[150%] absolute transition duration-500 ease-out group-hover:scale-100 flex items-center justify-center z-20">
                                     <p className="w-[200px] h-[300px] font-bold flex items-center justify-center text-center">
                                         <LetterAnimation title={t?.feedback} />
                                     </p>

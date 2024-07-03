@@ -11,8 +11,8 @@ const Banners = ({ onLoaded }: any) => {
     }, []);
 
     return (
-        <div className='sticky_01_panel flex flex-col md:flex-row h-screen w-full md:h-[600px] items-center justify-center gap-10 px-20 py-5'>
-            <div className='min-w-[300px] md:flex-1 h-[80%] md:h-[450px] relative group overflow-hidden rounded-[20px]'>
+        <div className='sticky_01_panel flex flex-col md:flex-row h-screen w-full md:h-[600px] items-center justify-center gap-10 py-5 p-2 md:p-0'>
+            <div className='w-full md:flex-1 h-[80%] md:h-[450px] relative group overflow-hidden rounded-[20px]'>
                 <Image
                     src={bannerImage[0].src}
                     imgclass='w-full h-full bg-neutral-200 absolute left-0 top-0 object-cover brightness-[0.6] transform group-hover:scale-[1.2] transition duration-500'
@@ -23,7 +23,7 @@ const Banners = ({ onLoaded }: any) => {
                     <p className='line-clamp-2 w-full'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus tenetur culpa sit fugit sint.</p>
                 </div>
             </div>
-            <div className='min-w-[300px] md:flex-1 h-[200px] md:h-[450px] flex flex-col gap-5'>
+            <div className='w-full md:flex-1 h-[200px] md:h-[450px] flex flex-col gap-5'>
                 <div className='rounded-[20px] w-full h-full overflow-hidden'>
                     <Image
                         src={bannerImage[1].src}

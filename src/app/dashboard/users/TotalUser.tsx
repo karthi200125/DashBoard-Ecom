@@ -43,7 +43,7 @@ const TotalUser = () => {
         <div className='flex-1 h-full border bg-white rounded-[20px] p-5'>
             <div className='flex flex-row items-center gap-2'>
                 <FaUsers size={20} />
-                <h4>Total users</h4>
+                <h5>Total users</h5>
             </div>
 
             <div className='w-full h-full flex items-center justify-center flex-col gap-5'>

@@ -32,8 +32,8 @@ const Footer = () => {
 
     return (
         <div ref={ref} className='w-full max-h-max flex flex-col justify-between mt-5'>
-            <div className='h-[300px] relative'>
-                <Image src={''} imgclass='w-full h-full brightness-[0.5]' alt='' />
+            <div className='max-w-max md:h-[300px] relative'>
+                <Image src={''} imgclass='hidden md:flex w-full h-full brightness-[0.5]' alt='' />
                 <div className='absolute bottom-0 left-0 w-full max-h-max text-[50px] md:text-[100px] xl:text-[150px] font-bold text-center text-white bg-black overflow-hidden'>
                     {word.split("").map((letter, index) => (
                         <motion.span
@@ -51,7 +51,7 @@ const Footer = () => {
 
             {/* items */}
             <div className='max-h-max bg-[#222222] flex flex-col md:flex-row gap-10 p-5 md:p-10'>
-                <div className='w-full h-full flex flex-wrap justify-center md:flex-row md:justify-between md:items-start gap-10'>
+                <div className='w-full h-full flex flex-wrap justify-start md:flex-row md:justify-between md:items-start gap-10'>
                     <div className='flex flex-col gap-2'>
                         <h5 className='text-white'>
                             <LetterAnimation title='About Us' />

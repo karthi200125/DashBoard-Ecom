@@ -59,12 +59,12 @@ const LandingPage = ({ onLoaded }: any) => {
 
             {/* main image */}
             <motion.div
-                // initial={{ opacity: 0.5, scale: 0 }}
-                // animate={{ opacity: 1, x: 1 }}
-                // transition={{
-                //     ease: [0.76, 0, 0.24, 1],
-                //     duration: 0.75,
-                // }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                    ease: [0.76, 0, 0.24, 1],
+                    duration: 0.75,
+                }}
                 className='w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden relative'
             >
                 <AnimatePresence>
@@ -95,7 +95,7 @@ const LandingPage = ({ onLoaded }: any) => {
             </div>
 
             {/* customer happy div */}
-            <div className='glass md:hidden xl:hidden w-[90%] xl:w-[300px] h-[150px] md:max-h-max gap-2 rounded-[10px] p-5 md:p-8 absolute left-1/2 transform -translate-x-1/2 right-2 top-[15%] xl:top-[25%] xl:right-0 flex-col justify-between text-white'>
+            <div className='glass hidden xl:hidden w-[90%] xl:w-[300px] h-[150px] md:max-h-max gap-2 rounded-[10px] p-5 md:p-8 absolute left-1/2 transform -translate-x-1/2 right-2 top-[15%] xl:top-[25%] xl:right-0 flex-col justify-between text-white'>
                 <div className='flex flex-row items-center justify-between'>
                     <h2>24K</h2>
                     <ArrowRight className='rotate-[-45deg]' size={25} />
@@ -105,7 +105,7 @@ const LandingPage = ({ onLoaded }: any) => {
             </div>
 
             {/* main text */}
-            <div className='hidden md:flex flex-col p-5 rounded-[20px] absolute max-w-max top-[5%] md:top-[7%] left-[2%] md:left-[7%]'>
+            <div className='flex flex-col p-5 rounded-[20px] absolute max-w-max top-[5%] md:top-[7%] left-[2%] md:left-[7%]'>
                 <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >
                     <LetterAnimation title={heading1} />
                 </h1>
@@ -171,7 +171,7 @@ const LandingPage = ({ onLoaded }: any) => {
                     duration: 1,
                     delay: 0.6,
                 }}
-                className='w-full md:flex flex-col absolute left-2 transform -translate-x-1/2 bottom-[25%] md:bottom-[30px] md:left-[50px] xl:left-[80px]'
+                className='w-full md:flex flex-col absolute left-2 transform -translate-x-1/2 bottom-[35%] md:bottom-[30px] md:left-[50px] xl:left-[80px]'
             >
                 <Curves curveCls='hidden md:flex w-[45px] h-[45px] absolute top-[-45px] left-[0px]' />
                 <Curves curveCls='hidden md:flex w-[45px] h-[45px] absolute bottom-0 right-[-43px]' />

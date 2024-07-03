@@ -7,7 +7,6 @@ import UserProfile from '@/app/_components/UserProfile';
 import { formatDate } from '@/app/hooks/MomentDate';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Skeleton } from '@/components/ui/skeleton';
-import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -23,7 +22,8 @@ const UserTable = () => {
   const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
-  const [users, setUsers] = useState<string[]>([]);
+  const [users, setUsers] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const pageFromParams = parseInt(searchParams.get('page') || '1', 10);
@@ -55,18 +55,19 @@ const UserTable = () => {
     router.replace(`${pathname}?${newParams.toString()}`);
   };
 
-const values = {q: searchQuery, page}
+  const values = { q: searchQuery, page }
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ['getusers', values],
-    queryFn: async () => await getAllUsersByFilter(values),
-  });
+  useEffect(() => {
+    const getusers = async () => {
+      const data = await getAllUsersByFilter(values)
+      setUsers(data)
+    }
+    getusers()
+  }, [searchQuery, page])
 
-  console.log(data)
 
-
-  const allUsers: any = data?.data || [];
-  const count: any = data?.count || 0;
+  const allUsers: any = users?.data || [];
+  const count: any = users?.count || 0;
 
   const is = false
 
@@ -114,7 +115,7 @@ const values = {q: searchQuery, page}
                 <tr key={user?.id}>
                   <td className="px-2 py-4 text-[12px] whitespace-nowrap">{user?.id}</td>
                   <td className="px-2 py-4 text-[12px] whitespace-nowrap flex flex-row items-center gap-2">
-                    <UserProfile profileCls='w-10 h-10' proSrc={user?.image} proAlt={user?.name} tooltip={user?.name} />
+                    <UserProfile profileCls='w-10 h-10' proSrc={user?.image} proAlt={user?.name} tooltip={user?.name} user={user}/>
                     <span>{user?.name}</span>
                   </td>
                   <td className="px-2 py-4 text-[12px] whitespace-nowrap">{user?.email}</td>

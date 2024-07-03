@@ -5,17 +5,16 @@ import CustomPagination from '@/app/_components/CustomPagination';
 import Icon from '@/app/_components/Icon';
 import Search from '@/app/_components/Search';
 import UserProfile from '@/app/_components/UserProfile';
-import { CustomFetch } from '@/app/hooks/CustomFetch';
+import { TimeSelectData } from '@/app/_components/dummydata';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { IoIosMore } from 'react-icons/io';
 import { getAllProductByFilter } from '../../../../actions/product';
-import { TimeSelectData } from '@/app/_components/dummydata';
-import { useQuery } from '@tanstack/react-query';
 
 const Product = dynamic(() => import('./Product'));
 

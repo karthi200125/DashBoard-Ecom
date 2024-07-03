@@ -1,10 +1,9 @@
 'use server';
 
-import { AdminVerify } from './AdminVerify';
 import { db } from '@/lib/db';
-import { Prisma } from '@prisma/client';
-import { getUserById } from './users';
 import { revalidatePath } from 'next/cache';
+import { AdminVerify } from './AdminVerify';
+import { getUserById } from './users';
 
 
 //search query get products
@@ -160,7 +159,7 @@ export const CreateProductAction = async (values: any) => {
 // filter products
 export const getAllProductByFilter = async (values: any) => {
     const { category, price, color, size, page } = values;
-    console.log(values)
+   
     const ITEM_PER_PAGE = 8;
     try {
         const filters: any = {};
@@ -219,7 +218,7 @@ export const getAllProductByFilter = async (values: any) => {
                 }
             });
         }
-
+        
         return { success: "Filtered products retrieved successfully", data: filterProducts, count };
     } catch (error) {
         return { error: "Failed to retrieve filtered products" };

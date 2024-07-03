@@ -61,7 +61,7 @@ h6 {
 }
 
 p {
-    @apply text-base md:text-[10px] lg:text-[12px] text-neutral-400;
+    @apply text-[10px] md:text-[12px] text-neutral-400;
 }
 
 

@@ -26,7 +26,7 @@ const LandingCategories = ({ onLoaded }: any) => {
 
 
   return (
-    <div ref={ref} className='relative py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto rounded-[20px] flex flex-col items-center justify-center gap-10'>
+    <div ref={ref} className='relative py-5 md:h-[600px] bg-neutral-200 w-[98%] mx-auto  md:rounded-[20px] flex flex-col items-center justify-center gap-10'>
       <div className='text-center'>
         <h4 className='text-neutral-600'>
           <LetterAnimation title="New Launches" />

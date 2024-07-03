@@ -47,7 +47,7 @@ const Users = () => {
                 </div>
 
                 <div className="bg-white border rounded-[20px] w-[23%] p-5 h-[660px] overflow-y-hidden">
-                    {/* <TopList title="Top users" icon={<FaUsers size={20} />} data={userdata} /> */}
+                    <TopList title="Top users" icon={<FaUsers size={20} />} data={""} />
                 </div>
             </div>
 
