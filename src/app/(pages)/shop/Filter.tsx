@@ -115,9 +115,9 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
             <div className='flex flex-col'>
                 <div className="flex flex-row items-center justify-between">
                     <h5 className='w-full text-start border-b-[1px] py-2'>Categories</h5>
-                    <h6 className="text-red-400" onClick={HandleResetAll}>Reset All</h6>
+                    <h6 className="text-red-400" onClick={HandleResetAll}>Reset</h6>
                 </div>
-                <div className='grid grid-cols-2 gap-2 py-2 '>
+                <div className='flex flex-row items-center justify-between gap-2 py-2 '>
                     {mainCategories?.map((c, i) => (
                         <div
                             key={i}
@@ -131,7 +131,7 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
             </div>
 
             <div className="flex flex-col gap-2">
-                <h5 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Price Range </h5>
+                <h5 className='w-full text-start border-b-[1px] py-2 '> Price Range </h5>
                 <div className="flex flex-row items-center gap-5 mt-2">
                     <div className="flex flex-row items-center gap-2">
                         <h6>Min</h6>
@@ -145,12 +145,12 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
             </div>
 
             <div className="flex flex-col gap-2">
-                <h5 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Colors </h5>
+                <h5 className='w-full text-start border-b-[1px] py-2 '> Colors </h5>
                 <Colors onColorSelect={(d: any) => setSelectedColors(d)} />
             </div>
 
             <div className="flex flex-col gap-2">
-                <h5 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Sizes </h5>
+                <h5 className='w-full text-start border-b-[1px] py-2 '> Sizes </h5>
                 <Sizes onSizeSelect={(d: any) => setSelectedSizes(d)} />
             </div>
 
