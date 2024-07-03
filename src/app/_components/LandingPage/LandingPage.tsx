@@ -85,7 +85,7 @@ const LandingPage = ({ onLoaded }: any) => {
             </motion.div>
 
             {/* buttons */}
-            <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[115px] bottom-0 md:bottom-[125px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+            <div className='glass max-w-max max-h-max rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[115px] bottom-[10%] md:bottom-[125px] left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                 <TransitionLink href='/shop'>
                     <CustomBtn arrow btnCls='bg-black text-white pl-5 md:pl-10 ' arrowCls='bg-white text-black'>
                         Shop Now

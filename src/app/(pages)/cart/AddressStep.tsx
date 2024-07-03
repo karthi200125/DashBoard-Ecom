@@ -82,7 +82,7 @@ const AddressStep = () => {
                         <div className='flex-1 flex flex-col gap-3'>
                             <CustomInput label='Phone Number' name='phoneNo' type='number' />
                             <CustomInput label='Postal Code' name='postalCode' type='number' />
-                            <CustomBtn arrow btnCls='border w-[300px]' isLoading={isLoading}>Update Address</CustomBtn>
+                            <CustomBtn arrow btnCls='border max-w-max' isLoading={isLoading}>Update Address</CustomBtn>
                         </div>
                     </div>
                 </div>

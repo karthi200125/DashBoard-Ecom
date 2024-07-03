@@ -114,8 +114,8 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
 
             <div className='flex flex-col'>
                 <div className="flex flex-row items-center justify-between">
-                    <h2 className='w-full text-start border-b-[1px] py-2'>Categories</h2>
-                    <h3 onClick={HandleResetAll}>Reset All</h3>
+                    <h5 className='w-full text-start border-b-[1px] py-2'>Categories</h5>
+                    <h6 className="text-red-400" onClick={HandleResetAll}>Reset All</h6>
                 </div>
                 <div className='grid grid-cols-2 gap-2 py-2 '>
                     {mainCategories?.map((c, i) => (
@@ -131,26 +131,26 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
             </div>
 
             <div className="flex flex-col gap-2">
-                <h1 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Price Range </h1>
+                <h5 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Price Range </h5>
                 <div className="flex flex-row items-center gap-5 mt-2">
                     <div className="flex flex-row items-center gap-2">
-                        <h2>Min</h2>
+                        <h6>Min</h6>
                         <input type="number" value={range[0]} onChange={handleMinChange} className="p-2 w-[70px]" />
                     </div>
                     <div className="flex flex-row items-center gap-2">
-                        <h2>Max</h2>
+                        <h6>Max</h6>
                         <input type="number" value={range[1]} onChange={handleMaxChange} className="p-2 w-[70px]" />
                     </div>
                 </div>
             </div>
 
             <div className="flex flex-col gap-2">
-                <h1 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Colors </h1>
+                <h5 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Colors </h5>
                 <Colors onColorSelect={(d: any) => setSelectedColors(d)} />
             </div>
 
             <div className="flex flex-col gap-2">
-                <h1 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Sizes </h1>
+                <h5 className='w-full text-start border-b-[1px] py-2 text-xl font-bold'> Sizes </h5>
                 <Sizes onSizeSelect={(d: any) => setSelectedSizes(d)} />
             </div>
 

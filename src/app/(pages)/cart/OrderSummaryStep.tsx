@@ -46,7 +46,7 @@ const OrderSummaryStep = () => {
 
             {items?.map((cartpro) => (
                 <div
-                    className='flex flex-col md:flex-row items-center gap-5 border rounded-[20px] h-[200px] p-3 hover:shadow-custom-shadow transition duration-300'
+                    className='flex flex-col md:flex-row items-center gap-5 border rounded-[20px] h-[200px] p-1 md:p-3 hover:shadow-custom-shadow transition duration-300 overflow-hidden'
                     key={cartpro.id}
                 >
                     <div className='flex flex-row gap-5 w-full md:w-[70%]'>
@@ -71,7 +71,7 @@ const OrderSummaryStep = () => {
                         </div>
                     </div>
 
-                    <div className='flex flex-col items-center justify-end gap-3 w-full md:w-[30%] h-full relative'>
+                    <div className='flex flex-row md:flex-col items-center justify-end gap-3 w-full md:w-[30%] h-full relative'>
                         <h4>${(cartpro.proQuantity * cartpro.proPrice).toFixed(2)}</h4>
                         <Quantity
                             id={cartpro.id}

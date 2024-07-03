@@ -86,7 +86,7 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
     };
 
     return (
-        <div className={`hidden lg:flex md:hidden h-full items-center transform-transition transition-all ease-in-out duration-500 ${searchExpand ? "absolute left-0 w-full z-[9999] rounded-full border" : "relative"} ${searchCls}`}>
+        <div className={`flex h-full items-center transform-transition transition-all ease-in-out duration-500 ${searchExpand ? "absolute left-0 w-full z-[9999] rounded-full border" : "relative"} ${searchCls}`}>
             {searchExpand && (
                 <input
                     type="text"

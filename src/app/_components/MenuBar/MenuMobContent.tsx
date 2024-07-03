@@ -13,6 +13,8 @@ import { IoMdHeartEmpty } from 'react-icons/io';
 import { LiaProductHunt } from 'react-icons/lia';
 import { CiGrid31 } from 'react-icons/ci';
 import { TbLogout } from 'react-icons/tb';
+import { useRouter, usePathname } from 'next/navigation';
+import { animatePageOut } from '@/app/Animations/pageTransistionAnimate';
 
 
 const MobNav = () => {
@@ -20,6 +22,8 @@ const MobNav = () => {
     const user = useCurrentUser()
     const { state } = useCart();
     const { items } = state;
+    const router = useRouter();
+    const pathname = usePathname();
 
     const mobilenavitems = [
         {
@@ -80,10 +84,18 @@ const MobNav = () => {
         },
     ];
 
-    
+    const HandleClick = (item: any) => {
+        const href = item?.href
+        if (href && pathname !== href) {
+            animatePageOut(href, router);
+            router.push(href)
+        }
+    }
+
+
     return (
         <div className='fixed top-0 left-0 md:hidden w-full h-full p-5'>
-            <div className='w-full h-full flex flex-col gap-1 mt-[100px] '>
+            <div className='w-full h-full flex flex-col gap-1 mt-[50px] '>
                 {mobilenavitems?.map((item, i) => (
                     <motion.div
                         key={i}
@@ -93,9 +105,10 @@ const MobNav = () => {
                         initial="initial"
                         custom={i}
                         className={`${!item.show && "hidden"} flex items-center gap-3 justify-start p-2 rounded-[5px] hover:bg-neutral-100`}
+                        onClick={() => HandleClick(item)}
                     >
                         <a className="flex items-center gap-3">
-                            <Icon icon={item.icon} count={item.count || 0} />
+                            <Icon icon={item.icon} count={item.count || 0} iconCls="text-black" />
                             <h2 className='text-lg'>{item.name}</h2>
                         </a>
                     </motion.div>

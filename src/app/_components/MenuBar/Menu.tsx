@@ -24,7 +24,7 @@ export const variants = {
         transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
         left: "25px",
         top: "30px",
-        borderRadius: "30px"
+        // borderRadius: "30px"
     }
 };
 

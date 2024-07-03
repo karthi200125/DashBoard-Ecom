@@ -46,7 +46,7 @@ const Cards = ({ products, isLoading, count }: CardsProps) => {
 
     return (
         <>
-            <div ref={ref} className='w-full max-h-max p-2 md:p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+            <div ref={ref} className='w-full max-h-max p-2 md:p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-hidden'>
                 {isLoading ?
                     Array(8).fill(0).map((_, index) => (
                         <CardSkeleton key={index} />
