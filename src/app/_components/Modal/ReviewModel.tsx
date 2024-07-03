@@ -13,6 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { CreateReview } from '../../../../actions/review'
 import { toast } from 'sonner'
 import { useCurrentUser } from '@/app/hooks/useCurrentUser'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface ReviewBodyProps {
     product: any;
@@ -22,6 +23,7 @@ const ReviewBody = ({ product }: ReviewBodyProps) => {
     const user = useCurrentUser()
     const [isLoading, startTransition] = useTransition()
     const reviewmodel = useReviewModal()
+    const queryClient = useQueryClient()
     const methods = useForm<z.infer<typeof ReviewSchema>>({
         resolver: zodResolver(ReviewSchema),
         defaultValues: {
@@ -43,6 +45,7 @@ const ReviewBody = ({ product }: ReviewBodyProps) => {
                     if (data.success) {
                         toast.success(data.success)
                         reviewmodel.onClose()
+                        queryClient.invalidateQueries('getReviews')
                     }
                     if (data.error) {
                         toast.error(data.error)
@@ -54,13 +57,13 @@ const ReviewBody = ({ product }: ReviewBodyProps) => {
     return (
         <div className='max-h-max w-full p-5 flex flex-col gap-3'>
             <div className='flex flex-col gap-1 border-b w-full py-2 '>
-                <h2>Product Review</h2>
+                <h4>Product Review</h4>
                 <p>Review this product</p>
             </div>
             <div className="flex flex-row items-center gap-10 justify-between">
                 <div className='w-[200px] flex flex-col gap-3'>
                     <CustomImage src={product?.proImage[0] || ""} imgclass='bg-neutral-200 w-[200px] h-[200px]' />
-                    <h2 className='text-center capitalize'>{product?.proName}</h2>
+                    <h5 className='text-center capitalize'>{product?.proName}</h5>
                 </div>
 
                 <FormProvider {...methods}>

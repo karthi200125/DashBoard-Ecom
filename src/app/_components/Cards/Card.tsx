@@ -11,6 +11,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { FaStar } from 'react-icons/fa'
 import { animatePageOut } from '@/app/Animations/pageTransistionAnimate'
 import Spinners from '../Spinners'
+import { useQuery } from '@tanstack/react-query'
 
 interface CardProps {
     card?: any
@@ -19,17 +20,16 @@ interface CardProps {
 const Card = ({ card }: CardProps) => {
     const router = useRouter()
     const pathname = usePathname();
-    const [reviews, setReviews] = useState<any>([]);
+
+    const { isPending, data } = useQuery({
+        queryKey: ['getReviews'],
+        queryFn: async () => await GetReviewByProduct(card?.id)
+    });
+
+    const reviews: any = data?.data
+
     const totalRating = reviews?.length > 0 ? reviews.reduce((sum: any, review: any) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
     const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
-
-    useEffect(() => {
-        const getReviews = async () => {
-            const reviews = await GetReviewByProduct(card?.id);
-            setReviews(reviews?.data);
-        };
-        getReviews();
-    }, [card?.id]);
 
     const cardClick = useCallback(() => {
         const href = `/singleproduct/${card?.id}`

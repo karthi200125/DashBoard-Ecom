@@ -36,12 +36,12 @@ const Colors = ({ onColorSelect, alreadyColor, type }: ColorProps) => {
             {colorsArray?.map((color, index) => (
                 <div
                     key={color}
-                    className={`w-[35px] h-[35px] rounded-full flex items-center justify-center cursor-pointer 
+                    className={`w-[25px] md:w-[35px] h-[25px] md:h-[35px] rounded-full flex items-center justify-center cursor-pointer 
                         ${selectedColor === color ? "border" : ""}`}
                     onClick={() => toggleColor(color)}
                 >
                     <div
-                        className="rounded-full w-[20px] h-[20px]"
+                        className="rounded-full w-[15px] md:w-[20px] h-[15px] md:h-[20px]"
                         style={{ background: color }}
                     ></div>
                 </div>

@@ -29,10 +29,11 @@ const ShoppingCartIcon = () => {
 
     const cartClick = () => {
         const href = '/cart'
-        if (href && pathname !== href) {
-            animatePageOut(href, router);
-            router.push(href)
-        }
+        router.push(href)
+        // if (href && pathname !== href) {s
+        //     animatePageOut(href, router);
+        //     router.push(href)
+        // }
     }
 
     return (

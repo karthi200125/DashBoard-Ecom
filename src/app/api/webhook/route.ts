@@ -24,6 +24,7 @@ async function getCartItems(line_items: Stripe.ApiList<Stripe.LineItem>) {
 }
 
 export async function POST(req: NextRequest) {
+    console.log(req)
     try {
         const signature = req.headers.get('stripe-signature');
         const rawBody = await req.text();
@@ -39,8 +40,9 @@ export async function POST(req: NextRequest) {
             console.error('Webhook signature verification failed.', err.message);
             return new NextResponse('Webhook error: Invalid signature', { status: 400 });
         }
-
+        console.log(event.type === 'checkout.session.completed')
         if (event.type === 'checkout.session.completed') {
+
             const session = event.data.object as Stripe.Checkout.Session;
 
             const line_items = await stripe.checkout.sessions.listLineItems(session.id);
@@ -51,6 +53,8 @@ export async function POST(req: NextRequest) {
             const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
             const userId = session.client_reference_id!;
+
+            console.log("befrore craete order",userId , productIds , totalPrice)
 
             try {
                 const newOrder = await db.order.create({

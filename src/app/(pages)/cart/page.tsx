@@ -19,7 +19,7 @@ const Cart = () => {
     return (
         <div className='p-2 md:p-0 w-full min-h-screen py-5 flex flex-col gap-5 relative'>
             {/* Stepper */}
-            <div className='w-full h-[100px] border'>
+            <div className='w-full max-h-max border py-2'>
                 <CustomStepper step={step} />
             </div>
 

@@ -42,7 +42,7 @@ const ProductReview = ({ product }: ProductReviewProps) => {
     <div className='w-full flex flex-col lg:flex-row gap-10 relative justify-between'>
       <ReviewModel product={product} />
       {/* review top */}
-      <div className='flex flex-col md:flex-row lg:flex-col w-full lg:w-[30%] h-full items-center justify-between lg:sticky top-[100px]'>
+      <div className='flex flex-col md:flex-row lg:flex-col w-full lg:w-[30%] h-full items-center justify-between lg:sticky top-[100px] gap-3'>
         <CustomBtn arrow onClick={reviewModel.onOpen} btnCls='border w-full'>Add your review</CustomBtn>
 
         <div className='w-full flex flex-col gap-3 rounded-[20px] p-5 bg-white border'>

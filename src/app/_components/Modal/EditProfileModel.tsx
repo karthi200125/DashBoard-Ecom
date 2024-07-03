@@ -15,12 +15,14 @@ import { updateUser } from '../../../../actions/users';
 import { UserSchema } from '../../../../schemas';
 import Modal from './Modal';
 import { useRouter } from 'next/navigation';
+import { useQueryClient } from '@tanstack/react-query';
 
 const EditProfile = () => {
     const user: any = useCurrentUser();
     const [isLoading, startTransition] = useTransition();
     const editprofilemodel = useEditProfileModal()
     const router = useRouter()
+    const queryClient = useQueryClient()
 
     const methods = useForm<z.infer<typeof UserSchema>>({
         resolver: zodResolver(UserSchema),
@@ -48,6 +50,8 @@ const EditProfile = () => {
                         toast.success(data.success);
                         router.refresh()
                         editprofilemodel.onClose()
+                        queryClient.invalidateQueries('profileuser')
+                        queryClient.invalidateQueries('favproducts')
                     } else if (data.error) {
                         toast.error(data.error);
                     }

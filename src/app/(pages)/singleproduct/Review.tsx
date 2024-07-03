@@ -32,7 +32,7 @@ const Review = ({ review }: ReviewPeops) => {
             {/* user profile */}
             <div className='hidden md:flex flex-col gap-3 w-[20%] items-center justify-center'>
                 <Image src={reviewUser?.image || ""} imgclass='rounded-[15px] bg-neutral-200 w-[100px] h-[100px] rounded-full' alt='user image' />
-                <h3 className='line-clamp-2 text-center'>{reviewUser?.name}</h3>
+                <h5 className='line-clamp-2 text-center'>{reviewUser?.name}</h5>
             </div>
 
             {/* user review content */}
@@ -41,15 +41,15 @@ const Review = ({ review }: ReviewPeops) => {
                     <StarRating rating={rating || 0} size='15' />
                     <p className='hidden md:block '>{monthsAgo(review.createdAt)}</p>
                 </div>
-                <h2 className='capitalize'>{review.revTitle}</h2>
+                <h4 className='capitalize'>{review.revTitle}</h4>
                 <p className={`capitalize ${showMore ? '' : 'line-clamp-2'}`}>
                     {review.revDesc}
                 </p>
-                <button onClick={() => setShowMore(!showMore)} className="text-blue-500 mt-2 text-sm">
+                <button onClick={() => setShowMore(!showMore)} className="text-blue-500 mt-2 text-[10px]">
                     {showMore ? 'Show Less' : 'Show More'}
                 </button>
                 <div className='md:hidden flex flex-row items-center gap-2 text-sm '>
-                    <h1 className='font-bold'>by {reviewUser?.name}</h1>
+                    <h5>by {reviewUser?.name}</h5>
                     <span className='w-[5px] h-[5px] rounded-full bg-black'></span>
                     <p className='text-sm text-neutral-400'>{monthsAgo(review.createdAt)}</p>
                 </div>

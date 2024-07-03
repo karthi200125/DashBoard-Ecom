@@ -46,18 +46,18 @@ const OrderSummaryStep = () => {
 
             {items?.map((cartpro) => (
                 <div
-                    className='flex flex-col md:flex-row items-center gap-5 border rounded-[5px] md:rounded-[20px] max-h-max md:h-[200px] p-1 md:p-3 hover:shadow-custom-shadow transition duration-300 overflow-hidden'
+                    className='flex flex-col md:flex-row items-center gap-5 border rounded-[5px] md:rounded-[20px] max-h-max md:h-[200px] p-2 md:p-3 hover:shadow-custom-shadow transition duration-300 overflow-hidden'
                     key={cartpro.id}
                 >
                     <div className='flex flex-row gap-5 w-full md:w-[70%]'>
                         <Image
                             src={cartpro?.proImage[0]}
-                            imgclass='w-[80px] md:w-[180px] h-[80px] md:h-[180px] bg-neutral-200 rounded-[15px]'
+                            imgclass='w-[80px] md:w-[220px] h-[80px] md:h-[190px] bg-neutral-200 rounded-[15px]'
                             alt={cartpro?.proName}
                         />
                         <div className='flex flex-col h-full gap-2'>
                             <h4 className='line-clamp-1'>{cartpro?.proName}</h4>
-                            <p className='line-clamp-2'>{cartpro?.proDesc}</p>
+                            <p className='hidden md:flex line-clamp-2'>{cartpro?.proDesc}</p>
                             <Colors
                                 onColorSelect={(color) => handleColorSelect(cartpro.id, color)}
                                 alreadyColor={cartpro?.proColors}
