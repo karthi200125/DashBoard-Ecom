@@ -77,8 +77,8 @@ const LandingCategories = ({ onLoaded }: any) => {
               </div>
             </div>
             <div className='w-full text-center'>
-              <h4 className='uppercase'>{cat.cat}</h4>
-              <p className='flex flex-row items-center gap-3 w-full justify-center'>${cat.price}</p>
+              <h5 className='uppercase'>{cat.cat}</h5>
+              {/* <p className='flex flex-row items-center gap-3 w-full justify-center'>${cat.price}</p> */}
             </div>
           </motion.div>
         ))}

@@ -50,8 +50,8 @@ const EditProfile = () => {
                         toast.success(data.success);
                         router.refresh()
                         editprofilemodel.onClose()
-                        queryClient.invalidateQueries({ queryKey: 'profileuser' });
-                        queryClient.invalidateQueries({ queryKey: 'favproducts' });
+                        queryClient.invalidateQueries({ queryKey: ['profileuser'] });
+                        queryClient.invalidateQueries({ queryKey: ['favproducts'] });
                     } else if (data.error) {
                         toast.error(data.error);
                     }
