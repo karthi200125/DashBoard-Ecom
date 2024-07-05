@@ -48,8 +48,9 @@ export default function Home() {
       {progress !== 100 && (
         <PreLoading progress={progress} />
       )}
-
-      <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
+      {progress === 100 &&
+        <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
+      }
 
       {isLandingCategoriesLoaded && <LCatSkeleton />}
       <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
