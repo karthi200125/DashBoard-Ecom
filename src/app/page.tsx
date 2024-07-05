@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PreLoading from './_components/Loaders/PreLoading';
 import BannerSkeleton from './_components/Skeletons/BannerSkeleton';
 import LCatSkeleton from './_components/Skeletons/LCatSkeleton';
@@ -21,12 +21,35 @@ export default function Home() {
   const [isLandingCardsLoaded, setIsLandingCardsLoaded] = useState(true);
   const [isTestimonialsLoaded, setIsTestimonialsLoaded] = useState(true);
   const [isFooterLoaded, setIsFooterLoaded] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = 50;
+    const totalDuration = 5000;
+    const increment = 100 / (totalDuration / interval);
+
+    const intervalId = setInterval(() => {
+      setProgress((prevProgress) => {
+        if (prevProgress >= 100) {
+          clearInterval(intervalId);
+          return 100;
+        }
+        return prevProgress + increment;
+      });
+    }, interval);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const isComLoad = progress === 100;
+  const isComplete = isComLoad && !isLandingPageLoaded;
 
   return (
     <main className="min-h-screen bg-white w-full">
-      <PreLoading />
+      {!isComplete && (
+        <PreLoading progress={progress} />
+      )}
 
-      {/* {isLandingPageLoaded && <PreLoading />}
       <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
 
       {isLandingCategoriesLoaded && <LCatSkeleton />}
@@ -39,8 +62,8 @@ export default function Home() {
 
       {isTestimonialsLoaded && <TestimonialsSkeleton />}
       <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
-      
-      <Footer /> */}
+
+      <Footer />
     </main>
   );
 }
