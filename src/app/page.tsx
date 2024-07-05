@@ -24,8 +24,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white w-full">
+      <PreLoading />
 
-      {isLandingPageLoaded && <PreLoading />}
+      {/* {isLandingPageLoaded && <PreLoading />}
       <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
 
       {isLandingCategoriesLoaded && <LCatSkeleton />}
@@ -39,7 +40,7 @@ export default function Home() {
       {isTestimonialsLoaded && <TestimonialsSkeleton />}
       <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
       
-      <Footer />
+      <Footer /> */}
     </main>
   );
 }

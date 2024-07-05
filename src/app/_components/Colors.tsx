@@ -41,7 +41,7 @@ const Colors = ({ onColorSelect, alreadyColor, type }: ColorProps) => {
                     onClick={() => toggleColor(color)}
                 >
                     <div
-                        className="rounded-full w-[15px] md:w-[20px] h-[15px] md:h-[20px]"
+                        className="rounded-full w-[20px] h-[20px]"
                         style={{ background: color }}
                     ></div>
                 </div>

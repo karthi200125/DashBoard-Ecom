@@ -18,7 +18,7 @@ const ProductContent = ({ product }: any) => {
     const productPercentagePrice = (product?.proPrice || 0) - discountAmount;
 
     return (
-        <div className='w-full h-full p-2 md:p-5 flex flex-col gap-3 lg:gap-10 '>
+        <div className='w-full h-full p-2 md:p-5 flex flex-col gap-5 md:gap-10 '>
             <div className='flex flex-row items-center justify-between'>
                 <CustomBtn btnCls='px-5 border max-w-max' onClick={() => router.push('/')}>back to home</CustomBtn>
                 <div className='w-[40px] h-[40px] rounded-full flex items-center justify-center bg-neutral-100'>

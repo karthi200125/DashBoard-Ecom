@@ -49,7 +49,7 @@ const Profile = () => {
     }
 
     return (
-        <div className='w-full py-5 min-h-screen flex flex-col gap-5'>
+        <div className='w-full p-2 md:p-0 py-5 min-h-screen flex flex-col gap-5'>
             <EditProfileModel />
             {/* Profile top */}
             <div className='py-5 border-b'>
@@ -62,14 +62,14 @@ const Profile = () => {
                             <p>{profileUser?.phoneNo || "Add your phone number"}</p>
                         </div>
                     </div>
-                    <CustomBtn arrow btnCls='border px-3 md:px-5 mt-3 md:mt-0' onClick={() => editProfileModel.onOpen()}>Edit profile</CustomBtn>
+                    <CustomBtn arrow btnCls='w-full md:w-[150px] border px-3 md:px-5 mt-3 md:mt-0' onClick={() => editProfileModel.onOpen()}>Edit profile</CustomBtn>
                 </div>
             </div>
 
             {/* Profile favourite and address */}
             <div className='flex flex-col md:flex-row items-start md:items-center justify-between gap-5'>
                 {/* Favourites */}
-                <div className='flex-1 p-5 border rounded-[10px] flex flex-col gap-3 h-[200px]'>
+                <div className='w-full  md:flex-1 p-5 border rounded-[10px] flex flex-col gap-3 h-[200px]'>
                     <div className='flex flex-row items-center justify-between'>
                         <div className='flex flex-row gap-2 items-center font-bold'>
                             <IoMdHeartEmpty size={20} />
@@ -81,7 +81,7 @@ const Profile = () => {
                 </div>
 
                 {/* Address details */}
-                <div className='flex-1 p-5 border rounded-[10px] flex flex-col gap-3 h-[200px] justify-start'>
+                <div className='w-full  md:flex-1 p-5 border rounded-[10px] flex flex-col gap-3 h-[200px] justify-start'>
                     <div className='flex flex-row items-center gap-2 font-bold'>
                         <IoLocationOutline size={20} />
                         <h5>Address</h5>

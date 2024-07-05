@@ -33,10 +33,10 @@ const Card = ({ card }: CardProps) => {
 
     const cardClick = useCallback(() => {
         const href = `/singleproduct/${card?.id}`
-        if (href && pathname !== href) {
+        // if (href && pathname !== href) {
             animatePageOut(href, router);
             router.push(href)
-        }
+        // }
 
     }, [router])
 

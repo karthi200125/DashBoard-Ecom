@@ -73,24 +73,24 @@ const SingleProduct = () => {
 
                     {/* suggested products */}
                     <div className='flex flex-col mt-5 items-center justify-center'>
-                        <h2 className='text-2xl md:text-4xl text-neutral-500 w-[180px] md:w-[350px] text-center'>
+                        <h3 className='text-2xl md:text-4xl text-neutral-500 w-[230px] md:w-[350px] text-center'>
                             <LetterAnimation title="Related to this" />
                             <b>
                                 <LetterAnimation title="Product" />
                             </b>
-                        </h2>
+                        </h3>
                         <span className='h-[2px] w-[100px] md:w-[150px] bg-neutral-400 mt-3 mb-10'></span>
                         <Cards isLoading={true} />
                     </div>
 
                     {/*product reviews */}
                     <div className='flex flex-col mt-5 items-center justify-center p-2 md:p-0'>
-                        <h2 className='text-4xl text-neutral-500 md:w-[350px] text-center'>
+                        <h3 className='text-4xl text-neutral-500 md:w-[350px] text-center'>
                             <LetterAnimation title="Product" />
                             <b>
                                 <LetterAnimation title="Reviews" />
                             </b>
-                        </h2>
+                        </h3>
                         <span className='h-[2px] w-[150px] bg-neutral-400 mt-3 mb-10'></span>
                         <ProductReview product={product} />
                     </div>

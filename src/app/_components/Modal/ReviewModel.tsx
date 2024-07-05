@@ -60,7 +60,7 @@ const ReviewBody = ({ product }: ReviewBodyProps) => {
                 <h4>Product Review</h4>
                 <p>Review this product</p>
             </div>
-            <div className="flex flex-row items-center gap-10 justify-between">
+            <div className="flex flex-col  md:flex-row items-center gap-3 md:gap-10 justify-between">
                 <div className='w-[200px] flex flex-col gap-3'>
                     <CustomImage src={product?.proImage[0] || ""} imgclass='bg-neutral-200 w-[200px] h-[200px]' />
                     <h5 className='text-center capitalize'>{product?.proName}</h5>
@@ -87,7 +87,7 @@ const ReviewModel = ({ product }: any) => {
             isOpen={reviewmodel.isOpen}
             toggleOpen={reviewmodel.onClose}
             modalBody={<ReviewBody product={product} />}
-            modalCls='w-[900px]'
+            modalCls='w-[98%] md:w-[900px]'
         />
     )
 }

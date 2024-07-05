@@ -41,8 +41,8 @@ const Heart = ({ product }: any) => {
         likeAction(product?.id, userId)
             .then((data) => {
                 if (data.success) {
-                    toast.success(data.success);
                     router.refresh();
+                    toast.success(data.success);
                 } else if (data.error) {
                     toast.error(data.error);
                 }

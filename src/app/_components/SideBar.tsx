@@ -34,7 +34,7 @@ const SideBar = ({ direction = 'left', isOpen, sidebarCls = '', isClose, body, t
                             ${isRendered ? (direction === 'right' ? 'translate-x-0' : '-translate-x-0') : (direction === 'right' ? 'translate-x-full' : '-translate-x-full')}`}
                     >
                         <div className='flex flex-row items-center justify-between h-max'>
-                            <h4 className='text-3xl font-bold'>{title}</h4>
+                            <h4>{title}</h4>
                             <IoIosClose size={30} onClick={isClose} className='cursor-pointer' />
                         </div>
                         {body}

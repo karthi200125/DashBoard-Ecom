@@ -36,7 +36,7 @@ const Sizes = ({ onSizeSelect, alreadySize , type }: SizeProps) => {
             {sizesArray?.map((size, index) => (
                 <div
                     key={index}
-                    className={`text-[10px] md:text-[15px] rounded-[10px] border w-[30px] md:w-[50px] h-[30px] md:h-[50px] flex items-center justify-center cursor-pointer ${selectedSize === size ? "bg-black text-white border-none" : "bg-white"}`}
+                    className={`text-[12px] md:text-[15px] rounded-[5px] md:rounded-[10px] border w-[35px] md:w-[50px] h-[35px] md:h-[50px] flex items-center justify-center cursor-pointer ${selectedSize === size ? "bg-black text-white border-none" : "bg-white"}`}
                     onClick={() => handleSizeSelect(size)}
                 >
                     {size}

@@ -121,7 +121,7 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
                     {mainCategories?.map((c, i) => (
                         <div
                             key={i}
-                            className={`py-3 border rounded-[10px] w-full text-center cursor-pointer capitalize ${cat === c ? "bg-black text-white" : "bg-white"}`}
+                            className={`py-3 text-[12px] border rounded-[10px] w-full text-center cursor-pointer capitalize ${cat === c ? "bg-black text-white" : "bg-white"}`}
                             onClick={() => handleCategoryClick(c)}
                         >
                             {c}
@@ -135,11 +135,11 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
                 <div className="flex flex-row items-center gap-5 mt-2">
                     <div className="flex flex-row items-center gap-2">
                         <h6>Min</h6>
-                        <input type="number" value={range[0]} onChange={handleMinChange} className="p-2 w-[70px]" />
+                        <input type="number" value={range[0]} onChange={handleMinChange} className="p-2 w-[70px] text-[12px]" />
                     </div>
                     <div className="flex flex-row items-center gap-2">
                         <h6>Max</h6>
-                        <input type="number" value={range[1]} onChange={handleMaxChange} className="p-2 w-[70px]" />
+                        <input type="number" value={range[1]} onChange={handleMaxChange} className="p-2 w-[70px] text-[12px]" />
                     </div>
                 </div>
             </div>

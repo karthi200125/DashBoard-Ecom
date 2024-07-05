@@ -48,10 +48,10 @@ const Review = ({ review }: ReviewPeops) => {
                 <button onClick={() => setShowMore(!showMore)} className="text-blue-500 mt-2 text-[10px]">
                     {showMore ? 'Show Less' : 'Show More'}
                 </button>
-                <div className='md:hidden flex flex-row items-center gap-2 text-sm '>
-                    <h5>by {reviewUser?.name}</h5>
-                    <span className='w-[5px] h-[5px] rounded-full bg-black'></span>
-                    <p className='text-sm text-neutral-400'>{monthsAgo(review.createdAt)}</p>
+                <div className='md:hidden flex flex-row items-center gap-2 justify-between'>
+                    <h6>by {reviewUser?.name}</h6>
+                    {/* <span className='w-[5px] h-[5px] rounded-full bg-black'></span> */}
+                    <p>{monthsAgo(review.createdAt)}</p>
                 </div>
             </div>
         </div>
