@@ -8,6 +8,8 @@ import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiShoppingBagFill } from "react-icons/ri";
 import { useInView } from 'react-intersection-observer';
 import { LadingCategories } from '../dummydata';
+import { useRouter, usePathname } from 'next/navigation';
+import { animatePageOut } from '@/app/Animations/pageTransistionAnimate';
 
 const LandingCategories = ({ onLoaded }: any) => {
   const [activeId, setActiveId] = useState(2);
@@ -23,6 +25,15 @@ const LandingCategories = ({ onLoaded }: any) => {
     onLoaded();
   }, []);
 
+  const router = useRouter();
+  const pathname = usePathname(); 
+
+  const handleclick = (href: string) => {
+    if (href && pathname !== href) {
+      animatePageOut(href, router);
+      router.push(href)
+    }
+  }
 
 
   return (
@@ -48,6 +59,7 @@ const LandingCategories = ({ onLoaded }: any) => {
             className={`min-w-[300px] md:min-w-[30%] lg:flex-1 md:h-full flex flex-col gap-3 items-center justify-center ${cat.id === 2 ? "md:mt-20" : ""}`}
             onMouseEnter={() => setActiveId(cat.id)}
             onMouseLeave={() => setActiveId(2)}
+            onClick={() => handleclick(cat?.href)}
           >
             <div
               className={`${activeId === cat.id ? "bg-gradient-to-r from-[#686e74] to-[#222222]" : "bg-white"} hover:bg-gradient-to-r from-[#686e74] to-[#222222] transition duration-500 rounded-[20px] w-full h-full relative flex items-center justify-center overflow-hidden group cursor-pointer`}
