@@ -6,7 +6,7 @@ const PreLoading = ({ progress }: any) => {
 
     return (
         <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center  bg-black z-[9999] py-10">
-            <div className="md:container mx-auto flex items-center justify-between flex-col h-[95%]">
+            <div className="w-full px-2 md:px-0 md:container mx-auto flex items-center justify-between flex-col h-[90%] md:h-[95%]">
                 <div className="w-full flex flex-row items-center justify-between">
                     <div>
                         <h5 className='text-neutral-400'>
