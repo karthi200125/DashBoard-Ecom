@@ -22,8 +22,16 @@ export default function Home() {
   const [isTestimonialsLoaded, setIsTestimonialsLoaded] = useState(true);
   const [isFooterLoaded, setIsFooterLoaded] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [showPreloader, setShowPreloader] = useState(() => {
+    if (typeof window !== "undefined") {
+      return !localStorage.getItem('preloaderShown');
+    }
+    return true;
+  });
 
   useEffect(() => {
+    if (!showPreloader) return;
+
     const interval = 50;
     const totalDuration = 5000;
     const increment = 100 / (totalDuration / interval);
@@ -32,6 +40,8 @@ export default function Home() {
       setProgress((prevProgress) => {
         if (prevProgress >= 100) {
           clearInterval(intervalId);
+          localStorage.setItem('preloaderShown', 'true');
+          setShowPreloader(false);
           return 100;
         }
         return prevProgress + increment;
@@ -39,34 +49,34 @@ export default function Home() {
     }, interval);
 
     return () => clearInterval(intervalId);
-  }, []);
-
-  // const isLoadingComplete = progress === 100 && !isLandingPageLoaded;
-
+  }, [showPreloader]);
 
   return (
     <main className="min-h-screen bg-white w-full">
-      {progress !== 100 ?
+      {showPreloader ? (
         <PreLoading progress={progress} />
-        :
-        <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
-      }
-
-      {!isLandingPageLoaded &&
+      ) : (
         <>
-          {isLandingCategoriesLoaded && <LCatSkeleton />}
-          <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
+          <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
 
-          {isBannersLoaded && <BannerSkeleton />}
-          <Banners onLoaded={() => setIsBannersLoaded(false)} />
+          {!isLandingPageLoaded && (
+            <>
+              {isLandingCategoriesLoaded && <LCatSkeleton />}
+              <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
 
-          <LandingCards />
+              {isBannersLoaded && <BannerSkeleton />}
+              <Banners onLoaded={() => setIsBannersLoaded(false)} />
 
-          {isTestimonialsLoaded && <TestimonialsSkeleton />}
-          <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
+              <LandingCards />
 
-          <Footer />
-        </>}
+              {isTestimonialsLoaded && <TestimonialsSkeleton />}
+              <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
+
+              <Footer />
+            </>
+          )}
+        </>
+      )}
     </main>
   );
 }

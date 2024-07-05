@@ -15,6 +15,8 @@ import Menu from './MenuBar/Menu';
 import { routes } from './dummydata';
 import { motion, AnimatePresence } from 'framer-motion';
 import TransitionLink from '../Animations/TransitionLink';
+import { useQuery } from '@tanstack/react-query';
+import { getSingleUser } from '../../../actions/users';
 
 const Search = dynamic(() => import('./Search'));
 const ShoppingCartIcon = dynamic(() => import('./ShoppingCartICon/ShoppingCartICon'));
@@ -27,9 +29,15 @@ const Navbar = () => {
 
     const loginModel = useLoginModal();
     const registerModel = useRegisterModal();
-    const user = useCurrentUser();
+    const user: any = useCurrentUser();
     const pathname = usePathname();
     const isDashboard = pathname.startsWith('/dashboard');
+
+    const { isLoading: profileLoading, data } = useQuery({
+        queryKey: ['navprofileuser', user?.id],
+        queryFn: async () => await getSingleUser(user?.id),
+    });
+    const userdada: any = data
 
     useEffect(() => {
         const handleScroll = () => {
@@ -110,22 +118,17 @@ const Navbar = () => {
                 </div>
 
                 <div className="flex flex-row items-center gap-2 lg:gap-3">
-                    {isDashboard ? (
-                        // <Icon icon={<Settings size={20} />} tooltip="Setting" />
-                        ""
-                    ) : (
-                        <>
-                            <Search placeholder="search products..." />
-                            {user && (
-                                <TransitionLink href='/favourite'>
-                                    <Icon icon={<FaRegHeart size={20} />} tooltip="Favorites" iconCls="hidden md:flex" count={user?.favorite?.length} />
-                                </TransitionLink>
-                            )}
-                            {/* <TransitionLink href='/cart'> */}
+                    {!isDashboard &&                        
+                            <>
+                                <Search placeholder="search products..." />
+                                {user && (
+                                    <TransitionLink href='/favourite'>
+                                        <Icon icon={<FaRegHeart size={20} />} tooltip="Favorites" iconCls="hidden md:flex" count={userdada?.favorite?.length} />
+                                    </TransitionLink>
+                                )}
                                 <ShoppingCartIcon />
-                            {/* </TransitionLink> */}
-                        </>
-                    )}
+                            </>
+                        }
 
                     {user && (
                         <div className={`hidden md:flex ${user && 'mr-[-50px] ml-[50px]'}`} onClick={() => ''}>
