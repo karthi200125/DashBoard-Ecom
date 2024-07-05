@@ -41,12 +41,11 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, []);
 
-  const isComLoad = progress === 100;
-  const isComplete = isComLoad && !isLandingPageLoaded;
+  // const isLoadingComplete = progress === 100 && !isLandingPageLoaded;
 
   return (
     <main className="min-h-screen bg-white w-full">
-      {!isComplete && (
+      {progress !== 100 && (
         <PreLoading progress={progress} />
       )}
 
