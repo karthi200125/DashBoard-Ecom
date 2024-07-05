@@ -43,27 +43,30 @@ export default function Home() {
 
   // const isLoadingComplete = progress === 100 && !isLandingPageLoaded;
 
+
   return (
     <main className="min-h-screen bg-white w-full">
-      {progress !== 100 && (
+      {progress !== 100 ?
         <PreLoading progress={progress} />
-      )}
-      {progress === 100 &&
+        :
         <LandingPage onLoaded={() => setIsLandingPageLoaded(false)} />
       }
 
-      {isLandingCategoriesLoaded && <LCatSkeleton />}
-      <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
+      {!isLandingPageLoaded &&
+        <>
+          {isLandingCategoriesLoaded && <LCatSkeleton />}
+          <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
 
-      {isBannersLoaded && <BannerSkeleton />}
-      <Banners onLoaded={() => setIsBannersLoaded(false)} />
+          {isBannersLoaded && <BannerSkeleton />}
+          <Banners onLoaded={() => setIsBannersLoaded(false)} />
 
-      <LandingCards />
+          <LandingCards />
 
-      {isTestimonialsLoaded && <TestimonialsSkeleton />}
-      <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
+          {isTestimonialsLoaded && <TestimonialsSkeleton />}
+          <Testimonials onLoaded={() => setIsTestimonialsLoaded(false)} />
 
-      <Footer />
+          <Footer />
+        </>}
     </main>
   );
 }

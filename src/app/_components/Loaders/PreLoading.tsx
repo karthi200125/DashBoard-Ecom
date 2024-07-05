@@ -6,15 +6,15 @@ const PreLoading = ({ progress }: any) => {
 
     return (
         <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center  bg-black z-[9999] py-10">
-            <div className="w-full px-2 md:px-0 md:container mx-auto flex items-center justify-between flex-col h-[90%] md:h-[95%]">
+            <div className="w-full px-2 md:px-5 md:container mx-auto flex items-center justify-between flex-col h-[90%] md:h-[95%]">
                 <div className="w-full flex flex-row items-center justify-between">
                     <div>
                         <h5 className='text-neutral-400'>
                             <LetterAnimation title={"Loading..."} />
                         </h5>
-                        <h4 className='text-neutral-400'>
+                        <h6 className='text-neutral-400'>
                             <LetterAnimation title="Your Experience" />
-                        </h4>
+                        </h6>
                     </div>
                     <h1 className='text-neutral-400'>
                         {`${Math.round(progress)}%`}
@@ -47,7 +47,9 @@ const PreLoading = ({ progress }: any) => {
                         </h5>
                     </div>
 
-                    <div className="rounded-full h-[5px] bg-neutral-600" style={{ width: `${progress}%` }}></div>
+                    <div className="mx-auto w-[95%]">
+                        <div className="rounded-full h-[5px] bg-neutral-600" style={{ width: `${progress}%` }}></div>
+                    </div>
                 </div>
             </div>
         </div>
