@@ -59,12 +59,12 @@ const OrderSummaryStep = () => {
                             <h4 className='line-clamp-1'>{cartpro?.proName}</h4>
                             <p className='hidden md:flex line-clamp-2'>{cartpro?.proDesc}</p>
                             <Colors
-                                onColorSelect={(color) => handleColorSelect(cartpro.id, color)}
+                                onColorSelect={(color:any) => handleColorSelect(cartpro.id, color)}
                                 alreadyColor={cartpro?.proColors}
                                 type='cartitem'
                             />
                             <Sizes
-                                onSizeSelect={(size) => handleSizeSelect(cartpro.id, size)}
+                                onSizeSelect={(size:any) => handleSizeSelect(cartpro.id, size)}
                                 alreadySize={cartpro?.proSizes}
                                 type='cartitem'
                             />
