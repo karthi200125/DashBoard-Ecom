@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { colors } from './dummydata';
 
 interface ColorProps {
-    onColorSelect: (color: string) => void;
+    onColorSelect: any;
     alreadyColor?: string[];
     type?: string;
 }

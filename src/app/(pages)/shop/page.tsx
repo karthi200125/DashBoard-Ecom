@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Cards from '@/app/_components/Cards/Cards';
 import Footer from '@/app/_components/Footer';
@@ -26,61 +26,34 @@ const Shop = () => {
     const cat = searchParams.get('cat') || '';
 
     useEffect(() => {
-        const params = new URLSearchParams(searchParams);
+        const params = new URLSearchParams(searchParams.toString());
+
         if (!params.has('page')) {
             params.set('page', page);
             router.replace(`${pathname}?${params.toString()}`);
         }
         if (cat) {
             setCategory(cat);
+        } else {
+            if (!params.has('cat')) {
+                params.set('cat', category);
+                router.replace(`${pathname}?${params.toString()}`);
+            }
         }
-        if (!params.has('cat')) {
-            params.set('cat', category);
-            router.replace(`${pathname}?${params.toString()}`);
-        }
-    }, [page, pathname, router, searchParams]);
-
-    // useEffect(() => {
-    //     const fetchProducts = async () => {
-    //         setIsLoading(true);
-    //         try {
-    //             const filterParams = {
-    //                 category,
-    //                 price,
-    //                 color,
-    //                 size,
-    //                 page
-    //             };
-    //             const { data, error, count } = await getAllProductByFilter(filterParams);
-    //             setFilterProducts(data || []);
-    //             setCount(count);
-    //             if (error) toast.error(error);
-    //         } catch (error) {
-    //             toast.error('Failed to fetch products');
-    //         } finally {
-    //             setIsLoading(false);
-    //         }
-    //     };
-
-    //     fetchProducts();
-    // }, [category, priceRange, color, size, page]);
+    }, [page, cat, pathname, router, searchParams]);
 
     const price = priceRange.map(String);
-    const filterParams = {
-        category,
-        price,
-        color,
-        size,
-        page
-    };
+    const filterParams = { category, price, color, size, page };
+    console.log(filterParams)
+
     const { isPending: isLoading, data } = useQuery({
-        queryKey: ['filterproducts'],
-        queryFn: async () => await getAllProductByFilter(filterParams)
-    })
-    
-    const filterProducts = data?.data
-    if (data?.error) toast.error(data?.error)
-        
+        queryKey: ['filterproducts', filterParams],
+        queryFn: () => getAllProductByFilter(filterParams)
+    });
+
+    const filterProducts = data?.data;
+    if (data?.error) toast.error(data?.error);
+
     return (
         <>
             <div className="w-full min-h-screen py-5 flex flex-col gap-5">
@@ -105,11 +78,10 @@ const Shop = () => {
                             }
                             title="Filter Products"
                         />
-                        <div className="flex flex-row items-center gap-2 cursor-pointer hover:opacity-50">
+                        <div className="flex flex-row items-center gap-2 cursor-pointer hover:opacity-50" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                             <h5>Filter</h5>
-                            <FaArrowRightArrowLeft size={20} onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+                            <FaArrowRightArrowLeft size={20} />
                         </div>
-                        {/* TODO: Implement Select here */}
                     </div>
                 </div>
 

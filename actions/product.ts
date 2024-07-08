@@ -75,7 +75,7 @@ export const getFavProducts = async (userId: string, page?: string) => {
             },
         });
 
-        const currentPage = page ? parseInt(page) : 1; 
+        const currentPage = page ? parseInt(page) : 1;
 
         const favProducts = await db.product.findMany({
             where: {
@@ -94,7 +94,7 @@ export const getFavProducts = async (userId: string, page?: string) => {
 };
 
 // get order products
-export const getOrderProducts = async (productIds: string[]) => {    
+export const getOrderProducts = async (productIds: string[]) => {
     try {
         const products = await db.product.findMany({
             where: {
@@ -159,7 +159,8 @@ export const CreateProductAction = async (values: any) => {
 // filter products
 export const getAllProductByFilter = async (values: any) => {
     const { category, price, color, size, page } = values;
-   
+    console.log("server action", values)
+
     const ITEM_PER_PAGE = 8;
     try {
         const filters: any = {};
@@ -218,7 +219,7 @@ export const getAllProductByFilter = async (values: any) => {
                 }
             });
         }
-        
+
         return { success: "Filtered products retrieved successfully", data: filterProducts, count };
     } catch (error) {
         return { error: "Failed to retrieve filtered products" };

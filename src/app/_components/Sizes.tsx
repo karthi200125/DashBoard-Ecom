@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { sizes } from './dummydata';
 
 interface SizeProps {
-    onSizeSelect: (size: string) => void;
+    onSizeSelect: any;
     alreadySize?: string[];
     type?: string;
 }
