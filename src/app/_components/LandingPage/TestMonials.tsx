@@ -57,7 +57,7 @@ export const Testimonials = ({ onLoaded }: any) => {
                                 </div>
                                 <div className="bg-white text-black md:rounded-full transform scale-0 w-full h-[150%] absolute transition duration-500 ease-out group-hover:scale-100 flex items-center justify-center z-20">
                                     <p className="w-[200px] h-[300px] font-bold flex items-center justify-center text-center">
-                                        <LetterAnimation title={t?.feedback} />
+                                        <LetterAnimation title={t?.feedback} type="word"/>
                                     </p>
                                 </div>
                             </div>

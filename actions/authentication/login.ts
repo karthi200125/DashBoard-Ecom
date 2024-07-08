@@ -9,6 +9,7 @@ import { getUserByEmail } from '../users';
 import { generateVerificationToken } from './tokens';
 import { sendVerificationEmail } from '@/lib/mail';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
@@ -45,6 +46,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         });
 
         revalidatePath('/')
+        redirect('/')
         return { success: 'Login successful' };
 
     } catch (error) {
@@ -53,7 +55,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
                 case "CredentialsSignin":
                     return { error: "Invalid credentials" };
                 default:
-                    return { error: "Something went wrong" };
+                    // return { error: "Something went wrong" };
+                    return { error: "Invalid credentials" };
             }
         }
 

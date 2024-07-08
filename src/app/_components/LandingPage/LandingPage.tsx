@@ -63,7 +63,7 @@ const LandingPage = ({ onLoaded }: any) => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{
                     ease: [0.76, 0, 0.24, 1],
-                    duration: 2,
+                    duration: 1,
                 }}
                 className="w-full md:w-[87%] h-[96.5%] rounded-[30px] overflow-hidden relative bg-black"
             >
@@ -118,7 +118,15 @@ const LandingPage = ({ onLoaded }: any) => {
             </div>
 
             {/* main text */}
-            <div className='flex flex-col p-5 rounded-[20px] absolute max-w-max top-[5%] md:top-[7%] left-[2%] md:left-[7%]'>
+            <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                    ease: [0.76, 0, 0.24, 1],
+                    duration: 1.2,
+                }}
+                className='flex flex-col p-5 rounded-[20px] absolute max-w-max top-[5%] md:top-[7%] left-[2%] md:left-[7%]'
+            >
                 <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >
                     <LetterAnimation title={heading1} />
                 </h1>
@@ -128,7 +136,7 @@ const LandingPage = ({ onLoaded }: any) => {
                 <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>
                     <LetterAnimation title={heading3} />
                 </h1>
-            </div>
+            </motion.div>
 
             {/* three images */}
             <div className='hidden md:flex flex-col justify-between gap-2 h-[65%] md:w-[20%] xl:w-[15%] overflow-hidden'>

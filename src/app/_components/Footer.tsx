@@ -27,7 +27,7 @@ const Footer = () => {
     useEffect(() => {
     }, [inView]);
 
-    
+
     const word = "DEXON";
 
     return (
@@ -109,14 +109,14 @@ const Footer = () => {
                 </div>
                 <div className='w-full md:w-[500px] h-full'>
                     <div className='flex flex-row gap-5 items-center text-white'>
-                        <Image src={''} imgclass='w-[60px] h-[60px] rounded-full object-contain' alt='' />
-                        <p>
-                            100% ORIGINAL guarantee for all products at myntra.com
+                        <Image src={'https://res.cloudinary.com/duextvtta/image/upload/v1720446976/gaurante_sv8nsy.webp'} imgclass='w-[60px] h-[60px] rounded-full object-contain' alt='' />
+                        <p className="w-[70%]">
+                            100% ORIGINAL guarantee for all products at dexon.com
                         </p>
                     </div>
                     <div className='flex flex-row gap-5 items-center text-white mt-5'>
-                        <Image src={''} imgclass='w-[60px] h-[60px] rounded-full object-contain' alt='' />
-                        <p>
+                        <Image src={'https://res.cloudinary.com/duextvtta/image/upload/v1720446976/return_ty7a8v.webp'} imgclass='w-[60px] h-[60px] rounded-full object-contain' alt='' />
+                        <p className="w-[70%]">
                             Return within 14 days of receiving your order
                         </p>
                     </div>
@@ -125,10 +125,10 @@ const Footer = () => {
 
             {/* bottom rights reserved */}
             <div className='max-h-max md:h-[80px] flex flex-col md:flex-row items-center justify-between gap-5 py-5'>
-                <p className='text-center text-black text-[12px]'>© 2024 Dexons All rights reserved</p>
+                <p className='text-center text-black text-[12px]'>© 2024 Dexon All rights reserved</p>
                 <div className='flex flex-row gap-3 items-center'>
-                    <p className='text-[12px] hoveranimation'>Privacy Policy</p>
-                    <p className='text-[12px] hoveranimation'>Terms & Services</p>
+                    <p className='text-[12px] hoveranimation cursor-pointer'>Privacy Policy</p>
+                    <p className='text-[12px] hoveranimation cursor-pointer'>Terms & Services</p>
                 </div>
                 <SocialIcons type='footer' />
             </div>

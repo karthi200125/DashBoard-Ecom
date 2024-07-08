@@ -84,8 +84,7 @@ const Navbar = () => {
             <motion.div
                 key="navbar"
                 initial={{ opacity: 0, y: -180 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -180 }}
+                animate={{ opacity: 1, y: 0 }}                
                 transition={{
                     ease: 'easeInOut',
                     duration: 1,
