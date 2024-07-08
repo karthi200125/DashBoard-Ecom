@@ -36,18 +36,18 @@ const SocialIcons = ({ type }: SocilaIconsProps) => {
 
     return (
         <div className={`flex items-center justify-center gap-3 h-full ${type === "footer" ? "flex-row" : "flex-col"}`}>
-            {icons?.map((icon) => (
+            {icons?.map((icon, i) => (
                 <motion.div
+                    key={i}
                     initial={{ opacity: 0, x: -180 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
                         ease: "easeInOut",
                         duration: 1,
-                        delay: 0.6,
+                        delay: 0.6 + i * 0.3,
                     }}
                     // href={icon.href}
-                    className='cursor-pointer'
-                    key={icon?.id}
+                    className='cursor-pointer'                    
                 >
                     <Image src={icon?.icon.src} imgclass={`be-neutral-200 rounded-full ${type === "footer" ? "w-7 h-7" : "w-10 h-10"}`} alt='social icons' />
                 </motion.div>

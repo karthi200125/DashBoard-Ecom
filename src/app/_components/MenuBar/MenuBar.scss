@@ -30,31 +30,35 @@
 
 .menu .line1 {
     transform: translate(-50%, -8px);
+
 }
 
 .menu .line2 {
-    transform: translate(-50%, 0px);
+    transform: translate(-50%, 0px);    
 }
 
 .menu .line3 {
     transform: translate(-50%, 8px);
-    width: 80%;
+    width: 80%;    
 }
 
 .openmenu .line1 {
     transform: translate(-50%, -50%) rotate(45deg);
     color: white;
+    transition: 0.5s ease-in-out;
 }
 
 .openmenu .line3 {
     transform: translate(-50%, -50%) rotate(-45deg);
     width: 100%;
     color: white;
+    transition: 0.5s ease-in-out;
 }
 
 .openmenu .line2 {
     width: 0;
     color: white;
+    transition: 0.5s ease-in-out;
 }
 
 

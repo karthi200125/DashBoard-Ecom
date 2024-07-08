@@ -56,8 +56,8 @@ const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserPr
                     </AvatarFallback>
                 </Avatar>
             </HoverCardTrigger>
-            <HoverCardContent className="w-150 rounded-[20px] bg-white z-10 p-3">
-                <div className="flex justify-between flex-row items-start gap-5">
+            <HoverCardContent className="w-[300px] rounded-[20px] bg-white z-10 p-3">
+                <div className="flex flex-row items-start gap-5">
                     <Avatar className="w-12 h-12">
                         <AvatarImage src={user?.image || noprofile.src} />
                         <AvatarFallback>
@@ -69,9 +69,9 @@ const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserPr
                         <p className="line-clamp-1">{user?.email}</p>
                         <div className="flex items-center pt-2 gap-3">
                             <CalendarDays size={15} />
-                            <p className="text-muted-foreground mb-2">
+                            <h6 className="mb-2">
                                 Joined {formatDate(user?.createdAt)}
-                            </p>
+                            </h6>
                         </div>
                         {user?.id === CurrentUser?.id && type === "nav" &&
                             <div className="border-t py-1">

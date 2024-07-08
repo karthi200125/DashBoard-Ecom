@@ -112,10 +112,10 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
                             <TransitionLink href={`/singleproduct/${product.id}`} key={index}>
                                 <div
                                     onClick={() => handleSuggestionClick(product.proName)}
-                                    className='w-full p-2 rounded-[5px] hover:bg-neutral-100 cursor-pointer flex flex-row items-center gap-3 h-[100px] md:h-[150px] overflow-hidden'
+                                    className='w-full p-2 rounded-[5px] hover:bg-neutral-100 cursor-pointer flex flex-row items-center gap-3 h-[80px] md:h-[100px] overflow-hidden'
                                 >
-                                    <Image src={product?.proImage[0]} imgclass='bg-neutral-200 w-[100px] h-full rounded-[5px] object-contain' alt='' />
-                                    <div className='flex flex-col gap-1'>
+                                    <Image src={product?.proImage[0]} imgclass='bg-neutral-200 w-[60px] md:w-[100px] h-full rounded-[5px] object-contain' alt='' />
+                                    <div className='w-[70%] md:w-[80%] flex flex-col gap-1'>
                                         <h5 className='capitalize line-clamp-1'>{product.proName}</h5>
                                         <p className='line-clamp-1'>{product.proDesc}</p>
                                     </div>

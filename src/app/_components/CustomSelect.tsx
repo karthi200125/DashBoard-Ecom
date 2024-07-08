@@ -41,10 +41,8 @@ const CustomSelect = ({ name, control, defaultValue = "", options, selectCls, la
                                     ))}
                                 </SelectGroup>
                             </SelectContent>
-                        </Select>
-                        {errors && errors[name] && (
-                            <p className="text-red-500 mt-1">{errors[name].message}</p>
-                        )}
+                        </Select>                        
+                        {errors && <p className='text-red-500 text-[10px] font-semibold'>{errors.message}</p>}
                     </div>
                 )}
             />

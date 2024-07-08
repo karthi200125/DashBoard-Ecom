@@ -13,11 +13,12 @@ import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoLocationOutline } from 'react-icons/io5';
 import { getFavProducts } from '../../../../../actions/product';
 import { getSingleUser } from '../../../../../actions/users';
+import { useCurrentUser } from '@/app/hooks/useCurrentUser';
 
 const Profile = () => {
     const orders: string[] = [];
     const editProfileModel = useEditProfileModal();
-
+    const Currentuser = useCurrentUser()
     const router = useRouter();
     const params = useParams();
     const id: any = params.id
@@ -35,14 +36,18 @@ const Profile = () => {
     const profileUserFav: any = data
 
     const favoriteItems = useMemo(() => (
-        profileUserFav && profileUserFav?.data?.length > 0
-            ? profileUserFav.data.slice(0, 5).map((fav: any) => (
-                <div className='p-2 flex flex-row items-center justify-between' key={fav.id}>
-                    <Image src={fav.proImage[0]} imgclass='w-[50px] md:w-[100px] h-[50px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='Favourite Image' />
-                </div>
-            ))
-            : <p>No favourites yet</p>
+        <div className={`p-2 flex flex-row items-center gap-2 ${profileUserFav?.data?.length >= 4 ? "justify-between" : ""}`}>
+            {profileUserFav && profileUserFav.data?.length > 0 ? (
+                profileUserFav.data.slice(0, 5).map((fav: any) => (
+                    <Image key={fav.id} src={fav.proImage[0]} imgclass='w-[80px] md:w-[100px] h-[80px] md:h-[100px] rounded-[10px] bg-neutral-200' alt='Favourite Image' />
+                ))
+            ) : (
+                <p>No favourites yet</p>
+            )}
+        </div>
     ), [profileUserFav]);
+
+
 
     if (profileLoading) {
         return <ProfilePageSkeleton />;
@@ -55,21 +60,23 @@ const Profile = () => {
             <div className='py-5 border-b'>
                 <h1 className='line-clamp-1 mb-3'>{profileUser?.name}</h1>
                 <div className='flex flex-col md:flex-row items-start md:items-center justify-between'>
-                    <div className='flex flex-col md:flex-row items-start md:items-center gap-3'>
+                    <div className='flex flex-row items-start md:items-center gap-3'>
                         <UserProfile proSrc={profileUser?.image || ""} proAlt='' profileCls='w-[60px] h-[60px]' />
                         <div>
                             <h5>{profileUser?.email}</h5>
                             <p>{profileUser?.phoneNo || "Add your phone number"}</p>
                         </div>
                     </div>
-                    <CustomBtn arrow btnCls='w-full md:w-[150px] border px-3 md:px-5 mt-3 md:mt-0' onClick={() => editProfileModel.onOpen()}>Edit profile</CustomBtn>
+                    {profileUser?.id === Currentuser?.id &&
+                        <CustomBtn arrow btnCls='w-full md:w-[200px] border px-3 md:px-5 mt-3 md:mt-0' onClick={() => editProfileModel.onOpen()}>Edit profile</CustomBtn>
+                    }
                 </div>
             </div>
 
             {/* Profile favourite and address */}
-            <div className='flex flex-col md:flex-row items-start md:items-center justify-between gap-5'>
+            <div className='flex flex-col md:flex-row items-start justify-between gap-5'>
                 {/* Favourites */}
-                <div className='w-full  md:flex-1 p-5 border rounded-[10px] flex flex-col gap-3 h-[200px]'>
+                <div className='w-full  md:flex-1 p-2 md:p-5 border rounded-[10px] flex flex-col gap-3 max-h-max'>
                     <div className='flex flex-row items-center justify-between'>
                         <div className='flex flex-row gap-2 items-center font-bold'>
                             <IoMdHeartEmpty size={20} />
@@ -77,11 +84,13 @@ const Profile = () => {
                         </div>
                         <CustomBtn btnCls='border h-[30px] md:h-[40px] px-3 md:px-5 bg-blue-400 text-white text-[12px]' onClick={() => router.push('/favourite')}>View all</CustomBtn>
                     </div>
-                    {favoriteItems}
+                    {profileUser?.id === Currentuser?.id &&
+                        favoriteItems
+                    }
                 </div>
 
                 {/* Address details */}
-                <div className='w-full  md:flex-1 p-5 border rounded-[10px] flex flex-col gap-3 h-[200px] justify-start'>
+                <div className='w-full  md:flex-1 p-2 md:p-5 border rounded-[10px] flex flex-col gap-3 max-h-max justify-start'>
                     <div className='flex flex-row items-center gap-2 font-bold'>
                         <IoLocationOutline size={20} />
                         <h5>Address</h5>

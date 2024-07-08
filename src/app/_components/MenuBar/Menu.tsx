@@ -2,28 +2,29 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import Line2 from './Line2';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MobNav from './MenuMobContent';
 import MenuBarContent from './MenuBarContent';
 import './MenuBar.scss'
+import { usePathname } from 'next/navigation';
 
 export const variants = {
     open: {
         width: "100%",
-        height: "100vh",
+        height: "110vh",
         transition: {
             duration: 0.75,
             ease: [0.76, 0, 0.24, 1],
         },
         left: "0",
-        top: "0",
+        top: "-10px",
     },
     closed: {
         width: 0,
         height: 0,
         transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
         left: "25px",
-        top: "30px",        
+        top: "30px",
     }
 };
 
@@ -32,7 +33,9 @@ interface MenuProps {
 }
 
 const Menu = ({ isSticky }: MenuProps) => {
+    
     const [menuOpen, setMenuOpen] = useState(false);
+    
 
     return (
         <div className='w-full'>
