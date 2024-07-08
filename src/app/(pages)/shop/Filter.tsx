@@ -80,7 +80,7 @@ const Filter = ({ onColorSelect, onSizeSelect, onPriceRange, onCategory }: Filte
         if (initialValues.sizes) {
             setSelectedSizes(initialValues.sizes);
         }
-    }, []);
+    }, [onCategory, onPriceRange]);
 
     useEffect(() => {
         localStorage.setItem('filterValues', JSON.stringify({

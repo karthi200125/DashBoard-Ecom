@@ -44,7 +44,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
             redirectTo: DEFAULT_REDIRECT
         });
 
-        revalidatePath('/settings')
+        revalidatePath('/')
         return { success: 'Login successful' };
 
     } catch (error) {
