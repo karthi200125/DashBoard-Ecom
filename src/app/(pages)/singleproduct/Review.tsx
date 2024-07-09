@@ -38,7 +38,7 @@ const Review = ({ review }: ReviewPeops) => {
             {/* user review content */}
             <div className='flex flex-col w-full h-full gap-3'>
                 <div className='flex flex-row items-center justify-between'>
-                    <StarRating rating={rating || 0} size='15' />
+                    <StarRating rating={rating || 0} size='15' showrating={false} />
                     <p className='hidden md:block '>{monthsAgo(review.createdAt)}</p>
                 </div>
                 <h4 className='capitalize'>{review.revTitle}</h4>

@@ -67,18 +67,11 @@ const LandingCategories = ({ onLoaded }: any) => {
               <div className='w-full h-full flex items-center justify-center'>
                 <Image src={cat?.image?.src} imgclass='w-[200px] h-[200px] object-contain transform group-hover:scale-125 transition duration-500' alt='' />
               </div>
-              <div className={`transition duration-500 ${activeId === cat.id ? "scale-100" : "scale-0"} transform group-hover:scale-100 flex flex-row items-center gap-3 absolute`}>
-                {/* <div className='w-10 h-10 flex items-center justify-center rounded-full glass cursor-pointer text-white hover:bg-orange-400'>
-                  <MdOutlineRemoveRedEye />
-                </div>
-                <div className='w-10 h-10 flex items-center justify-center rounded-full glass cursor-pointer text-white hover:bg-orange-400'>
-                  <RiShoppingBagFill />
-                </div> */}
+              <div className={`transition duration-500 ${activeId === cat.id ? "scale-100" : "scale-0"} transform group-hover:scale-100 flex flex-row items-center gap-3 absolute`}>                
               </div>
             </div>
             <div className='w-full text-center'>
-              <h5 className='uppercase'>{cat.cat}</h5>
-              {/* <p className='flex flex-row items-center gap-3 w-full justify-center'>${cat.price}</p> */}
+              <h5 className='uppercase'>{cat.cat}</h5>              
             </div>
           </motion.div>
         ))}

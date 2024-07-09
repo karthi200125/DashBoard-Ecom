@@ -32,13 +32,9 @@ const Card = ({ card }: CardProps) => {
     const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
 
     const cardClick = useCallback(() => {
-        const href = `/singleproduct/${card?.id}`
-        // if (href && pathname !== href) {
-            animatePageOut(href, router);
-            router.push(href)
-        // }
-
-    }, [router])
+        const href = `/singleproduct/${card?.id}`;
+        animatePageOut(href, router);
+    }, [card?.id, router]);
 
     return (
         <div className='min-w-[300px] rounded-[30px] h-[500px] overflow-hidden relative shadow-md hover:shadow-custom-shadow transition duration-300 group' onClick={cardClick}>

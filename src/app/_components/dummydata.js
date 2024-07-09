@@ -102,7 +102,7 @@ export const LadingCategories = [
         image: lcmen,
         cat: "Male - Fashion",
         price: "1000",
-        href: "/shop?cat=mens",
+        href: "/shop?category=mens",
         subCat: mensubcategory
     },
     {
@@ -110,7 +110,7 @@ export const LadingCategories = [
         image: lcwomen,
         cat: "Female - Fashion",
         price: "1000",
-        href: "/shop?cat=womens",
+        href: "/shop?category=womens",
         subCat: womensubcategory
     },
     {
@@ -118,7 +118,7 @@ export const LadingCategories = [
         image: lckid,
         cat: "Kid - Fashion",
         price: "1000",
-        href: "/shop?cat=kids",
+        href: "/shop?category=kids",
         subCat: kidsubcategory
     },
 ]

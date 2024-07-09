@@ -6,7 +6,7 @@ import SingleProductSkeleton from '@/app/_components/Skeletons/SingleProductSkel
 import { useQuery } from '@tanstack/react-query'
 import dynamic from 'next/dynamic'
 import { useParams } from 'next/navigation'
-import { getSingleProduct } from '../../../../../actions/product'
+import { getSingleProduct, relatedProducts } from '../../../../../actions/product'
 const SingleProductImage = dynamic(() => import('../SingleProductImage'))
 const ProductContent = dynamic(() => import('../ProductContent'))
 const Cards = dynamic(() => import('@/app/_components/Cards/Cards'))
@@ -23,13 +23,13 @@ const SingleProduct = () => {
         queryFn: async () => await getSingleProduct(id)
     });
 
-    // get recommanded products
-    // const { isPending, error, data } = useQuery({
-    //     queryKey: ['fetchProduct', id],
-    //     queryFn: async () => await getSingleProduct(id)
-    // });
-
     const product: any = data
+
+    // get recommanded products
+    const { isPending: relatedproloading, data: relatedProduct } = useQuery({
+        queryKey: ['ralatedproducts', product],
+        queryFn: async () => await relatedProducts(product)
+    });
 
     return (
         <>
@@ -79,24 +79,24 @@ const SingleProduct = () => {
 
                     {/* suggested products */}
                     <div className='flex flex-col mt-5 items-center justify-center'>
-                        <h3 className='text-2xl md:text-4xl text-neutral-500 w-[230px] md:w-[350px] text-center'>
+                        <h4 className='text-neutral-500 w-[230px] md:w-[350px] text-center'>
                             <LetterAnimation title="Related to this" />
                             <b>
                                 <LetterAnimation title="Product" />
                             </b>
-                        </h3>
+                        </h4>
                         <span className='h-[2px] w-[100px] md:w-[150px] bg-neutral-400 mt-3 mb-10'></span>
-                        <Cards isLoading={true} />
+                        <Cards isLoading={relatedproloading} products={relatedProduct?.data} />
                     </div>
 
                     {/*product reviews */}
                     <div className='flex flex-col mt-5 items-center justify-center p-2 md:p-0'>
-                        <h3 className='text-4xl text-neutral-500 md:w-[350px] text-center'>
+                        <h4 className='text-neutral-500 md:w-[350px] text-center'>
                             <LetterAnimation title="Product" />
                             <b>
                                 <LetterAnimation title="Reviews" />
                             </b>
-                        </h3>
+                        </h4>
                         <span className='h-[2px] w-[150px] bg-neutral-400 mt-3 mb-10'></span>
                         <ProductReview product={product} />
                     </div>

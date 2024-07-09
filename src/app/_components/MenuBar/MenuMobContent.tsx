@@ -15,11 +15,12 @@ import { CiGrid31 } from 'react-icons/ci';
 import { TbLogout } from 'react-icons/tb';
 import { useRouter, usePathname } from 'next/navigation';
 import { animatePageOut } from '@/app/Animations/pageTransistionAnimate';
+import UserProfile from '../UserProfile';
 
 
 const MobNav = () => {
 
-    const user = useCurrentUser()
+    const user: any = useCurrentUser()
     const { state } = useCart();
     const { items } = state;
     const router = useRouter();
@@ -28,7 +29,7 @@ const MobNav = () => {
     const mobilenavitems = [
         {
             id: 1,
-            href: "/home",
+            href: "/",
             name: "Home",
             icon: <HiOutlineHome size={25} />,
             count: "",
@@ -38,7 +39,8 @@ const MobNav = () => {
             id: 2,
             href: `/profile/${user?.id}`,
             name: "Profile",
-            icon: <MdOutlinePersonOutline size={25} />,
+            // icon: user?.image ? <UserProfile proSrc={user?.image} profileCls='w-10 h-10' /> : <MdOutlinePersonOutline size={25} />,
+            icon: <UserProfile proSrc={user?.image} profileCls='w-10 h-10' />,
             count: "",
             show: true,
         },

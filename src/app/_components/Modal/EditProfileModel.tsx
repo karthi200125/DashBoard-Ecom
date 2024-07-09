@@ -62,7 +62,7 @@ const EditProfile = () => {
     return (
         <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(handleSubmit)}>
-                <div className='max-w-full md:w-[1000px] p-5'>
+                <div className='w-full md:w-[1000px] p-2 md:p-5 overflow-y-auto'>
                     <div className='py-2 border-b'>
                         <h4>Edit Profile</h4>
                         <p>Here you can edit public information about yourself</p>

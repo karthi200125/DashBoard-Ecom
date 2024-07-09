@@ -25,23 +25,6 @@ export const getProducts = async (q: string) => {
     }
 };
 
-//related products
-export const relatedProducts = async (q: string) => {
-    try {
-        const allProducts = await db.product.findMany({
-            where: {
-                proName: {
-                    contains: q,
-                    mode: 'insensitive',
-                },
-            },
-            take: 8,
-        });
-        return { success: "get query products success", data: allProducts };
-    } catch (error) {
-        return { error: "get query products failed" };
-    }
-};
 
 export const getAllProducts = async () => {
     try {
@@ -142,6 +125,39 @@ export const getSingleProduct = async (id: string) => {
     }
 }
 
+// related products
+export const relatedProducts = async (product: any) => {
+    try {
+        const { id, proCategory, proSubCategory } = product;
+
+        // Fetch related products based on subcategory first
+        let relatedProducts = await db.product.findMany({
+            where: {
+                proSubCategory,
+                id: {
+                    not: id,
+                },
+            },
+            take: 8,
+        });
+        
+        if (relatedProducts.length === 0) {
+            relatedProducts = await db.product.findMany({
+                where: {
+                    proCategory,
+                    id: {
+                        not: id,
+                    },
+                },
+                take: 8,
+            });
+        }
+
+        return { success: "Get related products success", data: relatedProducts };
+    } catch (error) {
+        return { error: "Get related products failed" };
+    }
+};
 
 // create product
 export const CreateProductAction = async (values: any) => {
@@ -173,7 +189,6 @@ export const CreateProductAction = async (values: any) => {
         return { error: "Failed to create new product" };
     }
 }
-
 
 
 // filter products

@@ -1,12 +1,12 @@
-import React, { memo, useMemo } from 'react';
 import StarRating from '@/app/_components/Cards/StarRating';
 import CustomBtn from '@/app/_components/CustomBtn';
 import ReviewModel from '@/app/_components/Modal/ReviewModel';
+import { useCurrentUser } from '@/app/hooks/useCurrentUser';
+import useLoginModal from '@/app/hooks/useLoginModel';
 import useReviewModal from '@/app/hooks/useReviewModel';
 import { useQuery } from '@tanstack/react-query';
-import { z } from 'zod';
+import { memo, useMemo } from 'react';
 import { GetReviewByProduct } from '../../../../actions/review';
-import { ProductSchema } from '../../../../schemas';
 import Review from './Review';
 
 
@@ -15,7 +15,10 @@ interface ProductReviewProps {
 }
 
 const ProductReview = ({ product }: ProductReviewProps) => {
+
+  const user = useCurrentUser()
   const reviewModel = useReviewModal();
+  const loginModel = useLoginModal();
 
   const { isPending, data } = useQuery({
     queryKey: ['getReviews'],
@@ -38,12 +41,20 @@ const ProductReview = ({ product }: ProductReviewProps) => {
     createdAt: rev.createdAt.toISOString()
   }));
 
+  const handleReviewModelOpen = () => {
+    if (!user) {
+      loginModel.onOpen()
+    } else {
+      reviewModel.onOpen()
+    }
+  }
+
   return (
     <div className='w-full flex flex-col lg:flex-row gap-10 relative justify-between'>
       <ReviewModel product={product} />
       {/* review top */}
-      <div className='flex flex-col md:flex-row lg:flex-col w-full lg:w-[30%] h-full items-center justify-between lg:sticky top-[100px] gap-3'>
-        <CustomBtn arrow onClick={reviewModel.onOpen} btnCls='border w-full'>Add your review</CustomBtn>
+      <div className='flex flex-col md:flex-row lg:flex-col w-full lg:w-[30%] h-full items-start justify-between lg:sticky top-[100px] gap-3'>
+        <CustomBtn arrow onClick={handleReviewModelOpen} btnCls='border w-full'>Add your review</CustomBtn>
 
         <div className='w-full flex flex-col gap-3 rounded-[20px] p-5 bg-white border'>
           <h4>Total reviews</h4>
@@ -65,7 +76,7 @@ const ProductReview = ({ product }: ProductReviewProps) => {
             <Review key={rev.id} review={rev} />
           ))
         ) : (
-          <div className='w-full text-center '>No reviews yet, be the first reviewer of this product</div>
+          <h5 className='w-full text-center '>No reviews yet, be the first reviewer of this product</h5>
         )}
       </div>
     </div>

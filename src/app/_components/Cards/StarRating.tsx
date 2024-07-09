@@ -3,10 +3,11 @@ import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
 interface StarRatingProps {
     rating?: number;
-    size?: string;    
+    size?: string;
+    showrating?: boolean;
 }
 
-const StarRating = ({ rating = 0, size = "20" }: StarRatingProps) => {
+const StarRating = ({ rating = 0, size = "20", showrating = true }: StarRatingProps) => {
     const stars = Array(5).fill(0);
 
     return (
@@ -20,7 +21,9 @@ const StarRating = ({ rating = 0, size = "20" }: StarRatingProps) => {
                     return <FaRegStar key={index} className="text-gray-400" size={size} />;
                 }
             })}
-            <div className='text-md ml-2 font-bold flex items-center justify-center px-2 bg-black text-white rounded-[5px]'>{rating}</div>
+            {showrating &&
+                <div className='text-md ml-2 font-bold flex items-center justify-center px-2 bg-black text-white rounded-[5px]'>{rating}</div>
+            }
         </div>
     );
 };
