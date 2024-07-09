@@ -23,6 +23,12 @@ const SingleProduct = () => {
         queryFn: async () => await getSingleProduct(id)
     });
 
+    // get recommanded products
+    // const { isPending, error, data } = useQuery({
+    //     queryKey: ['fetchProduct', id],
+    //     queryFn: async () => await getSingleProduct(id)
+    // });
+
     const product: any = data
 
     return (
@@ -37,7 +43,7 @@ const SingleProduct = () => {
                             <LetterAnimation title={product?.proName} />
                         </h2>
                         <p className='flex-1'>
-                            <LetterAnimation title={product?.proDesc} />
+                            <LetterAnimation title={product?.proDesc} type="word" />
                         </p>
                     </div>
 

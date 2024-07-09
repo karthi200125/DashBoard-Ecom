@@ -4,10 +4,29 @@ import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 import { AdminVerify } from './AdminVerify';
 import { getUserById } from './users';
+import { subDays, subMonths } from 'date-fns';
 
 
 //search query get products
 export const getProducts = async (q: string) => {
+    try {
+        const allProducts = await db.product.findMany({
+            where: {
+                proName: {
+                    contains: q,
+                    mode: 'insensitive',
+                },
+            },
+            take: 8,
+        });
+        return { success: "get query products success", data: allProducts };
+    } catch (error) {
+        return { error: "get query products failed" };
+    }
+};
+
+//related products
+export const relatedProducts = async (q: string) => {
     try {
         const allProducts = await db.product.findMany({
             where: {
@@ -44,7 +63,6 @@ export const getAllProducts = async () => {
 }
 
 // delete product
-
 export const deletProduct = async (id: string) => {
     try {
         await db.product.delete({
@@ -156,10 +174,11 @@ export const CreateProductAction = async (values: any) => {
     }
 }
 
+
+
 // filter products
 export const getAllProductByFilter = async (values: any) => {
-    const { category, price, color, size, page } = values;
-    console.log("server action", values)
+    const { category, price, color, size, page, time } = values;
 
     const ITEM_PER_PAGE = 8;
     try {
@@ -171,11 +190,15 @@ export const getAllProductByFilter = async (values: any) => {
             filters.proCategory = category;
         }
 
-        if (price && price[0] !== undefined && price[1] !== undefined) {
-            filters.proPrice = {
-                gte: String(Math.min(price[0])),
-                lte: String(Math.max(price[1])),
-            };
+        if (price) {
+            const [min, max] = price.split('-').map(Number);
+
+            if (!isNaN(min) && !isNaN(max)) {
+                filters.proPrice = {
+                    gte: String(Math.min(min, max)),
+                    lte: String(Math.max(min, max)),
+                };
+            }
         }
 
         if (color) {
@@ -190,34 +213,52 @@ export const getAllProductByFilter = async (values: any) => {
             };
         }
 
+        const orderBy: any = {};
+
+        if (time) {
+            switch (time) {
+                case 'asc':
+                    orderBy.createdAt = 'asc';
+                    break;
+                case 'dsc':
+                    orderBy.createdAt = 'desc';
+                    break;
+                case 'last-week':
+                    filters.createdAt = {
+                        gte: subDays(new Date(), 7).toISOString(),
+                    };
+                    orderBy.createdAt = 'desc';
+                    break;
+                case 'last-month':
+                    filters.createdAt = {
+                        gte: subMonths(new Date(), 1).toISOString(),
+                    };
+                    orderBy.createdAt = 'desc';
+                    break;
+                default:
+                    orderBy.createdAt = 'desc';
+            }
+        } else {
+            orderBy.createdAt = 'desc';
+        }
+
         if (Object.keys(filters).length > 0) {
             filterProducts = await db.product.findMany({
                 where: filters,
                 take: ITEM_PER_PAGE,
                 skip: (ITEM_PER_PAGE * (parseInt(page) - 1)),
-                orderBy: {
-                    createdAt: 'desc'
-                }
+                orderBy: orderBy
             });
             count = await db.product.count({
                 where: filters,
-                orderBy: {
-                    createdAt: 'desc'
-                }
             });
         } else {
             filterProducts = await db.product.findMany({
                 take: ITEM_PER_PAGE,
                 skip: (ITEM_PER_PAGE * (parseInt(page) - 1)),
-                orderBy: {
-                    createdAt: 'desc'
-                }
+                orderBy: orderBy
             });
-            count = await db.product.count({
-                orderBy: {
-                    createdAt: 'desc'
-                }
-            });
+            count = await db.product.count();
         }
 
         return { success: "Filtered products retrieved successfully", data: filterProducts, count };
