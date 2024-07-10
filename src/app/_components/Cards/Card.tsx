@@ -28,8 +28,6 @@ const Card = ({ card }: CardProps) => {
 
     const reviews: any = data?.data || []
 
-    console.log(reviews)
-
     const totalRating = reviews?.length > 0 ? reviews.reduce((sum: any, review: any) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
     const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
 

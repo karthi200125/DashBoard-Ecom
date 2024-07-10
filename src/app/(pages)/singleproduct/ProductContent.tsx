@@ -9,6 +9,8 @@ import AddToCartBtn from '@/app/_components/AddToCartBtn/AddToCartBtn'
 import Sizes from '@/app/_components/Sizes'
 import CustomBtn from '@/app/_components/CustomBtn'
 import { useRouter } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
+import { GetReviewByProduct } from '../../../../actions/review'
 
 const ProductContent = ({ product }: any) => {
 
@@ -16,7 +18,18 @@ const ProductContent = ({ product }: any) => {
     const percentage = parseInt(product?.proOffer);
     const discountAmount = (percentage / 100) * (product?.proPrice || 0);
     const productPercentagePrice = (product?.proPrice || 0) - discountAmount;
-    
+
+    const { isPending, data } = useQuery({
+        queryKey: ['getReviews', product?.id],
+        queryFn: async () => await GetReviewByProduct(product?.id)
+    });
+
+    const reviews: any = data?.data || []
+
+    const totalRating = reviews?.length > 0 ? reviews.reduce((sum: any, review: any) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
+    const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
+
+
     return (
         <div className='w-full h-full p-2 md:p-5 flex flex-col gap-5 md:gap-10 '>
             <div className='flex flex-row items-center justify-between'>
@@ -47,7 +60,7 @@ const ProductContent = ({ product }: any) => {
             </div>
 
             {/* product Rating */}
-            <StarRating size='20' rating={3} />
+            <StarRating size='20' rating={averageRating || 0} />
 
             <div className='flex flex-row items-center gap-5'>
                 {/* <Quantity

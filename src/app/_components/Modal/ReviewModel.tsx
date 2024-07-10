@@ -49,6 +49,7 @@ const ReviewBody = ({ product }: ReviewBodyProps) => {
                         toast.success(data.success)
                         reviewmodel.onClose()
                         queryClient.invalidateQueries({ queryKey: ['getReviews'] });
+                        queryClient.invalidateQueries({ queryKey: ['fetchProduct', product?.id] });
                     }
                     if (data.error) {
                         toast.error(data.error)

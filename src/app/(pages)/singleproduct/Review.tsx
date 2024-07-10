@@ -6,6 +6,7 @@ import Image from '@/components/ui/CustomImage';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { getUserById } from '../../../../actions/users';
+import noprofile from '../../assets/noprofile.webp'
 
 interface ReviewPeops {
     review: {
@@ -31,7 +32,7 @@ const Review = ({ review }: ReviewPeops) => {
         <div className='w-full rounded-[20px] p-5 max-h-max border flex flex-row items-start gap-10'>
             {/* user profile */}
             <div className='hidden md:flex flex-col gap-3 w-[20%] items-center justify-center'>
-                <Image src={reviewUser?.image || ""} imgclass='rounded-[15px] bg-neutral-200 w-[100px] h-[100px] rounded-full' alt='user image' />
+                <Image src={reviewUser?.image || noprofile?.src} imgclass='rounded-[15px] bg-neutral-200 w-[100px] h-[100px] rounded-full' alt='user image' />
                 <h5 className='line-clamp-2 text-center'>{reviewUser?.name}</h5>
             </div>
 
