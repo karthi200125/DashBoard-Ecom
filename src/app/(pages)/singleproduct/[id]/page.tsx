@@ -40,7 +40,7 @@ const SingleProduct = () => {
 
                     <div className='p-2 flex flex-col md:flex-row items-start justify-center gap-5 md:gap-20 md:py-10 border-b max-h-[250px]'>
                         <h2 className="flex-1">
-                            <LetterAnimation title={product?.proName} />
+                            <LetterAnimation title={product?.proName} type="word" />
                         </h2>
                         <p className='flex-1'>
                             <LetterAnimation title={product?.proDesc} type="word" />

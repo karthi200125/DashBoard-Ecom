@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { FaUsers } from 'react-icons/fa';
 import { IoIosMore } from 'react-icons/io';
 import { getAllProductByFilter } from '../../../../actions/product';
+import { monthsAgo } from '@/app/hooks/MomentDate';
 
 const Product = dynamic(() => import('./Product'));
 
@@ -52,7 +53,7 @@ const ProductTable = () => {
             {/* Table top */}
             <div className="flex flex-row items-center justify-between">
                 <div className='font-bold flex flex-row items-center gap-2'>
-                    <FaUsers size={20} />
+                    <FaUsers size={25} />
                     <h4>Products</h4>
                     <span>{`(${count})`}</span>
                 </div>
@@ -95,14 +96,14 @@ const ProductTable = () => {
                         allProducts.length > 0 ?
                             allProducts.map((pro: any) => (
                                 <tr key={pro.id}>
-                                    <td className="px-6 py-4 text-sm whitespace-nowrap">{pro.id}</td>
-                                    <td className="px-6 py-4 text-sm whitespace-nowrap flex flex-row items-center gap-2">
+                                    <td className="px-6 py-4 text-[10px] whitespace-nowrap">{pro.id}</td>
+                                    <td className="px-6 py-4 text-[10px] whitespace-nowrap flex flex-row items-center gap-2">
                                         <UserProfile profileCls='w-10 h-10' proSrc={pro.proImage[0]} proAlt={pro.proName} tooltip={pro.proName} />
                                         <span>{pro.proName}</span>
                                     </td>
-                                    <td className="px-6 py-4 text-sm whitespace-nowrap">₹ {pro.proPrice} <span className="text-sm text-neutral-400">Rs</span></td>
-                                    <td className="px-6 py-4 text-sm whitespace-nowrap">Created At</td>
-                                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                                    <td className="px-6 py-4 text-[10px] whitespace-nowrap">₹ {pro.proPrice} <span className="text-sm text-neutral-400">Rs</span></td>
+                                    <td className="px-6 py-4 text-[10px] whitespace-nowrap">{monthsAgo(pro.createdAt)}</td>
+                                    <td className="px-6 py-4 text-[10px] whitespace-nowrap">
                                         <Sheet>
                                             <SheetTrigger>
                                                 <Icon icon={<IoIosMore size={20} />} tooltip='More' />

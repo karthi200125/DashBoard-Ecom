@@ -70,7 +70,7 @@ const Cards = ({ products, isLoading, count }: CardsProps) => {
                         </div>
                 }
             </div>
-            {pathname !== "/" && products && products?.length === 8 && (
+            {pathname !== "/" && products && products?.length > 0 && (
                 <CustomPagination count={count} />
             )}
 
