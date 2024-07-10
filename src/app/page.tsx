@@ -64,7 +64,7 @@ export default function Home() {
               {isLandingCategoriesLoaded && <LCatSkeleton />}
               <LandingCategories onLoaded={() => setIsLandingCategoriesLoaded(false)} />
 
-              {isBannersLoaded && <BannerSkeleton />}
+              {/* {isBannersLoaded && <BannerSkeleton />} */}
               <Banners onLoaded={() => setIsBannersLoaded(false)} />
 
               <LandingCards />

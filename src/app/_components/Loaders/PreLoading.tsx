@@ -36,14 +36,10 @@ const PreLoading = ({ progress }: any) => {
                             <LetterAnimation title="Tracking Progress" />
                         </h5>
                         <h5 className="text-neutral-400">
-                            {progress >= 40 && (
-                                <LetterAnimation title="Loved by Everyone" />
-                            )}
+                            <LetterAnimation title="Loved by Everyone" />
                         </h5>
                         <h5 className="text-neutral-400">
-                            {progress >= 80 && (
-                                <LetterAnimation title="Almost There" />
-                            )}
+                            <LetterAnimation title="Almost There" />
                         </h5>
                     </div>
 
