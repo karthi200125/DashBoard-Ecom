@@ -73,12 +73,13 @@ model Product {
   proImage        String[]
   proCategory     String?
   proSubCategory  String?
+  proOffer        String?
   isProAvailable  String?   
   proColors       String[]  
   proSizes        String[]  
   likes           String[]   @db.ObjectId
   reviews         Review[]    
-
+  
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
 }

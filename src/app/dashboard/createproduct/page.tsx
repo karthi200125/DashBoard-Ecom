@@ -31,6 +31,7 @@ const CreateProduct = () => {
             proName: "",
             proDesc: "",
             proPrice: "",
+            proOffer: "",
             proCategory: "",
             proSubCategory: "",
             isProAvailable: "",
@@ -110,7 +111,7 @@ const CreateProduct = () => {
             <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-row items-center justify-between bg-white border rounded-full px-3 py-2">
-                        <h1 className="font-bold text-xl ml-5">Create New Product</h1>
+                        <h2>Create New Product</h2>
                         <CustomBtn arrow isLoading={isLoading} type="submit">
                             Create Product
                         </CustomBtn>
@@ -133,6 +134,12 @@ const CreateProduct = () => {
                                 name="proPrice"
                                 type="number"
                                 label="Product Price"
+                                inputCls="w-full"
+                            />
+                            <CustomInput
+                                name="proOffer"
+                                type="number"
+                                label="Product offer"
                                 inputCls="w-full"
                             />
                             <CustomSelect
@@ -171,7 +178,7 @@ const CreateProduct = () => {
 
                             {/* Product colors selection */}
                             <div className="flex flex-col gap-3">
-                                <h2>Select available colors for this product</h2>
+                                <h5>Select available colors for this product</h5>
                                 <div className="flex flex-wrap items-center gap-3">
                                     {colors.map((color, index) => (
                                         <div
@@ -190,7 +197,7 @@ const CreateProduct = () => {
 
                             {/* Product sizes selection */}
                             <div className="flex flex-col gap-3">
-                                <h2>Select available sizes for this product</h2>
+                                <h5>Select available sizes for this product</h5>
                                 <div className="flex flex-wrap items-center gap-3">
                                     {sizes.map((size, index) => (
                                         <div
@@ -210,7 +217,7 @@ const CreateProduct = () => {
                 </form>
             </FormProvider>
             {/* Image uploads */}
-            <ProductImageUpload success={success}/>
+            <ProductImageUpload success={success} />
         </div>
     );
 };

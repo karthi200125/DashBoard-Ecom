@@ -48,8 +48,8 @@ const Card = ({ card }: CardProps) => {
                 <div className='w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center absolute top-3 right-3'>
                     <Heart product={card} />
                 </div>
-                <div className='absolute top-3 left-3 w-[60px] h-[35px] rounded-full bg-white flex items-center justify-center text-sm font-bold'>
-                    70%
+                <div className='absolute top-3 left-3 w-[60px] h-[35px] rounded-full bg-black text-white flex items-center justify-center text-sm font-bold'>
+                    {`${card?.proOffer}%`}
                 </div>
             </div>
 

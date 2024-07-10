@@ -140,7 +140,7 @@ export const relatedProducts = async (product: any) => {
             },
             take: 8,
         });
-        
+
         if (relatedProducts.length === 0) {
             relatedProducts = await db.product.findMany({
                 where: {
@@ -161,7 +161,7 @@ export const relatedProducts = async (product: any) => {
 
 // create product
 export const CreateProductAction = async (values: any) => {
-    const { adminId, proName, proDesc, proImage, proPrice, proColors, proSizes, proCategory, proSubCategory, isProAvailable } = values;
+    const { adminId, proName, proDesc, proImage, proPrice, proOffer, proColors, proSizes, proCategory, proSubCategory, isProAvailable } = values;
     try {
         const isAdmin = await AdminVerify(adminId);
         if (!isAdmin) return { error: "Only admin can create product" };
@@ -175,6 +175,7 @@ export const CreateProductAction = async (values: any) => {
                 proDesc,
                 proImage,
                 proPrice,
+                proOffer,
                 proColors,
                 proSizes,
                 proCategory,

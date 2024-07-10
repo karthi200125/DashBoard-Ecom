@@ -24,6 +24,7 @@ export const ProductSchema = z.object({
     proName: z.string().min(3, { message: "Product title must be at least 3 characters long" }),
     proDesc: z.string().min(30, { message: "Product description must be at least 30 characters long" }),
     proPrice: z.string().min(1, { message: "Product price is required" }),
+    proOffer: z.string().min(1, { message: "Product offer is required" }),
     proCategory: z.string().nonempty({ message: "Product category is required" }),
     proSubCategory: z.string().nonempty({ message: "Product sub category is required" }),
     isProAvailable: z.string().nonempty({ message: "Product availability is required" }),

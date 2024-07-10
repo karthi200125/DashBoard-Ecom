@@ -1,6 +1,7 @@
 'use client';
 import * as React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
+import { RegisterOptions, FieldError } from 'react-hook-form';
 import {
     Select,
     SelectContent,
@@ -11,16 +12,19 @@ import {
 } from "@/components/ui/select";
 
 interface SelectProps {
-    name: string,
-    control: any,
-    defaultValue?: string,
-    options: string[],
-    selectCls?: string,
-    label?: string,
-    errors?: any
+    name: string;
+    control: any;
+    rules?: RegisterOptions;
+    defaultValue?: string;
+    options: string[];
+    selectCls?: string;
+    label?: string;
 }
 
-const CustomSelect = ({ name, control, defaultValue = "", options, selectCls, label, errors }: SelectProps) => {
+const CustomSelect = ({ name, control, defaultValue = "", options, selectCls, label, rules }: SelectProps) => {
+    const { register, formState: { errors } } = useFormContext();
+    const error = errors[name] as FieldError | undefined;
+
     return (
         <div className={`grid items-center gap-1.5 ${selectCls}`}>
             {label && <label className='font-bold text-[12px]'>{label}</label>}
@@ -28,6 +32,7 @@ const CustomSelect = ({ name, control, defaultValue = "", options, selectCls, la
                 name={name}
                 control={control}
                 defaultValue={defaultValue}
+                rules={rules}
                 render={({ field }) => (
                     <div>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -41,8 +46,8 @@ const CustomSelect = ({ name, control, defaultValue = "", options, selectCls, la
                                     ))}
                                 </SelectGroup>
                             </SelectContent>
-                        </Select>                        
-                        {errors && <p className='text-red-500 text-[10px] font-semibold'>{errors.message}</p>}
+                        </Select>
+                        {error && <p className='text-red-500 text-[10px] font-semibold'>{error.message}</p>}
                     </div>
                 )}
             />

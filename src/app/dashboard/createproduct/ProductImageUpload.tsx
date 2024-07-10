@@ -60,9 +60,7 @@ const ProductImageUpload = ({ success }: ProductImageUploadProps) => {
     }, [downloadUrl]);
 
     const percentage = Number(per)
-
-    console.log(addedImages)
-
+    
     return (
         <div className="bg-white border rounded-[20px] p-5 h-full flex flex-row gap-10 justify-between items-center min-h-[200px]">
             <div className='flex flex-row items-center gap-10 h-full flex-1 '>
@@ -94,7 +92,7 @@ const ProductImageUpload = ({ success }: ProductImageUploadProps) => {
                         className="flex flex-row gap-3 items-center justify-center border p-3 rounded-[10px] cursor-pointer hover:bg-neutral-100 w-full"
                     >
                         <IoCloudUploadOutline size={25} />
-                        <h2>Select image</h2>
+                        <h4>Select image</h4>
                     </label>
                 }
 

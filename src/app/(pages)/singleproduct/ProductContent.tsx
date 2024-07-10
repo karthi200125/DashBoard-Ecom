@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 const ProductContent = ({ product }: any) => {
 
     const router = useRouter();
-    const percentage = 20;
+    const percentage = product?.proOffer;
     const discountAmount = (percentage / 100) * (product?.proPrice || 0);
     const productPercentagePrice = (product?.proPrice || 0) - discountAmount;
 
