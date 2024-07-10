@@ -26,14 +26,17 @@ const Card = ({ card }: CardProps) => {
         queryFn: async () => await GetReviewByProduct(card?.id)
     });
 
-    const reviews: any = data?.data
+    const reviews: any = data?.data || []
 
     const totalRating = reviews?.length > 0 ? reviews.reduce((sum: any, review: any) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
     const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
 
     const cardClick = useCallback(() => {
         const href = `/singleproduct/${card?.id}`;
-        animatePageOut(href, router);
+        if (href && pathname !== href) {
+            animatePageOut(href, router);
+            router.push(href)
+        }
     }, [card?.id, router]);
 
     return (
@@ -49,7 +52,7 @@ const Card = ({ card }: CardProps) => {
                     <Heart product={card} />
                 </div>
                 <div className='absolute top-3 left-3 w-[60px] h-[35px] rounded-full bg-black text-white flex items-center justify-center text-sm font-bold'>
-                    {`${card?.proOffer}%`}
+                    {`${card?.proOffer || 0}%`}
                 </div>
             </div>
 

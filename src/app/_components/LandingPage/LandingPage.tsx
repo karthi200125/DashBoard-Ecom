@@ -147,8 +147,8 @@ const LandingPage = ({ onLoaded }: any) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
                             ease: "easeInOut",
-                            duration: 1,
-                            delay: 0.6 + i * 0.3,
+                            duration: 0.6,
+                            delay: 0.2 + i * 0.2,
                         }}
                         className="w-full h-full rounded-[20px] bg-neutral-100 transition duration-300 overflow-hidden"
                         onClick={() => handleClick(i)}

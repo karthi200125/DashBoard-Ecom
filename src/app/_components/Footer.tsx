@@ -13,7 +13,7 @@ export const slideDown = {
     initial: {
         y: "-100%"
     },
-    open: (i: any) => ({
+    open: (i:any) => ({
         y: "0%",
         transition: { duration: 0.7, delay: 0.07 * i }
     }),
@@ -24,20 +24,18 @@ export const slideDown = {
 };
 
 const Footer = () => {
-    const { ref, inView } = useInView({
-        triggerOnce: true,
-        threshold: 0.5,
-    });
-
-    useEffect(() => {
-    }, [inView]);
+    const { ref, inView } = useInView();
 
     const word = "DEXON";
     const { ref: descRef, inView: isInView } = useInView();
 
+    useEffect(() => {
+        console.log('isInView:', isInView);
+    }, [isInView]);
+
     return (
         <div ref={ref} className='w-full max-h-max flex flex-col justify-between mt-5'>
-            <div className="flex flex-col h-[300px] w-full">
+            <div className="flex flex-col max-h-max w-full">
                 {/* items */}
                 <div className='max-h-max bg-[#222222] flex flex-col md:flex-row gap-10 p-5 md:p-10'>
                     <div className='w-full h-full flex flex-wrap justify-start md:flex-row md:justify-between md:items-start gap-10'>
@@ -122,23 +120,23 @@ const Footer = () => {
                     <SocialIcons type='footer' />
                 </div>
             </div>
-            <div className="h-[300px] w-full bg-black text-white">
-                <div ref={descRef} className="description">
-                    <div className="body" style={{ width: '100%' }}>
-                        <p>
-                            {word.split("").map((letter, index) => (
-                                <span className="mask footernametext" key={index}>
-                                    <motion.span
-                                        variants={slideDown}
-                                        custom={index}
-                                        animate={isInView ? "open" : "closed"}
-                                    >
-                                        {letter}
-                                    </motion.span>
-                                </span>
-                            ))}
-                        </p>
-                    </div>
+            <div className="h-[120px] md:h-[200px] xl:h-[300px] w-full bg-[#222222] overflow-hidden">
+                <div ref={descRef} className="w-full flex items-center justify-center">
+                    <p>
+                        {word.split("").map((letter, index) => (
+                            <span className="text-[80px] md:text-[150px] xl:text-[220px]" key={index}>
+                                <motion.span
+                                    initial="initial"
+                                    variants={slideDown}
+                                    custom={index}
+                                    animate={isInView ? "open" : "closed"}
+                                    className="text-white"
+                                >
+                                    {letter}
+                                </motion.span>
+                            </span>
+                        ))}
+                    </p>
                 </div>
             </div>
         </div>

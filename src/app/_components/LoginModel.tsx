@@ -3,7 +3,7 @@
 import Image from '@/components/ui/CustomImage';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { memo, useCallback, useMemo, useTransition } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState, useTransition } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -16,13 +16,21 @@ import GoogleAuth from './GoogleAuth';
 import CustomInput from './Input';
 import Logo from './Logo';
 import Modal from './Modal/Modal';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation'; 
 
 const LoginBody = () => {
     const [isLoading, startTransition] = useTransition();
     const registerModel = useRegisterModal();
     const loginModel = useLoginModal();
-    const router = useRouter()
+    const router = useRouter();
+    const [suc, setSuc] = useState(false);
+
+    useEffect(() => {
+        if (suc) {
+            window.location.reload();
+            router.refresh();
+        }
+    }, [suc, router]);
 
     const methods = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
@@ -37,17 +45,20 @@ const LoginBody = () => {
             login(formData)
                 .then((data) => {
                     if (data.success) {
-                        console.log(data)
-                        loginModel.onClose();
+                        setSuc(true);
                         toast.success(data.success);
-                        router.refresh()
+                        loginModel.onClose();
                     }
                     if (data.error) {
                         toast.error(data.error);
                     }
+                })
+                .catch((error) => {
+                    console.error('Login error:', error);
+                    toast.error('An error occurred during login.');
                 });
         });
-    }, [loginModel]);
+    }, [loginModel, startTransition]);
 
     const handleRegisterClick = useCallback(() => {
         loginModel.onClose();
@@ -58,7 +69,7 @@ const LoginBody = () => {
         <div className='w-full max-h-max flex flex-row gap-5 overflow-hidden'>
             {/* Left side content */}
             <div className='hidden lg:flex lg:flex-1 rounded-[20px] overflow-hidden relative'>
-                <Image src={"https://res.cloudinary.com/duextvtta/image/upload/v1720446513/login-img_toasvj.webp"} imgclass='bg-neutral-200 w-full h-full' alt='' />
+                <Image src="https://res.cloudinary.com/duextvtta/image/upload/v1720446513/login-img_toasvj.webp" imgclass='bg-neutral-200 w-full h-full' alt='' />
                 <div className='absolute bottom-0 left-0 w-full max-h-max p-2 flex flex-col gap-2'>
                     <CustomBtn arrow btnCls='glass bg-black text-white w-[300px]' arrowCls='text-black'>
                         Exclusive content
@@ -105,7 +116,7 @@ const LoginBody = () => {
                             {/* Other logins */}
                             <GoogleAuth />
                             <div className='text-sm flex items-center flex-row gap-2'>
-                                <p>Dont have an Account?</p>
+                                <p>Don't have an Account?</p>
                                 <p
                                     className='font-bold text-black cursor-pointer hover:underline'
                                     onClick={handleRegisterClick}
@@ -130,7 +141,7 @@ const LoginModel = () => {
         <Modal
             isOpen={loginModel.isOpen}
             toggleOpen={loginModel.onClose}
-            modalBody={modalBody}
+            modalBody={<LoginBody />}
             modalCls='w-full md:w-[500px] lg:w-[900px]'
         />
     );

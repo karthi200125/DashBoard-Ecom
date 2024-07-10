@@ -1,24 +1,23 @@
 'use client'
 
-import React from 'react';
-import Icon from '../Icon';
-import { motion } from 'framer-motion';
-import { useCurrentUser } from '@/app/hooks/useCurrentUser';
 import { perspective } from '@/app/Animations/animate';
-import { useCart } from '../ContextApi/CartContext';
-import { HiOutlineHome } from 'react-icons/hi2';
-import { MdOutlinePersonOutline } from 'react-icons/md';
+import { animatePageOut } from '@/app/Animations/pageTransistionAnimate';
+import { useCurrentUser } from '@/app/hooks/useCurrentUser';
+import CustomImage from '@/components/ui/CustomImage';
+import { motion } from 'framer-motion';
+import { usePathname, useRouter } from 'next/navigation';
 import { BsCart3 } from 'react-icons/bs';
+import { CiGrid31 } from 'react-icons/ci';
+import { HiOutlineHome } from 'react-icons/hi2';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { LiaProductHunt } from 'react-icons/lia';
-import { CiGrid31 } from 'react-icons/ci';
 import { TbLogout } from 'react-icons/tb';
-import { useRouter, usePathname } from 'next/navigation';
-import { animatePageOut } from '@/app/Animations/pageTransistionAnimate';
-import UserProfile from '../UserProfile';
+import { useCart } from '../ContextApi/CartContext';
+import Icon from '../Icon';
+import { MdOutlinePersonOutline } from 'react-icons/md';
 
 
-const MobNav = () => {
+const MobNav = ({ onNavClick }: any) => {
 
     const user: any = useCurrentUser()
     const { state } = useCart();
@@ -39,8 +38,7 @@ const MobNav = () => {
             id: 2,
             href: `/profile/${user?.id}`,
             name: "Profile",
-            // icon: user?.image ? <UserProfile proSrc={user?.image} profileCls='w-10 h-10' /> : <MdOutlinePersonOutline size={25} />,
-            icon: <UserProfile proSrc={user?.image} profileCls='w-10 h-10' />,
+            icon: user?.image ? <CustomImage src={user?.image} imgclass='w-10 h-10' /> : <MdOutlinePersonOutline size={25} />,
             count: "",
             show: true,
         },
@@ -87,6 +85,7 @@ const MobNav = () => {
     ];
 
     const HandleClick = (item: any) => {
+        onNavClick(false)
         const href = item?.href
         if (href && pathname !== href) {
             animatePageOut(href, router);

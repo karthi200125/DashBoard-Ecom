@@ -91,13 +91,13 @@ const SingleProduct = () => {
 
                     {/*product reviews */}
                     <div className='flex flex-col mt-5 items-center justify-center p-2 md:p-0'>
-                        <h4 className='text-neutral-500 md:w-[350px] text-center'>
+                        <h4 className='text-neutral-500 md:w-[200px] text-center'>
                             <LetterAnimation title="Product" />
                             <b>
                                 <LetterAnimation title="Reviews" />
                             </b>
                         </h4>
-                        <span className='h-[2px] w-[150px] bg-neutral-400 mt-3 mb-10'></span>
+                        <span className='h-[2px] w-[100px] bg-neutral-400 mt-3 mb-10'></span>
                         <ProductReview product={product} />
                     </div>
                     <Footer />

@@ -13,9 +13,11 @@ import { useRouter } from 'next/navigation'
 const ProductContent = ({ product }: any) => {
 
     const router = useRouter();
-    const percentage = product?.proOffer;
+    const percentage = parseInt(product?.proOffer);
     const discountAmount = (percentage / 100) * (product?.proPrice || 0);
     const productPercentagePrice = (product?.proPrice || 0) - discountAmount;
+
+    console.log(product, "product")
 
     return (
         <div className='w-full h-full p-2 md:p-5 flex flex-col gap-5 md:gap-10 '>
