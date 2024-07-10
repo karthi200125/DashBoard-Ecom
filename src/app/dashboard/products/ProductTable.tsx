@@ -16,6 +16,7 @@ import { FaUsers } from 'react-icons/fa';
 import { IoIosMore } from 'react-icons/io';
 import { getAllProductByFilter } from '../../../../actions/product';
 import { monthsAgo } from '@/app/hooks/MomentDate';
+import AvatarCircles from '@/app/_components/AvatarCircles';
 
 const Product = dynamic(() => import('./Product'));
 
@@ -98,10 +99,10 @@ const ProductTable = () => {
                                 <tr key={pro.id}>
                                     <td className="px-6 py-4 text-[10px] whitespace-nowrap">{pro.id}</td>
                                     <td className="px-6 py-4 text-[10px] whitespace-nowrap flex flex-row items-center gap-2">
-                                        <UserProfile profileCls='w-10 h-10' proSrc={pro.proImage[0]} proAlt={pro.proName} tooltip={pro.proName} />
+                                        <AvatarCircles numPeople={pro.proImage.length} avatarUrls={pro.proImage} />
                                         <span>{pro.proName}</span>
                                     </td>
-                                    <td className="px-6 py-4 text-[10px] whitespace-nowrap">₹ {pro.proPrice} <span className="text-sm text-neutral-400">Rs</span></td>
+                                    <td className="px-6 py-4 text-[10px] whitespace-nowrap">₹ {pro.proPrice} <span className="text-[10px] text-neutral-400">Rs</span></td>
                                     <td className="px-6 py-4 text-[10px] whitespace-nowrap">{monthsAgo(pro.createdAt)}</td>
                                     <td className="px-6 py-4 text-[10px] whitespace-nowrap">
                                         <Sheet>

@@ -1,49 +1,37 @@
-'use client'
+'use client';
 
-import React from 'react'
+import { useQuery } from '@tanstack/react-query';
 import { FaUsers } from 'react-icons/fa';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { getMainGraphProducts } from '../../../../actions/dashboard/dashProduct';
 
 const ProductMainChart = () => {
 
-    const data = [
-        { month: 'Jan', users: 0 },
-        { month: 'Feb', users: 0 },
-        { month: 'Mar', users: 220 },
-        { month: 'Apr', users: 278 },
-        { month: 'May', users: 189 },
-        { month: 'Jun', users: 239 },
-        { month: 'Jul', users: 349 },
-        { month: 'Aug', users: 400 },
-        { month: 'Sep', users: 300 },
-        { month: 'Oct', users: 200 },
-        { month: 'Nov', users: 278 },
-        { month: 'Dec', users: 189 },
-    ];
+    const { isPending, data } = useQuery({
+        queryKey: ['getmaingraphproducts'],
+        queryFn: async () => await getMainGraphProducts()
+    })
 
     return (
         <div className='p-5'>
             <div className='flex flex-row items-center gap-2'>
-                <FaUsers size={20} />
-                <h2>New users</h2>
+                <FaUsers size={25} />
+                <h5>Products Graph</h5>
             </div>
 
-            <div className='w-full h-[280px] mt-5 ml-[-30px]'>
-                <ResponsiveContainer width="100%" height="100%" >
-                    <LineChart data={data} >
+            <div className='w-full h-[280px] mt-5 ml-[-30px] text-[10px]'>
+                <ResponsiveContainer width="100%" height="100%">
+                    <LineChart data={data?.data}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="month" />
                         <YAxis />
                         <Tooltip />
-                        {/* <Legend /> */}
-                        <Line type="monotone" dataKey="users" stroke="#8884d8" activeDot={{ r: 8 }} />
+                        <Line type="monotone" dataKey="products" stroke="#8884d8" activeDot={{ r: 8 }} />
                     </LineChart>
                 </ResponsiveContainer>
             </div>
-
-
         </div>
-    )
-}
+    );
+};
 
-export default ProductMainChart
+export default ProductMainChart;

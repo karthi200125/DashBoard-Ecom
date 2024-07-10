@@ -29,7 +29,7 @@ const DeleteProductBody = ({ product }: any) => {
 
     return (
         <div className="w-full h-full p-5 rounded-[20px] flex flex-col gap-3">
-            <h2 className='py-2 border-b'>Delete Product</h2>
+            <h4 className='py-2 border-b'>Delete Product</h4>
             <div className="flex flex-col gap-5 items-center justify-center py-2">
                 <p className="text-center">Are you sure you want to delete this product <b>{product?.proName}</b>?</p>
                 <CustomBtn

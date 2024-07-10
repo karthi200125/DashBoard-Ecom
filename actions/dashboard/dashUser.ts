@@ -92,3 +92,35 @@ export const getAllUsersByFilter = async (values: any) => {
         return { error: "Failed to retrieve filtered users" };
     }
 };
+
+
+// get monhty user data for user graph
+export const getMonthlyUserCounts = async () => {
+    try {
+        const users = await db.user.findMany();
+
+        // Initialize monthly data object with all months
+        const monthlyData: { [key: string]: number } = {
+            'Jan': 0, 'Feb': 0, 'Mar': 0, 'Apr': 0,
+            'May': 0, 'Jun': 0, 'Jul': 0, 'Aug': 0,
+            'Sep': 0, 'Oct': 0, 'Nov': 0, 'Dec': 0
+        };
+
+        // Aggregate users by month
+        users.forEach(user => {
+            const month = new Date(user.createdAt).toLocaleString('default', { month: 'short' });
+            monthlyData[month]++;
+        });
+
+        // Convert to array of objects for charting
+        const data = Object.keys(monthlyData).map(month => ({
+            month,
+            users: monthlyData[month],
+        }));
+
+        return { success: "Success", data };
+    } catch (error) {
+        console.error("Error fetching monthly user counts:", error);
+        return { error: "Error fetching monthly user counts" };
+    }
+};

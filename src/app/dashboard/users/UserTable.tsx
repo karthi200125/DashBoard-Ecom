@@ -1,10 +1,9 @@
 'use client'
 
 import CustomPagination from '@/app/_components/CustomPagination';
-import DashSearch from '@/app/_components/DashSearch';
 import Icon from '@/app/_components/Icon';
 import UserProfile from '@/app/_components/UserProfile';
-import { formatDate } from '@/app/hooks/MomentDate';
+import { monthsAgo } from '@/app/hooks/MomentDate';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Skeleton } from '@/components/ui/skeleton';
 import dynamic from 'next/dynamic';
@@ -80,7 +79,7 @@ const UserTable = () => {
           <h5>Users</h5>
           <span>{`(${count || 0})`}</span>
         </h5>
-        <DashSearch placeholder="Search Users" onChange={handleSearch} />
+        {/*  */}
         <div>
           <div className='flex flex-row items-center gap-3'>
             {/* Add other controls as needed */}
@@ -113,17 +112,17 @@ const UserTable = () => {
             allUsers?.length > 0 ?
               allUsers?.map((user: any) => (
                 <tr key={user?.id}>
-                  <td className="px-2 py-4 text-[12px] whitespace-nowrap">{user?.id}</td>
-                  <td className="px-2 py-4 text-[12px] whitespace-nowrap flex flex-row items-center gap-2">
-                    <UserProfile profileCls='w-10 h-10' proSrc={user?.image} proAlt={user?.name} tooltip={user?.name} user={user}/>
+                  <td className="px-2 py-4 text-[10px] whitespace-nowrap">{user?.id}</td>
+                  <td className="px-2 py-4 text-[10px] whitespace-nowrap flex flex-row items-center gap-2">
+                    <UserProfile profileCls='w-10 h-10' proSrc={user?.image} proAlt={user?.name} tooltip={user?.name} user={user} />
                     <span>{user?.name}</span>
                   </td>
-                  <td className="px-2 py-4 text-[12px] whitespace-nowrap">{user?.email}</td>
-                  <td className="px-2 py-4 text-[12px] whitespace-nowrap">{user?.gender}</td>
-                  <td className="px-2 py-4 text-[12px] whitespace-nowrap">{user?.phoneNo}</td>
-                  <td className="px- py-4 text-[12px] whitespace-nowrap">{user?.country}</td>
-                  <td className="px-2 py-4 text-[12px] whitespace-nowrap">{formatDate(user?.createdAt)}</td>
-                  <td className="px-2 py-4 text-[12px] whitespace-nowrap">
+                  <td className="px-2 py-4 text-[10px] whitespace-nowrap">{user?.email}</td>
+                  <td className="px-2 py-4 text-[10px] whitespace-nowrap">{user?.gender || '-'}</td>
+                  <td className="px-2 py-4 text-[10px] whitespace-nowrap">{user?.phoneNo || '-'}</td>
+                  <td className="px- py-4 text-[10px] whitespace-nowrap">{user?.country || '-'}</td>
+                  <td className="px-2 py-4 text-[10px] whitespace-nowrap">{monthsAgo(user?.createdAt)}</td>
+                  <td className="px-2 py-4 text-[10px] whitespace-nowrap">
                     <Sheet>
                       <SheetTrigger>
                         <Icon icon={<IoIosMore size={20} />} tooltip='More' />
