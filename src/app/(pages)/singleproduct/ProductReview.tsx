@@ -21,7 +21,7 @@ const ProductReview = ({ product }: ProductReviewProps) => {
   const loginModel = useLoginModal();
 
   const { isPending, data } = useQuery({
-    queryKey: ['getReviews'],
+    queryKey: ['getReviews', product?.id],
     queryFn: async () => await GetReviewByProduct(product?.id)
   });
 

@@ -22,7 +22,7 @@ const Card = ({ card }: CardProps) => {
     const pathname = usePathname();
 
     const { isPending, data } = useQuery({
-        queryKey: ['getReviews'],
+        queryKey: ['getReviews', card?.id],
         queryFn: async () => await GetReviewByProduct(card?.id)
     });
 
