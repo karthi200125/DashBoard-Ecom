@@ -33,7 +33,7 @@ const Users = () => {
                         <div className="h-full flex-1 flex flex-col justify-between">
                             <h2>Overview</h2>
                             <h6>Welcome to users dashbaord</h6>
-                            <Image src={""} imgclass="border rounded-[20px] h-[220px]" alt="" />
+                            <Image src={"https://res.cloudinary.com/duextvtta/image/upload/v1720615735/test_1_jufulw.webp"} imgclass="w-full border object-cover rounded-[20px] h-[220px]" alt="" />
                         </div>
                         <TotalUser />
                         {/* <NewUsers /> */}

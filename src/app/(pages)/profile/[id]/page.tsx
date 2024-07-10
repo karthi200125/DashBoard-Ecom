@@ -53,6 +53,8 @@ const Profile = () => {
         return <ProfilePageSkeleton />;
     }
 
+    const iam = profileUser?.id === Currentuser?.id
+
     return (
         <div className='w-full p-2 md:p-0 py-5 min-h-screen flex flex-col gap-5'>
             <EditProfileModel />
@@ -67,7 +69,7 @@ const Profile = () => {
                             <p>{profileUser?.phoneNo || "Add your phone number"}</p>
                         </div>
                     </div>
-                    {profileUser?.id === Currentuser?.id &&
+                    {iam &&
                         <CustomBtn arrow btnCls='w-full md:w-[200px] border px-3 md:px-5 mt-3 md:mt-0' onClick={() => editProfileModel.onOpen()}>Edit profile</CustomBtn>
                     }
                 </div>
@@ -80,41 +82,43 @@ const Profile = () => {
                     <div className='flex flex-row items-center justify-between'>
                         <div className='flex flex-row gap-2 items-center font-bold'>
                             <IoMdHeartEmpty size={20} />
-                            <h5>Favourites</h5>
+                            <h5>{iam ? "Favourites" : `${profileUser?.name} Favourites`}</h5>
                         </div>
-                        <CustomBtn btnCls='border h-[30px] md:h-[40px] px-3 md:px-5 bg-blue-400 text-white text-[12px]' onClick={() => router.push('/favourite')}>View all</CustomBtn>
+                        {iam &&
+                            <CustomBtn btnCls='border h-[30px] md:h-[40px] px-3 md:px-5 bg-blue-400 text-white text-[12px]' onClick={() => router.push('/favourite')}>View all</CustomBtn>
+                        }
                     </div>
-                    {profileUser?.id === Currentuser?.id &&
-                        favoriteItems
-                    }
+                    {favoriteItems}
                 </div>
 
                 {/* Address details */}
-                <div className='w-full  md:flex-1 p-2 md:p-5 border rounded-[10px] flex flex-col gap-3 max-h-max justify-start'>
-                    <div className='flex flex-row items-center gap-2 font-bold'>
-                        <IoLocationOutline size={20} />
-                        <h5>Address</h5>
+                {iam &&
+                    <div className='w-full  md:flex-1 p-2 md:p-5 border rounded-[10px] flex flex-col gap-3 max-h-max justify-start'>
+                        <div className='flex flex-row items-center gap-2 font-bold'>
+                            <IoLocationOutline size={20} />
+                            <h5>Address</h5>
+                        </div>
+                        <div className='p-2'>
+                            {profileUser?.address ? (
+                                <div>
+                                    <p className='text-muted-foreground'>{profileUser?.address}</p>
+                                    <p className='text-muted-foreground'>{profileUser?.city} - {profileUser?.postalCode}</p>
+                                    <p className='text-muted-foreground'>{profileUser?.state}</p>
+                                    <p className='text-muted-foreground'>India</p>
+                                </div>
+                            ) : (
+                                <p>+ Add your address details</p>
+                            )}
+                        </div>
                     </div>
-                    <div className='p-2'>
-                        {profileUser?.address ? (
-                            <div>
-                                <p className='text-muted-foreground'>{profileUser?.address}</p>
-                                <p className='text-muted-foreground'>{profileUser?.city} - {profileUser?.postalCode}</p>
-                                <p className='text-muted-foreground'>{profileUser?.state}</p>
-                                <p className='text-muted-foreground'>India</p>
-                            </div>
-                        ) : (
-                            <p>+ Add your address details</p>
-                        )}
-                    </div>
-                </div>
+                }
             </div>
 
             {/* My order details */}
             <div className='flex flex-col gap-5'>
                 {/* Order top heading */}
                 <div>
-                    <h4>My Orders</h4>
+                    <h4> {iam ? "My Orders" : `${profileUser?.name} Orders`}</h4>
                     <h5>Customer orders</h5>
                 </div>
 

@@ -29,20 +29,20 @@ const TopList = ({ data, title, icon, route }: TopListProps) => {
                 <div className='flex flex-col w-full py-2 gap-2'>
                     {!isLoading ?
                         data?.length > 0 ?
-                            data.map((data: any) => (
+                            data.slice(0, 8).map((data: any) => (
                                 <Sheet key={data?.id}>
                                     <SheetTrigger>
                                         <div className='flex flex-row items-center gap-5 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2 hover:bg-neutral-100'>
-                                            <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200 object-cover' proSrc={route === "products" ? data?.proImage[0] : data?.image} user={data}/>
+                                            <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200 object-cover' proSrc={route === "products" ? data?.proImage[0] : data?.image} user={data} />
                                             <div className='flex items-start justify-start flex-col gap-1'>
-                                                <h6 className='leading-none line-clamp-1'>{route === "products" ? data?.proName : data?.name}</h6>
+                                                <h6 className='leading-none line-clamp-1 truncate'>{route === "products" ? data?.proName : data?.name}</h6>
                                                 <p>{route === "products" ? `${data?.proPrice} Rs` : data?.email}</p>
                                             </div>
                                         </div>
                                     </SheetTrigger>
                                     <SheetContent className='bg-white'>
                                         {route === "products" ?
-                                            <Product product={data}/>
+                                            <Product product={data} />
                                             :
                                             route === "orders" ?
                                                 <Order />

@@ -8,7 +8,7 @@ import {
     Tooltip,
 } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
-import { FaUsers } from 'react-icons/fa'
+import { AiFillProduct } from "react-icons/ai";
 import { categoryCount } from '../../../../actions/dashboard/dashProduct'
 
 ChartJs.register(
@@ -23,7 +23,7 @@ const TotalProducts = () => {
         queryKey: ['categorycount'],
         queryFn: async () => await categoryCount()
     })
-    
+
     const count = data?.categoryCounts ?? { mens: 0, womens: 0, kids: 0 };
     const products = data?.data ?? [];
 
@@ -41,7 +41,7 @@ const TotalProducts = () => {
     return (
         <div className='w-[280px] border bg-white rounded-[20px] p-5 h-full'>
             <div className='flex flex-row items-center gap-2'>
-                <FaUsers size={25} />
+                <AiFillProduct size={25} />
                 <h5>Total Products</h5>
             </div>
 

@@ -1,22 +1,21 @@
 'use client'
 
+import AvatarCircles from '@/app/_components/AvatarCircles';
 import CustomBtn from '@/app/_components/CustomBtn';
 import CustomPagination from '@/app/_components/CustomPagination';
 import Icon from '@/app/_components/Icon';
 import Search from '@/app/_components/Search';
-import UserProfile from '@/app/_components/UserProfile';
 import { TimeSelectData } from '@/app/_components/dummydata';
+import { monthsAgo } from '@/app/hooks/MomentDate';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FaUsers } from 'react-icons/fa';
+import { AiFillProduct } from 'react-icons/ai';
 import { IoIosMore } from 'react-icons/io';
 import { getAllProductByFilter } from '../../../../actions/product';
-import { monthsAgo } from '@/app/hooks/MomentDate';
-import AvatarCircles from '@/app/_components/AvatarCircles';
 
 const Product = dynamic(() => import('./Product'));
 
@@ -54,8 +53,8 @@ const ProductTable = () => {
             {/* Table top */}
             <div className="flex flex-row items-center justify-between">
                 <div className='font-bold flex flex-row items-center gap-2'>
-                    <FaUsers size={25} />
-                    <h4>Products</h4>
+                    <AiFillProduct size={25} />
+                    <h5>Products</h5>
                     <span>{`(${count})`}</span>
                 </div>
                 <Search placeholder='Search products' name='products' onChange={(value: string) => console.log(value)} />

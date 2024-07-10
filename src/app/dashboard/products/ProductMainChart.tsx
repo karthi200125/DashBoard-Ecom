@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { FaUsers } from 'react-icons/fa';
+import { AiFillProduct } from 'react-icons/ai';
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { getMainGraphProducts } from '../../../../actions/dashboard/dashProduct';
 
@@ -15,7 +15,7 @@ const ProductMainChart = () => {
     return (
         <div className='p-5'>
             <div className='flex flex-row items-center gap-2'>
-                <FaUsers size={25} />
+                <AiFillProduct size={25} />
                 <h5>Products Graph</h5>
             </div>
 

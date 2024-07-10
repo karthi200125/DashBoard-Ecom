@@ -1,10 +1,10 @@
 'use client'
 
-import dynamic from "next/dynamic"
-import { useEffect, useState } from 'react'
-import { FaUsers } from "react-icons/fa"
-import { MostLikedProducts } from "../../../../actions/dashboard/dashProduct"
-import { useQuery } from "@tanstack/react-query"
+import CustomImage from "@/components/ui/CustomImage";
+import { useQuery } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
+import { AiFillProduct } from "react-icons/ai";
+import { MostLikedProducts } from "../../../../actions/dashboard/dashProduct";
 
 const TopList = dynamic(() => import("@/app/_components/TopList"), { ssr: false })
 const ProductTable = dynamic(() => import("./ProductTable"), { ssr: false })
@@ -26,8 +26,8 @@ const Products = () => {
                     <div className="flex flex-row items-center h-[300px] w-full gap-3">
                         <TotalProducts />
                         <SaleCards />
-                        <div className="w-full border bg-white rounded-[20px] p-5 h-full">
-                            {/* Add any additional content here */}
+                        <div className="w-full h-full overflow-hidden ">
+                            <CustomImage src={"https://res.cloudinary.com/duextvtta/image/upload/v1720615408/dashpro_a4epyb.webp"} imgclass="border object-cover w-full rounded-[20px] h-[300px]" alt="" />
                         </div>
                     </div>
                     <div className="border rounded-[20px] bg-white h-[350px]">
@@ -35,7 +35,7 @@ const Products = () => {
                     </div>
                 </div>
                 <div className="bg-white border rounded-[20px] w-[23%] p-5 h-[660px] overflow-y-hidden">
-                    <TopList title="Top Products" icon={<FaUsers size={20} />} data={products?.data} route="products" />
+                    <TopList title="Top Products" icon={<AiFillProduct size={25} />} data={products?.data} route="products" />
                 </div>
             </div>
             <ProductTable />

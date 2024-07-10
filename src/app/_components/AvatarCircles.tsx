@@ -20,7 +20,7 @@ const AvatarCircles = ({
             {avatarUrls.map((url, index) => (
                 <img
                     key={index}
-                    className="h-10 w-10 rounded-full border-2 border-white dark:border-gray-800"
+                    className="h-10 w-10 rounded-full border-2 border-white dark:border-gray-800 bg-neutral-300 object-contain"
                     src={url}
                     width={40}
                     height={40}
