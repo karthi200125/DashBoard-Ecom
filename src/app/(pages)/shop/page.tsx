@@ -6,13 +6,30 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { getAllProductByFilter } from '../../../../actions/product';
 import Filters from './Filters';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react'
 
 const Shop = ({ searchParams }: { searchParams: any }) => {
-    const page = '1';
+
+    const pagesearchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const page = pagesearchParams.get('page') || '1';
+
+    useEffect(() => {
+        const params = new URLSearchParams(pagesearchParams);
+        if (!params.has('page')) {
+            params.set('page', page);
+            router.replace(`${pathname}?${params.toString()}`);
+        }
+    }, [page, pathname, router, pagesearchParams]);
+
     const filterValues = {
         ...searchParams,
         page,
     };
+
 
     const { isLoading, data } = useQuery({
         queryKey: ['filterValues', filterValues],
