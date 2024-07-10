@@ -85,8 +85,7 @@ const EditProfile = () => {
                                     defaultValue={methods.getValues("city")}
                                     options={cities}
                                     label="Select City"
-                                    selectCls="w-full"
-                                    errors={methods.formState.errors}
+                                    selectCls="w-full"                                    
                                 />
                                 <CustomSelect
                                     name="state"
@@ -94,8 +93,7 @@ const EditProfile = () => {
                                     defaultValue={methods.getValues("state")}
                                     options={states}
                                     label="Select State"
-                                    selectCls="w-full"
-                                    errors={methods.formState.errors}
+                                    selectCls="w-full"                                    
                                 />
                             </div>
                         </div>
