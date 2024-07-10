@@ -116,7 +116,7 @@ const LoginBody = () => {
                             {/* Other logins */}
                             <GoogleAuth />
                             <div className='text-sm flex items-center flex-row gap-2'>
-                                <p>Don't have an Account?</p>
+                                <p>Dont have an Account?</p>
                                 <p
                                     className='font-bold text-black cursor-pointer hover:underline'
                                     onClick={handleRegisterClick}
