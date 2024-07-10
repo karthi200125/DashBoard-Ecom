@@ -26,6 +26,7 @@ const Navbar = () => {
     const [isSticky, setIsSticky] = useState(false);
     const [activeLogin, setActiveLogin] = useState('login');
     const [pathnameChanged, setPathnameChanged] = useState(false);
+    const [menuOpen, setsetmenuOpen] = useState(false);
 
     const loginModel = useLoginModal();
     const registerModel = useRegisterModal();
@@ -84,7 +85,7 @@ const Navbar = () => {
             <motion.div
                 key="navbar"
                 initial={{ opacity: 0, y: -180 }}
-                animate={{ opacity: 1, y: 0 }}                
+                animate={{ opacity: 1, y: 0 }}
                 transition={{
                     ease: 'easeInOut',
                     duration: 1,
@@ -107,27 +108,27 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <div className="ml-3 max-w-max">
-                        <Menu isSticky={isSticky} />
+                        <Menu isSticky={isSticky} onOpen={(d: any) => setsetmenuOpen(!d)} />
                     </div>
                 )}
 
                 {/* Navbar middle */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <Logo />
+                    <Logo menuOpen={menuOpen} />
                 </div>
 
                 <div className="flex flex-row items-center gap-2 lg:gap-3">
-                    {!isDashboard &&                        
-                            <>
-                                <Search placeholder="search products..." />
-                                {user && (
-                                    <TransitionLink href='/favourite'>
-                                        <Icon icon={<FaRegHeart size={20} />} tooltip="Favorites" iconCls="hidden md:flex" count={userdada?.favorite?.length} />
-                                    </TransitionLink>
-                                )}
-                                <ShoppingCartIcon />
-                            </>
-                        }
+                    {!isDashboard &&
+                        <>
+                            <Search placeholder="search products..." />
+                            {user && (
+                                <TransitionLink href='/favourite'>
+                                    <Icon icon={<FaRegHeart size={20} />} tooltip="Favorites" iconCls="hidden md:flex" count={userdada?.favorite?.length} />
+                                </TransitionLink>
+                            )}
+                            <ShoppingCartIcon />
+                        </>
+                    }
 
                     {user && (
                         <div className={`hidden md:flex ${user && 'mr-[-50px] ml-[50px]'}`} onClick={() => ''}>

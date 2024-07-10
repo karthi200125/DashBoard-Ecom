@@ -4,10 +4,12 @@ import { useState } from "react";
 interface Line2Props {
     isSticky?: boolean;
     onOpen: (value: boolean) => void;
+    onClose: any
 }
 
-const Line3 = ({ onOpen, isSticky }: Line2Props) => {
-    const [open, setOpen] = useState(false)
+const Line3 = ({ onOpen, isSticky, onClose }: Line2Props) => {
+
+    const [open, setOpen] = useState(onClose)
 
     const click = () => {
         setOpen(!open)

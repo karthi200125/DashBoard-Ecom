@@ -17,7 +17,8 @@ import Icon from '../Icon';
 import { MdOutlinePersonOutline } from 'react-icons/md';
 
 
-const MobNav = ({ onNavClick }: any) => {
+
+const MobNav = ({ onMenu }: any) => {
 
     const user: any = useCurrentUser()
     const { state } = useCart();
@@ -85,7 +86,7 @@ const MobNav = ({ onNavClick }: any) => {
     ];
 
     const HandleClick = (item: any) => {
-        onNavClick(false)
+        onMenu(false)
         const href = item?.href
         if (href && pathname !== href) {
             animatePageOut(href, router);

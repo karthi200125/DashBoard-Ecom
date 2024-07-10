@@ -30,12 +30,17 @@ export const variants = {
 
 interface MenuProps {
     isSticky: boolean;
+    onOpen: any
 }
 
-const Menu = ({ isSticky }: MenuProps) => {
-    
+const Menu = ({ isSticky, onOpen }: MenuProps) => {
+
     const [menuOpen, setMenuOpen] = useState(false);
-    
+
+    const HandleLineClick = (d: any) => {
+        setMenuOpen(d);
+        onOpen(menuOpen)
+    }
 
     return (
         <div className='w-full'>
@@ -57,13 +62,13 @@ const Menu = ({ isSticky }: MenuProps) => {
                                 delay: 0.5,
                             }}
                         >
-                            <MobNav />
-                            <MenuBarContent />
+                            <MobNav onMenu={(d: any) => setMenuOpen(d)} />
+                            <MenuBarContent onMenu={(d: any) => setMenuOpen(d)} />
                         </motion.div>
                     }
                 </AnimatePresence>
             </motion.div>
-            <Line2 onOpen={(d: boolean) => setMenuOpen(d)} isSticky={isSticky} />
+            <Line2 onOpen={HandleLineClick} isSticky={isSticky} onClose={menuOpen} />
         </div>
     );
 }

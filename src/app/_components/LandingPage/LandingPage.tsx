@@ -89,23 +89,26 @@ const LandingPage = ({ onLoaded }: any) => {
             </motion.div>
 
             {/* buttons */}
-            <motion.div
-                initial={{ opacity: 0, y: 180 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                    ease: "easeInOut",
-                    duration: 1,
-                    delay: 0.6,
-                }}
-                className='glass rounded-full md:rounded-[20px] xl:rounded-full absolute flex flex-row xl:flex-row items-center gap-1 md:gap-5 p-2 xl:bottom-[115px] bottom-[10%] md:bottom-[125px]'
-            >
-                <TransitionLink href='/shop'>
-                    <CustomBtn arrow btnCls='bg-black text-white pl-5 md:pl-10 ' arrowCls='bg-white text-black'>
-                        Shop Now
-                    </CustomBtn>
-                </TransitionLink>
-                <CustomBtn btnCls='bg-white text-black px-5 sm:px-10'>Contact Us</CustomBtn>
-            </motion.div>
+            <div className='absolute max-h-max left-1/2 xl:bottom-[115px] bottom-[10%] md:bottom-[35%] transform -translate-x-1/2 flex items-center justify-center'>
+                <motion.div
+                    initial={{ opacity: 0, y: 180 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        ease: "easeInOut",
+                        duration: 1,
+                        delay: 0.6,
+                    }}
+                    className='glass rounded-full md:rounded-[20px] xl:rounded-full flex flex-row xl:flex-row items-center gap-1 md:gap-5 p-2'
+                >
+                    <TransitionLink href='/shop'>
+                        <CustomBtn arrow btnCls='bg-black text-white pl-5 md:pl-10 ' arrowCls='bg-white text-black'>
+                            Shop Now
+                        </CustomBtn>
+                    </TransitionLink>
+                    <CustomBtn btnCls='bg-white text-black px-5 sm:px-10'>Contact Us</CustomBtn>
+                </motion.div>
+            </div>
+
 
             {/* customer happy div */}
             <div className='glass hidden xl:hidden w-[90%] xl:w-[300px] h-[150px] md:max-h-max gap-2 rounded-[10px] p-5 md:p-8 absolute left-1/2 transform -translate-x-1/2 right-2 top-[15%] xl:top-[25%] xl:right-0 flex-col justify-between text-white'>

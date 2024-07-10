@@ -7,8 +7,22 @@ import { benefits, kidsubcategory, mensubcategory, womensubcategory } from '../d
 import { useRouter } from 'next/navigation'
 
 
-const MenuBarContent = () => {
+const MenuBarContent = ({ onMenu }: any) => {
     const router = useRouter()
+
+    const handleClick = (type: any) => {
+        onMenu(false)
+        if (type === "mens") {
+            router.push('/shop?page=1&category=mens')
+        }
+        if (type === "womens") {
+            router.push('/shop?page=1&category=womens')
+        }
+        if (type === "kids") {
+            router.push('/shop?page=1&category=kids')
+        }
+    }
+
     return (
         <div className='hidden md:flex w-full h-screen p-5 items-center justify-center'>
             <div className='w-full xl:w-[90%] max-h-max flex flex-row items-start gap-10 xl:gap-20 mt-[50px] rounded-[30px] p-5 xl:p-10'>
@@ -28,7 +42,7 @@ const MenuBarContent = () => {
                                     exit="exit"
                                     initial="initial"
                                     custom={i}
-                                    onClick={() => router.push('/shop?page=1&category=mens')}
+                                    onClick={() => handleClick("mens")}
                                     className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max'
                                 > {m}
                                 </motion.div>
@@ -44,7 +58,7 @@ const MenuBarContent = () => {
                                     exit="exit"
                                     initial="initial"
                                     custom={i}
-                                    onClick={() => router.push('/shop?page=1&category=womens')}
+                                    onClick={() => handleClick("womens")}
                                     className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max'
                                 >{w}
                                 </motion.div>
@@ -60,7 +74,7 @@ const MenuBarContent = () => {
                                     exit="exit"
                                     initial="initial"
                                     custom={i}
-                                    onClick={() => router.push('/shop?page=1&category=kids')}
+                                    onClick={() => handleClick("kids")}
                                     className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max'
                                 >
                                     {k}
