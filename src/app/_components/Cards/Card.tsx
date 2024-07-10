@@ -28,6 +28,8 @@ const Card = ({ card }: CardProps) => {
 
     const reviews: any = data?.data || []
 
+    console.log(reviews)
+
     const totalRating = reviews?.length > 0 ? reviews.reduce((sum: any, review: any) => sum + parseFloat(review?.revRating || '0'), 0) : 0;
     const averageRating = reviews?.length > 0 ? totalRating / reviews?.length : 0;
 
@@ -55,7 +57,6 @@ const Card = ({ card }: CardProps) => {
                     {`${card?.proOffer || 0}%`}
                 </div>
             </div>
-
 
             {/* card content */}
             <div className='bg-white w-full h-[220px] p-5 flex flex-col justify-between'>

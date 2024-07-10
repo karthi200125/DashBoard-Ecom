@@ -7,6 +7,7 @@ import CustomStepper from "./Stepper";
 import CheckOutShowProducts from "./CheckOutShowProducts";
 import OrderSummary from "./OrderSummary";
 import { useCurrentUser } from "@/app/hooks/useCurrentUser";
+import Title from "@/app/_components/Title";
 const AddressStep = dynamic(() => import("./AddressStep"));
 const OrderSummaryStep = dynamic(() => import("./OrderSummaryStep"));
 
@@ -18,6 +19,7 @@ const Cart = () => {
 
     return (
         <div className='p-2 md:p-0 w-full min-h-screen py-5 flex flex-col gap-5 relative'>
+            <Title title={`Cart (${items?.length}) | DEXON`} />
             {/* Stepper */}
             <div className='w-full max-h-max border py-2'>
                 <CustomStepper step={step} />

@@ -12,6 +12,7 @@ const ProductContent = dynamic(() => import('../ProductContent'))
 const Cards = dynamic(() => import('@/app/_components/Cards/Cards'))
 const ProductReview = dynamic(() => import('../ProductReview'))
 import { motion } from 'framer-motion'
+import Title from '@/app/_components/Title'
 
 const SingleProduct = () => {
 
@@ -33,6 +34,7 @@ const SingleProduct = () => {
 
     return (
         <>
+            <Title title={`${product?.proName} | DEXON`} />
             {isPending ?
                 <SingleProductSkeleton />
                 :

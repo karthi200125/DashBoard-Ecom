@@ -8,6 +8,7 @@ import { getAllProductByFilter } from '../../../../actions/product';
 import Filters from './Filters';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react'
+import Title from '@/app/_components/Title';
 
 const Shop = ({ searchParams }: { searchParams: any }) => {
 
@@ -42,6 +43,7 @@ const Shop = ({ searchParams }: { searchParams: any }) => {
     return (
         <>
             <div className="w-full min-h-screen py-5 flex flex-col gap-5">
+                <Title title={`SHOP | DEXON`} />
                 {/* shop top */}
                 <div className="w-full max-h-max flex flex-col xl:flex-row items-center justify-start xl:justify-between gap-5 border-b py-5 px-2 md:px-0">
                     <h4>All Products ({data?.count || 0})</h4>

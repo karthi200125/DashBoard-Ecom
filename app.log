@@ -8636,3 +8636,35 @@ Invalid `prisma.user.findUnique()` invocation:
 }
 
 Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.
+2024-07-10T14:50:09.967Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+Invalid `prisma.user.findUnique()` invocation:
+
+{
+  where: {
+    id: undefined,
+?   email?: String,
+?   AND?: UserWhereInput | UserWhereInput[],
+?   OR?: UserWhereInput[],
+?   NOT?: UserWhereInput | UserWhereInput[],
+?   name?: StringNullableFilter | String | Null,
+?   password?: StringNullableFilter | String | Null,
+?   isAdmin?: BoolFilter | Boolean,
+?   emailVerified?: DateTimeNullableFilter | DateTime | Null,
+?   image?: StringNullableFilter | String | Null,
+?   gender?: StringNullableFilter | String | Null,
+?   address?: StringNullableFilter | String | Null,
+?   city?: StringNullableFilter | String | Null,
+?   state?: StringNullableFilter | String | Null,
+?   phoneNo?: StringNullableFilter | String | Null,
+?   postalCode?: StringNullableFilter | String | Null,
+?   favorite?: StringNullableListFilter,
+?   likes?: StringNullableListFilter,
+?   createdAt?: DateTimeFilter | DateTime,
+?   updatedAt?: DateTimeFilter | DateTime,
+?   accounts?: AccountListRelationFilter,
+?   reviews?: ReviewListRelationFilter,
+?   Orders?: OrderListRelationFilter
+  }
+}
+
+Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.

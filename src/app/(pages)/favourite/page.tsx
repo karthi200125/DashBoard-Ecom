@@ -6,10 +6,11 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { getFavProducts } from '../../../../actions/product';
+import Title from '@/app/_components/Title';
 
 const Favourite = () => {
     const user = useCurrentUser();
-    const userId = user?.id; 
+    const userId = user?.id;
 
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -26,8 +27,8 @@ const Favourite = () => {
     }, [page, pathname, router, searchParams]);
 
     const { isPending, data } = useQuery({
-        queryKey: ['favproducts', userId, page], 
-        queryFn: async () => await getFavProducts(userId || '', page) 
+        queryKey: ['favproducts', userId, page],
+        queryFn: async () => await getFavProducts(userId || '', page)
     });
 
     if (data?.error) {
@@ -36,6 +37,7 @@ const Favourite = () => {
 
     return (
         <div className='w-full min-h-screen py-5 flex flex-col gap-5'>
+            <Title title={`Favourites | DEXON`} />
             <div className='p-2 md:p-0 flex flex-col gap-2'>
                 <h2>Your Favourite Products</h2>
                 <p>You have {data?.count || 0} products in Favourites</p>
