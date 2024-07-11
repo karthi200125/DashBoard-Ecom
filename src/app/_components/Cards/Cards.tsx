@@ -66,7 +66,7 @@ const Cards = ({ products, isLoading, count }: CardsProps) => {
                         ))
                         :
                         <div className='h-[100px] flex items-center justify-center text-xl font-bold mx-auto w-full'>
-                            No Products
+                            {/* No Products */}
                         </div>
                 }
             </div>

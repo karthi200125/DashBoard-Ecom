@@ -48,7 +48,8 @@ const Cart = () => {
             </div>
 
             {items?.length === 0 &&
-                <div className="w-full flex items-center justify-center">
+                <div className="w-full flex items-center justify-center gap-3 flex-col">
+                    <p>Your cart is empty</p>
                     <CustomBtn arrow btnCls="border px-5">Go to Shop</CustomBtn>
                 </div>
             }

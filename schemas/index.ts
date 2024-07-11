@@ -40,9 +40,12 @@ export const UserSchema = z.object({
     id: z.string().optional(),
     name: z.string().min(3, "Username must be at least 3 characters"),
     email: z.string().email("Enter a valid email"),
-    gender: z.string().min(1, "Enter a gender").optional(),
-    image: z.string().url("Select profile Image").optional(),
-    phoneNo: z.string().regex(/^\d+$/, "Enter a valid phone number").optional(),
+    // gender: z.string().min(1, "Enter a gender").optional(),
+    phoneNo: z.string()
+        .regex(/^\d+$/, "Enter a valid phone number")
+        .min(1, "Phone number must have at least 1 digit")
+        .max(10, "Phone number must have at most 10 digits")
+        .optional(),
     address: z.string().min(5, "Enter your address").optional(),
     postalCode: z.string().regex(/^\d+$/, "Enter a valid postal code").optional(),
     city: z.string().min(1, "Select a city").optional(),

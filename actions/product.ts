@@ -194,7 +194,7 @@ export const CreateProductAction = async (values: any) => {
 
 // filter products
 export const getAllProductByFilter = async (values: any) => {
-    const { category, price, color, size, page, time } = values;
+    const { category, subcategory, price, color, size, page, time } = values;
 
     const ITEM_PER_PAGE = 8;
     try {
@@ -204,6 +204,10 @@ export const getAllProductByFilter = async (values: any) => {
 
         if (category) {
             filters.proCategory = category;
+
+            if (subcategory) {
+                filters.proSubCategory = subcategory;
+            }
         }
 
         if (price) {

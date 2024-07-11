@@ -9,13 +9,15 @@ import { toast } from 'sonner';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { getSingleProduct } from '../../../../actions/product';
 import Spinners from '../Spinners';
+import { useSession } from 'next-auth/react';
 
 const Heart = ({ product }: any) => {
     const [isAnimated, setIsAnimated] = useState(false);
     const user: any = useCurrentUser();
-    const router = useRouter();
     const loginModal = useLoginModal();
     const queryClient = useQueryClient();
+    const { update } = useSession()
+
 
     // get product
     const { isPending, data } = useQuery({
@@ -51,6 +53,7 @@ const Heart = ({ product }: any) => {
                 .then((data) => {
                     if (data.success) {
                         toast.success(data.success);
+                        update()
                         queryClient.invalidateQueries({ queryKey: ['fetchProduct', product?.id] })
                         queryClient.invalidateQueries({ queryKey: ['navprofileuser', user?.id] })
                         queryClient.invalidateQueries({ queryKey: ['favproducts'] })

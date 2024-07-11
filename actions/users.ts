@@ -79,7 +79,6 @@ export const deleteUser = async (id: string) => {
 // update user
 export const updateUser = async (values: z.infer<typeof UserSchema>) => {
     const { id, ...updateData } = values;
-    console.log(values)
 
     try {
         const updatedUser = await db.user.update({

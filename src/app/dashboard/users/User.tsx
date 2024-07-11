@@ -16,7 +16,7 @@ const User = ({ user }: any) => {
     return (
         <div className='w-full h-full bg-white flex flex-col gap-5 items-center mt-10'>
             <DeleteuserModal user={user} />
-            <UserProfile proSrc={user?.profilepic} proAlt={user?.name} profileCls='w-[150px] h-[150px]' />
+            <UserProfile proSrc={user?.image} proAlt={user?.name} profileCls='w-[150px] h-[150px]' />
             <h4 className='capitalize'>{user?.name}</h4>
             <p>{user?.email}</p>
 

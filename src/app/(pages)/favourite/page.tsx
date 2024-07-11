@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { getFavProducts } from '../../../../actions/product';
 import Title from '@/app/_components/Title';
+import CustomBtn from '@/app/_components/CustomBtn';
+import Footer from '@/app/_components/Footer';
 
 const Favourite = () => {
     const user = useCurrentUser();
@@ -43,7 +45,15 @@ const Favourite = () => {
                 <p>You have {data?.count || 0} products in Favourites</p>
             </div>
 
+            {data?.count === 0 &&
+                <div className="w-full flex items-center justify-center gap-3 flex-col">
+                    <p>Your wishlist is empty</p>
+                    <CustomBtn arrow btnCls="border px-5">Go to Shop</CustomBtn>
+                </div>
+            }
+
             <Cards products={data?.data} isLoading={isPending} count={data?.count} />
+            <Footer />
         </div>
     );
 };

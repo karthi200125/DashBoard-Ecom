@@ -3,7 +3,7 @@ import CustomBtn from '@/app/_components/CustomBtn';
 import ProgressBarCon from '@/app/_components/ProgressBar';
 import { useUpload } from '@/app/hooks/UplaodFile';
 import Image from '@/components/ui/CustomImage';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { IoCloudUploadOutline } from 'react-icons/io5';
 
 interface ProfileImageUploadProps {
@@ -17,28 +17,28 @@ const EditProfileImgUpload: React.FC<ProfileImageUploadProps> = ({ user, onDownl
 
     const { per, UploadFile, downloadUrl } = useUpload({ file });
 
-    const handleUpload = () => {
+    const handleUpload = useCallback(() => {
         if (file) {
             UploadFile();
         }
-    };
+    }, [file, UploadFile]);
 
     useEffect(() => {
         if (downloadUrl) {
             setFile(null);
             onDownloadUrl(downloadUrl);
         }
-    }, [downloadUrl]);
+    }, [downloadUrl, onDownloadUrl]);
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
             setProductImage(URL.createObjectURL(e.target.files[0]));
             setFile(e.target.files[0]);
         }
-    };
+    }, []);
 
-    const percentage = Number(per);
-    const imagePer = 100 - percentage;
+    const percentage = useMemo(() => Number(per), [per]);
+    const imagePer = useMemo(() => 100 - percentage, [percentage]);
 
     return (
         <div className='w-full flex flex-col gap-3'>

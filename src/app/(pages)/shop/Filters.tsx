@@ -1,11 +1,11 @@
 'use client'
 
-import { colors, sizes } from "@/app/_components/dummydata"
+import { colors, kidsubcategory, mensubcategory, sizes, womensubcategory } from "@/app/_components/dummydata"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 const Filters = () => {
     const pathname = usePathname()
-    const searchParams = useSearchParams()
+    const searchParams: any = useSearchParams()
     const { replace } = useRouter()
 
     const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -21,6 +21,20 @@ const Filters = () => {
         replace(`${pathname}?${params.toString()}`)
     }
 
+    const category = searchParams.get('category')
+
+    let subcategory;
+    if (category === 'mens') {
+        subcategory = mensubcategory
+    }
+    if (category === 'womens') {
+        subcategory = womensubcategory
+    }
+    if (category === 'kids') {
+        subcategory = kidsubcategory
+    }
+
+
     return (
         <div className="flex flex-wrap md:flex-row items-center gap-2 xl:gap-5">
 
@@ -31,6 +45,16 @@ const Filters = () => {
                 <option value="womens">Womens</option>
                 <option value="kids">Kids</option>
             </select>
+
+
+            {category !== null &&
+                <select name="subcategory" id="color" onChange={handleFilterChange} className="rounded-[5px] px-3 bg-neutral-100 h-[40px] text-[10px]">
+                    <option value="">{`${category} subcategory`}</option>
+                    {subcategory?.map((sc, index) => (
+                        <option key={index} value={sc}>{sc}</option>
+                    ))}
+                </select>
+            }
 
             {/* colors select */}
             <select name="color" id="color" onChange={handleFilterChange} className="rounded-[5px] px-3 bg-neutral-100 h-[40px] text-[10px]">

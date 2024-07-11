@@ -3,7 +3,6 @@
 import { perspective } from '@/app/Animations/animate';
 import { animatePageOut } from '@/app/Animations/pageTransistionAnimate';
 import { useCurrentUser } from '@/app/hooks/useCurrentUser';
-import CustomImage from '@/components/ui/CustomImage';
 import { motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { BsCart3 } from 'react-icons/bs';
@@ -11,10 +10,10 @@ import { CiGrid31 } from 'react-icons/ci';
 import { HiOutlineHome } from 'react-icons/hi2';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { LiaProductHunt } from 'react-icons/lia';
+import { MdOutlinePersonOutline } from 'react-icons/md';
 import { TbLogout } from 'react-icons/tb';
 import { useCart } from '../ContextApi/CartContext';
 import Icon from '../Icon';
-import { MdOutlinePersonOutline } from 'react-icons/md';
 
 
 
@@ -39,7 +38,7 @@ const MobNav = ({ onMenu }: any) => {
             id: 2,
             href: `/profile/${user?.id}`,
             name: "Profile",
-            icon: user?.image ? <CustomImage src={user?.image} imgclass='w-10 h-10' /> : <MdOutlinePersonOutline size={25} />,
+            icon: <MdOutlinePersonOutline size={25} />,
             count: "",
             show: true,
         },
@@ -106,7 +105,7 @@ const MobNav = ({ onMenu }: any) => {
                         exit="exit"
                         initial="initial"
                         custom={i}
-                        className={`${!item.show && "hidden"} flex items-center gap-3 justify-start p-2 rounded-[5px] hover:bg-neutral-100`}
+                        className={`${!item.show && "hidden"} flex items-center gap-3 justify-start p-2 rounded-[10px] hover:bg-neutral-800`}
                         onClick={() => HandleClick(item)}
                     >
                         <a className="flex items-center gap-3">
