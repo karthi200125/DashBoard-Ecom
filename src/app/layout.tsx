@@ -3,16 +3,16 @@ import type { Metadata } from "next";
 import { SessionProvider } from 'next-auth/react';
 import { Toaster } from 'sonner';
 import { auth } from "../../auth";
+import Favicon from '../../public/favicon.ico';
 import LoginModel from "./_components/LoginModel";
 import Navbar from "./_components/Navbar";
 import RegisterModel from "./_components/RegisterModal";
 import "./globals.css";
-import Head from "next/head";
-
 
 export const metadata: Metadata = {
   title: "DEXON | Eommerce platform",
   description: "Trending new latest stylish products available at DEXON",
+  icons: [{ rel: 'icon', url: Favicon.src }],
 };
 
 export default async function RootLayout({
@@ -25,11 +25,7 @@ export default async function RootLayout({
     <AllProviders>
       <SessionProvider session={session}>
         <html lang="en">
-          <Head>
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
           <body style={{ fontFamily: 'Conthrax' }} >
-
             <div className="w-full relative">
               <Navbar />
               <Toaster position="bottom-right" expand={false} richColors />
