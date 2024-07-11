@@ -8,9 +8,13 @@ import Navbar from "./_components/Navbar";
 import RegisterModel from "./_components/RegisterModal";
 import "./globals.css";
 
+
 export const metadata: Metadata = {
   title: "DEXON | Eommerce platform",
   description: "Trending new latest stylish products available at DEXON",
+  icons: {
+    icon: ['/favicon.ico']
+  }
 };
 
 export default async function RootLayout({
@@ -24,6 +28,7 @@ export default async function RootLayout({
       <SessionProvider session={session}>
         <html lang="en">
           <body style={{ fontFamily: 'Conthrax' }} >
+            
             <div className="w-full relative">
               <Navbar />
               <Toaster position="bottom-right" expand={false} richColors />
