@@ -10,16 +10,16 @@ import { useRouter } from 'next/navigation'
 const MenuBarContent = ({ onMenu }: any) => {
     const router = useRouter()
 
-    const handleClick = (type: any) => {
+    const handleClick = (type: any, title: string) => {
         onMenu(false)
         if (type === "mens") {
-            router.push('/shop?page=1&category=mens')
+            router.push(`/shop?page=1&category=mens&subcategory=${title}`)
         }
         if (type === "womens") {
-            router.push('/shop?page=1&category=womens')
+            router.push(`/shop?page=1&category=womens&subcategory=${title}`)
         }
         if (type === "kids") {
-            router.push('/shop?page=1&category=kids')
+            router.push(`/shop?page=1&category=kids&subcategory=${title}`)
         }
     }
 
@@ -42,7 +42,7 @@ const MenuBarContent = ({ onMenu }: any) => {
                                     exit="exit"
                                     initial="initial"
                                     custom={i}
-                                    onClick={() => handleClick("mens")}
+                                    onClick={() => handleClick("mens", m)}
                                     className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max'
                                 > {m}
                                 </motion.div>
@@ -58,7 +58,7 @@ const MenuBarContent = ({ onMenu }: any) => {
                                     exit="exit"
                                     initial="initial"
                                     custom={i}
-                                    onClick={() => handleClick("womens")}
+                                    onClick={() => handleClick("womens", w)}
                                     className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max'
                                 >{w}
                                 </motion.div>
@@ -74,7 +74,7 @@ const MenuBarContent = ({ onMenu }: any) => {
                                     exit="exit"
                                     initial="initial"
                                     custom={i}
-                                    onClick={() => handleClick("kids")}
+                                    onClick={() => handleClick("kids", k)}
                                     className='text-sm text-neutral-400 hoveranimation cursor-pointer max-w-max'
                                 >
                                     {k}
