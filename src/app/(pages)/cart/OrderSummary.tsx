@@ -52,21 +52,21 @@ const OrderSummary = ({ step, onNext, onBack }: OrderSummaryProps) => {
 
     return (
         <div className='w-full h-full flex flex-col justify-between'>
-            <h4 className='border-b-[1px] pb-2'>Cart Summary</h4>
+            <h5 className='border-b-[1px] pb-2'>Cart Summary</h5>
             <div className='flex flex-row justify-between items-center text-neutral-400 text-[15px]'>
-                <p className='text-[15px]'>Subtotal</p>
+                <p>Subtotal</p>
                 <span>₹ {subtotal?.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center text-neutral-400 text-[15px]'>
-                <p className='text-[15px]'>Estimated Shipping</p>
+                <p>Estimated Shipping</p>
                 <span>₹ {estimatedShipping.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center text-neutral-400 text-[15px]'>
-                <p className='text-[15px]'>Discount ({discountPercentage}%)</p>
+                <p>Discount ({discountPercentage}%)</p>
                 <span>₹ {discount.toFixed(2)}</span>
             </div>
             <div className='flex flex-row justify-between items-center'>
-                <h4 >Order Total</h4>
+                <h5 >Order Total</h5>
                 <span className='text-md font-bold'>₹{orderTotal.toFixed(2)}</span>
             </div>
             <div className="flex flex-row items-center gap-5">

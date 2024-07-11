@@ -34,7 +34,7 @@ const ShoppingCartIcon = () => {
         //     animatePageOut(href, router);
         //     router.push(href)
         // }
-    }
+}
 
     return (
         <div className={`flex cart ${!user ? "right-[10px]" : "right-[10px] md:right-[60px]"} ${cartClass}`} onClick={cartClick}>

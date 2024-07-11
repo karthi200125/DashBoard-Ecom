@@ -8,6 +8,8 @@ import CheckOutShowProducts from "./CheckOutShowProducts";
 import OrderSummary from "./OrderSummary";
 import { useCurrentUser } from "@/app/hooks/useCurrentUser";
 import Title from "@/app/_components/Title";
+import CustomBtn from "@/app/_components/CustomBtn";
+import Footer from "@/app/_components/Footer";
 const AddressStep = dynamic(() => import("./AddressStep"));
 const OrderSummaryStep = dynamic(() => import("./OrderSummaryStep"));
 
@@ -34,7 +36,7 @@ const Cart = () => {
                 </div>
 
                 {/* Right checkout box */}
-                {user &&
+                {user && items?.length > 0 &&
                     <div className='w-full md:min-w-[30%] lg:w-[30%] h-[300px] sticky top-[100px] rounded-[20px] border p-5 right-0'>
                         <OrderSummary
                             step={step}
@@ -44,6 +46,13 @@ const Cart = () => {
                     </div>
                 }
             </div>
+
+            {items?.length === 0 &&
+                <div className="w-full flex items-center justify-center">
+                    <CustomBtn arrow btnCls="border px-5">Go to Shop</CustomBtn>
+                </div>
+            }
+            <Footer />
         </div>
     );
 };

@@ -20,7 +20,7 @@ const OrderSummaryStep = () => {
     };
 
     const handleColorSelect = (id: string, color: string) => {
-        const colorNumber = parseInt(color, 10); 
+        const colorNumber = parseInt(color, 10);
         dispatch({ type: 'UPDATE_ITEM_SELECTED_COLOR', id, color: colorNumber });
     };
 
@@ -46,42 +46,51 @@ const OrderSummaryStep = () => {
 
             {items?.map((cartpro) => (
                 <div
-                    className='flex flex-col md:flex-row items-center gap-5 border rounded-[5px] md:rounded-[20px] max-h-max md:h-[220px] hover:shadow-custom-shadow transition duration-300 overflow-hidden p-2'
+                    className='flex flex-col md:flex-row items-center gap-5 border rounded-[15px] md:rounded-[20px] max-h-max md:h-[220px] hover:shadow-custom-shadow transition duration-300 overflow-hidden p-2'
                     key={cartpro.id}
                 >
-                    <div className='flex flex-row gap-5 w-full md:w-[70%]'>
+                    <div className='flex flex-row gap-5 w-full relative'>
                         <Image
                             src={cartpro?.proImage[0]}
-                            imgclass='w-[80px] md:w-[220px] h-[80px] md:h-[200px] bg-neutral-200 rounded-[15px]'                            
+                            imgclass='hidden md:flex w-[220px] h-[210px] bg-neutral-200 rounded-[15px]'
                             alt={cartpro?.proName}
                         />
-                        <div className='flex flex-col h-full gap-2 w-[80%] md:w-[70%] md:py-2'>
-                            <h4 className='line-clamp-1'>{cartpro?.proName}</h4>
-                            <p className='hidden md:flex line-clamp-2 w-full'>{cartpro?.proDesc}</p>
+                        <div className='flex flex-col h-full gap-2 w-full md:w-[70%] md:py-2'>
+                            <div className='md:hidden flex flex-row items-center gap-1 justify-between'>
+                                {cartpro?.proImage?.map((img) => (
+                                    <Image
+                                        src={img}
+                                        imgclass='w-[100px] h-[100px] bg-neutral-200 rounded-[5px]'
+                                        alt={cartpro?.proName}
+                                    />
+                                ))}
+                            </div>
+                            <h5 className='line-clamp-1'>{cartpro?.proName}</h5>
                             <Colors
-                                onColorSelect={(color:any) => handleColorSelect(cartpro.id, color)}
+                                onColorSelect={(color: any) => handleColorSelect(cartpro.id, color)}
                                 alreadyColor={cartpro?.proColors}
                                 type='cartitem'
                             />
                             <Sizes
-                                onSizeSelect={(size:any) => handleSizeSelect(cartpro.id, size)}
+                                onSizeSelect={(size: any) => handleSizeSelect(cartpro.id, size)}
                                 alreadySize={cartpro?.proSizes}
                                 type='cartitem'
                             />
+                            <div className='flex flex-row items-center gap-3 md:gap-10 w-full'>
+                                <Quantity
+                                    id={cartpro.id}
+                                    quantity={cartpro?.proQuantity}
+                                />
+                                <h5 className='whitespace-nowrap'>₹ {(cartpro.proQuantity * cartpro.proPrice).toFixed(2)}</h5>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className='flex flex-row md:flex-col items-center justify-end gap-3 w-full md:w-[30%] h-full relative'>
-                        <h4>${(cartpro.proQuantity * cartpro.proPrice).toFixed(2)}</h4>
-                        <Quantity
-                            id={cartpro.id}
-                            quantity={cartpro?.proQuantity}
-                        />
                         <IoIosClose
                             size={30}
-                            className='text-red-500 cursor-pointer font-bold md:absolute top-0 right-0'
+                            className='text-red-500 cursor-pointer font-bold md:absolute bottom-0 md:top-0 right-0'
                             onClick={() => handleRemoveItem(cartpro.id)}
                         />
+
                     </div>
                 </div>
             ))}
