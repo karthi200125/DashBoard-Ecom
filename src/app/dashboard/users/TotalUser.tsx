@@ -17,16 +17,14 @@ ChartJs.register(
     Legend
 );
 
-
 const TotalUser = () => {
-    const { isPending, data } = useQuery({
+    const { data } = useQuery({
         queryKey: ['gendercount'],
         queryFn: async () => await genderCount(),
     });
 
     const count = data?.genderCounts ?? { male: 0, female: 0, others: 0 };
     const users = data?.data ?? [];
-   
 
     const graphData = {
         datasets: [{
@@ -37,13 +35,13 @@ const TotalUser = () => {
         }]
     };
 
-    const total = users?.length;
+    const total = users.length;
 
     return (
         <div className='flex-1 h-full border bg-white rounded-[20px] p-5'>
             <div className='flex flex-row items-center gap-2'>
                 <FaUsers size={20} />
-                <h5>Total users</h5>
+                <h5>Total Users</h5>
             </div>
 
             <div className='w-full h-full flex items-center justify-center flex-col gap-5'>
@@ -81,6 +79,6 @@ const TotalUser = () => {
             </div>
         </div>
     );
-}
+};
 
 export default TotalUser;

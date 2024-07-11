@@ -11,16 +11,16 @@ const Users = () => {
 
     //     const [user, setUsers] = useState([])
 
-//     useEffect(() => {
-//         const get = async () => {
-//             const response = await MostLikedProducts()
-//             console.log(response)
-//             if (response.success) {                
-//                 setProducts(response.data)
-//             } 
-//         }
-//         get()
-//     }, [])
+    //     useEffect(() => {
+    //         const get = async () => {
+    //             const response = await MostLikedProducts()
+    //             console.log(response)
+    //             if (response.success) {                
+    //                 setProducts(response.data)
+    //             } 
+    //         }
+    //         get()
+    //     }, [])
 
 
     return (
@@ -39,7 +39,7 @@ const Users = () => {
                         {/* <NewUsers /> */}
                     </div>
 
-                {/* users mide row */}
+                    {/* users mide row */}
                     <div className="mid">
                         <UserGraph />
                     </div>

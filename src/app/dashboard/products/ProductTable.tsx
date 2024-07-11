@@ -57,14 +57,14 @@ const ProductTable = () => {
                     <h5>Products</h5>
                     <span>{`(${count})`}</span>
                 </div>
-                <Search placeholder='Search products' name='products' onChange={(value: string) => console.log(value)} />
+                {/* <Search placeholder='Search products' name='products' onChange={(value: string) => console.log(value)} /> */}
                 <div>
                     <div className='flex flex-row items-center gap-3'>
-                        <select name="time" id="time-select" onChange={(e) => setTime(e.target.value)} className='border rounded-[10px] h-[40px] px-3 capitalize'>
+                        {/* <select name="time" id="time-select" onChange={(e) => setTime(e.target.value)} className='border rounded-[10px] h-[40px] px-3 capitalize'>
                             {TimeSelectData?.map((select) => (
                                 <option className='h-[40px] text-sm' value={select} key={select}>{select}</option>
                             ))}
-                        </select>
+                        </select> */}
 
                         <CustomBtn arrow btnCls='border pl-5' onClick={() => router.push('/dashboard/createproduct')}>
                             Create New Product
@@ -106,7 +106,7 @@ const ProductTable = () => {
                                     <td className="px-6 py-4 text-[10px] whitespace-nowrap">
                                         <Sheet>
                                             <SheetTrigger>
-                                                <Icon icon={<IoIosMore size={20} />} tooltip='More' />
+                                                <IoIosMore size={20} />
                                             </SheetTrigger>
                                             <SheetContent className='bg-white'>
                                                 <Product product={pro} />
@@ -116,7 +116,7 @@ const ProductTable = () => {
                                 </tr>
                             ))
                             :
-                            <div className='w-full h-full bg-red-400'>No Products</div>
+                            <h5 className='w-full h-full py-3'>No Products</h5>
                     }
                 </tbody>
             </table>

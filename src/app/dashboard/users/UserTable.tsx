@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { FaUsers } from "react-icons/fa";
 import { IoIosMore } from "react-icons/io";
 import { getAllUsersByFilter } from '../../../../actions/dashboard/dashUser';
+import { useQuery } from '@tanstack/react-query';
 
 const User = dynamic(() => import('@/app/dashboard/users/User'));
 
@@ -21,7 +22,7 @@ const UserTable = () => {
   const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [page, setPage] = useState<number>(1);
-  const [users, setUsers] = useState<any>([]);
+  // const [users, setUsers] = useState<any>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -56,13 +57,18 @@ const UserTable = () => {
 
   const values = { q: searchQuery, page }
 
-  useEffect(() => {
-    const getusers = async () => {
-      const data = await getAllUsersByFilter(values)
-      setUsers(data)
-    }
-    getusers()
-  }, [searchQuery, page])
+  // useEffect(() => {
+  //   const getusers = async () => {
+  //     const data = await getAllUsersByFilter(values)
+  //     setUsers(data)
+  //   }
+  //   getusers()
+  // }, [searchQuery, page])
+
+  const { isPending, data: users } = useQuery({
+    queryKey: ['getusers', values],
+    queryFn: async () => await getAllUsersByFilter(values)
+  })
 
 
   const allUsers: any = users?.data || [];
@@ -124,8 +130,8 @@ const UserTable = () => {
                   <td className="px-2 py-4 text-[10px] whitespace-nowrap">{monthsAgo(user?.createdAt)}</td>
                   <td className="px-2 py-4 text-[10px] whitespace-nowrap">
                     <Sheet>
-                      <SheetTrigger>
-                        <Icon icon={<IoIosMore size={20} />} tooltip='More' />
+                      <SheetTrigger >
+                        <IoIosMore size={20} />
                       </SheetTrigger>
                       <SheetContent className='bg-white'>
                         <User user={user} />

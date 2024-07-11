@@ -6,11 +6,15 @@ import Modal from './Modal';
 import CustomBtn from '../CustomBtn';
 import { deletProduct } from '../../../../actions/product';
 import { toast } from 'sonner';
+import AvatarCircles from '../AvatarCircles';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 const DeleteProductBody = ({ product }: any) => {
     const deleteProductModal = useDeleteProductModal();
     const [isLoading, startTransition] = useTransition();
+    const queryClient = useQueryClient()
+
 
     const HandleDelete = () => {
         startTransition(() => {
@@ -19,6 +23,9 @@ const DeleteProductBody = ({ product }: any) => {
                     if (data?.success) {
                         toast.success(data?.success)
                         deleteProductModal.onClose()
+                        queryClient.invalidateQueries({ queryKey: ['getproducts'] });
+                        queryClient.invalidateQueries({ queryKey: ['categorycount'] });
+                        queryClient.invalidateQueries({ queryKey: ['getmaingraphproducts'] });
                     }
                     if (data?.error) {
                         toast.error(data?.error)
@@ -31,7 +38,8 @@ const DeleteProductBody = ({ product }: any) => {
         <div className="w-full h-full p-5 rounded-[20px] flex flex-col gap-3">
             <h4 className='py-2 border-b'>Delete Product</h4>
             <div className="flex flex-col gap-5 items-center justify-center py-2">
-                <p className="text-center">Are you sure you want to delete this product <b>{product?.proName}</b>?</p>
+                <p className="text-center">Are you sure you want to delete this product <b className='text-black'>{product?.proName}</b>?</p>
+                <AvatarCircles numPeople={product.proImage.length} avatarUrls={product.proImage} />
                 <CustomBtn
                     btnCls='bg-black text-white w-[200px] flex items-center justify-center'
                     onClick={HandleDelete}
