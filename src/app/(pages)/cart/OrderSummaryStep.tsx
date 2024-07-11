@@ -57,8 +57,9 @@ const OrderSummaryStep = () => {
                         />
                         <div className='flex flex-col h-full gap-2 w-full md:w-[70%] md:py-2'>
                             <div className='md:hidden flex flex-row items-center gap-1 justify-between'>
-                                {cartpro?.proImage?.map((img) => (
+                                {cartpro?.proImage?.map((img: any) => (
                                     <Image
+                                        key={img}
                                         src={img}
                                         imgclass='w-[100px] h-[100px] bg-neutral-200 rounded-[5px]'
                                         alt={cartpro?.proName}

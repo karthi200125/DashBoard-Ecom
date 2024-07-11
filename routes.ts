@@ -1,15 +1,5 @@
-// 'use client'
 
-// import { usePathname } from "next/navigation";
 
-// export const test = () => {
-//     return (
-//         <div>
-//             test
-//         </div>
-//     )
-// }
-// const pathname = usePathname()
 /**
  * An array of routes that are accessible to the public.
  * These routes do not require authentication.

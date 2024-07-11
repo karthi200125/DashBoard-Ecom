@@ -89,7 +89,7 @@ const LandingPage = ({ onLoaded }: any) => {
             </motion.div>
 
             {/* buttons */}
-            <div className='absolute max-h-max left-1/2 xl:bottom-[115px] bottom-[15%] md:bottom-[35%] transform -translate-x-1/2 flex items-center justify-center'>
+            <div className='absolute max-h-max left-1/2 xl:bottom-[25%] bottom-[10%] md:bottom-[35%] transform -translate-x-1/2 flex items-center justify-center'>
                 <motion.div
                     initial={{ opacity: 0, y: 180 }}
                     animate={{ opacity: 1, y: 0 }}
