@@ -66,7 +66,7 @@ const Card = ({ card }: CardProps) => {
                     {/* <StarRating rating={averageRating} size='15'/> */}
                     <div className='border rounded-full px-5 h-[35px] flex flex-row items-center gap-3'>
                         <div className="flex flex-row items-center gap-2">
-                            <p className='text-muted-foreground'>{averageRating}</p>
+                            <p className='text-muted-foreground'>{averageRating.toFixed(1)}</p>
                             <FaStar className="text-yellow-500" size={10} />
                         </div>
                         <span className="h-[20px] w-[1px] bg-neutral-200"></span>

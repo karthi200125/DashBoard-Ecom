@@ -22,7 +22,7 @@ const Review = ({ review }: ReviewPeops) => {
     const [showMore, setShowMore] = useState<boolean>(false);
 
     const { isPending, data: reviewUser } = useQuery({
-        queryKey: ['reviewuser'],
+        queryKey: ['reviewuser', review.userId],
         queryFn: async () => await getUserById(review.userId)
     });
 

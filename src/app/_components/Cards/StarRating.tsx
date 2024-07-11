@@ -27,7 +27,7 @@ const StarRating = ({ rating = 0, size = "20", showrating = true, star = '5' }: 
                 })}
             {showrating &&
                 <div className='h-[30px] ml-2  flex items-center justify-center px-2 bg-black text-white rounded-[5px]'>
-                    <h6 className='font-bold'>{rating} / 5</h6>
+                    <h6 className='font-bold'>{rating.toFixed(1)} / 5</h6>
                 </div>
             }
         </div>
