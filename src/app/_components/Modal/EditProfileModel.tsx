@@ -6,7 +6,7 @@ import { cities, states } from '@/app/_components/dummydata';
 import { useCurrentUser } from '@/app/hooks/useCurrentUser';
 import useEditProfileModal from '@/app/hooks/useEditProfileModel';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useTransition } from 'react';
+import { useState, useTransition } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
@@ -23,6 +23,8 @@ const EditProfile = () => {
     const editprofilemodel = useEditProfileModal()
     const router = useRouter()
     const queryClient = useQueryClient()
+    const [profileImg, setprofileImg] = useState('')
+    console.log(profileImg)
 
     const methods = useForm<z.infer<typeof UserSchema>>({
         resolver: zodResolver(UserSchema),
@@ -30,9 +32,11 @@ const EditProfile = () => {
             email: user?.email || '',
             name: user?.name || '',
             address: user?.address || '',
+            image: profileImg ? profileImg : user?.image,
             city: user?.city || '',
             state: user?.state || '',
             phoneNo: user?.phoneNo || '',
+            gender: user?.gender || '',
             postalCode: user?.postalCode || ''
         }
     });
@@ -41,9 +45,12 @@ const EditProfile = () => {
         const data = {
             ...values,
             id: user?.id,
-            image: ""
         }
+        console.log(values)
         startTransition(() => {
+            if (!user?.image || !profileImg) {
+                toast.error("select your profile picture")
+            }
             updateUser(data)
                 .then((data) => {
                     if (data.success) {
@@ -62,14 +69,14 @@ const EditProfile = () => {
     return (
         <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(handleSubmit)}>
-                <div className='w-full md:w-[1000px] p-2 md:p-5 overflow-y-auto'>
+                <div className='w-full  p-2 md:p-5 overflow-y-auto'>
                     <div className='py-2 border-b'>
                         <h4>Edit Profile</h4>
                         <p>Here you can edit public information about yourself</p>
                     </div>
-                    <div className='flex flex-col md:flex-row gap-5 justify-between'>
-                        <div className='w-full md:w-[300px] flex flex-col gap-3 py-3'>
-                            <EditProfileImgUpload />
+                    <div className='flex flex-col xl:flex-row gap-5 justify-between overflow-y-auto'>
+                        <div className='w-full xl:w-[300px] flex flex-col md:flex-row xl:flex-col gap-3 py-3'>
+                            <EditProfileImgUpload user={user} onDownloadUrl={(d: any) => setprofileImg(d)} />
                             <CustomBtn arrow btnCls='w-full border bg-black text-white' arrowCls='bg-white text-black' isLoading={isLoading} onClick={methods.handleSubmit(handleSubmit)}>Update Profile</CustomBtn>
                         </div>
                         <div className='w-full md:w-[650px] flex flex-wrap gap-5 justify-between overflow-y-auto py-3'>
@@ -77,6 +84,7 @@ const EditProfile = () => {
                             <CustomInput name='email' inputCls='flex-1' label='Email' type='email' isLoading={isLoading} />
                             <CustomInput name='phoneNo' inputCls='flex-1' label='Mobile Number' type='number' isLoading={isLoading} />
                             <CustomInput name='address' inputCls='flex-1' label='Permanent Address' type='text' isLoading={isLoading} />
+                            <CustomInput name='gender' inputCls='flex-1' label='your gender' type='text' isLoading={isLoading} />
                             <CustomInput name='postalCode' inputCls='flex-1' label='Postal Code' type='number' isLoading={isLoading} />
                             <div className='flex flex-col md:flex-row items-center gap-5 w-full'>
                                 <CustomSelect
@@ -85,7 +93,7 @@ const EditProfile = () => {
                                     defaultValue={methods.getValues("city")}
                                     options={cities}
                                     label="Select City"
-                                    selectCls="w-full"                                    
+                                    selectCls="w-full"
                                 />
                                 <CustomSelect
                                     name="state"
@@ -93,7 +101,7 @@ const EditProfile = () => {
                                     defaultValue={methods.getValues("state")}
                                     options={states}
                                     label="Select State"
-                                    selectCls="w-full"                                    
+                                    selectCls="w-full"
                                 />
                             </div>
                         </div>
@@ -112,7 +120,7 @@ const EditProfileModel = () => {
             isOpen={editprofilemodel.isOpen}
             toggleOpen={editprofilemodel.onClose}
             modalBody={<EditProfile />}
-            modalCls=''
+            modalCls='w-full xl:w-[1000px]'
         />
     )
 }
