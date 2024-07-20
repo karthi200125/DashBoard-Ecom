@@ -147,9 +147,8 @@ const OrderTable = () => {
                     <h4>Orders</h4>
                     <span>{`(${orderdata?.length})`}</span>
                 </h4>
-                <Search />
-                <div>
 
+                <div>
                     <div className='flex flex-row items-center gap-3'>
                         <Select>
                             <SelectTrigger className="w-[150px]">
@@ -177,7 +176,6 @@ const OrderTable = () => {
               </SelectContent>
             </Select> */}
                     </div>
-
                 </div>
             </div>
 

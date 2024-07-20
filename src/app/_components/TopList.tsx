@@ -12,12 +12,10 @@ interface TopListProps {
     icon?: any,
     data?: any,
     route?: string,
+    isLoading?: boolean,
 }
 
-const TopList = ({ data, title, icon, route }: TopListProps) => {
-
-    const isLoading = false
-
+const TopList = ({ data, title, icon, route, isLoading }: TopListProps) => {
 
     return (
         <div className='w-full h-full flex flex-col gap-2'>
@@ -33,10 +31,21 @@ const TopList = ({ data, title, icon, route }: TopListProps) => {
                                 <Sheet key={data?.id}>
                                     <SheetTrigger>
                                         <div className='flex flex-row items-center gap-5 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2 hover:bg-neutral-100'>
-                                            <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200 object-cover' proSrc={route === "products" ? data?.proImage[0] : data?.image} user={data} />
+                                            {route !== "orders" &&
+                                                <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200 object-cover' proSrc={route === "products" ? data?.proImage[0] : data?.image} user={data} />
+                                            }
                                             <div className='flex items-start justify-start flex-col gap-1'>
-                                                <h6 className='leading-none line-clamp-1 truncate'>{route === "products" ? data?.proName : data?.name}</h6>
-                                                <p>{route === "products" ? `${data?.proPrice} Rs` : data?.email}</p>
+                                                {route !== "orders" &&
+                                                    <>
+                                                        <h6 className='leading-none line-clamp-1 truncate'>{route === "products" ? data?.proName : data?.name}</h6>
+                                                        <p>{route === "products" ? `${data?.proPrice} Rs` : data?.email}</p>
+                                                    </>
+                                                }
+                                                <h6 className='text-[10px] leading-none line-clamp-1 truncate'>ID : {data?.id} </h6>
+                                                <div className="flex flex-row items-center gap-2">
+                                                    <h6>Total : ${data?.total}</h6>
+                                                    <span className={`py-1 px-3 rounded-full text-[10px] ${data?.status === 'pending' ? "bg-orange-50 text-orange-600" : "bg-green-50 text-orange-green"}`}>{data?.status}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </SheetTrigger>
