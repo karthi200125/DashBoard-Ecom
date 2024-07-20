@@ -6,6 +6,7 @@ import { useState } from "react";
 import CustomStepper from "./Stepper";
 import CheckOutShowProducts from "./CheckOutShowProducts";
 import OrderSummary from "./OrderSummary";
+import { useRouter } from "next/navigation";
 import { useCurrentUser } from "@/app/hooks/useCurrentUser";
 import Title from "@/app/_components/Title";
 import CustomBtn from "@/app/_components/CustomBtn";
@@ -16,6 +17,7 @@ const OrderSummaryStep = dynamic(() => import("./OrderSummaryStep"));
 const Cart = () => {
     const [step, setStep] = useState(0);
     const user = useCurrentUser()
+    const router = useRouter()
     const { state } = useCart();
     const { items } = state;
 
@@ -50,7 +52,7 @@ const Cart = () => {
             {items?.length === 0 &&
                 <div className="w-full flex items-center justify-center gap-3 flex-col">
                     <p>Your cart is empty</p>
-                    <CustomBtn arrow btnCls="border px-5">Go to Shop</CustomBtn>
+                    <CustomBtn onClick={() => router.push('/shop')} arrow btnCls="border px-5">Go to Shop</CustomBtn>
                 </div>
             }
             <Footer />

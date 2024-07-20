@@ -3,7 +3,7 @@
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: "2024-04-10",
+    apiVersion: '2024-04-10',
     typescript: true
 });
 
@@ -36,16 +36,15 @@ export const CheckOutSession = async (values: any) => {
             customer_email: user?.email,
             client_reference_id: user?.id,
             mode: 'payment',
-            metadata: { 
+            billing_address_collection: 'required',
+            shipping_address_collection: {
+                allowed_countries: ['IN'],
+            },
+            metadata: {
                 shippingInfo,
                 productIds,
-                quantities
+                quantities,
             },
-            shipping_options: [
-                {
-                    shipping_rate: process.env.STRIPE_SHIPPING_RATE_KEY!,
-                },
-            ],
             line_items: lineItems,
         });
 

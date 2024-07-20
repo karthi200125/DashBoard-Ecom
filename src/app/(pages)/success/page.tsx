@@ -1,7 +1,7 @@
 'use client'
 
 import { useCurrentUser } from "@/app/hooks/useCurrentUser";
-import { getOrder } from "../../../../actions/order";
+import { getUserOrder } from "../../../../actions/order";
 import { getOrderProducts } from "../../../../actions/product";
 import { formatDate } from "@/app/hooks/MomentDate";
 import { useQuery } from "@tanstack/react-query";
@@ -13,7 +13,7 @@ const Success = () => {
 
     const { data: orderData, isLoading: isOrderLoading } = useQuery({
         queryKey: ['getorder', user?.id],
-        queryFn: async () => await getOrder(user?.id)
+        queryFn: async () => await getUserOrder(user?.id)
     });
 
     const order:any = orderData?.data;

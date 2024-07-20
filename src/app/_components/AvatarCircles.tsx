@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 interface AvatarCirclesProps {
     className?: string;
     numPeople?: number;
-    avatarUrls: string[];
+    avatarUrls: any;
 }
 
 const AvatarCircles = ({
@@ -17,7 +17,7 @@ const AvatarCircles = ({
 }: AvatarCirclesProps) => {
     return (
         <div className={cn("z-10 flex -space-x-4 rtl:space-x-reverse", className)}>
-            {avatarUrls.map((url, index) => (
+            {avatarUrls && avatarUrls?.map((url: string, index: any) => (
                 <img
                     key={index}
                     className="h-10 w-10 rounded-full border-2 border-white dark:border-gray-800 bg-neutral-300 object-contain"

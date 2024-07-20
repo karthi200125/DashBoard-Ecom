@@ -24,72 +24,67 @@ async function getCartItems(line_items: Stripe.ApiList<Stripe.LineItem>) {
 }
 
 export async function POST(req: NextRequest) {
-    console.log('Webhook received');
-    
-    // try {
-    //     const signature = req.headers.get('stripe-signature');
-    //     const rawBody = await req.text();
-    //     console.log('Raw body:', rawBody);
-    //     console.log('Signature:', signature);
 
-    //     let event;
-    //     try {
-    //         event = stripe.webhooks.constructEvent(
-    //             rawBody,
-    //             signature!,
-    //             process.env.STRIPE_WEBHOOK_SECRET!
-    //         );
-    //     } catch (err: any) {
-    //         console.error('Webhook signature verification failed.', err.message);
-    //         return new NextResponse('Webhook error: Invalid signature', { status: 400 });
-    //     }
+    try {
+        const signature = req.headers.get('stripe-signature');
+        const rawBody = await req.text();        
 
-    //     console.log('Event type:', event.type);
-    //     if (event.type === 'checkout.session.completed') {
-    //         console.log('Checkout session completed');
-    //         const session = event.data.object as Stripe.Checkout.Session;
+        let event;
+        try {
+            event = stripe.webhooks.constructEvent(
+                rawBody,
+                signature!,
+                process.env.STRIPE_WEBHOOK_SECRET!
+            );
+        } catch (err: any) {
+        
+            return new NextResponse('Webhook error: Invalid signature', { status: 400 });
+        }
 
-    //         const line_items = await stripe.checkout.sessions.listLineItems(session.id);
-    //         console.log('Line items:', line_items);
-    //         const cartItems = await getCartItems(line_items);
-    //         console.log('Cart items:', cartItems);
+        
+        if (event.type === 'checkout.session.completed') {
+            
+            const session = event.data.object as Stripe.Checkout.Session;
 
-    //         const productIds = cartItems.map(item => item.product);
-    //         const quantities = cartItems.map(item => item.quantity);
-    //         const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+            const line_items = await stripe.checkout.sessions.listLineItems(session.id);
+            
+            const cartItems = await getCartItems(line_items);
+            
 
-    //         const userId = session.client_reference_id!;
-    //         console.log('Creating order for user:', userId, 'with products:', productIds, 'and total price:', totalPrice);
+            const productIds = cartItems.map(item => item.product);
+            const quantities = cartItems.map(item => item.quantity);
+            const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-    //         try {
-    //             const newOrder = await db.order.create({
-    //                 data: {
-    //                     userId,
-    //                     productsIds: productIds,
-    //                     quantity: quantities.reduce((acc, q) => acc + q, 0),
-    //                     total: totalPrice,
-    //                     status: 'pending',
-    //                 },
-    //             });
+            const userId = session.client_reference_id!;
 
-    //             console.log('Order created:', newOrder);
+            try {
+                const newOrder = await db.order.create({
+                    data: {
+                        userId,
+                        productsIds: productIds,
+                        quantity: quantities.reduce((acc, q) => acc + q, 0),
+                        total: totalPrice,
+                        status: 'pending',
+                    },
+                });
+                
 
-    //             // Update user model to connect the new order
-    //             await db.user.update({
-    //                 where: { id: userId },
-    //                 data: { Orders: { connect: { id: newOrder.id } } },
-    //             });
+                // Update user model to connect the new order
+                await db.user.update({
+                    where: { id: userId },
+                    data: { Orders: { connect: { id: newOrder.id } } },
+                });
 
-    //             return new NextResponse('Order created successfully', { status: 200 });
-    //         } catch (error) {
-    //             console.error('Failed to create order:', error);
-    //             return new NextResponse('Failed to create order', { status: 500 });
-    //         }
-    //     }
+                return new NextResponse('Order created successfully', { status: 200 });
+            } catch (error) {
+                console.error('Failed to create order:', error);
+                return new NextResponse('Failed to create order', { status: 500 });
+            }
+        }
 
-    //     return new NextResponse('Unhandled event type', { status: 400 });
-    // } catch (error) {
-    //     console.error('Webhook error:', error);
-    //     return new NextResponse('Webhook error', { status: 400 });
-    // }
+        return new NextResponse('Unhandled event type', { status: 400 });
+    } catch (error) {
+        console.error('Webhook error:', error);
+        return new NextResponse('Webhook error', { status: 400 });
+    }
 }
