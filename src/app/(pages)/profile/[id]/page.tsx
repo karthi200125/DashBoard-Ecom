@@ -4,6 +4,7 @@ import CustomBtn from '@/app/_components/CustomBtn';
 import EditProfileModel from '@/app/_components/Modal/EditProfileModel';
 import { ProfilePageSkeleton } from '@/app/_components/Skeletons/ProfilePageSkeleton';
 import UserProfile from '@/app/_components/UserProfile';
+import { useCurrentUser } from '@/app/hooks/useCurrentUser';
 import useEditProfileModal from '@/app/hooks/useEditProfileModel';
 import Image from '@/components/ui/CustomImage';
 import { useQuery } from '@tanstack/react-query';
@@ -13,12 +14,9 @@ import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoLocationOutline } from 'react-icons/io5';
 import { getFavProducts } from '../../../../../actions/product';
 import { getSingleUser } from '../../../../../actions/users';
-import { useCurrentUser } from '@/app/hooks/useCurrentUser';
-import { getUserOrderProducts } from '../../../../../actions/order';
 import UserOrders from '../UserOrders';
 
 const Profile = () => {
-    const orders: string[] = [];
     const editProfileModel = useEditProfileModal();
     const Currentuser = useCurrentUser()
     const router = useRouter();
@@ -38,7 +36,7 @@ const Profile = () => {
 
     const profileUser: any = userdada
     const profileUserFav: any = data
-    
+
     const favoriteItems = useMemo(() => (
         <div className={`p-2 flex flex-row items-center gap-2 ${profileUserFav?.data?.length >= 4 ? "justify-between" : ""}`}>
             {profileUserFav && profileUserFav.data?.length > 0 ? (
@@ -119,15 +117,16 @@ const Profile = () => {
             </div>
 
             {/* My order details */}
-            <div className='flex flex-col gap-5'>
-                {/* Order top heading */}
-                <div>
-                    <h4> {iam ? "My Orders" : `${profileUser?.name} Orders`}</h4>
-                    <h5>Customer orders</h5>
+            {iam &&
+                <div className='flex flex-col gap-5'>
+                    {/* Order top heading */}
+                    <div>
+                        <h4> {iam ? "My Orders" : `${profileUser?.name} Orders`}</h4>
+                        <h5>Customer orders</h5>
+                    </div>
+                    <UserOrders user={profileUser} />
                 </div>
-                
-                <UserOrders user={profileUser} />
-            </div>
+            }
         </div>
     );
 };

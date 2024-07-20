@@ -29,10 +29,10 @@ const OrderProducts = ({ order }: OrderProductsProps) => {
         <div className='border rounded-[10px] p-5 min-[100px]'>
 
 
-            <div className="flex flex-col gap-3 md:flex-row items-center md:justify-between">
+            <div className="flex flex-col gap-3 md:flex-row items-start md:items-center md:justify-between">
                 {/* order Top left*/}
                 <div className="space-y-2">
-                    <div className="flex flex-row items-center gap-5">
+                    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5">
                         <h5>Order Id : {order?.id}</h5>
                         <div className="text-[10px] h-[30px] px-3 max-w-max rounded-xl bg-green-50 text-green-500 flex items-center justify-center">Payment compledted</div>
                     </div>

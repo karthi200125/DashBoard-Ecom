@@ -40,11 +40,11 @@ const OrderPage = () => {
     const discount = 10
 
     return (
-        <div className="w-full min-h-screen space-y-5">
+        <div className="w-full min-h-screen space-y-5 px-[16px] md:p-[24px] lg:p-[32px]">
 
             {/* order top content */}
             <div className="space-y-2">
-                <div className="flex flex-row items-center gap-5">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5">
                     <h5>Order Id : {orderId}</h5>
                     <div className="text-[10px] h-[30px] px-3 max-w-max rounded-xl bg-green-50 text-green-500 flex items-center justify-center">Payment compledted</div>
                 </div>
@@ -59,11 +59,11 @@ const OrderPage = () => {
             </div>
 
 
-            <div className='flex flex-row items-start gap-10'>
+            <div className='flex flex-col lg:flex-row items-start gap-10'>
 
-                <div className='w-[70%] max-h-max py-5 space-y-10'>
+                <div className='w-full lg:w-[70%] max-h-max py-5 space-y-10'>
                     {/* order items */}
-                    <div className='border rounded-[30px] max-h-max p-5 space-y-5'>
+                    <div className='border rounded-[10px] md:rounded-[30px] max-h-max p-2 md:p-5 space-y-5'>
                         <h5>Order items</h5>
 
                         {orderProductsLoading ?
@@ -73,7 +73,7 @@ const OrderPage = () => {
                             :
                             OrderProducts?.data?.map((pro: any) => (
                                 <div
-                                    className='flex flex-row items-start gap-5 justify-between h-[120px] border rounded-[20px] p-3 overflow-hidden'
+                                    className='flex flex-col md:flex-row items-start gap-5 justify-between max-h-max md:h-[120px] rounded-[10px] border md:rounded-[20px] p-3 overflow-hidden'
                                     key={pro.id}
                                 >
                                     {/* itemleft side image and data */}
@@ -81,10 +81,10 @@ const OrderPage = () => {
                                         <CustomImage
                                             src={pro?.proImage[0]}
                                             alt={pro?.proName}
-                                            imgclass='w-[100px] h-[100px] rounded-xl bg-neutral-200 objcet-contain'
+                                            imgclass=' w-[100px] h-[100px] rounded-xl bg-neutral-200 objcet-contain'
                                         />
                                         <div className='flex flex-col space-y-1 justify-between'>
-                                            <h6>{pro?.proName}</h6>
+                                            <h6 className='line-clamp-1'>{pro?.proName}</h6>
                                             <h6 className="flex flex-row items-center gap-3">
                                                 Size :
                                                 <p>M</p>
@@ -100,7 +100,7 @@ const OrderPage = () => {
                                         </div>
                                     </div>
                                     {/* itemleft right*/}
-                                    <div className="space-y-3">
+                                    <div className="flex flex-row md:flex-col gap-3">
                                         <div className='text-[12px] border rounded-xl px-3 h-[40px] flex items-center justify-center'>
                                             3 x ₹ {pro?.proPrice}
                                         </div>
@@ -113,7 +113,7 @@ const OrderPage = () => {
                     </div>
 
                     {/* order summary */}
-                    <div className='border rounded-[30px] max-h-max p-5 space-y-5'>
+                    <div className='border rounded-[10px] md:rounded-[30px] max-h-max p-5 space-y-5'>
                         <h5 className='border-b-[1px] pb-2'>Order Summary</h5>
                         <h6 className="w-full flex flex-row items-center justify-between">
                             Subtotal
@@ -138,7 +138,7 @@ const OrderPage = () => {
 
 
                 {/* cistomer details */}
-                <div className='w-[30%] min-h-[100px] space-y-5'>
+                <div className='w-full lg:w-[30%] min-h-[100px] space-y-5'>
                     <div className='w-full border rounded-[20px] p-5 space-y-3'>
                         <h5>Customer</h5>
                         <h6 className="flex flex-row items-center gap-2 text-neutral-400">
