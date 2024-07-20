@@ -1,98 +1,189 @@
-'use client'
+'use client';
 
 import { useCurrentUser } from "@/app/hooks/useCurrentUser";
-import { getUserOrder } from "../../../../actions/order";
-import { getOrderProducts } from "../../../../actions/product";
 import { formatDate } from "@/app/hooks/MomentDate";
 import { useQuery } from "@tanstack/react-query";
 import CustomImage from "@/components/ui/CustomImage";
-
+import Spinners from "@/app/_components/Spinners";
+import { MdOutlinePersonOutline, MdOutlineLocalPhone, MdOutlineEmail } from "react-icons/md";
+import { FiShoppingBag } from "react-icons/fi";
+import { FaRegAddressCard } from "react-icons/fa";
+import { LiaCitySolid } from "react-icons/lia";
+import { TbBuildingEstate } from "react-icons/tb";
+import { GiWorld } from "react-icons/gi";
+import { useSearchParams, useRouter } from "next/navigation";
+import CustomBtn from "@/app/_components/CustomBtn";
+import { getUserOrder } from "../../../../actions/order";
+import { getOrderProducts } from "../../../../actions/product";
 
 const Success = () => {
-    const user:any = useCurrentUser();
+    const searchParams = useSearchParams();
+    const user: any = useCurrentUser();
+    const router = useRouter();
+
+    const success = searchParams.get("order_success");
 
     const { data: orderData, isLoading: isOrderLoading } = useQuery({
         queryKey: ['getorder', user?.id],
-        queryFn: async () => await getUserOrder(user?.id)
+        queryFn: async () => await getUserOrder(user?.id),
     });
 
-    const order:any = orderData?.data;
-    const productIds = order?.productsIds || [];
+    const order: any = orderData?.data;
 
-    const { data: productsData, isLoading: isProductsLoading } = useQuery({
-        queryKey: ['getorderproducts', productIds],
-        queryFn: async () => await getOrderProducts(productIds),
+    const { data: orderProducts, isLoading: orderProductsLoading } = useQuery({
+        queryKey: ['orderproducts', order?.productsIds],
+        queryFn: async () => await getOrderProducts(order?.productsIds),
     });
 
-    const orderProducts = productsData?.data || [];
-
+    const subtotal = 1000;
+    const estimatedShipping = 0;
+    const discount = 10;
+    
     return (
-        <div className="w-full min-h-[90vh] flex flex-col gap-5 py-5">
-            <h4 className="py-3 border-b">Order Information</h4>
-
-            <div>
-                {/* Example content */}
-                <h5>Order Date: <span className="text-neutral-400">{formatDate(order?.createdAt)}</span></h5>
-                <h5>Shipping Address: <span className="text-neutral-400">{`${user?.address}, ${user?.city}, ${user?.state}, India`}</span></h5>
-            </div>
-
-            {/* Payment summary */}
-            <div className="flex flex-col">
-                <h5>Payment Summary</h5>
-                <p>Short report of payment status</p>
-                <div className="max-w-max border rounded-[10px] flex flex-row px-10 py-5 mt-3 gap-10 ">
-                    <div>
-                        <p>Amount Total</p>
-                        <h5>{order?.total} Rs</h5>
+        <>
+            {success ? (
+                <div className="w-full min-h-screen space-y-5 px-[16px] md:p-[24px] lg:p-[32px]">
+                    {/* Order top content */}
+                    <div className="space-y-2">
+                        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5">
+                            <h5>Order Id: {order?.id}</h5>
+                            <div className="text-[10px] h-[30px] px-3 max-w-max rounded-xl bg-green-50 text-green-500 flex items-center justify-center">
+                                Payment completed
+                            </div>
+                        </div>
+                        <div className="flex flex-row items-center gap-5">
+                            <h5>Is Delivered:</h5>
+                            <div className={`text-[10px] h-[30px] px-3 max-w-max rounded-xl flex items-center justify-center ${order?.status === "pending" ? "bg-orange-50 text-orange-500" : "bg-green-50 text-green-500"}`}>
+                                {order?.status === "pending" ? "Pending" : "Delivered"}
+                            </div>
+                        </div>
+                        <h6 className="flex flex-row items-center gap-3">
+                            {formatDate(order?.createdAt)}
+                            <p> from Draft orders</p>
+                        </h6>
                     </div>
-                    <div>
-                        <p>Amount paid</p>
-                        <h5>{order?.total} Rs</h5>
-                    </div>
-                </div>
-            </div>
 
-            {/* shipping sttaus */}
-            <div className="flex-1">
-                <h4>Expected Delivery</h4>
-                <h5>Order status : <span className={`${order?.status === "pending" ? "text-red-400" : "text-green-400"}`}>{order?.status}</span></h5>
-            </div>
-
-            {/* Products */}
-            <div className="border-t py-5 gap-3">
-                <h5>Ordered Products ({order?.quantity})</h5>
-                <div className="flex flex-col gap-2 overflow-y-auto">
-                    {/* Display products if loaded */}
-                    {isProductsLoading ? (
-                        <div>Loading...</div>
-                    ) : (
-                        orderProducts.map(product => (
-                            <div key={product.id} className="border rounded-[10px] p-5 flex flex-row items-center justify-between bg-neutral-100">
-                                <div className="flex flex-row items-center gap-3">
-                                    <CustomImage src={product?.proImage[0]} imgclass="w-[100px] h-[80px] object-contain" />
+                    <div className='flex flex-col lg:flex-row items-start gap-10'>
+                        <div className='w-full lg:w-[70%] max-h-max py-5 space-y-10'>
+                            {/* Order items */}
+                            <div className='border rounded-[10px] md:rounded-[30px] max-h-max p-2 md:p-5 space-y-5'>
+                                <h5>Order items</h5>
+                                {orderProductsLoading ? (
                                     <div>
-                                        <h5>{product.proName}</h5>
-                                        <p className="w-[300px] line-clamp-1">{product.proDesc}</p>
+                                        <Spinners />
                                     </div>
-                                </div>
-                                <div className="flex flex-row items-center gap-5">
-                                    <h5 className="w-[20px] h-[20px] rounded-full bg-red-400"></h5>
-                                    <h5 className="text-center border p-3 rounded-[5px]">Xl</h5>
-                                    <h5 className="min-w-[100px] text-center">{product.proPrice} Rs</h5>
-                                    <h5 className="w-[50px] text-center">1</h5>
+                                ) : (
+                                    orderProducts?.data?.map((pro: any) => (
+                                        <div
+                                            className='flex flex-col md:flex-row items-start gap-5 justify-between max-h-max md:h-[120px] rounded-[10px] border md:rounded-[20px] p-3 overflow-hidden'
+                                            key={pro.id}
+                                        >
+                                            {/* Item left side image and data */}
+                                            <div className="flex flex-row items-start gap-3">
+                                                <CustomImage
+                                                    src={pro?.proImage[0]}
+                                                    alt={pro?.proName}
+                                                    imgclass='w-[100px] h-[100px] rounded-xl bg-neutral-200 object-contain'
+                                                />
+                                                <div className='flex flex-col space-y-1 justify-between'>
+                                                    <h6 className='line-clamp-1'>{pro?.proName}</h6>
+                                                    <h6 className="flex flex-row items-center gap-3">
+                                                        Size: <p>M</p>
+                                                    </h6>
+                                                    <h6 className="flex flex-row items-center gap-3">
+                                                        Color: <p>white</p>
+                                                    </h6>
+                                                    <h6 className="flex flex-row items-center gap-3">
+                                                        Discount: <p>{pro?.proOffer} %</p>
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                            {/* Item right */}
+                                            <div className="flex flex-row md:flex-col gap-3">
+                                                <div className='text-[12px] border rounded-xl px-3 h-[40px] flex items-center justify-center'>
+                                                    3 x ₹ {pro?.proPrice}
+                                                </div>
+                                                <div className='text-[12px] border rounded-xl px-3 h-[40px] flex items-center justify-center bg-black text-white'>
+                                                    ₹ {3 * pro?.proPrice}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+                                )}
+                            </div>
+
+                            {/* Order summary */}
+                            <div className='border rounded-[10px] md:rounded-[30px] max-h-max p-5 space-y-5'>
+                                <h5 className='border-b-[1px] pb-2'>Order Summary</h5>
+                                <h6 className="w-full flex flex-row items-center justify-between">
+                                    Subtotal <p>₹ {subtotal.toFixed(2)}</p>
+                                </h6>
+                                <h6 className="w-full flex flex-row items-center justify-between">
+                                    Estimated Shipping <p>₹ {estimatedShipping.toFixed(2)}</p>
+                                </h6>
+                                <h6 className="w-full flex flex-row items-center justify-between">
+                                    Discount <p>- ₹ {discount.toFixed(2)}</p>
+                                </h6>
+                                <div className='flex flex-row justify-between items-center bg-black text-white rounded-md px-3 h-[40px]'>
+                                    <h5>Order Total</h5>
+                                    <span className='text-md font-bold'>₹ {order?.total.toFixed(2)}</span>
                                 </div>
                             </div>
-                        ))
-                    )}
+                        </div>
 
-                    {/* Total amount section */}
-                    <div className="w-full p-3 rounded-[10px] bg-black text-white flex flex-row items-center justify-between px-10">
-                        <h5>Total Amount</h5>
-                        <h5>{order?.total} Rs</h5>
+                        {/* Customer details */}
+                        <div className='w-full lg:w-[30%] min-h-[100px] space-y-5'>
+                            <div className='w-full border rounded-[20px] p-5 space-y-3'>
+                                <h5>Customer</h5>
+                                <h6 className="flex flex-row items-center gap-2 text-neutral-400">
+                                    <MdOutlinePersonOutline size={20} className='text-black' />
+                                    {user?.name}
+                                </h6>
+                                <h6 className="flex flex-row items-center gap-2 text-neutral-400">
+                                    <FiShoppingBag size={20} className='text-black' />
+                                    order 1
+                                </h6>
+                            </div>
+                            <div className='w-full border rounded-[20px] p-5 space-y-3'>
+                                <h5>Contact information</h5>
+                                <h6 className="flex flex-row items-center gap-2 text-neutral-400">
+                                    <MdOutlineEmail size={20} className='text-black' />
+                                    {user?.email}
+                                </h6>
+                                <h6 className="flex flex-row items-center gap-2 text-neutral-400">
+                                    <MdOutlineLocalPhone size={20} className='text-black' />
+                                    {user?.phoneNo}
+                                </h6>
+                            </div>
+                            <div className='w-full border rounded-[20px] p-5 space-y-3'>
+                                <h5>Shipping address</h5>
+                                <h6 className="flex flex-row items-center gap-2 text-neutral-400">
+                                    <FaRegAddressCard size={20} className='text-black' />
+                                    {user?.address}
+                                </h6>
+                                <h6 className="flex flex-row items-center gap-2 text-neutral-400">
+                                    <LiaCitySolid size={20} className='text-black' />
+                                    {user?.city} - {user?.postalCode}
+                                </h6>
+                                <h6 className="flex flex-row items-center gap-2 text-neutral-400">
+                                    <TbBuildingEstate size={20} className='text-black' />
+                                    {user?.state}
+                                </h6>
+                                <h6 className="flex flex-row items-center gap-2 text-neutral-400">
+                                    <GiWorld size={20} className='text-black' />
+                                    INDIA
+                                </h6>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            ) : (
+                <div className="w-full bg-blue-400 h-screen text-black flex items-center justify-center">
+                    <p className="text-red-400">Your Stripe Checkout failed</p>
+                    <CustomBtn onClick={() => router.push('/shop')} arrow btnCls="border px-5">Go to Shop</CustomBtn>
+                </div>
+            )}
+        </>
     );
 };
 

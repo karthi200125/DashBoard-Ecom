@@ -40,9 +40,9 @@ const Card = ({ card }: CardProps) => {
     }, [card?.id, router]);
 
     return (
-        <div className='min-w-[300px] rounded-[30px] h-[500px] overflow-hidden relative shadow-md hover:shadow-custom-shadow transition duration-300 group' onClick={cardClick}>
+        <div className='w-full md:min-w-[300px] rounded-[20px] md:rounded-[30px] max-h-max md:h-[500px] overflow-hidden relative shadow-md hover:shadow-custom-shadow transition duration-300 group' onClick={cardClick}>
             {/* image con */}
-            <div className='h-[280px] overflow-hidden relative'>
+            <div className='h-[200px] md:h-[280px] overflow-hidden relative'>
                 <Image
                     src={card?.proImage[0] || ""}
                     imgclass='w-full h-full bg-neutral-200 object-contain transition duration-500 transform group-hover:scale-[1.3]'
@@ -57,14 +57,16 @@ const Card = ({ card }: CardProps) => {
             </div>
 
             {/* card content */}
-            <div className='bg-white w-full h-[220px] p-5 flex flex-col justify-between'>
-                <h5 className='capitalize'>{card?.proName}</h5>
-                <p className='leading-0 line-clamp-2'>{card?.proDesc}</p>
+            <div className='bg-white w-full max-h-max md:h-[220px] p-2 md:p-5 flex flex-col gap-3 md:justify-between'>
+                <h5 className='text-[12px] md:text-[15px] capitalize line-clamp-2 md:line-clamp-1'>{card?.proName}</h5>
+                <div className="hidden md:flex h-[45px] overflow-hidden w-full">
+                    <p className='line-clamp-2'>{card?.proDesc}</p>
+                </div>
 
                 {/* rating */}
-                <div className='flex flex-row items-center justify-between'>
+                <div className='flex flex-col gap-3 md:flex-row items-start md:items-center justify-between'>
                     {/* <StarRating rating={averageRating} size='15'/> */}
-                    <div className='border rounded-full px-5 h-[35px] flex flex-row items-center gap-3'>
+                    <div className='hidden md:flex w-full md:max-w-max border rounded-full px-5 h-[35px] flex-row items-center justify-center gap-3'>
                         <div className="flex flex-row items-center gap-2">
                             <p className='text-muted-foreground'>{averageRating.toFixed(1)}</p>
                             <FaStar className="text-yellow-500" size={10} />
@@ -77,7 +79,7 @@ const Card = ({ card }: CardProps) => {
 
                 {/*  add to car button*/}
                 <div className='flex flex-row items-center justify-between'>
-                    <div className='w-[50px] h-[50px] border rounded-full flex items-center justify-center rotate-[-45deg] group-hover:rotate-0 transition duration-500 group-hover:bg-black group-hover:text-white cursor-pointer'>
+                    <div className='hidden md:flex w-[50px] h-[50px] border rounded-full items-center justify-center rotate-[-45deg] group-hover:rotate-0 transition duration-500 group-hover:bg-black group-hover:text-white cursor-pointer'>
                         <ArrowRight />
                     </div>
                     <AddToCartBtn product={card} />

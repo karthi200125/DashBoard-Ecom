@@ -36,7 +36,7 @@ const Filters = () => {
 
 
     return (
-        <div className="flex flex-wrap md:flex-row items-center gap-2 xl:gap-5">
+        <div className="w-full py-2 md:max-w-max overflow-x-auto flex flex-row items-center gap-2 xl:gap-5">
 
             {/* category select */}
             <select name="category" id="category" onChange={handleFilterChange} className="rounded-[5px] px-3 bg-neutral-100 h-[40px] text-[10px]">

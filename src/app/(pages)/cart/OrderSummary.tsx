@@ -75,8 +75,8 @@ const OrderSummary = ({ step, onNext, onBack }: OrderSummaryProps) => {
                         {step === 1 ? "Back" : "Back"}
                     </CustomBtn>
                 }
-                <CustomBtn btnCls='flex-1 bg-black text-white hover:opacity-70' onClick={step === 2 ? HandleCheckOut : onNext} isLoading={step === 2 && isLoading} disabled={items?.length === 0}>
-                    {step === 0 || step === 1 ? "Next" : "CheckOut"}
+                <CustomBtn btnCls='flex-1 bg-black text-white hover:opacity-70' onClick={step === 1 ? HandleCheckOut : onNext} isLoading={step === 1 && isLoading} disabled={items?.length === 0}>
+                    {step === 0 ? "Next" : "CheckOut"}
                 </CustomBtn>
             </div>
         </div>

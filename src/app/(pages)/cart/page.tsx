@@ -34,7 +34,7 @@ const Cart = () => {
                 <div className="w-full">
                     {step === 0 && <OrderSummaryStep />}
                     {step === 1 && <AddressStep />}
-                    {step === 2 && <CheckOutShowProducts />}
+                    {/* {step === 2 && <CheckOutShowProducts />} */}
                 </div>
 
                 {/* Right checkout box */}

@@ -15,6 +15,7 @@ import { IoLocationOutline } from 'react-icons/io5';
 import { getFavProducts } from '../../../../../actions/product';
 import { getSingleUser } from '../../../../../actions/users';
 import UserOrders from '../UserOrders';
+import Title from '@/app/_components/Title';
 
 const Profile = () => {
     const editProfileModel = useEditProfileModal();
@@ -59,6 +60,7 @@ const Profile = () => {
 
     return (
         <div className='w-full p-2 md:p-0 py-5 min-h-screen flex flex-col gap-5'>
+            <Title title={`DEXON | ${profileUser?.name}`} />
             <EditProfileModel />
             {/* Profile top */}
             <div className='py-5 border-b'>
