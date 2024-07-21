@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from "next/dynamic"
 import { FaUsers } from "react-icons/fa"
 import { getTopOrderUsers } from "../../../../actions/dashboard/dashUser"

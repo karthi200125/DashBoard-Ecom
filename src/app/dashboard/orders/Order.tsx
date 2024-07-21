@@ -1,26 +1,38 @@
+'use client'
+
 import CustomBtn from '@/app/_components/CustomBtn'
 import UserProfile from '@/app/_components/UserProfile'
+import useDeleteOrderModal from '@/app/hooks/useDeleteOrderModel'
 import { ListOrdered } from 'lucide-react'
+import { memo } from 'react'
 
+interface OrderProps {
+    orderData?: any;
+    user?: any;
+    products?: any;
+}
 
-const Order = ({ orderData }: any) => {
+const Order = ({ orderData, user, products }: OrderProps) => {
+
+    const deleteOrderModal = useDeleteOrderModal();
+
     return (
-        <div className='w-full h-full flex flex-col gap-4'>
-            <h1 className='text-2xl font-bold w-full text-center py-5 border-b-[1px]'>Order details</h1>
+        <div className='w-full h-full flex flex-col gap-4 overflow-y-auto'>
+            <h4 className='text-2xl font-bold w-full text-center py-5 border-b-[1px]'>Order details</h4>
             <div className='w-full flex flex-col gap-2'>
-                <h2 className='flex items-center gap-2 flex-row font-bold'>Order Id : <span className='text-neutral-400 text-sm'>#{orderData?.orderId}</span></h2>
-                <h2 className='flex items-center gap-2 flex-row font-bold'>CustomerId : <span className='text-neutral-400 text-sm'>#{orderData?.id}</span></h2>
-                <h2 className='flex items-center gap-2 flex-row font-bold'>Customer Name : <span className='text-neutral-400 text-sm'>#{orderData?.customer}</span></h2>
-                <h2 className='flex items-center gap-2 flex-row font-bold'>Address : <span className='text-neutral-400 text-sm'>#{orderData?.address}</span></h2>
-                <h2 className='flex items-center gap-2 flex-row font-bold'>Phone Number : <span className='text-neutral-400 text-sm'>#{orderData?.orderId}</span></h2>
+                <h6 className='flex items-center gap-2 flex-row'>Order Id : <span className='text-neutral-400 text-[10px]'>#{orderData?.id}</span></h6>
+                <h6 className='flex items-center gap-2 flex-row'>CustomerId : <span className='text-neutral-400 text-[10px]'>#{orderData?.userId}</span></h6>
+                <h6 className='flex items-center gap-2 flex-row'>Customer Name : <span className='text-neutral-400 text-[10px]'>{user?.name}</span></h6>
+                <h6 className='flex items-center gap-2 flex-row'>Address : <span className='text-neutral-400 text-[10px]'>#{user?.address}</span></h6>
+                <h6 className='flex items-center gap-2 flex-row'>Phone Number : <span className='text-neutral-400 text-[10px]'>#{user?.phoneNo}</span></h6>
             </div>
 
             <div className=' flex flex-row items-center gap-5 border-b-[1px] py-5 justify-center'>
-                <CustomBtn arrow>
-                    Cancel Order
+                <CustomBtn arrow btnCls='border text-[10px]'>
+                    Cancel
                 </CustomBtn>
-                <CustomBtn arrow>
-                    Edit Order
+                <CustomBtn arrow btnCls='border text-[10px]'>
+                    Comfirm
                 </CustomBtn>
             </div>
 
@@ -28,18 +40,18 @@ const Order = ({ orderData }: any) => {
                 <div className="flex flex-row justify-between border py-3 px-2">
                     <div className="flex flex-row gap-2 items-center">
                         <ListOrdered />
-                        <span>(10) Products</span>
+                        <span>({products?.length || 0}) Products</span>
                     </div>
-                    <h1 className='text-md font-bold'>
-                        Total : 1000 Rs
-                    </h1>
+                    <h6>
+                        Total : {orderData?.total} Rs
+                    </h6>
                 </div>
                 <div className="flex flex-col gap-2">
-                    {orderData?.products?.map((pro: any, i: number) => (
-                        <div className='flex flex-row items-center justify-between' key={i} >
-                            <UserProfile proAlt={pro?.productName} proSrc={pro?.productImage} profileCls='w-10 h-10 bg-neutral-200' />
-                            <h2 className='w-[180px]'>products Name</h2>
-                            <h3>1000 Rs</h3>
+                    {products?.map((pro: any) => (
+                        <div className='flex flex-row items-center justify-between border p-1 rounded-[10px]' key={pro?.id} >
+                            <UserProfile proAlt={pro?.proName} proSrc={pro?.proImage[0]} profileCls='w-10 h-10 bg-neutral-200' />
+                            <h6 className='w-[180px] line-clamp-1'>{pro?.proName}</h6>
+                            <p>{pro?.proPrice} Rs</p>
                         </div>
                     ))}
                 </div>
@@ -49,4 +61,4 @@ const Order = ({ orderData }: any) => {
     )
 }
 
-export default Order
+export default memo(Order)

@@ -48,7 +48,7 @@ const OrderProducts = ({ order }: OrderProductsProps) => {
                 </div>
                 {/* order Top right*/}
                 <div className="space-y-2">
-                    <h5>Total : ${order?.total}</h5>
+                    <h5>Total : ₹ {order?.total}</h5>
                     <AvatarCircles numPeople={imageUrls?.length} avatarUrls={imageUrls} />
                 </div>
             </div>

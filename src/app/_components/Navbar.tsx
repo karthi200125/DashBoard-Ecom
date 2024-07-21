@@ -94,7 +94,7 @@ const Navbar = () => {
                 className={navbarClasses}
             >
                 {isDashboard ? (
-                    <div className="flex flex-row gap-3 items-center bg-neutral-100 rounded-full p-2">
+                    <div className="flex flex-row gap-3 items-center bg-black rounded-full p-2 text-white">
                         {renderRoutes}
                     </div>
                 ) : !user ? (

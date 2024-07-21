@@ -15,6 +15,20 @@ export const getOrder = async (orderId: string): Promise<any> => {
     }
 };
 
+export const getAllOrders = async () => {
+    try {
+        const orders = await db.order.findMany({
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });
+        return { success: 'Successfully retrieved the order data', data: orders };
+    } catch (error) {
+        return { error: 'Failed to get order data' };
+    }
+};
+
+
 export const getUserOrder = async (userId: string) => {
     try {
         const order = await db.order.findFirst({

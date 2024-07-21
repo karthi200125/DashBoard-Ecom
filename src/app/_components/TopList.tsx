@@ -30,11 +30,11 @@ const TopList = ({ data, title, icon, route, isLoading }: TopListProps) => {
                             data.slice(0, 8).map((data: any) => (
                                 <Sheet key={data?.id}>
                                     <SheetTrigger>
-                                        <div className='flex flex-row items-center gap-5 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2 hover:bg-neutral-100'>
+                                        <div className={`flex flex-row items-center gap-5 hover:borde rounded-[10px] hover: cursor-pointer overflow-hidden p-2 hover:bg-neutral-100 ${route === "orders" && "border rounded-[10px]"}`}>
                                             {route !== "orders" &&
                                                 <UserProfile proAlt={route === "products" ? data?.proName : data?.name} profileCls='w-12 h-12 bg-neutral-200 object-cover' proSrc={route === "products" ? data?.proImage[0] : data?.image} user={data} />
                                             }
-                                            <div className='flex items-start justify-start flex-col gap-1'>
+                                            <div className={`flex items-start justify-start flex-col gap-1`}>
                                                 {route !== "orders" &&
                                                     <>
                                                         <h6 className='leading-none line-clamp-1 truncate'>{route === "products" ? data?.proName : data?.name}</h6>
