@@ -16,29 +16,29 @@ interface OrderProps {
 const Order = ({ orderData, user, products }: OrderProps) => {
 
     const deleteOrderModal = useDeleteOrderModal();
-    const deleteOrderModel = useDeleteOrderModel();
-    const [isLoading, startTransition] = useTransition();
-    const queryClient = useQueryClient()
+    // const deleteOrderModel = useDeleteOrderModel();
+    // const [isLoading, startTransition] = useTransition();
+    // const queryClient = useQueryClient()
 
-    const HandleDelete = () => {
-        startTransition(() => {
-            deleteOrder(order?.id).
-                then((data: any) => {
-                    if (data?.success) {
-                        toast.success(data?.success)
-                        deleteOrderModel.onClose()
-                        // queryClient.invalidateQueries({ queryKey: ['gendercount'] });
-                        // queryClient.invalidateQueries({ queryKey: ['getMonthlyorderCounts'] });
-                        queryClient.invalidateQueries({ queryKey: ['getallorders'] });
-                        queryClient.invalidateQueries({ queryKey: ['totalordersum'] });
-                        queryClient.invalidateQueries({ queryKey: ['thismonthtotalordersum'] });
-                    }
-                    if (data?.error) {
-                        toast.error(data?.error)
-                    }
-                })
-        })
-    }
+    // const HandleDelete = () => {
+    //     startTransition(() => {
+    //         deleteOrder(order?.id).
+    //             then((data: any) => {
+    //                 if (data?.success) {
+    //                     toast.success(data?.success)
+    //                     deleteOrderModel.onClose()
+    //                     // queryClient.invalidateQueries({ queryKey: ['gendercount'] });
+    //                     // queryClient.invalidateQueries({ queryKey: ['getMonthlyorderCounts'] });
+    //                     queryClient.invalidateQueries({ queryKey: ['getallorders'] });
+    //                     queryClient.invalidateQueries({ queryKey: ['totalordersum'] });
+    //                     queryClient.invalidateQueries({ queryKey: ['thismonthtotalordersum'] });
+    //                 }
+    //                 if (data?.error) {
+    //                     toast.error(data?.error)
+    //                 }
+    //             })
+    //     })
+    // }
 
     return (
         <div className='w-full h-full flex flex-col gap-4 overflow-y-auto'>
