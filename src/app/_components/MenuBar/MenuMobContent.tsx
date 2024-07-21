@@ -14,7 +14,7 @@ import { MdOutlinePersonOutline } from 'react-icons/md';
 import { TbLogout } from 'react-icons/tb';
 import { useCart } from '../ContextApi/CartContext';
 import Icon from '../Icon';
-
+import { logoutFunc } from '@/lib/logout';
 
 
 const MobNav = ({ onMenu }: any) => {
@@ -76,7 +76,7 @@ const MobNav = ({ onMenu }: any) => {
         },
         {
             id: 7,
-            href: "/",
+            href: "/logout",
             name: "Logout",
             icon: <TbLogout size={25} />,
             count: "",
@@ -84,16 +84,21 @@ const MobNav = ({ onMenu }: any) => {
         },
     ];
 
-    const HandleClick = (item: any) => {
-        onMenu(false)
-        const href = item?.href
-        if (href && pathname !== href) {
-            animatePageOut(href, router);
-            router.push(href)
+    const HandleClick = async (item: any) => {
+        if (item?.name === "Logout") {
+            await logoutFunc()
+            router.push('/');
+            router.refresh();
+        } else {
+            onMenu(false)
+            const href = item?.href
+            if (href && pathname !== href) {
+                animatePageOut(href, router);
+                router.push(href)
+            }
         }
     }
-
-
+    
     return (
         <div className='fixed top-0 left-0 md:hidden w-full h-full p-5'>
             <div className='w-full h-full flex flex-col gap-1 mt-[50px] '>
@@ -108,7 +113,7 @@ const MobNav = ({ onMenu }: any) => {
                         className={`${!item.show && "hidden"} flex items-center gap-3 justify-start p-2 rounded-[10px] hover:bg-neutral-800`}
                         onClick={() => HandleClick(item)}
                     >
-                        <a className="flex items-center gap-3">
+                        <a className={`w-full flex items-center gap-3 rounded-[10px] px-3 py-2 ${pathname === item?.href && "bg-white/10"}`}>
                             <Icon icon={item.icon} count={item.count || 0} iconCls="text-black" />
                             <h2 className='text-lg'>{item.name}</h2>
                         </a>

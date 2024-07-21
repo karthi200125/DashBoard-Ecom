@@ -34,9 +34,7 @@ interface MenuProps {
 }
 
 const Menu = ({ isSticky, onOpen }: MenuProps) => {
-
     const [menuOpen, setMenuOpen] = useState(false);
-
     const HandleLineClick = (d: any) => {
         setMenuOpen(d);
         onOpen(menuOpen)

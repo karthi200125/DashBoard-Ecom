@@ -1,6 +1,7 @@
 'use client'
 
 import CustomBtn from '@/app/_components/CustomBtn'
+import DeleteOrderModel from '@/app/_components/Modal/DeleteOrderModel'
 import UserProfile from '@/app/_components/UserProfile'
 import useDeleteOrderModal from '@/app/hooks/useDeleteOrderModel'
 import { ListOrdered } from 'lucide-react'
@@ -15,9 +16,33 @@ interface OrderProps {
 const Order = ({ orderData, user, products }: OrderProps) => {
 
     const deleteOrderModal = useDeleteOrderModal();
+    const deleteOrderModel = useDeleteOrderModel();
+    const [isLoading, startTransition] = useTransition();
+    const queryClient = useQueryClient()
+
+    const HandleDelete = () => {
+        startTransition(() => {
+            deleteOrder(order?.id).
+                then((data: any) => {
+                    if (data?.success) {
+                        toast.success(data?.success)
+                        deleteOrderModel.onClose()
+                        // queryClient.invalidateQueries({ queryKey: ['gendercount'] });
+                        // queryClient.invalidateQueries({ queryKey: ['getMonthlyorderCounts'] });
+                        queryClient.invalidateQueries({ queryKey: ['getallorders'] });
+                        queryClient.invalidateQueries({ queryKey: ['totalordersum'] });
+                        queryClient.invalidateQueries({ queryKey: ['thismonthtotalordersum'] });
+                    }
+                    if (data?.error) {
+                        toast.error(data?.error)
+                    }
+                })
+        })
+    }
 
     return (
         <div className='w-full h-full flex flex-col gap-4 overflow-y-auto'>
+            <DeleteOrderModel order={orderData} />
             <h4 className='text-2xl font-bold w-full text-center py-5 border-b-[1px]'>Order details</h4>
             <div className='w-full flex flex-col gap-2'>
                 <h6 className='flex items-center gap-2 flex-row'>Order Id : <span className='text-neutral-400 text-[10px]'>#{orderData?.id}</span></h6>

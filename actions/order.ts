@@ -15,6 +15,36 @@ export const getOrder = async (orderId: string): Promise<any> => {
     }
 };
 
+export const deleteOrder = async (orderId: string) => {
+    try {
+        await db.order.delete({
+            where: {
+                id: orderId,
+            },
+        });
+        return { success: 'Successfully Deleted the order' };
+    } catch (error) {
+        return { error: 'Failed to delete order' };
+    }
+};
+
+export const orderConfirm = async (orderId: string) => {
+    try {
+        await db.order.update({
+            where: {
+                id: orderId,
+            },
+            data: {
+                status:"Delivered"
+            }
+        });
+        return { success: 'Successfully Deleted the order' };
+    } catch (error) {
+        return { error: 'Failed to delete order' };
+    }
+};
+
+
 export const getAllOrders = async () => {
     try {
         const orders = await db.order.findMany({

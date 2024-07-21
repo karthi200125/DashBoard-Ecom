@@ -11,7 +11,6 @@ import {
     HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { signOut } from "next-auth/react";
 import noprofile from '../assets/noprofile.webp';
 
 import { memo, useCallback } from "react";
@@ -20,6 +19,7 @@ import { useCurrentUser } from "../hooks/useCurrentUser";
 import { perspective } from '@/app/Animations/animate';
 import { animatePageOut } from '@/app/Animations/pageTransistionAnimate';
 
+import { logoutFunc } from "@/lib/logout";
 import { motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { CiGrid31 } from 'react-icons/ci';
@@ -77,12 +77,10 @@ const UserProfile = ({ profileCls, proSrc, proAlt, tooltip, user, type }: UserPr
         },
     ];
 
-    const handleLogout = useCallback(async () => {
-        await signOut();
+    const handleLogout = useCallback(async () => {        
+        await logoutFunc()
         router.push('/');
-        router.refresh();
-        localStorage.removeItem('addimages');
-        localStorage.removeItem('filterValues');
+        router.refresh();        
     }, [router]);
 
     const handleProfileClick = useCallback(() => {

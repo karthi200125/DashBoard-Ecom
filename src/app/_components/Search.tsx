@@ -87,19 +87,19 @@ const Search = ({ placeholder = 'Search products ...', onChange, name, searchCls
     };
 
     return (
-        <div className={`flex h-full items-center transform-transition transition-all ease-in-out duration-500 ${searchExpand ? "absolute left-0 w-full z-[9999] rounded-full border" : "relative"} ${searchCls}`}>
+        <div className={`flex h-full items-center transform-transition transition-all ease-in-out duration-500 ${searchExpand ? "absolute left-0 w-full z-[10] rounded-full border" : "relative"} ${searchCls}`}>
             {searchExpand && (
                 <input
                     type="text"
                     onChange={handleInputChange}
-                    className='w-full h-full text-black font-bold capitalize text-[12px] pl-5 rounded-full z-[9999] placeholder:text-[12px] transition-all ease-in-out duration-500 transform-transition'
+                    className='w-full h-full text-black font-bold capitalize text-[12px] pl-20 md:pl-20 rounded-full z-[10] placeholder:text-[12px] transition-all ease-in-out duration-500 transform-transition'
                     placeholder={placeholder}
                     name={name}
                     value={inputValue}
                 />
             )}
             <div
-                className={`${searchExpand ? "absolute right-3 rounded-full" : "rounded-[10px]"} z-[9999] flex items-center justify-center w-[40px] h-[40px] cursor-pointer border bg-white`}
+                className={`${searchExpand ? "absolute right-3 rounded-full" : "rounded-[10px]"} z-[10] flex items-center justify-center w-[40px] h-[40px] cursor-pointer border bg-white`}
                 onClick={handleSearchToggle}
             >
                 {searchExpand ? <IoIosClose size={20} /> : <FiSearch size={20} />}

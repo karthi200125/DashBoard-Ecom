@@ -2,7 +2,6 @@
 
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
-import { AdminVerify } from './AdminVerify';
 import { getUserById } from './users';
 import { subDays, subMonths } from 'date-fns';
 
@@ -64,7 +63,7 @@ export const deletProduct = async (id: string) => {
 export const getFavProducts = async (userId: string, page?: string) => {
     const ITEM_PER_PAGE = 8;
     try {
-        const user = await getUserById(userId);
+        const user: any = await getUserById(userId);
         if (!user) {
             return { error: "User not found" };
         }
@@ -161,15 +160,9 @@ export const relatedProducts = async (product: any) => {
 
 // create product
 export const CreateProductAction = async (values: any) => {
-    const { adminId, proName, proDesc, proImage, proPrice, proOffer, proColors, proSizes, proCategory, proSubCategory, isProAvailable } = values;
+    const { proName, proDesc, proImage, proPrice, proOffer, proColors, proSizes, proCategory, proSubCategory, isProAvailable } = values;
     try {
-        const isAdmin = await AdminVerify(adminId);
-        if (!isAdmin) return { error: "Only admin can create product" };
-
-        const existingProduct = await db.product.findUnique({ where: { proName } });
-        if (existingProduct) return { error: "This product name is already taken" };
-
-        const newProduct = await db.product.create({
+        await db.product.create({
             data: {
                 proName,
                 proDesc,

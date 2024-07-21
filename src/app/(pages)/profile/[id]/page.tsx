@@ -13,7 +13,7 @@ import { useMemo } from 'react';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { IoLocationOutline } from 'react-icons/io5';
 import { getFavProducts } from '../../../../../actions/product';
-import { getSingleUser } from '../../../../../actions/users';
+import { getUserById } from '../../../../../actions/users';
 import UserOrders from '../UserOrders';
 import Title from '@/app/_components/Title';
 
@@ -26,7 +26,7 @@ const Profile = () => {
 
     const { isLoading: profileLoading, data: userdada } = useQuery({
         queryKey: ['profileuser', id],
-        queryFn: async () => await getSingleUser(id),
+        queryFn: async () => await getUserById(id),
     });
 
     const { isLoading: favProLoading, data } = useQuery({
