@@ -86,7 +86,7 @@ export const OrderShow = ({ order }: any) => {
         queryFn: async () => await getUserById(order?.userId),
     });
 
-    const user = userData;
+    const user: any = userData;
 
     const { data: userOrderProductData } = useQuery({
         queryKey: ['orderproducts', order?.productsIds],
