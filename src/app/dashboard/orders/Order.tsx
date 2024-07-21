@@ -28,7 +28,7 @@ const Order = ({ orderData, user, products }: OrderProps) => {
             </div>
 
             <div className=' flex flex-row items-center gap-5 border-b-[1px] py-5 justify-center'>
-                <CustomBtn arrow btnCls='border text-[10px]'>
+                <CustomBtn arrow btnCls='border text-[10px]' onClick={deleteOrderModal.onOpen}>
                     Cancel
                 </CustomBtn>
                 <CustomBtn arrow btnCls='border text-[10px]'>
@@ -40,7 +40,7 @@ const Order = ({ orderData, user, products }: OrderProps) => {
                 <div className="flex flex-row justify-between border py-3 px-2">
                     <div className="flex flex-row gap-2 items-center">
                         <ListOrdered />
-                        <span>({products?.length || 0}) Products</span>
+                        <h5>({products?.length || 0}) Products</h5>
                     </div>
                     <h6>
                         Total : {orderData?.total} Rs
@@ -50,7 +50,7 @@ const Order = ({ orderData, user, products }: OrderProps) => {
                     {products?.map((pro: any) => (
                         <div className='flex flex-row items-center justify-between border p-1 rounded-[10px]' key={pro?.id} >
                             <UserProfile proAlt={pro?.proName} proSrc={pro?.proImage[0]} profileCls='w-10 h-10 bg-neutral-200' />
-                            <h6 className='w-[180px] line-clamp-1'>{pro?.proName}</h6>
+                            <h6 className='w-[180px] line-clamp-1 truncate'>{pro?.proName}</h6>
                             <p>{pro?.proPrice} Rs</p>
                         </div>
                     ))}
