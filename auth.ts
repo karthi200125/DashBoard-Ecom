@@ -27,7 +27,7 @@ export const {
                 return false;
             }
 
-            const existingUser = await getUserById(user.id);
+            const existingUser: any = await getUserById(user.id);
 
             // Prevent sign in without verification
             if (!existingUser?.emailVerified) {
@@ -85,7 +85,7 @@ export const {
         async jwt({ token }) {
             if (!token.sub) return token;
 
-            const existingUser = await getUserById(token.sub);
+            const existingUser: any = await getUserById(token.sub);
 
             if (existingUser) {
                 token.isAdmin = existingUser.isAdmin;
