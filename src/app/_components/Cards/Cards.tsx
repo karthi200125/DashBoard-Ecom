@@ -36,10 +36,7 @@ interface CardsProps {
 
 const Cards = ({ products, isLoading, count }: CardsProps) => {
     const pathname = usePathname();
-    const { ref, inView } = useInView({
-        triggerOnce: true,
-        threshold: 0.5,
-    });
+    const { ref, inView } = useInView();
 
     useEffect(() => {
     }, [inView]);

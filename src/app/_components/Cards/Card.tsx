@@ -51,22 +51,22 @@ const Card = ({ card }: CardProps) => {
                 <div className='w-[40px] h-[40px] rounded-full bg-white flex items-center justify-center absolute top-3 right-3'>
                     <Heart product={card} />
                 </div>
-                <div className='absolute top-3 left-3 w-[60px] h-[35px] rounded-full bg-black text-white flex items-center justify-center text-sm font-bold'>
+                <div className='absolute top-3 left-3 w-[50px] sm:w-[60px] h-[35px] rounded-full bg-black text-white flex items-center justify-center text-[10px] sm:text-sm font-bold'>
                     {`${card?.proOffer || 0}%`}
                 </div>
             </div>
 
             {/* card content */}
-            <div className='bg-white w-full max-h-max md:h-[220px] p-2 md:p-5 flex flex-col gap-3 md:justify-between'>
-                <h5 className='text-[12px] md:text-[15px] capitalize line-clamp-2 md:line-clamp-1'>{card?.proName}</h5>
-                <div className="hidden md:flex h-[45px] overflow-hidden w-full">
+            <div className='bg-white w-full max-h-max sm:h-[220px] p-2 sm:p-5 flex flex-col gap-3 justify-center sm:justify-between'>
+                <h5 className='text-center sm:text-start text-[12px] sm:text-[15px] capitalize line-clamp-2 sm:line-clamp-1'>{card?.proName}</h5>
+                <div className="hidden sm:flex sm:h-[32px] md:h-[45px] overflow-hidden w-full">
                     <p className='line-clamp-2'>{card?.proDesc}</p>
                 </div>
 
                 {/* rating */}
-                <div className='flex flex-col gap-3 md:flex-row items-start md:items-center justify-between'>
+                <div className='flex flex-col gap-3 sm:flex-row items-center justify-between'>
                     {/* <StarRating rating={averageRating} size='15'/> */}
-                    <div className='hidden md:flex w-full md:max-w-max border rounded-full px-5 h-[35px] flex-row items-center justify-center gap-3'>
+                    <div className='flex w-full sm:max-w-max border rounded-full px-5 h-[35px] flex-row items-center justify-center gap-3'>
                         <div className="flex flex-row items-center gap-2">
                             <p className='text-muted-foreground'>{averageRating.toFixed(1)}</p>
                             <FaStar className="text-yellow-500" size={10} />
@@ -79,7 +79,7 @@ const Card = ({ card }: CardProps) => {
 
                 {/*  add to car button*/}
                 <div className='flex flex-row items-center justify-between'>
-                    <div className='hidden md:flex w-[50px] h-[50px] border rounded-full items-center justify-center rotate-[-45deg] group-hover:rotate-0 transition duration-500 group-hover:bg-black group-hover:text-white cursor-pointer'>
+                    <div className='hidden sm:flex w-[50px] h-[50px] border rounded-full items-center justify-center rotate-[-45deg] group-hover:rotate-0 transition duration-500 group-hover:bg-black group-hover:text-white cursor-pointer'>
                         <ArrowRight />
                     </div>
                     <AddToCartBtn product={card} />
