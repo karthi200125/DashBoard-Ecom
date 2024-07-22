@@ -48,7 +48,7 @@ const Favourite = () => {
             {data?.count === 0 &&
                 <div className="w-full flex items-center justify-center gap-3 flex-col">
                     <p>Your wishlist is empty</p>
-                    <CustomBtn arrow btnCls="border px-5">Go to Shop</CustomBtn>
+                    <CustomBtn arrow btnCls="border px-5" onClick={()=> router.push('/shop?page=1&category=')}>Go to Shop</CustomBtn>
                 </div>
             }
 

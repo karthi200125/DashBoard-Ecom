@@ -33,16 +33,16 @@ const AddToCartBtn = ({ product, show }: AddToCartBtnProps) => {
         }
 
         try {
-
             dispatch({
                 type: 'ADD_ITEM',
-                item: { ...product, proQuantity: 1 },
+                item: { ...product, proQuantity: 1, proSelectedColor: "", proSelectedSize: "" },
             });
-            toast.success(`"${product?.proName}" added to the cart`)
+            toast.success(`"${product?.proName}" added to the cart`);
         } catch (error) {
             toast.error(`"${product?.proName}" add to the cart failed`);
         }
     };
+
 
     return (
         <button className={`${!show ? "hidden" : "sm:block"}  sm:block cart-button w-full sm:max-w-max border px-2 pl-5 rounded-full ${clicked ? 'clicked' : ''}`} onClick={handleAddToCart}>

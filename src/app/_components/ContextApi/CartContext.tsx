@@ -99,6 +99,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
     }
 };
 
+
 const CartContext = createContext<{
     state: CartState;
     dispatch: React.Dispatch<CartAction>;

@@ -24,12 +24,11 @@ const Cart = () => {
     const { items } = state;
 
     const handleNext = () => {
-        // Check if all products have selected color and size
-        const missingSelections = items.some(pro =>
-            pro.proSelectedColor === '' || pro.proSelectedsize === ''
+        const allSelectionsMade = items.every((pro: any) =>
+            pro.proSelectedColor !== '' && pro.proSelectedSize !== ''
         );
 
-        if (missingSelections) {
+        if (!allSelectionsMade) {
             toast.error(`Select color & size for all cart products`);
             return;
         }
@@ -69,7 +68,7 @@ const Cart = () => {
             {items?.length === 0 && (
                 <div className="w-full flex items-center justify-center gap-3 flex-col">
                     <p>Your cart is empty</p>
-                    <CustomBtn onClick={() => router.push('/shop')} arrow btnCls="border px-5">
+                    <CustomBtn onClick={() => router.push('/shop?page=1&category=')} arrow btnCls="border px-5">
                         Go to Shop
                     </CustomBtn>
                 </div>
