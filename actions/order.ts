@@ -8,7 +8,6 @@ export const AllOrders = async () => {
     try {
         const orders = await db.order.findMany({
         });
-        console.log(orders)
         return { success: 'Successfully retrieved the order data', data: orders };
     } catch (error) {
         return { error: 'Failed to get order data' };

@@ -23,8 +23,6 @@ const OrderTable = () => {
         queryFn: async () => await AllOrders(),
     });
 
-    console.log("get all orders", data)
-
     const orderdata = data?.data;
     const isLoading = false;
 
@@ -32,16 +30,16 @@ const OrderTable = () => {
         <div className={`w-full ${isLoading ? "h-[800px]" : "min-h-[300px]"}`}>
 
             {/* table top */}
-            {/* <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-row items-center justify-between">
                 <h5 className='font-bold flex flex-row items-center gap-2 '>
                     <FaUsers size={20} />
                     <span>Orders</span>
                     <span>{`(${orderdata?.length})`}</span>
                 </h5>
-            </div> */}
+            </div>
 
             {/* table */}
-            {/* <table className='min-w-full divide-y divide-gray-200 mt-5 relative'>
+            <table className='min-w-full divide-y divide-gray-200 mt-5 relative'>
                 <thead className="bg-[var(--gray)] text-black">
                     <tr>
                         <th scope="col" className="px-3 py-3 text-left text-xs font-bold uppercase tracking-wider">OrderId</th>
@@ -70,7 +68,7 @@ const OrderTable = () => {
                         <div className='w-full h-full'>No Orders Yet</div>
                     )}
                 </tbody>
-            </table> */}
+            </table>
 
             {/* Table bottom */}
             <div className='flex flex-row w-full justify-end border-t-[1px] border-solid border-neutral-200 py-3'>
