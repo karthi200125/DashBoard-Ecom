@@ -36,7 +36,7 @@ const AddToCartBtn = ({ product, show }: AddToCartBtnProps) => {
 
             dispatch({
                 type: 'ADD_ITEM',
-                item: { ...product, proQuantity: 1, proSelectedColor: "", proSelectedsize: "" },
+                item: { ...product, proQuantity: 1 },
             });
             toast.success(`"${product?.proName}" added to the cart`)
         } catch (error) {
