@@ -9,15 +9,17 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 async function getCartItems(line_items: Stripe.ApiList<Stripe.LineItem>) {
     const cartItems = await Promise.all(line_items.data.map(async (item: any) => {
-        const product = await stripe.products.retrieve(item.price.product as string);
+        const product: any = await stripe.products.retrieve(item.price.product as string);
         const productId = product.metadata.productId;
 
         return {
-            product: productId,
+            id: productId,
             name: product.name,
             price: item.price.unit_amount / 100,
             quantity: item.quantity,
             image: product.images[0],
+            color: product.metadata.proSelectedColor,
+            size: product.metadata.proSelectedSize
         };
     }));
     return cartItems;
@@ -37,10 +39,8 @@ export async function POST(req: NextRequest) {
                 process.env.STRIPE_WEBHOOK_SECRET!
             );
         } catch (err: any) {
-
             return new NextResponse('Webhook error: Invalid signature', { status: 400 });
         }
-
 
         if (event.type === 'checkout.session.completed') {
 
@@ -50,9 +50,13 @@ export async function POST(req: NextRequest) {
 
             const cartItems = await getCartItems(line_items);
 
-
-            const productIds = cartItems.map(item => item.product);
-            const orderProducts = cartItems.map(item => item.product);
+            const productIds = cartItems.map(item => item.id);
+            const orderProducts = cartItems.map(item => ({
+                id: item.id,
+                productSelectColor: item.color,
+                productSelectSize: item.size,
+                ProductQuantity: item.quantity
+            }));
             const quantities = cartItems.map(item => item.quantity);
             const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 

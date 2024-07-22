@@ -2,6 +2,19 @@
 
 import { db } from '@/lib/db';
 
+
+// Function to get all orders data
+export const AllOrders = async () => {
+    try {
+        const orders = await db.order.findMany({
+        });
+        console.log(orders)
+        return { success: 'Successfully retrieved the order data', data: orders };
+    } catch (error) {
+        return { error: 'Failed to get order data' };
+    }
+};
+
 export const getOrder = async (orderId: string): Promise<any> => {
     try {
         const order = await db.order.findUnique({
@@ -35,7 +48,7 @@ export const orderConfirm = async (orderId: string) => {
                 id: orderId,
             },
             data: {
-                status:"Delivered"
+                status: "Delivered"
             }
         });
         return { success: 'Successfully Deleted the order' };
@@ -43,21 +56,6 @@ export const orderConfirm = async (orderId: string) => {
         return { error: 'Failed to delete order' };
     }
 };
-
-
-export const getAllOrders = async () => {
-    try {
-        const orders = await db.order.findMany({
-            orderBy: {
-                createdAt: 'desc'
-            }
-        });
-        return { success: 'Successfully retrieved the order data', data: orders };
-    } catch (error) {
-        return { error: 'Failed to get order data' };
-    }
-};
-
 
 export const getUserOrder = async (userId: string) => {
     try {

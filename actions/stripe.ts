@@ -18,15 +18,16 @@ export const CheckOutSession = async (values: any) => {
             product_data: {
                 name: pro?.proName,
                 images: [pro?.proImage[0]],
-                metadata: { productId: pro?.id },
+                metadata: {
+                    productId: pro?.id,
+                    proSelectedColor: pro?.proSelectedColor,
+                    proSelectedSize: pro?.proSelectedSize,
+                },
             },
             unit_amount: parseFloat(pro?.proPrice) * 100,
         },
         quantity: pro?.proQuantity,
     }));
-
-    const productIds = products.map((pro: any) => pro?.id).join(',');
-    const quantities = products.map((pro: any) => pro?.proQuantity).join(',');
 
     try {
         const session = await stripe.checkout.sessions.create({
@@ -42,9 +43,8 @@ export const CheckOutSession = async (values: any) => {
             },
             metadata: {
                 shippingInfo,
-                productIds,
-                quantities,
-                orderProducts: JSON.stringify(products)
+                productIds: products.map((pro: any) => pro?.id).join(','),
+                quantities: products.map((pro: any) => pro?.proQuantity).join(','),
             },
             line_items: lineItems,
         });

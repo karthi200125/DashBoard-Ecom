@@ -1,20 +1,20 @@
 'use client';
 
-import { useCurrentUser } from "@/app/hooks/useCurrentUser";
-import { formatDate } from "@/app/hooks/MomentDate";
-import { useQuery } from "@tanstack/react-query";
-import CustomImage from "@/components/ui/CustomImage";
-import Spinners from "@/app/_components/Spinners";
-import { MdOutlinePersonOutline, MdOutlineLocalPhone, MdOutlineEmail } from "react-icons/md";
-import { FiShoppingBag } from "react-icons/fi";
-import { FaRegAddressCard } from "react-icons/fa";
-import { LiaCitySolid } from "react-icons/lia";
-import { TbBuildingEstate } from "react-icons/tb";
-import { GiWorld } from "react-icons/gi";
-import { useSearchParams, useRouter } from "next/navigation";
 import CustomBtn from "@/app/_components/CustomBtn";
+import { formatDate } from "@/app/hooks/MomentDate";
+import { useCurrentUser } from "@/app/hooks/useCurrentUser";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FaRegAddressCard } from "react-icons/fa";
+import { FiShoppingBag } from "react-icons/fi";
+import { GiWorld } from "react-icons/gi";
+import { LiaCitySolid } from "react-icons/lia";
+import { MdOutlineEmail, MdOutlineLocalPhone, MdOutlinePersonOutline } from "react-icons/md";
+import { TbBuildingEstate } from "react-icons/tb";
 import { getUserOrder } from "../../../../actions/order";
-import { getOrderProducts } from "../../../../actions/product";
+import { getSingleProduct } from "../../../../actions/product";
+import CustomImage from "@/components/ui/CustomImage";
+import { OrdersProduct } from "./OrderProduct";
 
 const Success = () => {
     const searchParams = useSearchParams();
@@ -30,15 +30,10 @@ const Success = () => {
 
     const order: any = orderData?.data;
 
-    const { data: orderProducts, isLoading: orderProductsLoading } = useQuery({
-        queryKey: ['orderproducts', order?.productsIds],
-        queryFn: async () => await getOrderProducts(order?.productsIds),
-    });
-
     const subtotal = 1000;
     const estimatedShipping = 0;
     const discount = 10;
-    
+
     return (
         <>
             {success ? (
@@ -68,48 +63,9 @@ const Success = () => {
                             {/* Order items */}
                             <div className='border rounded-[10px] md:rounded-[30px] max-h-max p-2 md:p-5 space-y-5'>
                                 <h5>Order items</h5>
-                                {orderProductsLoading ? (
-                                    <div>
-                                        <Spinners />
-                                    </div>
-                                ) : (
-                                    orderProducts?.data?.map((pro: any) => (
-                                        <div
-                                            className='flex flex-col md:flex-row items-start gap-5 justify-between max-h-max md:h-[120px] rounded-[10px] border md:rounded-[20px] p-3 overflow-hidden'
-                                            key={pro.id}
-                                        >
-                                            {/* Item left side image and data */}
-                                            <div className="flex flex-row items-start gap-3">
-                                                <CustomImage
-                                                    src={pro?.proImage[0]}
-                                                    alt={pro?.proName}
-                                                    imgclass='w-[100px] h-[100px] rounded-xl bg-neutral-200 object-contain'
-                                                />
-                                                <div className='flex flex-col space-y-1 justify-between'>
-                                                    <h6 className='line-clamp-1'>{pro?.proName}</h6>
-                                                    <h6 className="flex flex-row items-center gap-3">
-                                                        Size: <p>M</p>
-                                                    </h6>
-                                                    <h6 className="flex flex-row items-center gap-3">
-                                                        Color: <p>white</p>
-                                                    </h6>
-                                                    <h6 className="flex flex-row items-center gap-3">
-                                                        Discount: <p>{pro?.proOffer} %</p>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            {/* Item right */}
-                                            <div className="flex flex-row md:flex-col gap-3">
-                                                <div className='text-[12px] border rounded-xl px-3 h-[40px] flex items-center justify-center'>
-                                                    3 x ₹ {pro?.proPrice}
-                                                </div>
-                                                <div className='text-[12px] border rounded-xl px-3 h-[40px] flex items-center justify-center bg-black text-white'>
-                                                    ₹ {3 * pro?.proPrice}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))
-                                )}
+                                {order?.orderProducts?.map((op: any) => (
+                                    <OrdersProduct product={op} key={op?.id}/>
+                                ))}
                             </div>
 
                             {/* Order summary */}
@@ -188,3 +144,4 @@ const Success = () => {
 };
 
 export default Success;
+
