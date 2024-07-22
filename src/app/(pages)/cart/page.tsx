@@ -23,6 +23,12 @@ const Cart = () => {
     const { state } = useCart();
     const { items } = state;
 
+    const allSelectionsMade = items.every((pro: any) =>
+        pro.proSelectedColor !== '' && pro.proSelectedSize !== ''
+    );
+
+    console.log(!allSelectionsMade)
+
     const handleNext = () => {
         const allSelectionsMade = items.every((pro: any) =>
             pro.proSelectedColor !== '' && pro.proSelectedSize !== ''
