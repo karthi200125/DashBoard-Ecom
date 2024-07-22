@@ -112,12 +112,14 @@ export const getOrderProducts = async (productIds: string[]) => {
 
 // get single product
 export const getSingleProduct = async (id: string) => {
+    console.log(id)
     try {
         const getProduct = await db.product.findUnique({
             where: {
                 id: id
             }
         })
+        console.log(getProduct)
         return getProduct
     } catch (error) {
         return { error: "get that single product failed" }

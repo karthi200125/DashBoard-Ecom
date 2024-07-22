@@ -146,14 +146,15 @@ const Success = () => {
 
 export default Success;
 
-export const OrdersProduct = (product: any) => {
-
+export const OrdersProduct = ({ product }: any) => {
+    const id = product?.product?.id
+    console.log(product)
     const { data, isLoading: orderproductLoading } = useQuery({
-        queryKey: ['getproduct', product?.id],
-        queryFn: async () => await getSingleProduct(product?.id),
+        queryKey: ['getproduct', id],
+        queryFn: async () => await getSingleProduct(id),
     });
 
-    const orderproduct: any = data    
+    const orderproduct: any = data;
 
     return (
         <div className='flex flex-col md:flex-row items-start gap-5 justify-between max-h-max md:h-[120px] rounded-[10px] border md:rounded-[20px] p-3 overflow-hidden'>
@@ -187,5 +188,5 @@ export const OrdersProduct = (product: any) => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
