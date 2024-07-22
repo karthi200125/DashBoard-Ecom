@@ -9692,7 +9692,11 @@ Invalid `prisma.user.findUnique()` invocation:
 }
 
 Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.
+<<<<<<< HEAD
 2024-07-16T06:49:40.590Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+=======
+2024-07-19T13:00:37.109Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+>>>>>>> 5fbcdb1a84497d114ba97a16aecd564729a4e8f4
 Invalid `prisma.user.findUnique()` invocation:
 
 {
@@ -9724,7 +9728,11 @@ Invalid `prisma.user.findUnique()` invocation:
 }
 
 Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.
+<<<<<<< HEAD
 2024-07-16T06:49:55.140Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+=======
+2024-07-19T13:02:24.294Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+>>>>>>> 5fbcdb1a84497d114ba97a16aecd564729a4e8f4
 Invalid `prisma.user.findUnique()` invocation:
 
 {
@@ -9756,7 +9764,11 @@ Invalid `prisma.user.findUnique()` invocation:
 }
 
 Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.
+<<<<<<< HEAD
 2024-07-16T06:50:05.789Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+=======
+2024-07-20T15:52:36.147Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+>>>>>>> 5fbcdb1a84497d114ba97a16aecd564729a4e8f4
 Invalid `prisma.user.findUnique()` invocation:
 
 {
@@ -9788,7 +9800,11 @@ Invalid `prisma.user.findUnique()` invocation:
 }
 
 Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.
+<<<<<<< HEAD
 2024-07-16T06:51:16.758Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+=======
+2024-07-21T07:39:54.140Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+>>>>>>> 5fbcdb1a84497d114ba97a16aecd564729a4e8f4
 Invalid `prisma.user.findUnique()` invocation:
 
 {
@@ -9820,7 +9836,11 @@ Invalid `prisma.user.findUnique()` invocation:
 }
 
 Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.
+<<<<<<< HEAD
 2024-07-16T06:51:23.557Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+=======
+2024-07-21T15:27:11.155Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+>>>>>>> 5fbcdb1a84497d114ba97a16aecd564729a4e8f4
 Invalid `prisma.user.findUnique()` invocation:
 
 {
@@ -9852,6 +9872,7 @@ Invalid `prisma.user.findUnique()` invocation:
 }
 
 Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.
+<<<<<<< HEAD
 2024-07-16T06:51:53.138Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
 Invalid `prisma.user.findUnique()` invocation:
 
@@ -10237,6 +10258,9 @@ Invalid `prisma.user.findUnique()` invocation:
 
 Argument `where` of type UserWhereUniqueInput needs at least one of `id` or `email` arguments. Available options are marked with ?.
 2024-07-22T04:39:14.396Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+=======
+2024-07-21T15:27:59.944Z error: Fetch single user failed for ID: undefined, Error: PrismaClientValidationError: 
+>>>>>>> 5fbcdb1a84497d114ba97a16aecd564729a4e8f4
 Invalid `prisma.user.findUnique()` invocation:
 
 {

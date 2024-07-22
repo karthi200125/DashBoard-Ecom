@@ -4,24 +4,36 @@ import React from 'react'
 import { GoArrowUpRight } from "react-icons/go";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { RiBarChartFill } from "react-icons/ri";
+import { getOrderTotalSales, getOrderTotalSalesForCurrentMonth } from '../../../../actions/dashboard/dashOrder';
+import { useQuery } from '@tanstack/react-query';
 
 
 const OrderCards = () => {
+
+    const { data } = useQuery({
+        queryKey: ['totalordersum'],
+        queryFn: async () => await getOrderTotalSales(),
+    });
+
+    const { data: totalmonthsales } = useQuery({
+        queryKey: ['thismonthtotalordersum'],
+        queryFn: async () => await getOrderTotalSalesForCurrentMonth(),
+    });
 
     const slaecards = [
         {
             id: '1',
             icon: <MdOutlineProductionQuantityLimits />,
-            sale: "",
-            value: "",
-            texts: "Total sales"
+            sale: "70",
+            value: data?.data,
+            texts: "Total Orders"
         },
         {
             id: '2',
             icon: <RiBarChartFill />,
-            sale: "",
-            value: "",
-            texts: "This Month sales"
+            sale: "20",
+            value: totalmonthsales?.data,
+            texts: "This Month orders"
         }
     ]
 
@@ -33,16 +45,16 @@ const OrderCards = () => {
                         <Icon icon={sc?.icon} tooltip='Sales' />
                         <div className='flex flex-row gap-1 items-center'>
                             <GoArrowUpRight className='text-green-400 font-bold text-lg' />
-                            <h1 className='font-bold text-sm'>100 %</h1>
+                            <h1 className='font-bold text-sm'>{sc?.sale} %</h1>
                         </div>
                     </div>
                     <div>
-                        <h1 className='font-bold text-xl'>$1293838738</h1>
+                        <h1 className='font-bold text-xl'>${sc?.value}</h1>
                         <h2 className='text-sm text-neutral-400 leading-none'>{sc?.texts}</h2>
                     </div>
                 </div>
             ))}
-            <Image src={""} imgclass="border rounded-[20px] h-[100px]" alt=''/>
+            <Image src={""} imgclass="border rounded-[20px] h-[100px]" alt='' />
         </div>
     )
 }

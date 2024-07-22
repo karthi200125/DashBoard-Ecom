@@ -16,7 +16,7 @@ import { routes } from './dummydata';
 import { motion, AnimatePresence } from 'framer-motion';
 import TransitionLink from '../Animations/TransitionLink';
 import { useQuery } from '@tanstack/react-query';
-import { getSingleUser } from '../../../actions/users';
+import { getUserById } from '../../../actions/users';
 
 const Search = dynamic(() => import('./Search'));
 const ShoppingCartIcon = dynamic(() => import('./ShoppingCartICon/ShoppingCartICon'));
@@ -36,7 +36,7 @@ const Navbar = () => {
 
     const { isLoading: profileLoading, data } = useQuery({
         queryKey: ['navprofileuser', user?.id],
-        queryFn: async () => await getSingleUser(user?.id),
+        queryFn: async () => await getUserById(user?.id),
     });
     const userdada: any = data
 
@@ -94,7 +94,7 @@ const Navbar = () => {
                 className={navbarClasses}
             >
                 {isDashboard ? (
-                    <div className="flex flex-row gap-3 items-center bg-neutral-100 rounded-full p-2">
+                    <div className="flex flex-row gap-3 items-center bg-black rounded-full p-2 text-white">
                         {renderRoutes}
                     </div>
                 ) : !user ? (
@@ -107,14 +107,14 @@ const Navbar = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className="ml-3 max-w-max">
+                    <div className="ml-3 max-w-max z-[999]">
                         <Menu isSticky={isSticky} onOpen={(d: any) => setsetmenuOpen(!d)} />
                     </div>
                 )}
 
                 {/* Navbar middle */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <Logo menuOpen={menuOpen} />
+                    <Logo />
                 </div>
 
                 <div className="flex flex-row items-center gap-2 lg:gap-3">

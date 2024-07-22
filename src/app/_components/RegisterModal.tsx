@@ -51,7 +51,7 @@ const RegisterBody = () => {
     }, [loginModel, registerModel]);
 
     return (
-        <div className='w-full max-h-max flex flex-row gap-5 overflow-hidden'>
+        <div className='w-full h-screen md:max-h-max flex flex-row gap-5 overflow-hidden'>
 
             {/* left side content */}
             <div className="flex-1 h-full flex flex-col gap-3 py-3">
@@ -118,7 +118,7 @@ const RegisterModel = () => {
             toggleOpen={registerModel.onClose}
             modalBody={modalBody}
             modalCls="w-full md:w-[500px] lg:w-[900px]"
-            closeBtn='glass text-white hover:bg-neutral-100 hover:text-black'
+            closeBtn='glass text-black lg:text-white hover:bg-neutral-100 hover:text-black'
         />
     );
 };

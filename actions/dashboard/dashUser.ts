@@ -124,3 +124,53 @@ export const getMonthlyUserCounts = async () => {
         return { error: "Error fetching monthly user counts" };
     }
 };
+
+
+// get top order users
+export const getTopOrderUsers = async () => {
+    try {
+        const topUsers = await db.order.groupBy({
+            by: ['userId'],
+            _sum: {
+                total: true,
+                quantity: true,
+            },
+            orderBy: [
+                {
+                    _sum: {
+                        quantity: 'desc',
+                    },
+                },
+                {
+                    _sum: {
+                        total: 'desc',
+                    },
+                },
+            ],
+            take: 10, // Adjust the number as needed
+        });
+
+        // Fetch user details for the top users
+        const userIds = topUsers.map(user => user.userId);
+        const users = await db.user.findMany({
+            where: {
+                id: {
+                    in: userIds,
+                },
+            },
+        });
+
+        const result = topUsers.map(topUser => {
+            const user = users.find(user => user.id === topUser.userId);
+            return {
+                user,
+                totalOrderAmount: topUser._sum.total,
+                totalQuantity: topUser._sum.quantity,
+            };
+        });
+
+        return { success: 'Successfully retrieved the top order users', data: result };
+    } catch (error) {
+        return { error: 'Failed to get top order users data' };
+    }
+};

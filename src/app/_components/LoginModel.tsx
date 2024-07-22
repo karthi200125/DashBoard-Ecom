@@ -66,7 +66,7 @@ const LoginBody = () => {
     }, [loginModel, registerModel]);
 
     return (
-        <div className='w-full max-h-max flex flex-row gap-5 overflow-hidden'>
+        <div className='w-full h-screen md:max-h-max flex flex-row gap-5 overflow-hidden'>
             {/* Left side content */}
             <div className='hidden lg:flex lg:flex-1 rounded-[20px] overflow-hidden relative'>
                 <Image src="https://res.cloudinary.com/duextvtta/image/upload/v1720446513/login-img_toasvj.webp" imgclass='bg-neutral-200 w-full h-full' alt='' />

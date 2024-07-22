@@ -1,9 +1,7 @@
 'use server'
 
 import { PrismaClient, Prisma } from '@prisma/client'
-import { Logger } from './logger'
 import { revalidatePath } from 'next/cache'
-import { AdminVerify } from './AdminVerify'
 import { db } from '@/lib/db'
 import { UserSchema } from '../schemas'
 import { z } from 'zod'
@@ -22,13 +20,16 @@ export const getUserByEmail = async (email: string) => {
 
 // Function to get user by email
 export const getUserById = async (id: string) => {
-
-    const user = await db.user.findUnique({
-        where: {
-            id
-        }
-    });
-    return user;
+    try {
+        const user = await db.user.findUnique({
+            where: {
+                id: id,
+            },
+        })
+        return user
+    } catch (error) {
+        return { error: "Fetch single user failed" }
+    }
 };
 
 
@@ -37,29 +38,24 @@ export const getAllUsers = async () => {
         const allUsers = await db.user.findMany()
         return allUsers
     } catch (error) {
-        Logger.error(`Fetch all users failed, Error: ${error}`)
         return { error: "Fetch all users failed" }
     }
 }
 
 
 // get sigle user data
-export const getSingleUser = async (id: string) => {
-    try {
-        const user = await prisma.user.findUnique({
-            where: {
-                id: id,
-            },
-        })
-        if (!user) {
-            return { error: "User not found" }
-        }
-        return user
-    } catch (error) {
-        Logger.error(`Fetch single user failed for ID: ${id}, Error: ${error}`)
-        return { error: "Fetch single user failed" }
-    }
-}
+// export const getSingleUser = async (id: string) => {
+//     try {
+//         const user = await db.user.findUnique({
+//             where: {
+//                 id: id,
+//             },
+//         })
+//         return user
+//     } catch (error) {
+//         return { error: "Fetch single user failed" }
+//     }
+// }
 
 // delete user 
 export const deleteUser = async (id: string) => {
@@ -87,8 +83,7 @@ export const updateUser = async (values: z.infer<typeof UserSchema>) => {
         });
         revalidatePath(`/profile/${id}`)
         return { success: "User updated successfully", data: updatedUser };
-    } catch (error) {
-        console.error("Error updating user:", error);
+    } catch (error) {        
         return { error: "Update user failed" };
     }
 };

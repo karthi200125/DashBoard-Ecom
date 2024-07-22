@@ -48,7 +48,6 @@ const LetterAnimation = ({ title, type }: LetterAnimationProps) => {
     if (type === 'word') {
         words = title.split(' ');
     } else {
-        // For characters, create an array of characters
         words = Array.from(title);
     }
 

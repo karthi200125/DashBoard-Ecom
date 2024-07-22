@@ -31,7 +31,7 @@ const ProductContent = ({ product }: any) => {
 
 
     return (
-        <div className='w-full h-full p-2 md:p-5 flex flex-col gap-5 md:gap-10 '>
+        <div className='w-full h-full p-[16px] md:p-5 flex flex-col gap-5 md:gap-10 '>
             <div className='flex flex-row items-center justify-between'>
                 <CustomBtn btnCls='px-5 border max-w-max' onClick={() => router.push('/')}>Back to home</CustomBtn>
                 <div className='w-[40px] h-[40px] rounded-full flex items-center justify-center bg-neutral-100'>
@@ -41,8 +41,8 @@ const ProductContent = ({ product }: any) => {
 
             {/* product price */}
             <div className='flex flex-row items-center gap-2'>
-                <h6 className='line-through'>{productPercentagePrice}</h6>
-                <h4 className='text-sl md:text-3xl font-bold'>₹ {product?.proPrice}</h4>
+                <h6 className='line-through'>₹ {product?.proPrice}</h6>
+                <h4 className='text-sl md:text-3xl font-bold'>₹ {productPercentagePrice}</h4>
                 <div className='px-3 bg-gradient-to-r from-red-500 to-orange-500 text-white text-[12px] h-[35px] custom-sloped-corner w-[110px] flex items-center justify-start'>
                     {percentage}% OFF!
                 </div>
@@ -69,7 +69,7 @@ const ProductContent = ({ product }: any) => {
                 {/* <Quantity
                     quanityCls='min-w-[110px] md:w-[180px] rounded-full h-[50px]'
                 /> */}
-                <AddToCartBtn product={product} />
+                <AddToCartBtn product={product} show={true}/>
             </div>
         </div >
     )

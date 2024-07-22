@@ -30,8 +30,8 @@ export const LadingPageMainContents = [
         id: 1,
         image: "https://res.cloudinary.com/duextvtta/image/upload/v1719735028/mens_ztpxpn.webp",
         heading1: "Elevate Your Style with",
-        heading2: "Our Premium",
-        heading3: "Men's Collection",
+        heading2: "Our Premium Men's",
+        heading3: "Collection",
         subHeading1: "MENS",
         subHeading2: "Essentials for Him"
     },
@@ -47,7 +47,7 @@ export const LadingPageMainContents = [
     {
         id: 3,
         image: "https://res.cloudinary.com/duextvtta/image/upload/v1719735029/womens_ehx5gr.webp",
-        heading1: "Discover Fun and Comfort",
+        heading1: "Discover Fun & Comfort",
         heading2: "with Our Trendy",
         heading3: "Kids' Wear",
         subHeading1: "KIDS",

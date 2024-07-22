@@ -1,12 +1,11 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { useInView } from 'react-intersection-observer';
 import CustomPagination from '../CustomPagination';
 import Card from './Card';
 import CardSkeleton from './CardSkeleton';
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 
 export const cardsSlipUpOneByOne = {
     initial: {
@@ -38,15 +37,11 @@ const Cards = ({ products, isLoading, count }: CardsProps) => {
     const pathname = usePathname();
     const { ref, inView } = useInView({
         triggerOnce: true,
-        threshold: 0.5,
     });
-
-    useEffect(() => {
-    }, [inView]);
 
     return (
         <>
-            <div ref={ref} className='w-full max-h-max p-2 md:p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-hidden'>
+            <div ref={ref} className='w-full max-h-max p-2 md:p-5 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-hidden'>
                 {isLoading ?
                     Array(8).fill(0).map((_, index) => (
                         <CardSkeleton key={index} />

@@ -1,5 +1,9 @@
+'use client'
+
 import dynamic from "next/dynamic"
 import { FaUsers } from "react-icons/fa"
+import { getTopOrderUsers } from "../../../../actions/dashboard/dashUser"
+import { useQuery } from "@tanstack/react-query"
 const UserTable = dynamic(() => import("../users/UserTable"), { ssr: false })
 const TopList = dynamic(() => import("@/app/_components/TopList"), { ssr: false })
 const Image = dynamic(() => import("@/components/ui/CustomImage"), { ssr: false })
@@ -9,20 +13,11 @@ const UserGraph = dynamic(() => import("./UserGraph"), { ssr: false })
 
 const Users = () => {
 
-    //     const [user, setUsers] = useState([])
-
-    //     useEffect(() => {
-    //         const get = async () => {
-    //             const response = await MostLikedProducts()
-    //             console.log(response)
-    //             if (response.success) {                
-    //                 setProducts(response.data)
-    //             } 
-    //         }
-    //         get()
-    //     }, [])
-
-
+    const { data } = useQuery({
+        queryKey: ['gettoporderusers'],
+        queryFn: async () => await getTopOrderUsers(),
+    });
+    
     return (
         <div className="h-full w-full flex flex-col gap-3 mt-5">
 
@@ -47,7 +42,7 @@ const Users = () => {
                 </div>
 
                 <div className="bg-white border rounded-[20px] w-[23%] p-5 h-[660px] overflow-y-hidden">
-                    <TopList title="Top users" icon={<FaUsers size={20} />} data={""} />
+                    <TopList title="Top users" icon={<FaUsers size={20} />} data={data?.data} />
                 </div>
             </div>
 

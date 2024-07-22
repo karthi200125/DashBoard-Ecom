@@ -25,10 +25,10 @@ const OrderGraph = () => {
         <div className='p-5 border bg-white rounded-[20px] w-full h-full'>
             <div className='flex flex-row items-center gap-2'>
                 <FaUsers size={20} />
-                <h1 className='font-bold text-md'>New users</h1>
+                <h5>Orders Graph</h5>
             </div>
 
-            <div className='w-full h-[280px] mt-5 ml-[-30px]'>
+            <div className='w-full h-[280px] mt-5 ml-[-30px] text-[10px]'>
                 <ResponsiveContainer width="100%" height="100%" >
                     <LineChart data={data} >
                         <CartesianGrid strokeDasharray="3 3" />

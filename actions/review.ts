@@ -11,8 +11,7 @@ export const CreateReview = async (values: any) => {
         });
         revalidatePath(`/singpleproduct/${values?.productId}`)
         return { success: "Review uploaded successfully" };
-    } catch (error) {
-        console.error("Error creating review:", error);
+    } catch (error) {        
         return { error: "Failed to upload review" };
     }
 };

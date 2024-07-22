@@ -21,12 +21,13 @@ interface ReviewPeops {
 const Review = ({ review }: ReviewPeops) => {
     const [showMore, setShowMore] = useState<boolean>(false);
 
-    const { isPending, data: reviewUser } = useQuery({
+    const { isPending, data } = useQuery({
         queryKey: ['reviewuser', review.userId],
         queryFn: async () => await getUserById(review.userId)
     });
 
     const rating = Number(review.revRating);
+    const reviewUser: any = data
 
     return (
         <div className='w-full rounded-[20px] p-5 max-h-max border flex flex-row items-start gap-10'>

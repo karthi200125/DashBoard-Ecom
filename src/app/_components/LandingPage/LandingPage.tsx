@@ -130,13 +130,13 @@ const LandingPage = ({ onLoaded }: any) => {
                 }}
                 className='flex flex-col p-5 rounded-[20px] absolute max-w-max top-[5%] md:top-[7%] left-[2%] md:left-[7%]'
             >
-                <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >
+                <h1 className='text-[18px] sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderTopRightRadius: '10px', borderTopLeftRadius: '10px' }} >
                     <LetterAnimation title={heading1} />
                 </h1>
-                <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px" }}>
+                <h1 className='text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px" }}>
                     <LetterAnimation title={heading2} />
                 </h1>
-                <h1 className='text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>
+                <h1 className='text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white px-4 py-1 glass max-w-max' style={{ borderBottomRightRadius: "10px", borderBottomLeftRadius: '10px' }}>
                     <LetterAnimation title={heading3} />
                 </h1>
             </motion.div>
@@ -150,8 +150,8 @@ const LandingPage = ({ onLoaded }: any) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
                             ease: "easeInOut",
-                            duration: 0.6,
-                            delay: 0.2 + i * 0.2,
+                            duration: 1,
+                            delay: 0.6 + i * 0.3,
                         }}
                         className="w-full h-full rounded-[20px] bg-neutral-100 transition duration-300 overflow-hidden"
                         onClick={() => handleClick(i)}
