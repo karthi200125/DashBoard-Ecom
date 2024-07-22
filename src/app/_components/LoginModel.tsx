@@ -66,9 +66,9 @@ const LoginBody = () => {
     }, [loginModel, registerModel]);
 
     return (
-        <div className='w-full h-screen md:max-h-max flex flex-row gap-5 overflow-hidden'>
+        <div className='w-full h-full md:max-h-max flex flex-row gap-5 overflow-hidden'>
             {/* Left side content */}
-            <div className='hidden lg:flex lg:flex-1 rounded-[20px] overflow-hidden relative'>
+            <div className='hidden lg:flex lg:flex-1 rounded-[20px] overflow-hidden relative h-[600px]'>
                 <Image src="https://res.cloudinary.com/duextvtta/image/upload/v1720446513/login-img_toasvj.webp" imgclass='bg-neutral-200 w-full h-full' alt='' />
                 <div className='absolute bottom-0 left-0 w-full max-h-max p-2 flex flex-col gap-2'>
                     <CustomBtn arrow btnCls='glass bg-black text-white w-[300px]' arrowCls='text-black'>
@@ -83,7 +83,7 @@ const LoginBody = () => {
             </div>
 
             {/* Right side content */}
-            <div className='flex-1 h-full flex flex-col gap-3 py-3'>
+            <div className='flex-1 h-screen md:h-full flex flex-col gap-3 py-3 justify-center'>
                 <FormProvider {...methods}>
                     <form onSubmit={methods.handleSubmit(handleSubmit)}>
                         <div className='w-[80%] mx-auto h-full flex flex-col gap-3 items-center justify-center'>

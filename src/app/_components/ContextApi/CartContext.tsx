@@ -9,8 +9,8 @@ const CartItemSchema = z.object({
     proDesc: z.string(),
     proPrice: z.number(),
     proQuantity: z.number(),
-    proSelectedColor: z.number(),
-    proSelectedsize: z.number(),
+    proSelectedColor: z.string(),
+    proSelectedsize: z.string(),
     proImage: z.array(z.string()),
     proColors: z.array(z.string()),
     proSizes: z.array(z.string())
@@ -28,11 +28,10 @@ type CartAction =
     | { type: 'UPDATE_ITEM_QUANTITY'; id: string; quantity: number }
     | { type: 'UPDATE_ITEM_COLORS'; id: string; colors: string[] }
     | { type: 'UPDATE_ITEM_SIZES'; id: string; sizes: string[] }
-    | { type: 'UPDATE_ITEM_SELECTED_COLOR'; id: string; color: any }
+    | { type: 'UPDATE_ITEM_SELECTED_COLOR'; id: string; color: string }
     | { type: 'UPDATE_ITEM_SELECTED_SIZE'; id: string; size: string }
     | { type: 'CLEAR_CART' }
-    | { type: 'SET_CART'; items: CartItem[] }
-    | { type: 'UPDATE_ITEM'; id: string; quantity: number }; 
+    | { type: 'SET_CART'; items: CartItem[] };
 
 const initialCartState: CartState = {
     items: [],
@@ -113,7 +112,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Load cart items from local storage on initial render (Client-side only)
     useEffect(() => {
-        const storedCart = sessionStorage.getItem('cart');
+        const storedCart = localStorage.getItem('cart');
         if (storedCart) {
             dispatch({ type: 'SET_CART', items: JSON.parse(storedCart) });
         }
@@ -121,7 +120,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
     // Save cart items to local storage whenever they change (Client-side only)
     useEffect(() => {
-        sessionStorage.setItem('cart', JSON.stringify(state.items));
+        localStorage.setItem('cart', JSON.stringify(state.items));
     }, [state.items]);
 
     return (

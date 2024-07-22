@@ -59,7 +59,7 @@ const ReviewBody = ({ product }: ReviewBodyProps) => {
     }, [user?.id, product?.id, reviewmodel, startTransition])
 
     return (
-        <div className='max-h-max w-full p-5 flex flex-col gap-3'>
+        <div className='max-h-max w-full p-5 flex flex-col gap-3 justify-center'>
             <div className='flex flex-col gap-1 border-b w-full py-2 '>
                 <h4>Product Review</h4>
                 <p>Review this product</p>

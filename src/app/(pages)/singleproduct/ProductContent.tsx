@@ -67,9 +67,10 @@ const ProductContent = ({ product }: any) => {
 
             <div className='flex flex-row items-center gap-5'>
                 {/* <Quantity
-                    quanityCls='min-w-[110px] md:w-[180px] rounded-full h-[50px]'
+                    id={product?.id}
+                    quantity={1}
                 /> */}
-                <AddToCartBtn product={product} show={true}/>
+                <AddToCartBtn product={product} show={true} />
             </div>
         </div >
     )

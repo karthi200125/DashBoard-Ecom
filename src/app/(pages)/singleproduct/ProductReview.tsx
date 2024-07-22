@@ -57,13 +57,13 @@ const ProductReview = ({ product }: ProductReviewProps) => {
         <CustomBtn arrow onClick={handleReviewModelOpen} btnCls='border w-full'>Add your review</CustomBtn>
 
         <div className='w-full flex flex-col gap-3 rounded-[20px] p-5 bg-white border'>
-          <h4>Total reviews</h4>
+          <h5>Total reviews</h5>
           <h2>{reviews.length || 0}</h2>
           <p>Growth this year</p>
         </div>
 
         <div className='w-full flex flex-col gap-3 rounded-[20px] p-5 bg-white border'>
-          <h4 >Average Rating</h4>
+          <h5 >Average Rating</h5>
           <StarRating size='' rating={averageRating} />
           <p>Average rating this year</p>
         </div>

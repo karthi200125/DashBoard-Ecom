@@ -44,6 +44,7 @@ export const CheckOutSession = async (values: any) => {
                 shippingInfo,
                 productIds,
                 quantities,
+                orderProducts: JSON.stringify(products)
             },
             line_items: lineItems,
         });
@@ -51,7 +52,6 @@ export const CheckOutSession = async (values: any) => {
         return { sessionUrl: session.url };
 
     } catch (error) {
-        console.error('Error creating Stripe Checkout session:', error);
         throw error;
     }
 };

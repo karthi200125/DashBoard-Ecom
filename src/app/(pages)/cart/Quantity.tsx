@@ -8,14 +8,14 @@ interface QuantityProps {
     quantity: number;
 }
 
-const Quantity = ({ id, quantity, quanityCls }: QuantityProps) => {
+const Quantity = ({ id, quantity }: QuantityProps) => {
     const [currentQuantity, setCurrentQuantity] = useState(quantity || 1);
     const { dispatch } = useCart();
 
     const handleDecrease = () => {
         setCurrentQuantity(prevQuantity => {
             const newQuantity = Math.max(1, prevQuantity - 1);
-            dispatch({ type: 'UPDATE_ITEM', id, quantity: newQuantity });
+            dispatch({ type: 'UPDATE_ITEM_QUANTITY', id, quantity: newQuantity });
             return newQuantity;
         });
     };
@@ -23,13 +23,13 @@ const Quantity = ({ id, quantity, quanityCls }: QuantityProps) => {
     const handleIncrease = () => {
         setCurrentQuantity(prevQuantity => {
             const newQuantity = prevQuantity + 1;
-            dispatch({ type: 'UPDATE_ITEM', id, quantity: newQuantity });
+            dispatch({ type: 'UPDATE_ITEM_QUANTITY', id, quantity: newQuantity });
             return newQuantity;
         });
     };
 
     useEffect(() => {
-        dispatch({ type: 'UPDATE_ITEM', id, quantity: currentQuantity });
+        dispatch({ type: 'UPDATE_ITEM_QUANTITY', id, quantity: currentQuantity });
     }, [currentQuantity, dispatch, id]);
 
     return (

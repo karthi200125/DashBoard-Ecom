@@ -103,6 +103,7 @@ model Order {
   id          String     @id @default(auto()) @map("_id") @db.ObjectId
   userId      String     @db.ObjectId
   productsIds String[]   @db.ObjectId
+  orderProducts Json   
   quantity    Int        
   total       Float
   status      String     @default("pending")

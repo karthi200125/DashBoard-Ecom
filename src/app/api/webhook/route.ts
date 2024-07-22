@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     try {
         const signature = req.headers.get('stripe-signature');
-        const rawBody = await req.text();        
+        const rawBody = await req.text();
 
         let event;
         try {
@@ -37,21 +37,22 @@ export async function POST(req: NextRequest) {
                 process.env.STRIPE_WEBHOOK_SECRET!
             );
         } catch (err: any) {
-        
+
             return new NextResponse('Webhook error: Invalid signature', { status: 400 });
         }
 
-        
+
         if (event.type === 'checkout.session.completed') {
-            
+
             const session = event.data.object as Stripe.Checkout.Session;
 
             const line_items = await stripe.checkout.sessions.listLineItems(session.id);
-            
+
             const cartItems = await getCartItems(line_items);
-            
+
 
             const productIds = cartItems.map(item => item.product);
+            const orderProducts = cartItems.map(item => item.product);
             const quantities = cartItems.map(item => item.quantity);
             const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -62,14 +63,13 @@ export async function POST(req: NextRequest) {
                     data: {
                         userId,
                         productsIds: productIds,
+                        orderProducts: orderProducts,
                         quantity: quantities.reduce((acc, q) => acc + q, 0),
                         total: totalPrice,
                         status: 'pending',
                     },
                 });
-                
 
-                // Update user model to connect the new order
                 await db.user.update({
                     where: { id: userId },
                     data: { Orders: { connect: { id: newOrder.id } } },

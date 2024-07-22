@@ -11,6 +11,8 @@ const OrderSummaryStep = () => {
     const { state, dispatch } = useCart();
     const { items } = state;
 
+    console.log(items);
+
     const handleRemoveItem = (id: string) => {
         dispatch({ type: 'REMOVE_ITEM', id });
     };
@@ -20,8 +22,7 @@ const OrderSummaryStep = () => {
     };
 
     const handleColorSelect = (id: string, color: string) => {
-        const colorNumber = parseInt(color, 10);
-        dispatch({ type: 'UPDATE_ITEM_SELECTED_COLOR', id, color: colorNumber });
+        dispatch({ type: 'UPDATE_ITEM_SELECTED_COLOR', id, color });
     };
 
     const handleSizeSelect = (id: string, size: string) => {
