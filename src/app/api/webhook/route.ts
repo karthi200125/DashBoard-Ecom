@@ -17,7 +17,7 @@ async function getCartItems(line_items: Stripe.ApiList<Stripe.LineItem>) {
             name: product.name,
             price: item.price.unit_amount / 100,
             quantity: item.quantity,
-            image: product.images[0]
+            image: product.images[0],
         };
     }));
     return cartItems;
