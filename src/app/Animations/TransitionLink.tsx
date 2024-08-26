@@ -9,15 +9,23 @@ interface Props {
     children: React.ReactNode;
 }
 
-const TransitionLink: React.FC<Props> = ({ href, children }) => {
+const TransitionLink = ({ href, children }:Props) => {
     const router = useRouter();
     const pathname = usePathname();
     const [isAnimating, setIsAnimating] = useState(false);
 
-    useEffect(() => {
-        // Handle page entry animation when the component mounts or the path changes
-        animatePageIn();
-    }, [pathname]);
+    useEffect(() => {       
+        if (!isAnimating) {
+            animatePageIn();
+        }
+       
+        const resetAnimationState = () => setIsAnimating(false);
+        router.events.on('routeChangeComplete', resetAnimationState);
+
+        return () => {
+            router.events.off('routeChangeComplete', resetAnimationState);
+        };
+    }, [pathname, isAnimating, router.events]);
 
     const handleClick = async (e: MouseEvent<HTMLDivElement>) => {
         e.preventDefault();
@@ -28,7 +36,7 @@ const TransitionLink: React.FC<Props> = ({ href, children }) => {
         try {
             await animatePageOut(href, router);
             router.push(href);
-        } catch (error) {           
+        } catch (error) {          
             setIsAnimating(false);
         }
     };
